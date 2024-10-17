@@ -6,3 +6,4 @@
 - [tRPC](https://trpc.io)
 - [Shadcn UI](https://ui.shadcn.com)
 - [Tursodatabase](https://turso.tech)
+- [Uploadthing](https://uploadthing.com)
