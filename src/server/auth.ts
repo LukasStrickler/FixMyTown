@@ -1,14 +1,14 @@
 import { DrizzleAdapter } from "@auth/drizzle-adapter";
 import {
   getServerSession,
-  User,
+  // User,
   type DefaultSession,
   type NextAuthOptions,
 } from "next-auth";
 import { type Adapter } from "next-auth/adapters";
 import Credentials from "next-auth/providers/credentials"
 
-import { env } from "@/env";
+// import { env } from "@/env";
 import { db } from "@/server/db";
 import {
   accounts,
@@ -17,7 +17,7 @@ import {
   verificationTokens,
 } from "@/server/db/schema";
 
-type UserRole = "user" | "manager" | "admin";
+type UserRole = "USER" | "WORKER" | "ADMIN";
 
 /**
  * Module augmentation for `next-auth` types. Allows us to add custom properties to the `session`
@@ -59,8 +59,8 @@ export const authOptions: NextAuthOptions = {
     async session({ session, token }) {
       if (token && session.user) {
         session.user.id = token.id as string;
-        session.user.email = token.email as string;
-        session.user.name = token.name as string;
+        session.user.email = token.email!;
+        session.user.name = token.name!;
         session.user.role = token.role as UserRole;
       }
       return session;
@@ -90,7 +90,7 @@ export const authOptions: NextAuthOptions = {
             id: "1",
             name: "Admin",
             email: "admin@example.com",
-            role: "admin" as UserRole,
+            role: "ADMIN" as UserRole,
           };
         }
         return null;

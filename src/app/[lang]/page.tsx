@@ -3,9 +3,17 @@ import Link from "next/link";
 import { LatestPost } from "@/app/_components/post";
 import { getServerAuthSession } from "@/server/auth";
 import { api, HydrateClient } from "@/trpc/server";
-import { ButtonUpload } from "./_components/uploadbutton";
+import { ButtonUpload } from "../_components/uploadbutton";
+import { getDictionary } from "../../get-dictionary";
+import { type Locale } from "@/i18n-config";
 
-export default async function Home() {
+export default async function IndexPage({
+  params: { lang },
+}: {
+  params: { lang: Locale };
+}) {
+
+  const dictionary = await getDictionary(lang);
   const hello = await api.post.hello({ text: "from tRPC" });
   const session = await getServerAuthSession();
 
@@ -16,6 +24,7 @@ export default async function Home() {
       <main className="flex min-h-screen flex-col items-center justify-center bg-gradient-to-b from-[#2e026d] to-[#15162c] text-white">
         <div className="container flex flex-col items-center justify-center gap-12 px-4 py-16">
           <div>{JSON.stringify(session)}</div>
+          <div>{dictionary.index.helloWorld}</div>
           <div className="flex flex-col items-center gap-2">
             <p className="text-2xl text-white">
               {hello ? hello.greeting : "Loading tRPC query..."}
