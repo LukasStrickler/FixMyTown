@@ -1,11 +1,12 @@
 import Link from "next/link";
 
-import { LatestPost } from "@/app/_components/post";
+import { LatestPost } from "@/components/post";
 import { getServerAuthSession } from "@/server/auth";
 import { api, HydrateClient } from "@/trpc/server";
-import { ButtonUpload } from "../_components/uploadbutton";
+import { ButtonUpload } from "../../components/uploadbutton";
 import { getDictionary } from "../../get-dictionary";
 import { type Locale } from "@/i18n-config";
+import { ModeToggle } from "@/components/modeToggle";
 
 export default async function IndexPage({
   params: { lang },
@@ -42,6 +43,7 @@ export default async function IndexPage({
               </Link>
             </div>
           </div>
+          <ModeToggle></ModeToggle>
 
           {session?.user && <LatestPost />}
           <ButtonUpload />
