@@ -8,4 +8,3 @@ Aufgabengröße:
 - M: 1h
 - L: 2h
 - XL: 4h
-- XXL: 1 Tag
