@@ -7,7 +7,7 @@ import { TRPCReactProvider } from "@/trpc/react";
 import { NextSSRPlugin } from "@uploadthing/react/next-ssr-plugin";
 import { extractRouterConfig } from "uploadthing/server";
 import { ourFileRouter } from "../api/uploadthing/core";
-
+import { ThemeProvider } from "@/components/provider/themeProvider";
 
 export const metadata: Metadata = {
   title: "Create T3 App",
@@ -21,18 +21,25 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${GeistSans.variable}`}>
       <body>
-        <TRPCReactProvider>
-          <NextSSRPlugin
-            /**
-             * The `extractRouterConfig` will extract **only** the route configs
-             * from the router to prevent additional information from being
-             * leaked to the client. The data passed to the client is the same
-             * as if you were to fetch `/api/uploadthing` directly.
-             */
-            routerConfig={extractRouterConfig(ourFileRouter)}
-          />
-          {children}
-        </TRPCReactProvider>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <TRPCReactProvider>
+            <NextSSRPlugin
+              /**
+               * The `extractRouterConfig` will extract **only** the route configs
+               * from the router to prevent additional information from being
+               * leaked to the client. The data passed to the client is the same
+               * as if you were to fetch `/api/uploadthing` directly.
+               */
+              routerConfig={extractRouterConfig(ourFileRouter)}
+            />
+            {children}
+          </TRPCReactProvider>
+        </ThemeProvider>
       </body>
     </html>
   );
