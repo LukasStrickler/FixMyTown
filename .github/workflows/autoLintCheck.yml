@@ -1,6 +1,5 @@
 name: Lint Check
 
-# Trigger the workflow when a pull request is opened or updated
 on:
   pull_request:
     branches:
@@ -11,20 +10,24 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    # Checkout the repository
     - name: Checkout code
       uses: actions/checkout@v3
 
-    # Set up Node.js environment
     - name: Set up Node.js
       uses: actions/setup-node@v3
       with:
-        node-version: '20' 
+        node-version: '16'
 
-    # Install dependencies
     - name: Install dependencies
       run: npm install
 
-    # Run the lint command
+    # Pass secrets as environment variables
     - name: Run linter
+      env:
+        DATABASE_URL: ${{ secrets.DATABASE_URL }}
+        DATABASE_AUTH_TOKEN: ${{ secrets.DATABASE_AUTH_TOKEN }}
+        UPLOADTHING_TOKEN: ${{ secrets.UPLOADTHING_TOKEN }}
+        RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
+        NEXTAUTH_SECRET: ${{ secrets.NEXTAUTH_SECRET }}
+        NEXTAUTH_URL: ${{ secrets.NEXTAUTH_URL }}
       run: npm run lint
