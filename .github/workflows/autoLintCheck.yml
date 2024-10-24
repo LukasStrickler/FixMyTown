@@ -1,0 +1,30 @@
+name: Lint Check
+
+# Trigger the workflow when a pull request is opened or updated
+on:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+
+    steps:
+    # Checkout the repository
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    # Set up Node.js environment
+    - name: Set up Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '20' 
+
+    # Install dependencies
+    - name: Install dependencies
+      run: npm install
+
+    # Run the lint command
+    - name: Run linter
+      run: npm run lint
