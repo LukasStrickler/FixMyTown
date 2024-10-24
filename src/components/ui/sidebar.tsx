@@ -19,6 +19,9 @@ import {
   TooltipTrigger,
 } from "@/components/ui/tooltip"
 
+import { useSession } from "next-auth/react"
+
+
 const SIDEBAR_COOKIE_NAME = "sidebar:state"
 const SIDEBAR_COOKIE_MAX_AGE = 60 * 60 * 24 * 7
 const SIDEBAR_WIDTH = "16rem"
@@ -265,6 +268,10 @@ const SidebarTrigger = React.forwardRef<
   React.ComponentProps<typeof Button>
 >(({ className, onClick, ...props }, ref) => {
   const { toggleSidebar } = useSidebar()
+
+  const { data: session } = useSession()  // Grab session from useSession
+  const user = session?.user  // Get the user object from session
+  if(!user) {return null}
 
   return (
     <Button

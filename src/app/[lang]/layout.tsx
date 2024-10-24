@@ -10,20 +10,13 @@ import { ourFileRouter } from "../api/uploadthing/core";
 import { ThemeProvider } from "@/components/provider/themeProvider";
 
 import { AppSidebar } from "@/components/app-sidebar"
-import {
-  Breadcrumb,
-  BreadcrumbItem,
-  BreadcrumbLink,
-  BreadcrumbList,
-  BreadcrumbPage,
-  BreadcrumbSeparator,
-} from "@/components/ui/breadcrumb"
-import { Separator } from "@/components/ui/separator"
+
 import {
   SidebarInset,
   SidebarProvider,
   SidebarTrigger,
 } from "@/components/ui/sidebar"
+import { AuthProvider } from "@/components/provider/authProvider";
 
 export const metadata: Metadata = {
   title: "Create T3 App",
@@ -37,15 +30,19 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${GeistSans.variable}`}>
       <body>
+
         <ThemeProvider
           attribute="class"
           defaultTheme="system"
           enableSystem
           disableTransitionOnChange
         >
+          <AuthProvider>
           <TRPCReactProvider>
           <SidebarProvider>
-          <AppSidebar />
+          <AppSidebar params={{
+                lang: "de"
+              }} />
           <SidebarInset>
           <SidebarTrigger className="-ml-1" />
 
@@ -62,6 +59,8 @@ export default function RootLayout({
             </SidebarInset>
             </SidebarProvider>
           </TRPCReactProvider>
+          </AuthProvider>
+
         </ThemeProvider>
       </body>
     </html>

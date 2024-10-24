@@ -93,6 +93,22 @@ export const authOptions: NextAuthOptions = {
             role: "ADMIN" as UserRole,
           };
         }
+        if (credentials?.email === "worker" && credentials?.password === "worker") {
+          return {
+            id: "2",
+            name: "Worker",
+            email: "worker@example.com",
+            role: "WORKER" as UserRole,
+          };
+        }
+        if (credentials?.email === "user" && credentials?.password === "user") {
+          return {
+            id: "3",
+            name: "User",
+            email: "user@example.com",
+            role: "USER" as UserRole,
+          };
+        }
         return null;
       },
     }),
