@@ -13,6 +13,21 @@
     - Keine Möglichkeit, Fehler zu korrigieren
     - Unübersichtliche und schwer zu bedienende Software
 
+## Bürgerin - Maria Mustermann
+- **Alter:** 65 Jahre
+- **Beruf:** Rentnerin
+- **Erfahrung:** hat in ihrem früheren Beruf keine technischen Kompetenzen benötigt
+- **Technische Kompetenz:** nutzt im Alltag das Smartphone nur für Anrufe und Nachrichten und schreibt gelegentlich eine E-Mail
+- **Ziele/Wünsche:**
+    - einfache Möglichkeit, Probleme zu melden, insbesondere sie beeinträchtigende Defekte wie kaputte Gehwege
+    - Verständliche Rückmeldungen und Bestätigungen über den Status ihrer Meldungen
+    - Verlässliche Hilfe durch die Stadt bei Problemen
+    - einfache Kontoerstellung und Passwort-Wiederherstellung für den Fall, dass sie ihre Zugangsdaten vergisst
+- **Frustration:**
+    - Unübersichtliche und komplizierte Benutzeroberflächen, die sie verwirren oder überfordern
+    - Technische Fachbegriffe oder zu viele Schritte, um ein Problem zu melden
+    - Fehlende Erklärungen oder Hilfen beim Meldeprozess und dem Anmeldeprozess
+
 ## Stadtmitarbeiterin - Erika Mustermann
 - **Alter:** 42 Jahre
 - **Beruf:** Mitarbeiterin im Ordnungsamt der Stadtverwaltung
