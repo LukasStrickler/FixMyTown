@@ -9,7 +9,7 @@ import { extractRouterConfig } from "uploadthing/server";
 import { ourFileRouter } from "../api/uploadthing/core";
 import { ThemeProvider } from "@/components/provider/themeProvider";
 
-import { AppSidebar } from "@/components/app-sidebar"
+import { AppSidebar } from "@/components/sidebar/app-sidebar"
 
 import {
   SidebarInset,

@@ -4,16 +4,10 @@ import {
   BadgeCheck,
   Bell,
   ChevronsUpDown,
-  CreditCard,
   LogOut,
-  Sparkles,
 } from "lucide-react"
 
-import {
-  Avatar,
-  AvatarFallback,
-  AvatarImage,
-} from "@/components/ui/avatar"
+
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -30,7 +24,6 @@ import {
   useSidebar,
 } from "@/components/ui/sidebar"
 import { signOut, useSession } from "next-auth/react"
-import Link from "next/link";
 import { ModeToggle } from "@/components/modeToggle";
 
 

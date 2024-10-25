@@ -1,24 +1,19 @@
 "use client"
 
-import { ChevronsUpDown, Plus, Shield, Megaphone, DollarSign, HelpCircle, User } from "lucide-react"
+import { Shield, HelpCircle, User } from "lucide-react"
+
+import { type ReactNode } from "react"; 
 import * as React from "react"
 import {
-  AudioWaveform,
-  BookOpen,
   Bot,
-  Command,
   Frame,
-  GalleryVerticalEnd,
-  Map,
-  PieChart,
-  Settings2,
   SquareTerminal,
 } from "lucide-react"
 
-import { NavMain } from "@/components/nav-main"
-import { NavProjects } from "@/components/nav-projects"
-import { NavUser } from "@/components/nav-user"
-import { WorkplaceSwitcher } from "@/components/workplace-switcher"
+import { NavMain } from "@/components/sidebar/nav-main"
+import { NavProjects } from "@/components/sidebar/nav-projects"
+import { NavUser } from "@/components/sidebar/nav-user"
+import { WorkplaceSwitcher } from "@/components/sidebar/workplace-switcher"
 import {
   Sidebar,
   SidebarContent,
@@ -29,6 +24,11 @@ import {
 
 import { useSession } from "next-auth/react";
 import { type Locale } from "@/i18n-config";
+
+export interface Workspace {
+  name: string;         // The name of the workspace
+  icon: ReactNode;     // The icon associated with the workspace
+}
 
 export function AppSidebar({
   params,
@@ -41,20 +41,23 @@ export function AppSidebar({
   const { data: session } = useSession(); // Access session data
   const user = session?.user;
 
-  // Initialize workspaces based on the user's role
-  const workspaces = user?.role === "ADMIN"
-    ? [
-        { name: "Admin Workspace", icon: <Shield /> },
-        { name: "Worker Workspace", icon: <HelpCircle /> },
-        { name: "User Workspace", icon: <User /> },
-      ]
-    : user?.role === "WORKER"
-    ? [
-        { name: "Support Workspace", icon: <HelpCircle /> },
-      ]
-    : [
-        { name: "User Workspace", icon: <User /> },
-      ];
+
+
+// Initialize workspaces based on the user's role
+const workspaces: Workspace[] =
+    user?.role === "ADMIN"
+        ? [
+              { name: "Admin Workspace", icon: <Shield /> },
+              { name: "Worker Workspace", icon: <HelpCircle /> },
+              { name: "User Workspace", icon: <User /> },
+          ]
+        : user?.role === "WORKER"
+        ? [
+              { name: "Support Workspace", icon: <HelpCircle /> },
+          ]
+        : [
+              { name: "User Workspace", icon: <User /> },
+          ];
 
   const [activeWorkspace, setActiveWorkspace] = React.useState(workspaces ? workspaces[0] : null);
 

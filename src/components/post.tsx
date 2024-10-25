@@ -3,7 +3,6 @@
 import { useState } from "react";
 
 import { api } from "@/trpc/react";
-import { Button } from "@/components/ui/button";
 
 export function LatestPost() {
   const [latestPost] = api.post.getLatest.useSuspenseQuery();
