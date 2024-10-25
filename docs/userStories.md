@@ -1,30 +1,13 @@
 # User Stories
 ## Bürger User Stories
-### Bürger können einen Defekt melden (z.B. defekte Straßenlaterne)
-**Beschreibung:** Als Bürger möchte ich einen Defekt, zum Beispiel eine defekte Straßenlaterne, melden, damit er von den zuständigen Stellen schnell behoben werden kann.
+### Bürger können Probleme melden
+**Beschreibung:** Als Bürger möchte ich ein Problem melden können, damit die zuständigen Stellen schnell darauf reagieren und das Problem beheben können. Ich möchte dabei die Art des Problems auswählen können: Defekt, Verunreinigung oder Parkverstoß.
 <br>**Priorität:** Hoch
 <br>**Akzeptanzkriterien:**
-- Bürger kann eine Beschreibung des Defekts eingeben
-- Bürger kann ein Foto des Defekts hochladen
-- Bürger kann Standort des Defekts angeben
-- (Bürger erhält eine Bestätigung, dass die Meldung eingegangen ist)
-
-### Bürger können ein Verunreinigungsproblem melden (z.B. überfüllte Mülleimer)
-**Beschreibung:** Als Bürger möchte ich eine Verunreinigung, zum Beispiel überfüllte Mülleimer, melden, damit das Problem von der zuständigen Stelle schnell gereinigt werden kann.
-<br>**Priorität:** Hoch
-<br>**Akzeptanzkriterien:** 
-- Bürger kann eine Beschreibung der Verunreinigung eingeben
-- Bürger kann ein Foto der Verunreinigung hochladen
-- Bürger kann den Standort der Verunreinigung angeben
-- (Bürger erhält eine Bestätigung, dass die Meldung eingegangen ist)
-
-### Bürger können Parkverstöße melden (z.B. Autos, die auf Radwegen parken)
-**Beschreibung:** Als Bürger möchte ich einen Parkverstoß, zum Beispiel Autos, die auf Radwegen parken, melden, damit die Behörden gegen den Verstoß vorgehen können.
-<br>**Priorität:** Hoch
-<br>**Akzeptanzkriterien:**
-- Bürger kann den Verstoß beschreiben
-- Bürger kann ein Foto des Verstoßes hochladen
-- Bürger kann den Standort des Verstoßes angeben
+- Bürger kann den Problemtyp auswählen (Defekt, Verunreinigng, Parkverstoß)
+- Bürger kann eine Beschreibung des Problems eingeben
+- Bürger kann ein Foto des Problems hochladen
+- Bürger kann den Standort des Problems angeben
 - (Bürger erhält eine Bestätigung, dass die Meldung eingegangen ist)
 
 ### Bürger können die Historie der eingereichten Meldungen sehen
@@ -46,6 +29,33 @@
 <br>**Akzeptanzkriterien:**
 - Bürger kann eine Meldung aus seiner Meldungsliste löschen
 - (Bürger erhält eine Bestätigung der Löschung)
+
+### Bürger erhalten nutzerfreundliche Fehlermeldungen
+**Beschreibung:** Als Bürger möchte ich nutzerfreundliche Fehlermeldungen erhalten, damit ich den Fehler verstehe und darauf reagieren kann.
+<br>**Priorität:** Mittel
+<br>**Akzeptanzkriterien:**
+- Fehlermeldungen sind verständlich und geben das Problem wieder
+
+### Bürger können ein Konto erstellen
+**Beschreibung:** Als Bürger möchte ich mir ein Konto erstellen können, damit ich mich anmelden und Meldungen über das System einreichen kann.
+<br>**Priorität:** Hoch
+<br>**Akzeptanzkriterien:**
+- Bürger muss eine E-Mail Adresse und ein sicheres Passwort angeben
+- Pflichtfelder müssen ausgefüllt sein, bevor die Registrierung abgeschlossen werden kann
+- Bürger erhält eine Bestätigung der erfolgreichen Kontoerstellung
+
+### Bürger kann sich einloggen
+**Beschreibung:** Als Bürger möchte ich mich mit meinen Zugangsdaten anmelden können, um Meldungen zu verwalten und den Status zu verfolgen.
+<br>**Priorität:** Hoch
+<br>**Akzeptanzkriterien:**
+- Bürger muss gültige Anmeldedaten (E-Mail Adresse und Passwort) eingeben
+
+### Bürger kann Passwort wiederherstellen
+**Beschreibung:** Als Bürger möchte ich die Möglichkeit haben, mein Passwort zurückzusetzen, wenn ich es vergessen habe, um weiterhin auf mein Konto zugreifen zu können.
+<br>**Priorität:** Hoch
+<br>**Akzeptanzkriterien:**
+- Bürger kann über einen "Passwort vergessen"-Link den Passwort-Wiederherstellungsprozess starten
+- Bürger erhält eine E-Mail mit einem sicheren Link zu Passwort-Rücksetzung
 
 ## Stadtmitarbeiter User Stories
 ### Stadtmitarbeiter können eine Liste der gemeldeten Probleme einsehen
@@ -87,6 +97,24 @@
 <br>**Priorität:** Niedrig
 <br>**Akzeptanzkriterien:**
 - Exportoption für Listen als CSV- oder Excel-Datei
+
+### Stadtmitarbeiter erhalten benötigte Informationen zur Bearbeitung von Problemen
+**Beschreibung:** Als Stadtmitarbeiter möchte ich, dass nur Probleme mit genug Informationen gemeldet werden können, damit man diese beheben kann.
+<br>**Priorität:** Mittel
+<br>**Akzeptanzkriterien:**
+- Die Felder Beschreibung und Standort sind Pflichtfelder
+
+### Stadtmitarbeiter erhalten nutzerfreundliche Fehlermeldungen
+**Beschreibung:** Als Staddtmitarbeiter möchte ich nutzerfreundliche Fehlermeldungen erhalten, damit ich den Fehler verstehe und darauf reagieren kann.
+<br>**Priorität:** Mittel
+<br>**Akzeptanzkriterien:**
+- Fehlermeldungen sind verständlich und geben das Problem wieder
+
+### Stadtmitarbeiter kann sich einloggen
+**Beschreibung:** Als Stadtmitarbeiter möchte ich mich mit meinen Zugangsdaten anmelden können, um Meldungen bearbeiten zu können.
+<br>**Priorität:** Hoch
+<br>**Akzeptanzkriterien:**
+- Stadtmitarbeiter muss gültige Anmeldedaten (E-Mail Adresse und Passwort) eingeben
 
 ## Admin User Stories
 ### Admins können Konten für Stadtmitarbeiter erstellen, damit sie die Meldungen verwalten können
@@ -142,3 +170,9 @@
 <br>**Priorität:** Niedrig
 <br>**Akzeptanzkriterien:**
 - Benutzer können zwischen Englisch und Deutsch wählen
+
+### Das System erlaubt nur bestimmte Dateitypen zum Upload
+**Beschreibung:** Das System möchte, dass nur bestimmte Dateitypen hochgeladen werden können, damit alle Uploads verarbeitet werden können.
+<br>**Priorität:** Mittel
+<br>**Akzeptanzkriterien:**
+- In den Uploads können nur Dateien in einem der Standard Foto Dateitypen hochgeladen werden
