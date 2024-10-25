@@ -6,7 +6,7 @@
 <br>**Akzeptanzkriterien:**
 - Bürger kann den Problemtyp auswählen (Defekt, Verunreinigng, Parkverstoß)
 - Bürger kann eine Beschreibung des Problems eingeben
-- Bürger kann ein Foto des Problems hochladen
+- (Bürger kann ggf. ein Foto des Problems hochladen)
 - Bürger kann den Standort des Problems angeben
 - (Bürger erhält eine Bestätigung, dass die Meldung eingegangen ist)
 
