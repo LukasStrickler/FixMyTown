@@ -16,10 +16,11 @@ import {
 
   
 interface genericTemplateProps {
-  firstName: string;
-  authCode: number;
-  authLink: string;
-  userPrompt: string;
+  firstName: string;  /* example: Max */
+  authCode: number;  /* example: 123456 */
+  authLink: string;  /* example: https://auth.abc.de/123456 */
+  userPrompt: string;  /* example: to complete your setup */
+  preview: string;  /* example: Confirm your signup for fixmy.town */
 }
 
   const genericTemplate: React.FC<Readonly<genericTemplateProps>> = ({
@@ -27,11 +28,12 @@ interface genericTemplateProps {
     authCode,
     authLink,
     userPrompt,
+    preview,
   }) => {
     return (
       <Html>
         <Head />
-        <Preview>Sign in to fixmy.town</Preview>
+        <Preview>{preview}</Preview>
         <Body style={styles.main}>
           <Container style={styles.container}>
             <Img style={styles.logo} src="https://projects.jstaehle.de/assets/images/hwg_only_temporary_FIXMYTOWN_logo.png" alt="logo" />
