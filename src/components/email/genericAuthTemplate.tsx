@@ -18,11 +18,15 @@ import {
 interface genericTemplateProps {
   firstName: string;
   authCode: number;
+  authLink: string;
+  userPrompt: string;
 }
 
   const genericTemplate: React.FC<Readonly<genericTemplateProps>> = ({
     firstName,
     authCode,
+    authLink,
+    userPrompt,
   }) => {
     return (
       <Html>
@@ -32,7 +36,7 @@ interface genericTemplateProps {
           <Container style={styles.container}>
             <Img style={styles.logo} src="https://projects.jstaehle.de/assets/images/hwg_only_temporary_FIXMYTOWN_logo.png" alt="logo" />
             <Text style={styles.company}>FixMy.Town</Text>
-            <Heading style={styles.codeTitle}>Hello {firstName}, here is your authentication code</Heading>
+            <Heading style={styles.codeTitle}>Hello {firstName}, here is your authentication code {userPrompt}</Heading>
             <Text style={styles.codeDescription}>
               Enter it in your open browser window or press the sign in button.
               This code will expire in 15 minutes.
@@ -41,7 +45,7 @@ interface genericTemplateProps {
               <Heading style={styles.codeStyle}>{authCode}</Heading>
             </Section>
             <Section style={styles.buttonContainer}>
-              <Button href="{authLink}" style={styles.button}>
+              <Button href={authLink} style={styles.button}>
                 Sign in
               </Button>
             </Section>
