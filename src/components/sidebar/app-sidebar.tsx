@@ -41,25 +41,26 @@ export function AppSidebar({
   const { data: session } = useSession(); // Access session data
   const user = session?.user;
 
-
-
-// Initialize workspaces based on the user's role
-const workspaces: Workspace[] =
+  // Initialize workspaces based on the user's role
+  const workspaces: Workspace[] =
     user?.role === "ADMIN"
-        ? [
-              { name: "Admin Workspace", icon: <Shield /> },
-              { name: "Worker Workspace", icon: <HelpCircle /> },
-              { name: "User Workspace", icon: <User /> },
-          ]
-        : user?.role === "WORKER"
-        ? [
-              { name: "Support Workspace", icon: <HelpCircle /> },
-          ]
-        : [
-              { name: "User Workspace", icon: <User /> },
-          ];
+      ? [
+          { name: "Admin Workspace", icon: <Shield /> },
+          { name: "Worker Workspace", icon: <HelpCircle /> },
+          { name: "User Workspace", icon: <User /> },
+        ]
+      : user?.role === "WORKER"
+      ? [
+          { name: "Support Workspace", icon: <HelpCircle /> },
+        ]
+      : [
+          { name: "User Workspace", icon: <User /> },
+        ];
 
-  const [activeWorkspace, setActiveWorkspace] = React.useState(workspaces ? workspaces[0] : null);
+  // Set the default workspace to "User Workspace"
+  const [activeWorkspace, setActiveWorkspace] = React.useState<Workspace>(
+    { name: "User Workspace", icon: <User /> }
+  );
 
   // If no user session, don't render the sidebar
   if (!session?.user) {
@@ -68,7 +69,7 @@ const workspaces: Workspace[] =
 
   // Define navigation data based on the active workspace
   const data = (() => {
-    switch (activeWorkspace?.name) {
+    switch (activeWorkspace.name) {
       case "Admin Workspace":
         return {
           navMain: [
