@@ -1,0 +1,1 @@
+DROP TABLE `fixmytown_post`;
