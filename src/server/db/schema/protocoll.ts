@@ -9,7 +9,6 @@ import { createTable } from "..";
 import { users } from "./users";
 import { status } from "./status";
 import { reports } from "./reports";
-import { report } from "process";
 
 export const protocolls = createTable(
     "protocolls",
