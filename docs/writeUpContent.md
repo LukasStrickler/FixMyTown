@@ -14,6 +14,12 @@
 ## Adiministrator
 - Stadtmitarbeiter verwalten
 
+# Modellierung
+- Personas
+- User Stories
+- Workflow Diagramme
+- UI/UX
+
 # eingestzte Technik
 - TypeScript
 - NextJS
@@ -52,3 +58,6 @@
 - Turso
 - Drizzle Studio
 - Shadcn/ui
+
+# Ausblick
+- FixMyTown-Go
