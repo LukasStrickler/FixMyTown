@@ -1,0 +1,33 @@
+name: Lint Check
+
+on:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '20'
+
+    - name: Install dependencies
+      run: npm install
+
+    # Pass secrets as environment variables
+    - name: Run linter
+      env:
+        DATABASE_URL: ${{ secrets.DATABASE_URL }}
+        DATABASE_AUTH_TOKEN: ${{ secrets.DATABASE_AUTH_TOKEN }}
+        UPLOADTHING_TOKEN: ${{ secrets.UPLOADTHING_TOKEN }}
+        RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
+        NEXTAUTH_SECRET: ${{ secrets.NEXTAUTH_SECRET }}
+        NEXTAUTH_URL: ${{ secrets.NEXTAUTH_URL }}
+      run: npm run lint

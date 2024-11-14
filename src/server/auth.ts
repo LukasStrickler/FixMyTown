@@ -10,12 +10,10 @@ import Credentials from "next-auth/providers/credentials"
 
 // import { env } from "@/env";
 import { db } from "@/server/db";
-import {
-  accounts,
-  sessions,
-  users,
-  verificationTokens,
-} from "@/server/db/schema";
+import { accounts } from "./db/schema/accounts";
+import { sessions } from "./db/schema/sessions";
+import { users } from "./db/schema/users";
+import { verificationTokens } from "./db/schema/verificationTokens";
 
 type UserRole = "USER" | "WORKER" | "ADMIN";
 

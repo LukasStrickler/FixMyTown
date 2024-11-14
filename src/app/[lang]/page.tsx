@@ -1,6 +1,5 @@
 import Link from "next/link";
 
-import { LatestPost } from "@/components/post";
 import { getServerAuthSession } from "@/server/auth";
 import { api, HydrateClient } from "@/trpc/server";
 import { ButtonUpload } from "../../components/uploadbutton";
@@ -19,7 +18,6 @@ export default async function IndexPage({
   const hello = await api.post.hello({ text: "from tRPC" });
   const session = await getServerAuthSession();
 
-  void api.post.getLatest.prefetch();
 
   return (
     <HydrateClient>
@@ -38,14 +36,13 @@ export default async function IndexPage({
               </p>
               <Button asChild={true} className="rounded-full bg-primary px-10 py-3 font-semibold no-underline transition hover:bg-primary/50">
                 <Link href={session ? "/api/auth/signout" : "/api/auth/signin"}>
-                {session ? "Sign out" : "Sign in"}
-                </Link> 
+                  {session ? "Sign out" : "Sign in"}
+                </Link>
               </Button>
             </div>
           </div>
           <ModeToggle></ModeToggle>
 
-          {session?.user && <LatestPost />}
           <ButtonUpload />
         </div>
       </main>

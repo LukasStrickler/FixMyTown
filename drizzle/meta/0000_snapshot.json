@@ -1,7 +1,7 @@
 {
   "version": "6",
   "dialect": "sqlite",
-  "id": "da95c786-dfa4-4a9e-a2b9-2d1ad10ab3a9",
+  "id": "b05e90c3-7e28-4e32-8d47-3111e432ce49",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "tables": {
     "fixmytown_account": {
@@ -120,69 +120,326 @@
       },
       "uniqueConstraints": {}
     },
-    "fixmytown_post": {
-      "name": "fixmytown_post",
+    "fixmytown_pictures": {
+      "name": "fixmytown_pictures",
       "columns": {
         "id": {
           "name": "id",
           "type": "integer",
           "primaryKey": true,
           "notNull": true,
-          "autoincrement": true
+          "autoincrement": false
+        },
+        "reportId": {
+          "name": "reportId",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "timestamp": {
+          "name": "timestamp",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        }
+      },
+      "indexes": {
+        "report_id_idx": {
+          "name": "report_id_idx",
+          "columns": [
+            "reportId"
+          ],
+          "isUnique": false
+        },
+        "timestamp_idx": {
+          "name": "timestamp_idx",
+          "columns": [
+            "timestamp"
+          ],
+          "isUnique": false
+        }
+      },
+      "foreignKeys": {
+        "fixmytown_pictures_reportId_fixmytown_reports_id_fk": {
+          "name": "fixmytown_pictures_reportId_fixmytown_reports_id_fk",
+          "tableFrom": "fixmytown_pictures",
+          "tableTo": "fixmytown_reports",
+          "columnsFrom": [
+            "reportId"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {}
+    },
+    "fixmytown_prios": {
+      "name": "fixmytown_prios",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "integer",
+          "primaryKey": true,
+          "notNull": true,
+          "autoincrement": false
         },
         "name": {
           "name": "name",
-          "type": "text(256)",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "description": {
+          "name": "description",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "icon": {
+          "name": "icon",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        }
+      },
+      "indexes": {
+        "prios_name_idx": {
+          "name": "prios_name_idx",
+          "columns": [
+            "name"
+          ],
+          "isUnique": false
+        },
+        "prios_icon_idx": {
+          "name": "prios_icon_idx",
+          "columns": [
+            "icon"
+          ],
+          "isUnique": false
+        }
+      },
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {}
+    },
+    "fixmytown_protocolls": {
+      "name": "fixmytown_protocolls",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "integer",
+          "primaryKey": true,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "time": {
+          "name": "time",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "reportId": {
+          "name": "reportId",
+          "type": "integer",
           "primaryKey": false,
           "notNull": false,
           "autoincrement": false
         },
-        "created_by": {
-          "name": "created_by",
+        "userId": {
+          "name": "userId",
           "type": "text(255)",
           "primaryKey": false,
           "notNull": true,
           "autoincrement": false
         },
-        "created_at": {
-          "name": "created_at",
+        "statusId": {
+          "name": "statusId",
           "type": "integer",
           "primaryKey": false,
-          "notNull": true,
-          "autoincrement": false,
-          "default": "(unixepoch())"
+          "notNull": false,
+          "autoincrement": false
         },
-        "updatedAt": {
-          "name": "updatedAt",
-          "type": "integer",
+        "comment": {
+          "name": "comment",
+          "type": "text",
           "primaryKey": false,
           "notNull": false,
           "autoincrement": false
         }
       },
       "indexes": {
-        "created_by_idx": {
-          "name": "created_by_idx",
+        "userIdIndex": {
+          "name": "userIdIndex",
           "columns": [
-            "created_by"
+            "userId"
           ],
           "isUnique": false
         },
-        "name_idx": {
-          "name": "name_idx",
+        "statusIdIndex": {
+          "name": "statusIdIndex",
           "columns": [
-            "name"
+            "statusId"
           ],
           "isUnique": false
         }
       },
       "foreignKeys": {
-        "fixmytown_post_created_by_fixmytown_user_id_fk": {
-          "name": "fixmytown_post_created_by_fixmytown_user_id_fk",
-          "tableFrom": "fixmytown_post",
+        "fixmytown_protocolls_reportId_fixmytown_reports_id_fk": {
+          "name": "fixmytown_protocolls_reportId_fixmytown_reports_id_fk",
+          "tableFrom": "fixmytown_protocolls",
+          "tableTo": "fixmytown_reports",
+          "columnsFrom": [
+            "reportId"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        },
+        "fixmytown_protocolls_userId_fixmytown_user_id_fk": {
+          "name": "fixmytown_protocolls_userId_fixmytown_user_id_fk",
+          "tableFrom": "fixmytown_protocolls",
           "tableTo": "fixmytown_user",
           "columnsFrom": [
-            "created_by"
+            "userId"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        },
+        "fixmytown_protocolls_statusId_fixmytown_status_id_fk": {
+          "name": "fixmytown_protocolls_statusId_fixmytown_status_id_fk",
+          "tableFrom": "fixmytown_protocolls",
+          "tableTo": "fixmytown_status",
+          "columnsFrom": [
+            "statusId"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {}
+    },
+    "fixmytown_reports": {
+      "name": "fixmytown_reports",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "integer",
+          "primaryKey": true,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "type": {
+          "name": "type",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "prio": {
+          "name": "prio",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "name": {
+          "name": "name",
+          "type": "text(255)",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "description": {
+          "name": "description",
+          "type": "text(1000)",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "latitude": {
+          "name": "latitude",
+          "type": "real",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "longitude": {
+          "name": "longitude",
+          "type": "real",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "location_description": {
+          "name": "location_description",
+          "type": "text(500)",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        }
+      },
+      "indexes": {
+        "type_idx": {
+          "name": "type_idx",
+          "columns": [
+            "type"
+          ],
+          "isUnique": false
+        },
+        "prio_idx": {
+          "name": "prio_idx",
+          "columns": [
+            "prio"
+          ],
+          "isUnique": false
+        },
+        "location_description_idx": {
+          "name": "location_description_idx",
+          "columns": [
+            "location_description"
+          ],
+          "isUnique": false
+        }
+      },
+      "foreignKeys": {
+        "fixmytown_reports_type_fixmytown_types_id_fk": {
+          "name": "fixmytown_reports_type_fixmytown_types_id_fk",
+          "tableFrom": "fixmytown_reports",
+          "tableTo": "fixmytown_types",
+          "columnsFrom": [
+            "type"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        },
+        "fixmytown_reports_prio_fixmytown_prios_id_fk": {
+          "name": "fixmytown_reports_prio_fixmytown_prios_id_fk",
+          "tableFrom": "fixmytown_reports",
+          "tableTo": "fixmytown_prios",
+          "columnsFrom": [
+            "prio"
           ],
           "columnsTo": [
             "id"
@@ -246,6 +503,110 @@
       "compositePrimaryKeys": {},
       "uniqueConstraints": {}
     },
+    "fixmytown_status": {
+      "name": "fixmytown_status",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "integer",
+          "primaryKey": true,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "name": {
+          "name": "name",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "description": {
+          "name": "description",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "icon": {
+          "name": "icon",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        }
+      },
+      "indexes": {
+        "icons": {
+          "name": "icons",
+          "columns": [
+            "icon"
+          ],
+          "isUnique": false
+        },
+        "names": {
+          "name": "names",
+          "columns": [
+            "name"
+          ],
+          "isUnique": false
+        }
+      },
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {}
+    },
+    "fixmytown_types": {
+      "name": "fixmytown_types",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "integer",
+          "primaryKey": true,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "name": {
+          "name": "name",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "description": {
+          "name": "description",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "icon": {
+          "name": "icon",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        }
+      },
+      "indexes": {
+        "types_name_idx": {
+          "name": "types_name_idx",
+          "columns": [
+            "name"
+          ],
+          "isUnique": false
+        },
+        "types_icon_idx": {
+          "name": "types_icon_idx",
+          "columns": [
+            "icon"
+          ],
+          "isUnique": false
+        }
+      },
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {}
+    },
     "fixmytown_user": {
       "name": "fixmytown_user",
       "columns": {
@@ -284,6 +645,14 @@
           "primaryKey": false,
           "notNull": false,
           "autoincrement": false
+        },
+        "role": {
+          "name": "role",
+          "type": "text(255)",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false,
+          "default": "'user'"
         }
       },
       "indexes": {},
