@@ -1,1 +1,0 @@
-ALTER TABLE `fixmytown_user` ADD `role` text(255) DEFAULT 'user';
