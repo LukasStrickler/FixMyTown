@@ -47,5 +47,5 @@
 https://www.orghandbuch.de/Webs/OHB/DE/Organisationshandbuch/6_MethodenTechniken/62_Dokumentationstechniken/624_Prozessmodelle/prozessmodelle_inhalt.html;jsessionid=5A907619A29BA302553E1237CA5855BC.live892?nn=21099794#doc21099796bodyText2
 
 - In Software Engineering bei Herr Dorrhauer gelernt
-- EPK (eEPK) als Modellierung genutzt
+- EPK als Modellierung genutzt - Erweiterung weggelassen
 - Symbole für Prozessmodellierung wie in Link
