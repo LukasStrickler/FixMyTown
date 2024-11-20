@@ -1,6 +1,6 @@
 import { DrizzleAdapter } from "@auth/drizzle-adapter";
 import { type DefaultSession, type NextAuthConfig } from "next-auth";
-import Resend from "next-auth/providers/resend"
+import Resend from "next-auth/providers/resend";
 
 import { db } from "@/server/db";
 import { accounts } from "@/server/db/schema/accounts";
@@ -9,7 +9,7 @@ import { verificationTokens } from "@/server/db/schema/verificationTokens";
 import { sessions } from "@/server/db/schema/sessions";
 
 import { env } from "@/env";
-import { Adapter } from "@auth/core/adapters";
+import { Adapter } from "next-auth/adapters"
 
 type UserRole = "USER" | "WORKER" | "ADMIN";
 
@@ -34,7 +34,7 @@ declare module "next-auth" {
     }
 }
 
-
+// eslint-disable-next-line @typescript-eslint/no-unnecessary-type-assertion
 const drizzleAdapter = DrizzleAdapter(db, {
     usersTable: users,
     accountsTable: accounts,
@@ -63,15 +63,5 @@ export const authConfig = {
                 role: user.role,
             },
         }),
-        // signIn: ({ profile }) => {
-        //   // if (profile?.email?.endsWith("@example.com")) {
-        //   //   return false;
-        //   // }
-        //   // Add more conditions if needed
-        //   // if (someOtherCondition) {
-        //   //   return false;
-        //   // }
-        //   return true; // Allow sign in for all other cases
-        // },
     },
 } satisfies NextAuthConfig;
