@@ -17,7 +17,7 @@ import {
   
 interface genericTemplateProps {
   firstName: string;  /* example: Max */
-  authCode: number;  /* example: 123456 */
+  authCode: number;  /* example: 12345678 */
   authLink: string;  /* example: https://auth.abc.de/123456 */
   userPrompt: string;  /* example: to complete your setup */
   preview: string;  /* example: Confirm your signup for fixmy.town */
