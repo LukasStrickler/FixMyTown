@@ -1,11 +1,11 @@
 import { createUploadthing, type FileRouter } from "uploadthing/next";
 // import { UploadThingError } from "uploadthing/server";
-import { getServerAuthSession } from "@/server/auth";
+import { auth } from "@/server/auth";
 
 const f = createUploadthing();
 
-async function auth() {
-    const session = await getServerAuthSession();
+async function authFunction() {
+    const session = await auth();
     return session?.user;
 }
 
@@ -16,7 +16,7 @@ export const ourFileRouter = {
         // Set permissions and file types for this FileRoute
         .middleware(async () => {
             // This code runs on your server before upload
-            const user = await auth();
+            const user = await authFunction();
             console.log("user", user);
 
             // // // If you throw, the user will not be able to upload

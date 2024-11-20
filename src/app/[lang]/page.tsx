@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-import { getServerAuthSession } from "@/server/auth";
+import { auth } from "@/server/auth";
 import { api, HydrateClient } from "@/trpc/server";
 import { ButtonUpload } from "../../components/uploadbutton";
 import { getDictionary } from "../../get-dictionary";
@@ -16,7 +16,7 @@ export default async function IndexPage({
 
   const dictionary = await getDictionary(lang);
   const hello = await api.post.hello({ text: "from tRPC" });
-  const session = await getServerAuthSession();
+  const session = await auth();
 
 
   return (
