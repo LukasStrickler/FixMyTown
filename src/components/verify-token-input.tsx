@@ -4,8 +4,13 @@ import { useState } from "react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { useRouter } from "next/navigation";
+import type { Dictionary } from "@/dictionaries/dictionary";
 
-export function VerifyTokenInput() {
+interface VerifyTokenInputProps {
+    dictionary: Dictionary;
+}
+
+export function VerifyTokenInput({ dictionary }: VerifyTokenInputProps) {
     const [token, setToken] = useState("");
     const [isLoading, setIsLoading] = useState(false);
     const router = useRouter();
@@ -40,14 +45,14 @@ export function VerifyTokenInput() {
     };
 
     return (
-        <div className="flex flex-col gap-2 w-full max-w-sm">
-            <p className="text-sm text-muted-foreground text-center">
-                Enter the verification code from your email
+        <div className="space-y-4">
+            <p className="text-sm text-center">
+                {dictionary.auth.verifyRequest.enterCode}
             </p>
             <div className="flex gap-2">
                 <Input
                     type="text"
-                    placeholder="Enter verification code"
+                    placeholder={dictionary.auth.verifyRequest.enterCodeInput}
                     value={token}
                     onChange={(e) => setToken(e.target.value)}
                     className="flex-1"
@@ -57,9 +62,9 @@ export function VerifyTokenInput() {
                     onClick={handleVerification}
                     disabled={!token || isLoading}
                 >
-                    {isLoading ? "Verifying..." : "Verify"}
+                    {isLoading ? "..." : dictionary.auth.verifyRequest.verifyButton}
                 </Button>
             </div>
         </div>
     );
-} 
+}       

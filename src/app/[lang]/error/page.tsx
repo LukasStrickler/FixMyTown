@@ -1,72 +1,47 @@
-// import { type Metadata } from "next";
+import { getDictionary } from "@/get-dictionary";
+import { type Locale } from "@/i18n-config";
 import Link from "next/link";
-// import { redirect } from "next/navigation";
-import { auth, signOut } from "@/server/auth";
+import { auth } from "@/server/auth";
 import { Button } from "@/components/ui/button";
-
-// export const metadata: Metadata = {
-//     title: "Fehler | FixMyTown",
-//     description: "Ein Fehler ist aufgetreten",
-// };
-
+import { redirect } from "next/navigation";
+import { type Metadata } from "next";
 export const runtime = 'edge'
 export const revalidate = 3600
 
+export async function generateMetadata({ params: { lang } }: { params: { lang: Locale } }): Promise<Metadata> {
+    const dictionary = await getDictionary(lang);
+    return {
+        title: dictionary.auth.error.title + " | FixMyTown",
+        description: dictionary.auth.error.description,
+    };
+}
 export default async function ErrorPage({
+    params: { lang },
     searchParams,
 }: {
-    searchParams: Promise<Record<string, string | string[] | undefined>>;
+    params: { lang: Locale };
+    searchParams: Record<string, string | string[] | undefined>;
 }) {
-    const [resolvedSearchParams, session] = await Promise.all([
-        searchParams,
-        auth(),
-    ]);
-    const error = resolvedSearchParams.error;
+    const dictionary = await getDictionary(lang);
+    const session = await auth();
 
-    // if (!error) {
-    //     redirect("/");
-    // }
+    if (session) {
+        redirect(`/${lang}/account`);
+    }
 
-    const errorMessages: Record<string, string> = {
-        Configuration: "Es gibt ein Problem mit der Serverkonfiguration.",
-        Verification: "Der Anmeldelink ist nicht mehr gültig.",
-        LogoutError: "Beim Abmelden ist ein Fehler aufgetreten.",
-        Default: "Ein unerwarteter Fehler ist aufgetreten.",
-    };
-
-    const errorMessage = errorMessages[error as string] ?? errorMessages.Default;
+    const error = searchParams.error as keyof typeof dictionary.auth.error;
+    const errorMessage = dictionary.auth.error[error] ?? dictionary.auth.error.Default;
 
     return (
-        <div className="min-h-screen flex flex-col items-center justify-center bg-background">
-            <div className="bg-card p-8 rounded-lg shadow-lg w-full max-w-md text-center">
-                <h1 className="text-2xl font-bold text-card-foreground mb-4">
-                    Ups! Etwas ist schiefgelaufen
-                </h1>
-                <p className="text-muted-foreground mb-8 leading-relaxed whitespace-pre-line">
-                    {errorMessage}
-                </p>
-                <div className="space-y-4">
-                    <Link
-                        href="/login"
-                        className="block w-full py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-primary-foreground bg-primary hover:bg-accent focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-ring"
-                    >
-                        Erneut Email Senden
+        <div className="min-h-screen flex flex-col items-center justify-center p-4">
+            <div className="max-w-md w-full space-y-4 text-center">
+                <h1 className="text-4xl font-bold">{dictionary.auth.error.title}</h1>
+                <p className="text-muted-foreground">{errorMessage}</p>
+                <Button asChild>
+                    <Link href={`/${lang}/`}>
+                        {dictionary.auth.error.backToHome}
                     </Link>
-                    <Link
-                        href="/"
-                        className="block w-full py-2 px-4 border border-input rounded-md shadow-sm text-sm font-medium text-card-foreground bg-card hover:bg-accent focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-ring"
-                    >
-                        Zurück zur Startseite
-                    </Link>
-                    {session && (
-                        //trigger logout once clicked the button
-                        <Button
-                            onClick={() => signOut()}
-                        >
-                            Abmelden
-                        </Button>
-                    )}
-                </div>
+                </Button>
             </div>
         </div>
     );
