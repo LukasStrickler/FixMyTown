@@ -29,19 +29,19 @@ export default async function VerifyRequestPage({
                 <CardHeader className="space-y-6">
                     <Link
                         href={`/${lang}/`}
-                        className="inline-flex items-center text-sm text-muted-foreground hover:text-foreground transition-colors"
+                        className="inline-flex items-center text-sm text-foreground/60 hover:text-foreground transition-colors"
                     >
                         <ArrowLeft className="mr-2 h-4 w-4" />
                         {dictionary.auth.verifyRequest.backToHome}
                     </Link>
-                    <h1 className="text-3xl font-bold text-center tracking-tight">
+                    <h1 className="text-3xl font-bold text-center tracking-tight text-foreground">
                         {dictionary.auth.verifyRequest.title}
                     </h1>
                 </CardHeader>
                 <CardContent className="px-6">
                     <VerifyTokenInput dictionary={dictionary} />
                     <div className="text-center space-y-2 mt-4">
-                        <p className="text-muted-foreground">
+                        <p className="text-foreground/60">
                             {dictionary.auth.verifyRequest.checkEmail}
                         </p>
                         <ResendTimer dictionary={dictionary} />
