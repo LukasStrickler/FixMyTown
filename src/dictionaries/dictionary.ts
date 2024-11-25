@@ -19,6 +19,8 @@ export interface Dictionary {
             enterCode: string;
             enterCodeInput: string;
             verifyButton: string;
+            resendIn: string;
+            resend: string;
         },
         error: {
             title: string;

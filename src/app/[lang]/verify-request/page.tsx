@@ -1,11 +1,11 @@
 import { getDictionary } from "@/get-dictionary";
 import { type Locale } from "@/i18n-config";
-import { VerifyTokenInput } from "@/components/verify-token-input";
+import { VerifyTokenInput } from "./verify-token-input";
 import { Card, CardHeader, CardContent } from "@/components/ui/card";
 import { ArrowLeft } from "lucide-react";
 import Link from "next/link";
 import { type Metadata } from "next";
-
+import { ResendTimer } from "./resend-timer";
 
 export async function generateMetadata({ params: { lang } }: { params: { lang: Locale } }): Promise<Metadata> {
     const dictionary = await getDictionary(lang);
@@ -40,11 +40,14 @@ export default async function VerifyRequestPage({
                 </CardHeader>
                 <CardContent className="px-6">
                     <VerifyTokenInput dictionary={dictionary} />
-                    <p className="text-muted-foreground mt-4 text-center">
-                        {dictionary.auth.verifyRequest.checkEmail}
-                    </p>
+                    <div className="text-center space-y-2 mt-4">
+                        <p className="text-muted-foreground">
+                            {dictionary.auth.verifyRequest.checkEmail}
+                        </p>
+                        <ResendTimer dictionary={dictionary} />
+                    </div>
                 </CardContent>
             </Card>
         </div>
     );
-} 
+}

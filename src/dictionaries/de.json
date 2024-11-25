@@ -18,7 +18,9 @@
             "checkEmail": "Ein Anmeldelink wurde an Ihre E-Mail-Adresse gesendet. Bitte prüfen Sie Ihren Posteingang.",
             "enterCode": "Geben Sie den Verifizierungscode aus Ihrer E-Mail ein oder klicken Sie auf den Link in der E-Mail.",
             "enterCodeInput": "Bestätigungscode eingeben",
-            "verifyButton": "Verifizieren"
+            "verifyButton": "Verifizieren",
+            "resendIn": "Code erneut senden in",
+            "resend": "Code erneut senden"
         },
         "error": {
             "title": "Fehler",
