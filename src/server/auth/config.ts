@@ -12,7 +12,7 @@ import { env } from "@/env";
 import { type Adapter } from "next-auth/adapters"
 import { sendVerificationRequest } from "@/lib/authSendRequest";
 
-type UserRole = "USER" | "WORKER" | "ADMIN";
+export type UserRole = "user" | "worker" | "admin";
 
 /**
  * Module augmentation for `next-auth` types. Allows us to add custom properties to the `session`

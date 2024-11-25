@@ -141,7 +141,7 @@ export const workerProcedure = t.procedure
     if (!ctx.session || !ctx.session.user) {
       throw new TRPCError({ code: "UNAUTHORIZED" });
     }
-    if (ctx.session.user.role !== "WORKER" && ctx.session.user.role !== "ADMIN") {
+    if (ctx.session.user.role !== "worker" && ctx.session.user.role !== "admin") {
       throw new TRPCError({ code: "FORBIDDEN" });
     }
     return next({
@@ -161,7 +161,7 @@ export const adminProcedure = t.procedure
     if (!ctx.session || !ctx.session.user) {
       throw new TRPCError({ code: "UNAUTHORIZED" });
     }
-    if (ctx.session.user.role !== "ADMIN") {
+    if (ctx.session.user.role !== "admin") {
       throw new TRPCError({ code: "FORBIDDEN" });
     }
     return next({

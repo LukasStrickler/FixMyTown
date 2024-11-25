@@ -2,7 +2,7 @@
 
 import { Shield, HelpCircle, User } from "lucide-react"
 
-import { type ReactNode } from "react"; 
+import { type ReactNode } from "react";
 import * as React from "react"
 import {
   Bot,
@@ -43,17 +43,17 @@ export function AppSidebar({
 
   // Initialize workspaces based on the user's role
   const workspaces: Workspace[] =
-    user?.role === "ADMIN"
+    user?.role === "admin"
       ? [
-          { name: "Admin Workspace", icon: <Shield /> },
-          { name: "Worker Workspace", icon: <HelpCircle /> },
-          { name: "User Workspace", icon: <User /> },
-        ]
-      : user?.role === "WORKER"
-      ? [
+        { name: "Admin Workspace", icon: <Shield /> },
+        { name: "Worker Workspace", icon: <HelpCircle /> },
+        { name: "User Workspace", icon: <User /> },
+      ]
+      : user?.role === "worker"
+        ? [
           { name: "Support Workspace", icon: <HelpCircle /> },
         ]
-      : [
+        : [
           { name: "User Workspace", icon: <User /> },
         ];
 

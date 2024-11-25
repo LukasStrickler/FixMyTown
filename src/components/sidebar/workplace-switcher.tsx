@@ -1,7 +1,7 @@
 "use client"
 
 import * as React from "react"
-import { ChevronsUpDown} from "lucide-react"
+import { ChevronsUpDown } from "lucide-react"
 
 import {
   DropdownMenu,
@@ -37,7 +37,7 @@ export function WorkplaceSwitcher({
 
   // Set the active workspace to the first workspace in the list
 
-  if (!user || user.role === "USER") {
+  if (!user || user.role === "user") {
     // Show nothing or a loading spinner if user data hasn't loaded yet
     return null;
   }
