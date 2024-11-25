@@ -10,6 +10,7 @@ import { sessions } from "@/server/db/schema/sessions";
 
 import { env } from "@/env";
 import { Adapter } from "next-auth/adapters"
+import { sendVerificationRequest } from "@/lib/authSendRequest";
 
 type UserRole = "USER" | "WORKER" | "ADMIN";
 
@@ -47,10 +48,28 @@ const drizzleAdapter = DrizzleAdapter(db, {
  * @see https://next-auth.js.org/configuration/options
  */
 export const authConfig = {
+    pages: {
+        signIn: "/login",
+        verifyRequest: "/verify-request",
+        error: "/error",
+        signOut: "/account",
+    },
     providers: [
         Resend({
             apiKey: env.RESEND_API_KEY,
-            from: "no-reply@fixmy.town"
+            from: "no-reply@fixmy.town",
+            async generateVerificationToken() {
+                return crypto.randomUUID().slice(0, 12);
+            },
+            async sendVerificationRequest({ identifier, url }) {
+                await sendVerificationRequest({
+                    identifier,
+                    url,
+                    provider: {
+                        from: "no-reply@fixmy.town"
+                    }
+                });
+            },
         }),
     ],
     adapter: drizzleAdapter,
