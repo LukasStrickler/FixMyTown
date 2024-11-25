@@ -9,7 +9,7 @@ import { verificationTokens } from "@/server/db/schema/verificationTokens";
 import { sessions } from "@/server/db/schema/sessions";
 
 import { env } from "@/env";
-import { Adapter } from "next-auth/adapters"
+import { type Adapter } from "next-auth/adapters"
 import { sendVerificationRequest } from "@/lib/authSendRequest";
 
 type UserRole = "USER" | "WORKER" | "ADMIN";

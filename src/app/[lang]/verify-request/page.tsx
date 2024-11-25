@@ -2,7 +2,6 @@ import { VerifyTokenInput } from "@/components/verify-token-input";
 import { type Metadata } from "next";
 import { Card, CardHeader, CardContent } from "@/components/ui/card";
 import { ArrowLeft } from "lucide-react";
-import { Button } from "@/components/ui/button";
 import Link from "next/link";
 
 export const metadata: Metadata = {

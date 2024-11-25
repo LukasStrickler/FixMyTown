@@ -19,7 +19,7 @@ export function VerifyTokenInput() {
 
             // Construct the verification URL similar to the email link
             const verificationUrl = `/api/auth/callback/resend?` + new URLSearchParams({
-                callbackUrl: callbackUrl || "/",
+                callbackUrl: callbackUrl ?? "/",
                 token: token,
                 email: decodedEmail
             }).toString();
