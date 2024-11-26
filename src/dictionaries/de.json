@@ -1,5 +1,51 @@
 {
     "index": {
         "helloWorld": "Diese Seite befindet sich derzeit im Aufbau. Bitte kommen Sie später wieder."
+    },
+    "auth": {
+        "login": {
+            "title": "Anmelden",
+            "description": "Melden Sie sich bei Ihrem FixMyTown-Konto an",
+            "emailLabel": "E-Mail",
+            "emailPlaceholder": "name@beispiel.de",
+            "submit": "Anmelden",
+            "backToHome": "Zurück zur Startseite"
+        },
+        "verifyRequest": {
+            "title": "E-Mail prüfen",
+            "description": "Bitte prüfen Sie Ihre E-Mails für den Anmeldelink",
+            "backToHome": "Zurück zur Startseite",
+            "checkEmail": "Ein Anmeldelink wurde an Ihre E-Mail-Adresse gesendet. Bitte prüfen Sie Ihren Posteingang.",
+            "enterCode": "Geben Sie den Verifizierungscode aus Ihrer E-Mail ein oder klicken Sie auf den Link in der E-Mail.",
+            "enterCodeInput": "Bestätigungscode eingeben",
+            "verifyButton": "Verifizieren",
+            "resendIn": "Code erneut senden in",
+            "resend": "Code erneut senden"
+        },
+        "error": {
+            "title": "Fehler",
+            "description": "Ein Fehler ist aufgetreten",
+            "Configuration": "Es gibt ein Problem mit der Serverkonfiguration.",
+            "Verification": "Der Anmeldelink ist nicht mehr gültig.",
+            "LogoutError": "Beim Abmelden ist ein Fehler aufgetreten.",
+            "Default": "Ein unerwarteter Fehler ist aufgetreten.",
+            "backToHome": "Zurück zur Startseite"
+        },
+        "account": {
+            "title": "Konto Details",
+            "description": "Verwalten Sie Ihre FixMyTown-Kontoeinstellungen",
+            "settings": {
+                "title": "Einstellungen",
+                "theme": "Design",
+                "language": "Sprache"
+            },
+            "profile": {
+                "title": "Profil",
+                "email": "E-Mail-Adresse",
+                "signOut": "Abmelden",
+                "role": "Rolle",
+                "backToWorkspace": "Zurück zum Arbeitsbereich"
+            }
+        }
     }
 }
