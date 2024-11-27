@@ -15,7 +15,7 @@ type ModularAuthTemplateProps = {
 const extractToken = (magicLink: string): string => {
     try {
       const url = new URL(magicLink);
-      return url.searchParams.get("token") || ""; 
+      return url.searchParams.get("token") ?? ""; 
     } catch {
       return "";
     }

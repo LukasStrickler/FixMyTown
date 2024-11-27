@@ -32,7 +32,7 @@ const MailMainContent: React.FC<MailMainContentProps> = ({
           marginBottom: "16px",
         }}
       >
-        Enter it in your open browser window or press "Confirm" below. This code will expire in 15 minutes.
+        Enter it in your open browser window or press the button below. This code will expire in 15 minutes.
       </Text>
       <div
         style={{
