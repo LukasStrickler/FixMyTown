@@ -29,7 +29,7 @@ const MailHeader: React.FC = () => {
           paddingTop: "20px",
         }}
       >
-        FixMy.Town
+          FixMy<span>.</span>Town
       </Heading>
     </div>
   );

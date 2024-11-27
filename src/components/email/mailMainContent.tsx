@@ -22,7 +22,7 @@ const MailMainContent: React.FC<MailMainContentProps> = ({
           marginBottom: "8px",
         }}
       >
-        Hello {firstName}, here is your PIN {userPrompt}
+        Hello {firstName}, here is your code {userPrompt}
       </Heading>
       <Text
         style={{
@@ -32,8 +32,7 @@ const MailMainContent: React.FC<MailMainContentProps> = ({
           marginBottom: "16px",
         }}
       >
-        Enter it in your open browser window or press the sign-in button. This
-        code will expire in 15 minutes.
+        Enter it in your open browser window or press "Confirm" below. This code will expire in 15 minutes.
       </Text>
       <div
         style={{
@@ -41,7 +40,7 @@ const MailMainContent: React.FC<MailMainContentProps> = ({
           borderRadius: "4px",
           margin: "16px auto 14px",
           textAlign: "center",
-          width: "280px",
+          width: "320px",
           maxWidth: "100%",
         }}
       >
