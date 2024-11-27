@@ -5,10 +5,9 @@ const ExampleEmail: React.FC = () => {
   return (
     <ModularAuthTemplate
       firstName="John"
-      userPrompt="to confirm your registration"
-      authCode="12c45b78"
-      authLink="https://example.com/confirm"
-      preview="Confirm your registration for ExampleApp"
+      userPrompt="to complete sign-up"
+      authLink="https://fixmy.town/api/auth/callback/resend?token=302cf15d-07f"
+      preview="Confirm your registration for FixMy.town"
     />
   );
 };

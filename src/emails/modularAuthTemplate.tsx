@@ -8,15 +8,22 @@ import MailFooter from '@/components/email/mailFooter';
 type ModularAuthTemplateProps = {
   firstName: string;
   userPrompt: string;
-  authCode: string;
   authLink: string;
   preview: string;
 };
 
+const extractToken = (magicLink: string): string => {
+    try {
+      const url = new URL(magicLink);
+      return url.searchParams.get("token") || ""; 
+    } catch {
+      return "";
+    }
+  };
+  
 const ModularAuthTemplate: React.FC<ModularAuthTemplateProps> = ({
   firstName,
   userPrompt,
-  authCode,
   authLink,
   preview,
 }) => {
@@ -43,7 +50,7 @@ const ModularAuthTemplate: React.FC<ModularAuthTemplateProps> = ({
         <MailMainContent
           firstName={firstName}
           userPrompt={userPrompt}
-          authCode={authCode}
+          authCode={extractToken(authLink ?? "")}
         />
         <MailAuthButton label="Confirm" authLink={authLink} />
         <MailFooter />
