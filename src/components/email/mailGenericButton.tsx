@@ -1,12 +1,12 @@
 import React from 'react';
 import { Button } from '@react-email/components';
 
-type MailAuthButtonProps = {
+type MailGenericButtonProps = {
   label: string;
   authLink: string;
 };
 
-const MailAuthButton: React.FC<MailAuthButtonProps> = ({ label, authLink }) => {
+const MailGenericButton: React.FC<MailGenericButtonProps> = ({ label, authLink }) => {
   return (
     <Button
       href={authLink}
@@ -28,4 +28,4 @@ const MailAuthButton: React.FC<MailAuthButtonProps> = ({ label, authLink }) => {
   );
 };
 
-export default MailAuthButton;
+export default MailGenericButton;
