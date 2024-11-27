@@ -5,12 +5,14 @@ type MailNotificationContentProps = {
   firstName: string;
   status: string;
   title: string;
+  status_color: string;
 };
 
 const MailNotificationContent: React.FC<MailNotificationContentProps> = ({
   firstName,
   status,
   title,
+  status_color,
 }) => {
   return (
     <Section>
@@ -36,9 +38,12 @@ const MailNotificationContent: React.FC<MailNotificationContentProps> = ({
       </Text>
       <Text
         style={{
+          fontWeight: "bold",
+          fontStyle: "italic",
           textAlign: "center",
-          fontSize: "21px",
+          fontSize: "23px",
           marginBottom: "16px",
+          lineHeight: "1.4",
         }}
       >
           {title}
@@ -55,11 +60,11 @@ const MailNotificationContent: React.FC<MailNotificationContentProps> = ({
       </Text>
       <Text
         style={{
-          textAlign: "center",
-          color: "black",
-          fontSize: "21px",
-          marginBottom: "16px",
           fontWeight: "bold",
+          color: status_color,
+          fontSize: "33px",
+          textAlign: "center",
+          marginBottom: "8px",
         }}
       >
           {status}

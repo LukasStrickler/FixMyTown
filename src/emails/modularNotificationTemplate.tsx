@@ -9,6 +9,7 @@ type ModularAuthTemplateProps = {
   firstName: string;
   title: string;
   status: string;
+  status_color: string;
   link: string;
 };
   
@@ -16,6 +17,7 @@ const ModularAuthTemplate: React.FC<ModularAuthTemplateProps> = ({
   firstName,
   title,
   status,
+  status_color,
   link,
 }) => {
   return (
@@ -39,10 +41,10 @@ const ModularAuthTemplate: React.FC<ModularAuthTemplateProps> = ({
       >
         <MailHeader />
         <MailNotificationContent
-          firstName={firstName} 
-          status={status} 
-          title={title}        
-          />
+          firstName={firstName}
+          status={status}
+          title={title} 
+          status_color={status_color}          />
         <MailGenericButton label="Learn more" link={link} />
         <MailFooter />
       </Container>
