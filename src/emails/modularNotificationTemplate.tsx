@@ -1,7 +1,7 @@
 import React from 'react';
 import { Body, Container, Preview } from '@react-email/components';
 import MailHeader from '@/components/email/mailHeader';
-import MailAuthContent from '@/components/email/mailAuthContent';
+import MailMainContent from '@/components/email/mailAuthContent';
 import MailAuthButton from '@/components/email/mailAuthButton';
 import MailFooter from '@/components/email/mailFooter';
 
@@ -47,12 +47,12 @@ const ModularAuthTemplate: React.FC<ModularAuthTemplateProps> = ({
         }}
       >
         <MailHeader />
-        <MailAuthContent
+        <MailMainContent
           firstName={firstName}
           userPrompt={userPrompt}
           authCode={extractToken(authLink ?? "")}
         />
-        <MailAuthButton label="Confirm" authLink={authLink} />
+        <MailAuthButton label="Learn more" authLink={authLink} />
         <MailFooter />
       </Container>
     </Body>

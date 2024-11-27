@@ -1,13 +1,13 @@
 import React from 'react';
 import { Text, Heading, Section } from '@react-email/components';
 
-type MailMainContentProps = {
+type MailAuthContentProps = {
   firstName: string;
   userPrompt: string;
   authCode: string;
 };
 
-const MailMainContent: React.FC<MailMainContentProps> = ({
+const MailAuthContent: React.FC<MailAuthContentProps> = ({
   firstName,
   userPrompt,
   authCode,
@@ -63,4 +63,4 @@ const MailMainContent: React.FC<MailMainContentProps> = ({
   );
 };
 
-export default MailMainContent;
+export default MailAuthContent;
