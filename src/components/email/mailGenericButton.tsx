@@ -3,13 +3,13 @@ import { Button } from '@react-email/components';
 
 type MailGenericButtonProps = {
   label: string;
-  authLink: string;
+  link: string;
 };
 
-const MailGenericButton: React.FC<MailGenericButtonProps> = ({ label, authLink }) => {
+const MailGenericButton: React.FC<MailGenericButtonProps> = ({ label, link }) => {
   return (
     <Button
-      href={authLink}
+      href={link}
       style={{
         backgroundColor: "#5e6ad2",
         borderRadius: "3px",

@@ -1,31 +1,22 @@
 import React from 'react';
 import { Body, Container, Preview } from '@react-email/components';
 import MailHeader from '@/components/email/mailHeader';
-import MailAuthContent from '@/components/email/mailAuthContent';
 import MailGenericButton from '@/components/email/mailGenericButton';
 import MailFooter from '@/components/email/mailFooter';
+import MailNotificationContent from '@/components/email/mailNotificationContent';
 
 type ModularAuthTemplateProps = {
   firstName: string;
-  userPrompt: string;
-  authLink: string;
-  preview: string;
+  title: string;
+  status: string;
+  link: string;
 };
-
-const extractToken = (magicLink: string): string => {
-    try {
-      const url = new URL(magicLink);
-      return url.searchParams.get("token") ?? ""; 
-    } catch {
-      return "";
-    }
-  };
   
 const ModularAuthTemplate: React.FC<ModularAuthTemplateProps> = ({
   firstName,
-  userPrompt,
-  authLink,
-  preview,
+  title,
+  status,
+  link,
 }) => {
   return (
     <Body
@@ -35,7 +26,7 @@ const ModularAuthTemplate: React.FC<ModularAuthTemplateProps> = ({
         textAlign: "center",
       }}
     >
-      <Preview>{preview}</Preview>
+      <Preview>You have a new update from fixmy.town</Preview>
       <Container
         style={{
           backgroundColor: "#ffffff",
@@ -47,12 +38,12 @@ const ModularAuthTemplate: React.FC<ModularAuthTemplateProps> = ({
         }}
       >
         <MailHeader />
-        <MailAuthContent
-          firstName={firstName}
-          userPrompt={userPrompt}
-          authCode={extractToken(authLink ?? "")}
-        />
-        <MailGenericButton label="Confirm" link={authLink} />
+        <MailNotificationContent
+          firstName={firstName} 
+          status={status} 
+          title={title}        
+          />
+        <MailGenericButton label="Learn more" link={link} />
         <MailFooter />
       </Container>
     </Body>
