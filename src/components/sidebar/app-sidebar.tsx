@@ -1,26 +1,26 @@
-"use client"
+"use client";
 
-import { Shield, HelpCircle, User } from "lucide-react"
+import { Shield, HelpCircle, User } from "lucide-react";
 
 import { type ReactNode } from "react";
-import * as React from "react"
+import * as React from "react";
 import {
   Bot,
   Frame,
   SquareTerminal,
-} from "lucide-react"
+} from "lucide-react";
 
-import { NavMain } from "@/components/sidebar/nav-main"
-import { NavProjects } from "@/components/sidebar/nav-projects"
-import { NavUser } from "@/components/sidebar/nav-user"
-import { WorkplaceSwitcher } from "@/components/sidebar/workplace-switcher"
+import { NavMain } from "@/components/sidebar/nav-main";
+import { NavProjects } from "@/components/sidebar/nav-projects";
+import { NavUser } from "@/components/sidebar/nav-user";
+import { WorkplaceSwitcher } from "@/components/sidebar/workplace-switcher";
 import {
   Sidebar,
   SidebarContent,
   SidebarFooter,
   SidebarHeader,
   SidebarRail,
-} from "@/components/ui/sidebar"
+} from "@/components/ui/sidebar";
 
 import { useSession } from "next-auth/react";
 import { type Locale } from "@/i18n-config";
@@ -124,19 +124,29 @@ export function AppSidebar({
         return {
           navMain: [
             {
-              title: "User Portal",
+              title: "Meine Meldungen",
+              url: `/${lang}/user/myReports`,
+              icon: User,
+              isActive: true,
+              items: [
+                { title: "Status Anträge", url: `/${lang}/user/reportState` },
+                { title: "Abgeschlossene Anmeldungen", url: `/${lang}/user/closedReports` },
+                { title: "Meine Anträge", url: `/${lang}/user/myReports` },
+              ],
+            },
+            {
+              title: "Vorfall melden",
               url: "#",
               icon: User,
               isActive: true,
               items: [
-                { title: "Profile", url: "#" },
-                { title: "Settings", url: "#" },
+                { title: "Defekte und Schäden", url: `/${lang}/user/myReports/defectsDamages` },
+                { title: "Verunreinigungen", url: `/${lang}/user/myReports/contaminations` },
+                { title: "Parkverstöße", url: `/${lang}/user/myReports/parkingViolations` },
               ],
-            },
+            }
           ],
-          projects: [
-            { name: "User Project 1", url: "#", icon: Frame },
-          ],
+          projects: [],
         };
     }
   })();
@@ -149,7 +159,7 @@ export function AppSidebar({
       </SidebarHeader>
       <SidebarContent>
         <NavMain items={data.navMain} />
-        <NavProjects projects={data.projects} />
+        {data.projects?.length > 0 && <NavProjects projects={data.projects} />}
       </SidebarContent>
       <SidebarFooter>
         <NavUser />
