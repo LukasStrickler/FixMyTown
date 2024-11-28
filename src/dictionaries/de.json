@@ -47,5 +47,28 @@
                 "backToWorkspace": "Zurück zum Arbeitsbereich"
             }
         }
+    },
+    "components": {
+        "locationPicker": {
+            "title": "Standortauswahl",
+            "description": "Interaktive Auswahl und Verwaltung von Standorten",
+            "help": "Klicken Sie einmal auf die Karte, um den Standort zu setzen. Danach können Sie den Standort ziehen und ändern.",
+            "status": {
+                "locked": "Gesperrt",
+                "unlocked": "Entsperrt"
+            },
+            "actions": {
+                "lock": "Standort speichern",
+                "unlock": "Standort bearbeiten",
+                "clear": "Standort löschen"
+            },
+            "info": {
+                "latitude": "Breitengrad",
+                "longitude": "Längengrad",
+                "address": "Adresse",
+                "status": "Status"
+            },
+            "loading": "Wird geladen..."
+        }
     }
 }
