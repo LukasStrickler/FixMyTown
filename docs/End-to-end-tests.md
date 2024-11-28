@@ -115,7 +115,7 @@
   1. Versuchen Sie, auf das System zuzugreifen, ohne sich anzumelden.
 - **Erwartetes Ergebnis**: Das System fordert den Benutzer zur Anmeldung auf.
 
-### Test: Das System funktioniert auf Desktop- und mobilen Geräten
+### Test: Die Webanwendung funktioniert auf Desktop- und mobilen Geräten
 - **Testfallbeschreibung**: Überprüfen, ob das System auf Desktop- und mobilen Geräten ordnungsgemäß funktioniert.
 - **Schritte**:
   1. Greifen Sie sowohl von einem Desktop- als auch von einem mobilen Gerät auf das System zu.
