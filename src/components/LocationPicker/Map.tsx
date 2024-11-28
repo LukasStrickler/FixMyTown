@@ -7,13 +7,14 @@ import { divIcon } from 'leaflet';
 import { Button } from "@/components/ui/button";
 import { Lock, Unlock, X } from "lucide-react";
 import type { Location, Address } from './LocationPicker';
-
+import type { Dictionary } from '@/dictionaries/dictionary';
 
 interface MapProps {
     onLocationSelected?: (location: Location) => void;
     initialLocation: Location;
     onLockStatusChange?: (isLocked: boolean) => void;
     onAddressChange?: (address: Address) => void;
+    dictionary: Dictionary;
 }
 
 const createCustomIcon = () => {
@@ -28,11 +29,12 @@ const createCustomIcon = () => {
     });
 };
 
-function DraggableMarker({ position, onPositionChange, address, isLocked }: {
+function DraggableMarker({ position, onPositionChange, address, isLocked, dictionary }: {
     position: LatLng;
     onPositionChange?: (pos: LatLng) => void;
     address: Address;
     isLocked: boolean;
+    dictionary: Dictionary;
 }) {
     const [draggable, setDraggable] = useState(true);
     const markerRef = useRef<LeafletMarker | null>(null);
@@ -63,18 +65,18 @@ function DraggableMarker({ position, onPositionChange, address, isLocked }: {
             <Popup minWidth={300}>
                 <div className="space-y-2 p-1">
                     <div className="grid grid-cols-[auto,1fr] gap-x-2 text-sm">
-                        <span className="font-medium">Lat:</span>
+                        <span className="font-medium">{dictionary.components.locationPicker.info.latitude}:</span>
                         <span>{position.lat.toFixed(5)}</span>
 
-                        <span className="font-medium">Lng:</span>
+                        <span className="font-medium">{dictionary.components.locationPicker.info.longitude}:</span>
                         <span>{position.lng.toFixed(5)}</span>
 
-                        <span className="font-medium">Address:</span>
+                        <span className="font-medium">{dictionary.components.locationPicker.info.address}:</span>
                         <span className="break-words">{address.displayName}</span>
 
-                        <span className="font-medium">Status:</span>
+                        <span className="font-medium">{dictionary.components.locationPicker.info.status}:</span>
                         <span className={`${isLocked ? 'text-orange-600' : 'text-green-600'}`}>
-                            {isLocked ? 'Locked' : 'Unlocked'}
+                            {isLocked ? dictionary.components.locationPicker.status.locked : dictionary.components.locationPicker.status.unlocked}
                         </span>
                     </div>
                 </div>
@@ -87,7 +89,8 @@ export default function Map({
     onLocationSelected,
     initialLocation,
     onLockStatusChange,
-    onAddressChange
+    onAddressChange,
+    dictionary
 }: MapProps) {
     const [position, setPosition] = useState<LatLng | null>(null);
     const [address, setAddress] = useState<Address>({ displayName: '' });
@@ -156,6 +159,7 @@ export default function Map({
                             onPositionChange={!isLocked ? handleLocationUpdate : undefined}
                             address={address}
                             isLocked={isLocked}
+                            dictionary={dictionary}
                         />
                     )}
                     <MapClickHandler onClick={handleMapClick} />
@@ -171,12 +175,12 @@ export default function Map({
                     {isLocked ? (
                         <>
                             <Unlock className="h-4 w-4" />
-                            <span>Unlock Location</span>
+                            <span>{dictionary.components.locationPicker.actions.unlock}</span>
                         </>
                     ) : (
                         <>
                             <Lock className="h-4 w-4" />
-                            <span>Lock Location</span>
+                            <span>{dictionary.components.locationPicker.actions.lock}</span>
                         </>
                     )}
                 </Button>
@@ -187,7 +191,7 @@ export default function Map({
                     disabled={!position || isLocked}
                 >
                     <X className="h-4 w-4" />
-                    <span>Clear Location</span>
+                    <span>{dictionary.components.locationPicker.actions.clear}</span>
                 </Button>
             </div>
         </div>

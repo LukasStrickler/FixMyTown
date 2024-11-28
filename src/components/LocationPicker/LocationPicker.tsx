@@ -2,12 +2,14 @@
 
 import dynamic from 'next/dynamic';
 import 'leaflet/dist/leaflet.css';
+import type { Dictionary } from '@/dictionaries/dictionary';
 interface LocationPickerProps {
     onLocationSelected?: (location: { lat: number; lng: number }) => void;
     initialLocation?: { lat: number; lng: number };
     height?: string;
     onLockStatusChange?: (isLocked: boolean) => void;
     onAddressChange?: (address: Address) => void;
+    dictionary: Dictionary;
 }
 
 export interface Location {
@@ -40,7 +42,8 @@ export default function LocationPicker({
     initialLocation = { lat: 49.4804, lng: 8.4459 },
     height = '400px',
     onLockStatusChange,
-    onAddressChange
+    onAddressChange,
+    dictionary
 }: LocationPickerProps) {
     return (
         <div style={{ '--map-height': height } as React.CSSProperties}>
@@ -49,6 +52,7 @@ export default function LocationPicker({
                 initialLocation={initialLocation}
                 onLockStatusChange={onLockStatusChange}
                 onAddressChange={onAddressChange}
+                dictionary={dictionary}
             />
         </div>
     );
