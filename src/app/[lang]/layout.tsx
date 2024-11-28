@@ -28,9 +28,10 @@ export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" className={`${GeistSans.variable}`}>
-      <body>
-
+    // suppressHydrationWarning is needed to prevent hydration errors with the theme provider 
+    // TODO: find a better solution / fix for prod
+    <html lang="en" className={GeistSans.variable}>
+      <body className="min-h-screen">
         <ThemeProvider
           attribute="class"
           defaultTheme="system"
@@ -60,7 +61,6 @@ export default function RootLayout({
               </SidebarProvider>
             </TRPCReactProvider>
           </AuthProvider>
-
         </ThemeProvider>
       </body>
     </html>
