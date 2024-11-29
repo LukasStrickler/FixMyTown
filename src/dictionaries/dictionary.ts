@@ -46,5 +46,28 @@ export interface Dictionary {
                 theme: string;
             };
         }
+    },
+    components: {
+        locationPicker: {
+            title: string;
+            description: string;
+            help: string;
+            status: {
+                locked: string;
+                unlocked: string;
+            };
+            actions: {
+                lock: string;
+                unlock: string;
+                clear: string;
+            };
+            info: {
+                latitude: string;
+                longitude: string;
+                address: string;
+                status: string;
+            };
+            loading: string;
+        }
     }
 }
