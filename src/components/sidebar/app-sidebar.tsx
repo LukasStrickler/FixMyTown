@@ -1,12 +1,10 @@
 "use client";
 
-import { Shield, HelpCircle, User, Icon } from "lucide-react";
+import { Shield, HelpCircle, User } from "lucide-react";
 import { type ReactNode } from "react";
 import * as React from "react";
 import {
-  Bot,
-  Frame,
-  SquareTerminal,
+  Frame
 } from "lucide-react";
 
 import { NavMain } from "@/components/sidebar/nav-main";

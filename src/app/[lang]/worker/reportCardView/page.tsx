@@ -1,6 +1,6 @@
 import { auth } from "@/server/auth";
-import { api, HydrateClient } from "@/trpc/server";
-import { getDictionary } from "../../../../get-dictionary";
+import { HydrateClient } from "@/trpc/server";
+//import { getDictionary } from "../../../../get-dictionary";
 import { type Locale } from "@/i18n-config";
 
 export default async function ReportCardView({
@@ -9,7 +9,6 @@ export default async function ReportCardView({
   params: { lang: Locale };
 }) {
 
-  const dictionary = await getDictionary(lang);
   const session = await auth();
   const user = session?.user; // Get the user object from session
 
