@@ -1,9 +1,9 @@
 import { auth } from "@/server/auth";
 import { api, HydrateClient } from "@/trpc/server";
-import { getDictionary } from "../../../../get-dictionary";
+import { getDictionary } from "../../../get-dictionary";
 import { type Locale } from "@/i18n-config";
 
-export default async function MyReports({
+export default async function DefectsDamages({
   params: { lang },
 }: {
   params: { lang: Locale };

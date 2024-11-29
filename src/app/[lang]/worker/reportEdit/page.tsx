@@ -3,7 +3,7 @@ import { api, HydrateClient } from "@/trpc/server";
 import { getDictionary } from "../../../../get-dictionary";
 import { type Locale } from "@/i18n-config";
 
-export default async function Contaminations({
+export default async function ReportEdit({
   params: { lang },
 }: {
   params: { lang: Locale };
@@ -11,6 +11,11 @@ export default async function Contaminations({
 
   const dictionary = await getDictionary(lang);
   const session = await auth();
+  const user = session?.user; // Get the user object from session
+
+  if (!user || user.role !== "worker") {
+    return null;
+  }
 
   return (
     <HydrateClient>

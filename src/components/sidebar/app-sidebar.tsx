@@ -1,7 +1,6 @@
 "use client";
 
-import { Shield, HelpCircle, User } from "lucide-react";
-
+import { Shield, HelpCircle, User, Icon } from "lucide-react";
 import { type ReactNode } from "react";
 import * as React from "react";
 import {
@@ -51,7 +50,7 @@ export function AppSidebar({
       ]
       : user?.role === "worker"
         ? [
-          { name: "Support Workspace", icon: <HelpCircle /> },
+          { name: "Worker Workspace", icon: <HelpCircle /> },
         ]
         : [
           { name: "User Workspace", icon: <User /> },
@@ -72,50 +71,18 @@ export function AppSidebar({
     switch (activeWorkspace.name) {
       case "Admin Workspace":
         return {
-          navMain: [
-            {
-              title: "Admin Dashboard",
-              url: "#",
-              icon: SquareTerminal,
-              isActive: true,
-              items: [
-                { title: "User Management", url: "#" },
-                { title: "Settings", url: "#" },
-                { title: "Reports", url: "#" },
-              ],
-            },
-            {
-              title: "Admin Tools",
-              url: "#",
-              icon: Bot,
-              items: [
-                { title: "Genesis", url: "#" },
-                { title: "Explorer", url: "#" },
-              ],
-            },
-          ],
+          navMain: [],
           projects: [
-            { name: "Admin Project 1", url: "#", icon: Frame },
-            { name: "Admin Project 2", url: "#", icon: Frame },
+            { name: "Nutzerverwaltung", url: `/${lang}/admin/userAdministration`, icon: Frame },
           ],
         };
 
       case "Worker Workspace":
         return {
-          navMain: [
-            {
-              title: "Worker Tools",
-              url: "#",
-              icon: HelpCircle,
-              isActive: true,
-              items: [
-                { title: "Support Tickets", url: "#" },
-                { title: "Knowledge Base", url: "#" },
-              ],
-            },
-          ],
+          navMain: [],
           projects: [
-            { name: "Worker Project 1", url: "#", icon: Frame },
+            { name: "Anträge Kartenansicht", url: `/${lang}/worker/reportCardView`, icon: Frame},
+            { name: "Anträge Bearbeiten", url: `/${lang}/worker/reportEdit`, icon: Frame},
           ],
         };
 
@@ -129,9 +96,9 @@ export function AppSidebar({
               icon: User,
               isActive: true,
               items: [
-                { title: "Status Anträge", url: `/${lang}/user/reportState` },
-                { title: "Abgeschlossene Anmeldungen", url: `/${lang}/user/closedReports` },
-                { title: "Meine Anträge", url: `/${lang}/user/myReports` },
+                { title: "Status Anträge", url: `/${lang}/reportState` },
+                { title: "Abgeschlossene Anmeldungen", url: `/${lang}/closedReports` },
+                { title: "Meine Anträge", url: `/${lang}/myReports` },
               ],
             },
             {
@@ -140,9 +107,9 @@ export function AppSidebar({
               icon: User,
               isActive: true,
               items: [
-                { title: "Defekte und Schäden", url: `/${lang}/user/myReports/defectsDamages` },
-                { title: "Verunreinigungen", url: `/${lang}/user/myReports/contaminations` },
-                { title: "Parkverstöße", url: `/${lang}/user/myReports/parkingViolations` },
+                { title: "Defekte und Schäden", url: `/${lang}/defectsDamages` },
+                { title: "Verunreinigungen", url: `/${lang}/contaminations` },
+                { title: "Parkverstöße", url: `/${lang}/parkingViolations` },
               ],
             }
           ],
@@ -158,8 +125,8 @@ export function AppSidebar({
         <WorkplaceSwitcher activeWorkspace={activeWorkspace} setActiveWorkspace={setActiveWorkspace} workspaces={workspaces} />
       </SidebarHeader>
       <SidebarContent>
-        <NavMain items={data.navMain} />
-        {data.projects?.length > 0 && <NavProjects projects={data.projects} />}
+        {data.navMain && data.navMain.length > 0 && <NavMain items={data.navMain} />}
+        {data.projects && data.projects.length > 0 && <NavProjects projects={data.projects} />}
       </SidebarContent>
       <SidebarFooter>
         <NavUser />
