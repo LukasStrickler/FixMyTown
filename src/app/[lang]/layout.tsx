@@ -17,6 +17,7 @@ import {
   SidebarTrigger,
 } from "@/components/ui/sidebar"
 import { AuthProvider } from "@/components/provider/authProvider";
+import { DictionaryProvider } from "@/components/provider/dictionaryProvider";
 
 export const metadata: Metadata = {
   title: "FixMyTown",
@@ -38,29 +39,31 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <AuthProvider>
-            <TRPCReactProvider>
-              <SidebarProvider>
-                <AppSidebar params={{
-                  lang: "de"
-                }} />
-                <SidebarInset>
-                  <SidebarTrigger className="-ml-1" />
+          <DictionaryProvider>
+            <AuthProvider>
+              <TRPCReactProvider>
+                <SidebarProvider>
+                  <AppSidebar params={{
+                    lang: "de"
+                  }} />
+                  <SidebarInset>
+                    <SidebarTrigger className="-ml-1" />
 
-                  <NextSSRPlugin
-                    /**
-                     * The `extractRouterConfig` will extract **only** the route configs
-                     * from the router to prevent additional information from being
-                     * leaked to the client. The data passed to the client is the same
-                     * as if you were to fetch `/api/uploadthing` directly.
-                     */
-                    routerConfig={extractRouterConfig(ourFileRouter)}
-                  />
-                  {children}
-                </SidebarInset>
-              </SidebarProvider>
-            </TRPCReactProvider>
-          </AuthProvider>
+                    <NextSSRPlugin
+                      /**
+                       * The `extractRouterConfig` will extract **only** the route configs
+                       * from the router to prevent additional information from being
+                       * leaked to the client. The data passed to the client is the same
+                       * as if you were to fetch `/api/uploadthing` directly.
+                       */
+                      routerConfig={extractRouterConfig(ourFileRouter)}
+                    />
+                    {children}
+                  </SidebarInset>
+                </SidebarProvider>
+              </TRPCReactProvider>
+            </AuthProvider>
+          </DictionaryProvider>
         </ThemeProvider>
       </body>
     </html>

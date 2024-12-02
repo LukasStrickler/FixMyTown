@@ -5,18 +5,16 @@ import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "@/com
 import { Badge } from "@/components/ui/badge";
 import LocationPicker from "@/components/LocationPicker/LocationPicker";
 import type { Location, Address } from "@/components/LocationPicker/LocationPicker";
-import type { Dictionary } from "@/dictionaries/dictionary";
+import { useDictionary } from "@/components/provider/dictionaryProvider";
+import { Skeleton } from "@/components/ui/skeleton";
 
-interface DevPageClientProps {
-    dictionary: Dictionary;
-}
-
-export function DevPageClient({
-    dictionary
-}: DevPageClientProps) {
+function DevContent() {
+    const { dictionary } = useDictionary();
     const [location, setLocation] = useState<Location | null>(null);
     const [isLocked, setIsLocked] = useState(false);
     const [currentAddress, setCurrentAddress] = useState<Address>({ displayName: '' });
+
+    if (!dictionary) return null;
     const dict = dictionary.components.locationPicker;
 
     return (
@@ -63,4 +61,8 @@ export function DevPageClient({
             )}
         </div>
     );
+}
+
+export function DevPageClient() {
+    return <DevContent />;
 } 
