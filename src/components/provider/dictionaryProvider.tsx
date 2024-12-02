@@ -15,20 +15,19 @@ export const DictionaryProvider: React.FC<{ children: React.ReactNode }> = ({ ch
 
     const loadDictionary = async (locale: Locale) => {
         try {
-            const module = await import(`@/dictionaries/${locale}.json`);
-            setDictionary(module.default);
+            const dict = await import(`@/dictionaries/${locale}.json`) as { default: Dictionary };
+            setDictionary(dict.default);
         } catch (error) {
             console.error('Error loading dictionary:', error);
         }
     };
 
     const setLocale = (locale: Locale) => {
-        loadDictionary(locale);
+        void loadDictionary(locale);
     };
 
     useEffect(() => {
-        // Load default language on mount
-        loadDictionary('de');
+        void loadDictionary('de');
     }, []);
 
     return (

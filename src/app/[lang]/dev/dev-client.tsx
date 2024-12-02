@@ -6,6 +6,7 @@ import { Badge } from "@/components/ui/badge";
 import LocationPicker from "@/components/LocationPicker/LocationPicker";
 import type { Location, Address } from "@/components/LocationPicker/LocationPicker";
 import { useDictionary } from "@/components/provider/dictionaryProvider";
+import { Skeleton } from "@/components/ui/skeleton";
 
 function DevContent() {
     const { dictionary } = useDictionary();
