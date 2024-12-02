@@ -4,7 +4,7 @@ import {
     index,
 } from "drizzle-orm/sqlite-core";
 
-import { createTable } from "..";
+import { createTable } from "../table";
 import { reports } from "./reports";
 
 export const pictures = createTable(

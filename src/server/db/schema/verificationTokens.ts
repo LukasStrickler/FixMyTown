@@ -4,7 +4,7 @@ import {
     text,
 } from "drizzle-orm/sqlite-core";
 
-import { createTable } from "..";
+import { createTable } from "../table";
 
 export const verificationTokens = createTable(
     "verification_token",

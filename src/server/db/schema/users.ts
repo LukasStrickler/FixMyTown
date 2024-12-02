@@ -4,7 +4,7 @@ import {
     text,
 } from "drizzle-orm/sqlite-core";
 
-import { createTable } from "..";
+import { createTable } from "../table";
 import { accounts } from "./accounts";
 import { protocolls } from "./protocoll";
 
