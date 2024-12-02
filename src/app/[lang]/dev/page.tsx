@@ -9,5 +9,5 @@ export default async function DevPage({
 }) {
     const dictionary = await getDictionary(lang);
 
-    return <DevPageClient dictionary={dictionary} />;
+    return <DevPageClient />;
 }
