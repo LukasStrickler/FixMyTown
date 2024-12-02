@@ -102,5 +102,15 @@
             },
             "loading": "Wird geladen..."
         }
+    },
+    "form": {
+        "type": "Art der Meldung",
+        "priority": "Priorität",
+        "name": "Titel",
+        "description": "Beschreibung",
+        "submit": "Meldung absenden",
+        "submitting": "Wird gesendet...",
+        "selectType": "Art auswählen",
+        "selectPriority": "Priorität auswählen"
     }
 }

@@ -102,5 +102,15 @@ export interface Dictionary {
             };
             loading: string;
         }
+    },
+    form: {
+        type: string;
+        priority: string;
+        name: string;
+        description: string;
+        submit: string;
+        submitting: string;
+        selectType: string;
+        selectPriority: string;
     }
 }
