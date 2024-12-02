@@ -3,11 +3,12 @@ import { drizzle } from "drizzle-orm/libsql";
 
 import { env } from "@/env";
 
-import {
-  sqliteTableCreator
-} from "drizzle-orm/sqlite-core";
-
-export const createTable = sqliteTableCreator((name) => `fixmytown_${name}`);
+import { types } from "./schema/types"
+import { prios } from "./schema/prios"
+import { reports } from "./schema/reports";
+import { accounts } from "./schema/accounts";
+import { users } from "./schema/users";
+import { sessions } from "./schema/sessions";
 
 /**
  * Cache the database connection in development. This avoids creating a new connection on every HMR
@@ -21,4 +22,13 @@ export const client =
   globalForDb.client ?? createClient({ url: env.DATABASE_URL, authToken: env.DATABASE_AUTH_TOKEN });
 if (env.NODE_ENV !== "production") globalForDb.client = client;
 
-export const db = drizzle(client);
+export const db = drizzle(client, {
+  schema: {
+    types,
+    prios,
+    reports,
+    accounts,
+    users,
+    sessions,
+  }
+});
