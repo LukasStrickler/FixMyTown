@@ -5,7 +5,7 @@ import MailGenericButton from '@/components/email/mailGenericButton';
 import MailFooter from '@/components/email/mailFooter';
 import MailNotificationContent from '@/components/email/mailNotificationContent';
 
-type ModularAuthTemplateProps = {
+interface ModularNotificationTemplateProps {
   firstName: string;
   title: string;
   status: string;
@@ -13,13 +13,13 @@ type ModularAuthTemplateProps = {
   link: string;
 };
   
-const ModularAuthTemplate: React.FC<ModularAuthTemplateProps> = ({
+const ModularNotificationTemplate = ({
   firstName,
   title,
   status,
   status_color,
   link,
-}) => {
+}: ModularNotificationTemplateProps) => {
   return (
     <Body
       style={{
@@ -52,4 +52,13 @@ const ModularAuthTemplate: React.FC<ModularAuthTemplateProps> = ({
   );
 };
 
-export default ModularAuthTemplate;
+ModularNotificationTemplate.PreviewProps = {
+  firstName: "Jane",
+  title: "weird liquid leaking from BASF plant",
+  status: "Resolved",
+  link: "https://fixmy.town/issues/12345",
+  status_color: "green",
+} as ModularNotificationTemplateProps;
+
+
+export default ModularNotificationTemplate;
