@@ -22,7 +22,10 @@ import {
 import { useSession } from "next-auth/react";
 import { type Locale } from "@/i18n-config";
 
+import { useDictionary } from "@/components/provider/dictionaryProvider";
+
 export interface Workspace {
+  workspaceType: string; //Worker, User, or Admin
   name: string;         // The name of the workspace
   icon: ReactNode;     // The icon associated with the workspace
 }
@@ -35,6 +38,10 @@ export function AppSidebar({
 } & React.ComponentProps<typeof Sidebar>) {
 
   const { lang } = params;
+  const { dictionary } = useDictionary();
+  //TODO Loading spinner for no dict
+  if (!dictionary) return null;
+
   const { data: session } = useSession(); // Access session data
   const user = session?.user;
 
@@ -42,21 +49,22 @@ export function AppSidebar({
   const workspaces: Workspace[] =
     user?.role === "admin"
       ? [
-        { name: "Admin Workspace", icon: <Shield /> },
-        { name: "Worker Workspace", icon: <HelpCircle /> },
-        { name: "User Workspace", icon: <User /> },
+        { name: dictionary.workspaces.adminWorkspace.adminWorkspaceTitle, icon: <Shield />, workspaceType: "admin" },
+        { name: dictionary.workspaces.workerWorkspace.workerWorkspaceTitle, icon: <HelpCircle />, workspaceType: "worker" },
+        { name: dictionary.workspaces.userWorkspace.userWorkspaceTitle, icon: <User />, workspaceType: "user" },
       ]
       : user?.role === "worker"
         ? [
-          { name: "Worker Workspace", icon: <HelpCircle /> },
+          { name: dictionary.workspaces.workerWorkspace.workerWorkspaceTitle, icon: <HelpCircle />, workspaceType: "worker"},
+          { name: dictionary.workspaces.userWorkspace.userWorkspaceTitle, icon: <User />, workspaceType: "user" },
         ]
         : [
-          { name: "User Workspace", icon: <User /> },
+          { name: dictionary.workspaces.userWorkspace.userWorkspaceTitle, icon: <User />, workspaceType: "user" },
         ];
 
   // Set the default workspace to "User Workspace"
   const [activeWorkspace, setActiveWorkspace] = React.useState<Workspace>(
-    { name: "User Workspace", icon: <User /> }
+    { name: dictionary.workspaces.userWorkspace.userWorkspaceTitle, icon: <User />, workspaceType: "user" },
   );
 
   // If no user session, don't render the sidebar
@@ -66,8 +74,8 @@ export function AppSidebar({
 
   // Define navigation data based on the active workspace
   const data = (() => {
-    switch (activeWorkspace.name) {
-      case "Admin Workspace":
+    switch (activeWorkspace.workspaceType) {
+      case "admin":
         return {
           navMain: [],
           projects: [
@@ -75,7 +83,7 @@ export function AppSidebar({
           ],
         };
 
-      case "Worker Workspace":
+      case "worker":
         return {
           navMain: [],
           projects: [
@@ -84,7 +92,7 @@ export function AppSidebar({
           ],
         };
 
-      case "User Workspace":
+      case "user":
       default:
         return {
           navMain: [

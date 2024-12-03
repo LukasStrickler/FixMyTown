@@ -78,8 +78,8 @@ export function WorkplaceSwitcher({
             </DropdownMenuLabel>
             {workspaces.map((workspace, index) => (
               <DropdownMenuItem
-                key={workspace.name}
-                onClick={() => setActiveWorkspace(workspace)}
+              key={workspace.workspaceType} // Use workspaceType as the key
+              onClick={() => setActiveWorkspace(workspace)}
                 className="gap-2 p-2"
               >
                 <div className="flex size-6 items-center justify-center rounded-sm border">
