@@ -49,13 +49,6 @@ const ModularNotificationTemplate = ({
           status_color={status_color}          />
         <MailGenericButton label="Learn more" link={link} />
         <MailFooter />
-        <DeMailNotificationContent
-          firstName={firstName}
-          status={status}
-          title={title} 
-          status_color={status_color}          />
-        <MailGenericButton label="Weitere Infos" link={link} />
-        <MailFooter />
       </Container>
     </Body>
   );

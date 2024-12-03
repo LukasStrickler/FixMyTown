@@ -2,7 +2,6 @@ import React from 'react';
 import { Body, Container, Preview } from '@react-email/components';
 import MailHeader from '@/components/email/mailHeader';
 import MailAuthContent from '@/components/email/en_mailAuthContent';
-import DeMailAuthContent from '@/components/email/de_mailAuthContent';
 import MailGenericButton from '@/components/email/mailGenericButton';
 import MailFooter from '@/components/email/mailFooter';
 
@@ -54,13 +53,6 @@ const extractToken = (magicLink: string): string => {
           authCode={extractToken(authLink ?? "")}
         />
         <MailGenericButton label="Confirm" link={authLink} />
-        <MailFooter />
-        <DeMailAuthContent
-          firstName={firstName}
-          userPrompt={userPrompt}
-          authCode={extractToken(authLink ?? "")}
-        />
-        <MailGenericButton label="Bestätigen" link={authLink} />
         <MailFooter />
       </Container>
     </Body>
