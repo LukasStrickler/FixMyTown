@@ -2,7 +2,6 @@ import React from 'react';
 import { Body, Container, Preview } from '@react-email/components';
 import MailHeader from '@/components/email/mailHeader';
 import MailNotificationContent from '@/components/email/en_mailNotificationContent';
-import DeMailNotificationContent from '@/components/email/de_mailNotificationContent';
 import MailGenericButton from '@/components/email/mailGenericButton';
 import MailFooter from '@/components/email/mailFooter';
 
