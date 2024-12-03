@@ -36,10 +36,7 @@
     --> wird automatisch durch uploadthing helper gemacht, deshalb wird hierfür kein Workflow erstellt
 7. Bilderlöschung
     - nach Bedarf/1 mal im Monat werden alle ungenutzten Bilder älter als 72h gelöscht
-8. Abmelde-Prozess
-    - Benutzer meldet sich ab
-    - Benutzer wird automatisch nach 24h Inaktivität abgemeldet
-9. Konto-Löschung
+8. Konto-Löschung
     - Admin löscht Konto eines Nutzers
     - Nutzer löscht eigenes Konto
 
