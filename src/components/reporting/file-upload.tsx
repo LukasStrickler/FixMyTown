@@ -5,10 +5,11 @@ import React, { useRef, useState } from "react";
 import { motion } from "framer-motion";
 import { IconUpload, IconX } from "@tabler/icons-react";
 import { useDropzone } from "react-dropzone";
-import { Dictionary } from "@/dictionaries/dictionary";
+import type { Dictionary } from "@/dictionaries/dictionary";
 import { useToast } from "@/hooks/use-toast";
 import heic2any from 'heic2any';
 import { Skeleton } from "@/components/ui/skeleton";
+import Image from 'next/image';
 
 const mainVariant = {
     initial: {
@@ -87,8 +88,8 @@ export const FileUpload = ({
         );
 
         const successfulConversions = convertedFiles
-            .filter(result => result.status === 'fulfilled')
-            .map(result => (result as PromiseFulfilledResult<File>).value);
+            .filter((result): result is PromiseFulfilledResult<File> => result.status === 'fulfilled')
+            .map(result => result.value);
 
         setFiles((prevFiles) => {
             // Replace placeholders with converted files
@@ -127,7 +128,9 @@ export const FileUpload = ({
     const { getRootProps, isDragActive } = useDropzone({
         multiple: false,
         noClick: true,
-        onDrop: handleFileChange,
+        onDrop: (acceptedFiles) => {
+            void handleFileChange(acceptedFiles);
+        },
         onDropRejected: (error) => {
             console.log(error);
         },
@@ -146,7 +149,7 @@ export const FileUpload = ({
         event.stopPropagation();
         setFiles((prevFiles) => {
             const newFiles = prevFiles.filter((_, idx) => idx !== indexToRemove);
-            onChange && onChange(newFiles);
+            if (onChange) onChange(newFiles);
             return newFiles;
         });
     };
@@ -165,8 +168,8 @@ export const FileUpload = ({
                     multiple
                     accept="image/jpeg,image/png,image/webp,image/svg+xml,image/heic,image/heif"
                     onChange={(e) => {
-                        const fileList = Array.from(e.target.files || []);
-                        handleFileChange(fileList);
+                        const fileList = Array.from(e.target.files ?? []);
+                        void handleFileChange(fileList);
                         e.target.value = '';
                     }}
                     className="hidden"
@@ -226,9 +229,11 @@ export const FileUpload = ({
                                             {file.size === 0 ? (
                                                 <Skeleton className="w-32 h-32" />
                                             ) : (
-                                                <img
+                                                <Image
                                                     src={URL.createObjectURL(file)}
                                                     alt={file.name}
+                                                    width={128}
+                                                    height={128}
                                                     className="w-full h-full object-contain"
                                                     onLoad={(e) => URL.revokeObjectURL((e.target as HTMLImageElement).src)}
                                                 />
