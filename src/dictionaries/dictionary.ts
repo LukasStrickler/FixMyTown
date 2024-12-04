@@ -5,14 +5,12 @@ export interface Dictionary {
     workspaces: {
         adminWorkspace: {
             adminWorkspaceTitle: string;
-            navItems: {};
             projects:{
                 userAdministration: string;
             }
         },
         workerWorkspace: {            
             workerWorkspaceTitle: string;
-            navItems: {};
             projects:{
                 reportCardView: string;
                 reportEdit: string;
@@ -34,7 +32,6 @@ export interface Dictionary {
                     parkingViolations: string;
                 }
             };
-            projects:{}
         },
 
     }

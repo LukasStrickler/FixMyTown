@@ -5,14 +5,12 @@
     "workspaces": {
         "adminWorkspace": {
         "adminWorkspaceTitle": "Administrator Arbeitsbereich",
-        "navItems": {},
         "projects": {
             "userAdministration": "Nutzerverwaltung"
             }
         },
         "workerWorkspace": {
         "workerWorkspaceTitle": "Arbeiter Arbeitsbereich",
-        "navItems": {},
         "projects": {
             "reportCardView": "Anträge Kartenansicht" ,
             "reportEdit": "Anträge Bearbeiten"
@@ -33,8 +31,7 @@
                 "contaminations": "Verunreinigungen",
                 "parkingViolations": "Parkverstöße"
             }
-        },
-        "projects": {}
+        }
         }
     },
     "auth": {
