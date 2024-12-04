@@ -1,6 +1,4 @@
-import { auth } from "@/server/auth";
 import { HydrateClient } from "@/trpc/server";
-// import { getDictionary } from "../../../get-dictionary";
 import { type Locale } from "@/i18n-config";
 import { ReportingForm } from "@/components/reporting/reporting-form";
 import { getDictionary } from "@/get-dictionary";
