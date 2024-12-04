@@ -1,10 +1,11 @@
-1. Einleitung [x]
-2. Funktionalität [x]
-3. Eingesetzte Technik
-4. Werkzeugeinsatz
-5. Software Architektur [x]
-6. Projekt Management
-7. Modellierungen
-8. Qualitätssicherung [x]
-9. Ausblick
-10. Fazit/Zusammenfassung
+- [x] Einleitung  
+- [x] Funktionalität  
+- [ ] Eingesetzte Technik  
+- [ ] Werkzeugeinsatz  
+- [x] Software Architektur  
+- [ ] Projekt Management  
+- [ ] Modellierungen  
+- [x] Qualitätssicherung  
+- [ ] Ausblick  
+- [ ] Fazit/Zusammenfassung  
+
