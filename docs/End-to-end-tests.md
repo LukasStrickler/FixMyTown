@@ -91,19 +91,19 @@
 
 ## Admin User Stories
 
-### Test: Admin kann Konten für Stadtmitarbeiter erstellen
-- **Testfallbeschreibung**: Überprüfen, ob ein Admin erfolgreich ein Benutzerkonto für einen Stadtmitarbeiter erstellen kann.
+### Test: Admin kann Konto  Rolle "Stadtmitarbeiter"  geben.
+- **Testfallbeschreibung**: Überprüfen, ob ein Admin erfolgreich ein Benutzerkonto die Rolle Stadtmitarbeiter verleihen kann.
 - **Schritte**:
   1. Melden Sie sich als Admin an.
-  2. Erstellen Sie ein neues Stadtmitarbeiterkonto mit allen notwendigen Informationen.
-- **Erwartetes Ergebnis**: Das neue Konto wird erstellt und der Stadtmitarbeiter erhält Zugangsdaten.
+  2. Vergeben sie einem Benutzerkonto mit der derzeitigen Rolle Benutzer, die Rolle Stadtmitarbeiter.
+- **Erwartetes Ergebnis**: Das Konto hat die Rolle Stadtmitarbeiter und kann nun auf entsprechende Funktionalitäten zugreifen.
 
 ### Test: Admin kann Stadtmitarbeiterkonten löschen
-- **Testfallbeschreibung**: Überprüfen, ob ein Admin ein Benutzerkonto von Stadtmitarbeitern löschen kann.
+- **Testfallbeschreibung**: Überprüfen, ob ein Admin ein Benutzerkonto die Rolle Stadtmitarbeitern entziehen kann.
 - **Schritte**:
   1. Melden Sie sich als Admin an.
-  2. Wählen Sie ein bestehendes Konto und löschen Sie es.
-- **Erwartetes Ergebnis**: Das Konto wird gelöscht, und der Benutzer hat keinen Zugang mehr zum System.
+  2. Entziehen sie einem bestehenden Konto, mit der Rolle Stadtmitarbieter, diese Rolle.
+- **Erwartetes Ergebnis**: Das Konto hat die Rolle User und kann nur noch auf entsprechende Funktionalitäten zugreifen.
 
 ---
 
