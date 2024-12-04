@@ -11,7 +11,7 @@ export const pictures = createTable(
     "pictures",
     {
         id: int("id").primaryKey(),
-        reportId: int("reportId", { mode: "number" }).notNull().references(() => reports.id),
+        reportId: int("reportId", { mode: "number" }).references(() => reports.id),
         timestamp: int("timestamp", { mode: "timestamp" }).notNull(),
     },
     (pictures) => ({
