@@ -2,21 +2,18 @@
 
 import { UploadButton } from "@/lib/uploadthings";
 
-export function ButtonUpload() {
+interface ButtonUploadProps {
+    onUploadComplete: (ids: string[]) => void;
+}
+
+export function ButtonUpload({ onUploadComplete }: ButtonUploadProps) {
     return (
-        <main className="flex min-h-screen flex-col items-center justify-between p-24">
-            <UploadButton
-                endpoint="imageUploader"
-                onClientUploadComplete={(res) => {
-                    // Do something with the response
-                    console.log("Files: ", res);
-                    alert("Upload Completed");
-                }}
-                onUploadError={(error: Error) => {
-                    // Do something with the error.
-                    alert(`ERROR! ${error.message}`);
-                }}
-            />
-        </main>
+        <UploadButton
+            endpoint="imageUploader"
+            onClientUploadComplete={(res) => {
+                const ids = res.map((file) => file.key);
+                onUploadComplete(ids);
+            }}
+        />
     );
 }
