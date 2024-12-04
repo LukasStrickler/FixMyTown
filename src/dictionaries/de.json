@@ -106,11 +106,17 @@
     "form": {
         "type": "Art der Meldung",
         "priority": "Priorität",
+        "location": "Standort",
         "name": "Titel",
         "description": "Beschreibung",
         "submit": "Meldung absenden",
         "submitting": "Wird gesendet...",
         "selectType": "Art auswählen",
-        "selectPriority": "Priorität auswählen"
+        "selectPriority": "Priorität auswählen",
+        "success": "Meldung gesendet",
+        "successDescription": "Ihre Meldung wurde erfolgreich gesendet.",
+        "images": "Bilder",
+        "submitInfo": "Alle Felder müssen ausgefüllt sein. Bilder sind optional.",
+        "submitReadyInfo": "Alles ausgefüllt! Klicken Sie auf 'Meldung absenden', wenn Sie fertig sind."
     }
 }

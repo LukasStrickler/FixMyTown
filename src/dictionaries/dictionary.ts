@@ -106,11 +106,17 @@ export interface Dictionary {
     form: {
         type: string;
         priority: string;
+        location: string;
         name: string;
         description: string;
         submit: string;
         submitting: string;
+        submitInfo: string;
+        submitReadyInfo: string;
         selectType: string;
         selectPriority: string;
+        success: string;
+        successDescription: string;
+        images: string;
     }
 }
