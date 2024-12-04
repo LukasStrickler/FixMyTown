@@ -81,25 +81,10 @@ export function AppSidebar({
           },
         ];
 
-  // Set the active workspace to the first workspace in the list
+  // Set the default workspace to "User Workspace"
   const [activeWorkspace, setActiveWorkspace] = React.useState<Workspace>(
-    workspaces[0] ?? {
-      name: dictionary?.workspaces.userWorkspace.userWorkspaceTitle ?? "User Workspace",
-      icon: <User />,
-      workspaceType: "user",
-    }
+    { name: dictionary?.workspaces.userWorkspace.userWorkspaceTitle + "", icon: <User />, workspaceType: "user" }
   );
-
-  React.useEffect(() => {
-    // Set default workspace only on initial render
-    if (!activeWorkspace) {
-      setActiveWorkspace({
-        name: dictionary?.workspaces.userWorkspace.userWorkspaceTitle ?? "User Workspace",
-        icon: <User />,
-        workspaceType: "user",
-      });
-    }
-  }, [activeWorkspace, dictionary]);
 
   // Loading spinner for no dictionary or no user session
   if (!dictionary || !user) {
