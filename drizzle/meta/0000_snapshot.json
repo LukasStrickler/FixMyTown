@@ -1,7 +1,7 @@
 {
   "version": "6",
   "dialect": "sqlite",
-  "id": "b05e90c3-7e28-4e32-8d47-3111e432ce49",
+  "id": "21778a3c-708d-4fb9-b826-8dd3375a102e",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "tables": {
     "fixmytown_account": {
@@ -125,7 +125,7 @@
       "columns": {
         "id": {
           "name": "id",
-          "type": "integer",
+          "type": "text",
           "primaryKey": true,
           "notNull": true,
           "autoincrement": false
@@ -134,7 +134,7 @@
           "name": "reportId",
           "type": "integer",
           "primaryKey": false,
-          "notNull": true,
+          "notNull": false,
           "autoincrement": false
         },
         "timestamp": {

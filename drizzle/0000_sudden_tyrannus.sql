@@ -15,8 +15,8 @@ CREATE TABLE `fixmytown_account` (
 );
 --> statement-breakpoint
 CREATE TABLE `fixmytown_pictures` (
-	`id` integer PRIMARY KEY NOT NULL,
-	`reportId` integer NOT NULL,
+	`id` text PRIMARY KEY NOT NULL,
+	`reportId` integer,
 	`timestamp` integer NOT NULL,
 	FOREIGN KEY (`reportId`) REFERENCES `fixmytown_reports`(`id`) ON UPDATE no action ON DELETE no action
 );
