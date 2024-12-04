@@ -240,18 +240,6 @@ export function ReportingForm({ dictionary, preselectedType, showUpload = true }
                     <div className="mt-4">
                         <FormLabel>{dictionary.form.images}</FormLabel>
                         <FileUpload onChange={handleUploadComplete} dictionary={dictionary} />
-                        {imageIds.length > 0 && (
-                            <div className="mt-2 grid grid-cols-2 gap-2">
-                                {imageIds.map((id) => (
-                                    <img
-                                        key={id}
-                                        src={`https://uploadthing.com/f/${id}`}
-                                        alt="Uploaded image"
-                                        className="w-full h-auto"
-                                    />
-                                ))}
-                            </div>
-                        )}
                     </div>
                 )}
 
