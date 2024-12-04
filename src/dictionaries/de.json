@@ -117,6 +117,14 @@
         "successDescription": "Ihre Meldung wurde erfolgreich gesendet.",
         "images": "Bilder",
         "submitInfo": "Alle Felder müssen ausgefüllt sein. Bilder sind optional.",
-        "submitReadyInfo": "Alles ausgefüllt! Klicken Sie auf 'Meldung absenden', wenn Sie fertig sind."
+        "submitReadyInfo": "Alles ausgefüllt! Klicken Sie auf 'Meldung absenden', wenn Sie fertig sind.",
+        "upload": {
+            "title": "Datei hochladen",
+            "description": "Ziehen Sie Ihre Dateien hierher oder klicken Sie zum Hochladen",
+            "dropHere": "Hier ablegen",
+            "error": "Dateien nicht hochgeladen",
+            "errorDescription": "Die Dateien konnten nicht hochgeladen werden. Maximal 10 Dateien und 10MB Dateigröße.",
+            "converting": "Wird konvertiert zu JPG..."
+        }
     }
 }
