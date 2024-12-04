@@ -1,4 +1,3 @@
-import { auth } from "@/server/auth";
 import { HydrateClient } from "@/trpc/server";
 import { type Locale } from "@/i18n-config";
 import { notFound } from "next/navigation";
@@ -28,7 +27,6 @@ export default async function ReportPage({
     }
 
     const reportId = VALID_REPORT_TYPES[type];
-    const session = await auth();
     const dictionary = await getDictionary(lang);
 
     return (
