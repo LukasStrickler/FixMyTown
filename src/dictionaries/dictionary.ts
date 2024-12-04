@@ -85,5 +85,13 @@ export interface Dictionary {
         success: string;
         successDescription: string;
         images: string;
+        upload: {
+            title: string;
+            description: string;
+            dropHere: string;
+            error: string;
+            errorDescription: string;
+            converting: string;
+        }
     }
 }

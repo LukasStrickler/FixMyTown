@@ -30,7 +30,8 @@ import { Textarea } from "@/components/ui/textarea"
 import { Card, CardContent } from "@/components/ui/card"
 import { MapPin } from "lucide-react"
 import { Separator } from "@/components/ui/separator"
-import { ButtonUpload } from "@/components/uploadbutton"
+import dynamic from 'next/dynamic';
+import { Skeleton } from "../ui/skeleton"
 
 
 interface ReportingFormProps {
@@ -38,6 +39,15 @@ interface ReportingFormProps {
     preselectedType?: string
     showUpload?: boolean
 }
+
+// Dynamic import with loading state
+const FileUpload = dynamic(
+    () => import('@/components/reporting/file-upload').then(mod => mod.FileUpload),
+    {
+        loading: () => <Skeleton className="w-full h-48" />,
+        ssr: false
+    }
+);
 
 export function ReportingForm({ dictionary, preselectedType, showUpload = true }: ReportingFormProps) {
     const router = useRouter()
@@ -109,19 +119,24 @@ export function ReportingForm({ dictionary, preselectedType, showUpload = true }
         setLocationDescription(addr.displayName)
     }
 
-    const handleUploadComplete = async (ids: string[]) => {
-        try {
-            await registerImages.mutateAsync({ imageIds: ids });
-            setImageIds(imageIds.concat(ids));
-        } catch (error) {
-            console.error("Error registering images:", error);
-            toast({
-                title: "Error",
-                description: "Failed to register images",
-                variant: "destructive",
-            });
-        }
-    };
+    // const handleUploadComplete = async (ids: string[]) => {
+    //     try {
+    //         await registerImages.mutateAsync({ imageIds: ids });
+    //         setImageIds(imageIds.concat(ids));
+    //     } catch (error) {
+    //         console.error("Error registering images:", error);
+    //         toast({
+    //             title: "Error",
+    //             description: "Failed to register images",
+    //             variant: "destructive",
+    //         });
+    //     }
+    // };
+
+    const handleUploadComplete = (files: File[]) => {
+        // Process files here
+        console.log("Upload complete", files)
+    }
 
 
     return (
@@ -224,7 +239,7 @@ export function ReportingForm({ dictionary, preselectedType, showUpload = true }
                 {showUpload && (
                     <div className="mt-4">
                         <FormLabel>{dictionary.form.images}</FormLabel>
-                        <ButtonUpload onUploadComplete={handleUploadComplete} />
+                        <FileUpload onChange={handleUploadComplete} dictionary={dictionary} />
                         {imageIds.length > 0 && (
                             <div className="mt-2 grid grid-cols-2 gap-2">
                                 {imageIds.map((id) => (
