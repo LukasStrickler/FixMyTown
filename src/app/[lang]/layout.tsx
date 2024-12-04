@@ -18,6 +18,7 @@ import {
 } from "@/components/ui/sidebar"
 import { AuthProvider } from "@/components/provider/authProvider";
 import { DictionaryProvider } from "@/components/provider/dictionaryProvider";
+import { Toaster } from "@/components/ui/toaster";
 
 export const metadata: Metadata = {
   title: "FixMyTown",
@@ -59,6 +60,7 @@ export default function RootLayout({
                       routerConfig={extractRouterConfig(ourFileRouter)}
                     />
                     {children}
+                    <Toaster />
                   </SidebarInset>
                 </SidebarProvider>
               </TRPCReactProvider>
