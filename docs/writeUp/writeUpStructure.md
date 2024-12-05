@@ -1,11 +1,11 @@
-- [x] Einleitung  
-- [x] Funktionalität  
+- [x] Einleitung  (3/4 Seite)
+- [x] Funktionalität  (1 3/4 Seiten)
 - [ ] Eingesetzte Technik  
 - [ ] Werkzeugeinsatz  
-- [x] Software Architektur  
-- [ ] Projekt Management  
+- [x] Software Architektur  (2 Seiten)
+- [x] Projektmanagement  (2 1/2 Seiten)
 - [ ] Modellierungen  
-- [x] Qualitätssicherung  
+- [x] Qualitätssicherung  (1 3/4 Seiten)
 - [ ] Ausblick  
 - [ ] Fazit/Zusammenfassung  
 
