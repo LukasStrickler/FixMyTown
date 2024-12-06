@@ -6,6 +6,6 @@
 - [x] Projektmanagement  (2 1/2 Seiten)
 - [ ] Modellierungen  
 - [x] Qualitätssicherung  (1 3/4 Seiten)
-- [ ] Ausblick  
+- [x] Ausblick  (1 1/4 Seiten)
 - [ ] Fazit/Zusammenfassung  
 
