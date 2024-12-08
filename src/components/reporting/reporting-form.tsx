@@ -1,39 +1,21 @@
 "use client"
 
-import { useForm } from "react-hook-form"
-import { zodResolver } from "@hookform/resolvers/zod"
-import { useRouter } from "next/navigation"
 import { useEffect, useState } from "react"
 import type { Dictionary } from "@/dictionaries/dictionary"
 import { api } from "@/trpc/react"
-import { createReportSchema, type CreateReportInput } from "@/components/reporting/report"
 import LocationPicker, { type Location, type Address } from "@/components/LocationPicker/LocationPicker"
-import {
-    Form,
-    FormControl,
-    FormField,
-    FormItem,
-    FormLabel,
-    FormMessage,
-} from "@/components/ui/form"
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
-import {
-    Select,
-    SelectContent,
-    SelectItem,
-    SelectTrigger,
-    SelectValue,
-} from "@/components/ui/select"
-import { useToast } from "@/hooks/use-toast"
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Textarea } from "@/components/ui/textarea"
 import { Card, CardContent } from "@/components/ui/card"
 import { MapPin } from "lucide-react"
 import { Separator } from "@/components/ui/separator"
-import dynamic from 'next/dynamic';
+import dynamic from 'next/dynamic'
 import { Skeleton } from "../ui/skeleton"
 import { MultiStepLoader } from "./multi-step-loader"
-import { useUploadThing } from "@/lib/uploadthings"
+import { useReportForm } from "./useReportForm"
 
 interface ReportingFormProps {
     dictionary: Dictionary
@@ -51,152 +33,20 @@ const FileUpload = dynamic(
 );
 
 export function ReportingForm({ dictionary, preselectedType, showUpload = true }: ReportingFormProps) {
-    const router = useRouter()
-    const [isLocked, setIsLocked] = useState(false)
+    const {
+        form,
+        files,
+        setFiles,
+        isSubmitting,
+        currentStep,
+        isImageProcessing,
+        setIsImageProcessing,
+        onSubmit,
+        getLoadingStates
+    } = useReportForm(dictionary, preselectedType)
     const [locationDescription, setLocationDescription] = useState("")
-    const { data: types } = api.report.getTypes.useQuery()
-    const { toast } = useToast()
-    const [isSubmitting, setIsSubmitting] = useState(false)
-    const [files, setFiles] = useState<File[]>([])
-    const [currentStep, setCurrentStep] = useState(0)
-    const [isImageProcessing, setIsImageProcessing] = useState(false)
-
-    const getLoadingStates = (fileCount: number) => {
-        const states = [
-            { text: dictionary.form.validatingData },
-            { text: dictionary.form.savingReport },
-            { text: dictionary.form.redirecting }
-        ]
-
-        // Add image upload state if there are files
-        if (fileCount > 0) {
-            states.splice(1, 0, {
-                text: `${dictionary.form.uploadingImages} (${fileCount})`
-            })
-        }
-
-        return states
-    }
-
-    const createReport = api.report.create.useMutation({
-        onError: (error) => {
-            console.error("Error creating report:", error)
-        }
-    })
-
-    const form = useForm<CreateReportInput>({
-        resolver: zodResolver(createReportSchema),
-        defaultValues: {
-            type: preselectedType ? parseInt(preselectedType) : undefined,
-            prio: 0, // default prio is 0 (unset)
-            name: "",
-            description: "",
-            latitude: undefined,
-            longitude: undefined,
-            locationDescription: "",
-        },
-        mode: "onSubmit",
-    })
-
-    // const registerImages = api.report.registerImages.useMutation()
-
-    const { startUpload } = useUploadThing("imageUploader", {
-        onUploadError: (error) => {
-            console.error("Error uploading:", error);
-            toast({
-                title: "Error",
-                description: dictionary.form.uploadError,
-                variant: "destructive",
-            });
-        },
-    });
-
-    const withMinDuration = async <T,>(promise: Promise<T>, minDuration = 500): Promise<T> => {
-        const start = Date.now();
-        const result = await promise;
-        const elapsed = Date.now() - start;
-        if (elapsed < minDuration) {
-            await new Promise(resolve => setTimeout(resolve, minDuration - elapsed));
-        }
-        return result;
-    };
-
-    const onSubmit = async (data: CreateReportInput) => {
-        setIsSubmitting(true)
-        setCurrentStep(0) // Start with validating data
-
-        try {
-            // Validation step - minimum 500ms
-            await withMinDuration(Promise.resolve(), 500)
-            setCurrentStep(1)
-
-            let finalImageIds: string[] = [];
-
-            if (files.length > 0) {
-                // Image upload step
-                const uploadPromise = startUpload(files)
-                const uploadResult = await uploadPromise
-                if (!uploadResult) {
-                    throw new Error(dictionary.form.uploadError)
-                }
-                finalImageIds = uploadResult.map((file) => file.key)
-                setCurrentStep(2)
-            }
-
-            // Prepare and submit data
-            const validatedData = {
-                ...data,
-                imageIds: finalImageIds,
-                prio: data.prio ?? 0
-            }
-
-            // Create report step
-            const reportPromise = new Promise<void>((resolve, reject) => {
-                createReport.mutate(validatedData, {
-                    onSuccess: () => resolve(),
-                    onError: (error) => reject(new Error(error.message))
-                })
-            })
-            await withMinDuration(reportPromise, 500)
-
-            setCurrentStep(files.length > 0 ? 3 : 2)
-
-            // Final success and redirect step - ensure it lasts at least 1 second
-            await withMinDuration(Promise.resolve(), 1000)
-
-            toast({
-                title: dictionary.form.success,
-                description: dictionary.form.successDescription,
-                variant: "success",
-            })
-            form.reset()
-            router.replace("/myReports")
-        } catch (error) {
-            console.error("Error during submission:", error)
-
-            let errorMessage = dictionary.form.generalError
-            if (error instanceof Error) {
-                switch (error.message) {
-                    case "form.uploadError":
-                        errorMessage = dictionary.form.uploadError
-                        break
-                    case "form.generalError":
-                        errorMessage = dictionary.form.generalError
-                        break
-                    default:
-                        errorMessage = error.message
-                }
-            }
-
-            toast({
-                title: "Error",
-                description: errorMessage,
-                variant: "destructive",
-            })
-        } finally {
-            setIsSubmitting(false)
-        }
-    }
+    const [isLocked, setIsLocked] = useState(false)
+    const { data: types } = api.report.getTypes.useQuery();
 
     //on is locked, trigger validation of latitude and longitude
     useEffect(() => {
@@ -332,12 +182,12 @@ export function ReportingForm({ dictionary, preselectedType, showUpload = true }
                     <div className="flex items-center gap-4 flex-wrap">
                         <Button
                             type="submit"
-                            disabled={createReport.isPending || !isLocked || !form.formState.isValid || isImageProcessing}
+                            disabled={isSubmitting || !isLocked || !form.formState.isValid || isImageProcessing}
                             className="shrink-0"
                         >
-                            {createReport.isPending ? dictionary.form.submitting : dictionary.form.submit}
+                            {isSubmitting ? dictionary.form.submitting : dictionary.form.submit}
                         </Button>
-                        {(createReport.isPending || !isLocked || !form.formState.isValid || isImageProcessing) ? (
+                        {(isSubmitting || !isLocked || !form.formState.isValid || isImageProcessing) ? (
                             <p className="text-sm text-muted-foreground flex-1">
                                 {dictionary.form.submitInfo}
                             </p>
