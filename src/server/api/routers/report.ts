@@ -1,16 +1,16 @@
 import { createTRPCRouter, userProcedure } from "../trpc"
 import { createReportSchema } from "@/components/reporting/report"
 import { reports } from "@/server/db/schema/reports"
-import { z } from "node_modules/zod/lib"
 import { pictures } from "@/server/db/schema/pictures"
 
 export const reportRouter = createTRPCRouter({
     create: userProcedure
-        .input(createReportSchema.extend({
-            imageIds: z.array(z.string()).optional(),
-        }))
+        .input(createReportSchema)
         .mutation(async ({ ctx, input }) => {
             // Insert the report
+
+            console.log("input", input)
+
             const report = await ctx.db.insert(reports)
                 .values({
                     ...input,
@@ -20,35 +20,31 @@ export const reportRouter = createTRPCRouter({
 
             const reportId = report[0]?.id;
 
-            if (reportId && input.imageIds) {
-                // Map images to the report, overwrite if exists
-                await ctx.db.insert(pictures).values(
-                    input.imageIds.map((id) => ({
-                        id: parseInt(id), // Convert string id to number
-                        reportId: reportId,
-                        timestamp: new Date()
-                    }))
-                ).onConflictDoUpdate({
-                    target: pictures.id,
-                    set: {
-                        reportId: reportId,
-                    }
-                });
+            if (reportId && input.imageIds && input.imageIds.length > 0) {
+                try {
+                    await ctx.db.insert(pictures).values(
+                        input.imageIds.map((id: string) => ({
+                            id: id,
+                            reportId: reportId,
+                            timestamp: new Date()
+                        }))
+                    ).onConflictDoUpdate({
+                        target: pictures.id,
+                        set: {
+                            reportId: reportId,
+                        }
+                    });
+                } catch (error) {
+                    console.error("Error inserting pictures:", error);
+                    throw new Error("form.uploadError");
+                }
+            }
+
+            if (!reportId) {
+                throw new Error("form.generalError");
             }
 
             return reportId;
-        }),
-    registerImages: userProcedure
-        .input(z.object({
-            imageIds: z.array(z.string()),
-        }))
-        .mutation(async ({ ctx, input }) => {
-            return await ctx.db.insert(pictures).values(
-                input.imageIds.map((id) => ({
-                    id: parseInt(id), // Convert string id to number
-                    timestamp: new Date()
-                }))
-            )
         }),
 
     getTypes: userProcedure.query(async ({ ctx }) => {
