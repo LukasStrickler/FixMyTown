@@ -88,7 +88,7 @@ export function AppSidebar({
 
   // Determine initial workspace based on URL path
   const getInitialWorkspace = (): Workspace => {
-    if (pathname.includes('/worker') && ['admin', 'worker'].includes(user?.role || '')) {
+    if (pathname.includes('/worker') && ['admin', 'worker'].includes(user?.role ?? '')) {
       const workerWorkspace = workspaces.find(w => w.workspaceType === 'worker');
       if (workerWorkspace) return workerWorkspace;
     }
@@ -96,7 +96,7 @@ export function AppSidebar({
       const adminWorkspace = workspaces.find(w => w.workspaceType === 'admin');
       if (adminWorkspace) return adminWorkspace;
     }
-    return workspaces.find(w => w.workspaceType === 'user') || workspaces[0]!;
+    return workspaces.find(w => w.workspaceType === 'user') ?? workspaces[0]!;
   };
 
   const [activeWorkspace, setActiveWorkspace] = React.useState<Workspace>(() => getInitialWorkspace());
