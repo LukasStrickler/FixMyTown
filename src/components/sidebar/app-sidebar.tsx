@@ -40,28 +40,31 @@ export function AppSidebar({
   const { lang } = params;
   const { dictionary } = useDictionary();
 
+  // Get the current pathname
+  const pathname = typeof window !== 'undefined' ? window.location.pathname : '';
+
   // Initialize workspaces based on the user's role
-  const workspaces: Workspace[] = 
+  const workspaces = React.useMemo((): Workspace[] =>
     user?.role === "admin"
       ? [
-          {
-            name: dictionary?.workspaces.adminWorkspace.adminWorkspaceTitle ?? "Admin Workspace",
-            icon: <Shield />,
-            workspaceType: "admin",
-          },
-          {
-            name: dictionary?.workspaces.workerWorkspace.workerWorkspaceTitle ?? "Worker Workspace",
-            icon: <HelpCircle />,
-            workspaceType: "worker",
-          },
-          {
-            name: dictionary?.workspaces.userWorkspace.userWorkspaceTitle ?? "Default Workspace Title",
-            icon: <User />,
-            workspaceType: "user",
-          },
-        ]
+        {
+          name: dictionary?.workspaces.adminWorkspace.adminWorkspaceTitle ?? "Admin Workspace",
+          icon: <Shield />,
+          workspaceType: "admin",
+        },
+        {
+          name: dictionary?.workspaces.workerWorkspace.workerWorkspaceTitle ?? "Worker Workspace",
+          icon: <HelpCircle />,
+          workspaceType: "worker",
+        },
+        {
+          name: dictionary?.workspaces.userWorkspace.userWorkspaceTitle ?? "Default Workspace Title",
+          icon: <User />,
+          workspaceType: "user",
+        },
+      ]
       : user?.role === "worker"
-      ? [
+        ? [
           {
             name: dictionary?.workspaces.workerWorkspace.workerWorkspaceTitle ?? "Worker Workspace",
             icon: <HelpCircle />,
@@ -73,18 +76,34 @@ export function AppSidebar({
             workspaceType: "user",
           },
         ]
-      : [
+        : [
           {
             name: dictionary?.workspaces.userWorkspace.userWorkspaceTitle ?? "Default Workspace Title",
             icon: <User />,
             workspaceType: "user",
           },
-        ];
-
-  // Set the default workspace to "User Workspace"
-  const [activeWorkspace, setActiveWorkspace] = React.useState<Workspace>(
-    { name: dictionary?.workspaces.userWorkspace.userWorkspaceTitle + "", icon: <User />, workspaceType: "user" }
+        ],
+    [user?.role, dictionary]
   );
+
+  // Determine initial workspace based on URL path
+  const getInitialWorkspace = (): Workspace => {
+    if (pathname.includes('/worker') && ['admin', 'worker'].includes(user?.role || '')) {
+      const workerWorkspace = workspaces.find(w => w.workspaceType === 'worker');
+      if (workerWorkspace) return workerWorkspace;
+    }
+    if (pathname.includes('/admin') && user?.role === 'admin') {
+      const adminWorkspace = workspaces.find(w => w.workspaceType === 'admin');
+      if (adminWorkspace) return adminWorkspace;
+    }
+    return workspaces.find(w => w.workspaceType === 'user') || workspaces[0]!;
+  };
+
+  const [activeWorkspace, setActiveWorkspace] = React.useState<Workspace>(() => getInitialWorkspace());
+
+  React.useEffect(() => {
+    setActiveWorkspace(getInitialWorkspace());
+  }, [pathname, user?.role]);
 
   // Loading spinner for no dictionary or no user session
   if (!dictionary || !user) {
