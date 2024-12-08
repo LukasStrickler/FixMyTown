@@ -2,6 +2,39 @@ export interface Dictionary {
     index: {
         helloWorld: string;
     },
+    workspaces: {
+        adminWorkspace: {
+            adminWorkspaceTitle: string;
+            projects:{
+                userAdministration: string;
+            }
+        },
+        workerWorkspace: {            
+            workerWorkspaceTitle: string;
+            projects:{
+                reportCardView: string;
+                reportEdit: string;
+            }
+        },
+        userWorkspace: {            
+            userWorkspaceTitle: string;
+            navItems: {
+                myReports: {
+                    folderTitle: string,
+                    reportState: string,
+                    closedReports: string,
+                    myReports: string,
+                }
+                reportSomething: {
+                    folderTitle: string
+                    defectsDamages: string;
+                    contaminations: string;
+                    parkingViolations: string;
+                }
+            };
+        },
+
+    }
     auth: {
         login: {
             title: string;
