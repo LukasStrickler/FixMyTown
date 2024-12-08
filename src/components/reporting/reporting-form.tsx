@@ -3,7 +3,7 @@
 import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useRouter } from "next/navigation"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import type { Dictionary } from "@/dictionaries/dictionary"
 import { api } from "@/trpc/react"
 import { createReportSchema, type CreateReportInput } from "@/components/reporting/report"
@@ -32,7 +32,8 @@ import { MapPin } from "lucide-react"
 import { Separator } from "@/components/ui/separator"
 import dynamic from 'next/dynamic';
 import { Skeleton } from "../ui/skeleton"
-
+import { MultiStepLoader } from "./multi-step-loader"
+import { useUploadThing } from "@/lib/uploadthings"
 
 interface ReportingFormProps {
     dictionary: Dictionary
@@ -56,6 +57,16 @@ export function ReportingForm({ dictionary, preselectedType, showUpload = true }
     const { data: types } = api.report.getTypes.useQuery()
     const { toast } = useToast()
     const [imageIds, setImageIds] = useState<string[]>([])
+    const [isSubmitting, setIsSubmitting] = useState(false)
+    const [files, setFiles] = useState<File[]>([])
+
+    const loadingStates = [
+        { text: dictionary.form.submitting },
+        { text: dictionary.form.validatingData },
+        { text: dictionary.form.processingImages },
+        { text: dictionary.form.savingReport },
+        { text: dictionary.form.redirecting }
+    ]
 
     const createReport = api.report.create.useMutation({
         onSuccess: () => {
@@ -64,8 +75,8 @@ export function ReportingForm({ dictionary, preselectedType, showUpload = true }
                 description: dictionary.form.successDescription,
                 variant: "success",
             })
-            form.reset()
-            router.replace("/myReports")
+            // form.reset()
+            // router.replace("/myReports")
         },
         onError: (error) => {
             console.error("Error creating report:", error)
@@ -89,6 +100,7 @@ export function ReportingForm({ dictionary, preselectedType, showUpload = true }
     const registerImages = api.report.registerImages.useMutation()
 
     const onSubmit = async (data: CreateReportInput) => {
+        setIsSubmitting(true)
         try {
             // Validate the data before submission
             const validatedData = createReportSchema.parse({
@@ -106,8 +118,17 @@ export function ReportingForm({ dictionary, preselectedType, showUpload = true }
                 description: "Please fill in all required fields",
                 variant: "destructive",
             });
+        } finally {
+            setIsSubmitting(false)
         }
     }
+
+    //on is locked, trigger validation of latitude and longitude
+    useEffect(() => {
+        if (isLocked) {
+            form.trigger(["latitude", "longitude"])
+        }
+    }, [isLocked])
 
     const handleLocationSelected = (loc: Location) => {
         form.setValue("latitude", loc.lat)
@@ -118,6 +139,8 @@ export function ReportingForm({ dictionary, preselectedType, showUpload = true }
         form.setValue("locationDescription", addr.displayName)
         setLocationDescription(addr.displayName)
     }
+
+
 
     // const handleUploadComplete = async (ids: string[]) => {
     //     try {
@@ -134,55 +157,70 @@ export function ReportingForm({ dictionary, preselectedType, showUpload = true }
     // };
 
     const handleUploadComplete = (files: File[]) => {
-        // Process files here
-        console.log("Upload complete", files)
+        setFiles(files);
     }
 
 
     return (
-        <Form {...form}>
-            <form
-                onSubmit={form.handleSubmit(onSubmit)}
-                className="space-y-6 w-full max-w-2xl mx-auto px-4 sm:px-6"
-            >
-                <div className="space-y-4">
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                        <FormField
-                            control={form.control}
-                            name="type"
-                            render={({ field }) => (
-                                <FormItem>
-                                    <FormLabel>{dictionary.form.type}</FormLabel>
-                                    <Select
-                                        onValueChange={(value) => field.onChange(parseInt(value))}
-                                        defaultValue={field.value?.toString()}
-                                    >
+        <>
+            <Form {...form}>
+                <form
+                    onSubmit={form.handleSubmit(onSubmit)}
+                    className="space-y-6 w-full max-w-2xl mx-auto px-4 sm:px-6"
+                >
+                    <div className="space-y-4">
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <FormField
+                                control={form.control}
+                                name="type"
+                                render={({ field }) => (
+                                    <FormItem>
+                                        <FormLabel>{dictionary.form.type}</FormLabel>
+                                        <Select
+                                            onValueChange={(value) => field.onChange(parseInt(value))}
+                                            defaultValue={field.value?.toString()}
+                                        >
+                                            <FormControl>
+                                                <SelectTrigger className="w-full">
+                                                    <SelectValue placeholder={dictionary.form.selectType} />
+                                                </SelectTrigger>
+                                            </FormControl>
+                                            <SelectContent>
+                                                {types?.map((type) => (
+                                                    <SelectItem key={type.id} value={type.id.toString()}>
+                                                        {type.name}
+                                                    </SelectItem>
+                                                ))}
+                                            </SelectContent>
+                                        </Select>
+                                        <FormMessage />
+                                    </FormItem>
+                                )}
+                            />
+
+                            <FormField
+                                control={form.control}
+                                name="name"
+                                render={({ field }) => (
+                                    <FormItem>
+                                        <FormLabel>{dictionary.form.name}</FormLabel>
                                         <FormControl>
-                                            <SelectTrigger className="w-full">
-                                                <SelectValue placeholder={dictionary.form.selectType} />
-                                            </SelectTrigger>
+                                            <Input {...field} maxLength={50} />
                                         </FormControl>
-                                        <SelectContent>
-                                            {types?.map((type) => (
-                                                <SelectItem key={type.id} value={type.id.toString()}>
-                                                    {type.name}
-                                                </SelectItem>
-                                            ))}
-                                        </SelectContent>
-                                    </Select>
-                                    <FormMessage />
-                                </FormItem>
-                            )}
-                        />
+                                        <FormMessage />
+                                    </FormItem>
+                                )}
+                            />
+                        </div>
 
                         <FormField
                             control={form.control}
-                            name="name"
+                            name="description"
                             render={({ field }) => (
                                 <FormItem>
-                                    <FormLabel>{dictionary.form.name}</FormLabel>
+                                    <FormLabel>{dictionary.form.description}</FormLabel>
                                     <FormControl>
-                                        <Input {...field} maxLength={50} />
+                                        <Textarea {...field} />
                                     </FormControl>
                                     <FormMessage />
                                 </FormItem>
@@ -190,78 +228,64 @@ export function ReportingForm({ dictionary, preselectedType, showUpload = true }
                         />
                     </div>
 
-                    <FormField
-                        control={form.control}
-                        name="description"
-                        render={({ field }) => (
-                            <FormItem>
-                                <FormLabel>{dictionary.form.description}</FormLabel>
-                                <FormControl>
-                                    <Textarea {...field} />
-                                </FormControl>
-                                <FormMessage />
-                            </FormItem>
-                        )}
-                    />
-                </div>
-
-                <div className="mt-4">
-                    <FormItem>
-                        <FormLabel>{dictionary.form.location}</FormLabel>
-                        <FormControl>
-                            <Card>
-                                <CardContent className="pt-6">
-                                    <LocationPicker
-                                        onLocationSelected={handleLocationSelected}
-                                        onAddressChange={handleAddressChange}
-                                        dictionary={dictionary}
-                                        onLockStatusChange={setIsLocked}
-                                    />
-
-                                    {locationDescription && (
-                                        <>
-                                            <Separator className="my-4" />
-                                            <div className="flex items-center gap-2">
-                                                <MapPin className="text-muted-foreground h-8 w-8" />
-                                                <p className="text-sm text-muted-foreground">
-                                                    {locationDescription}
-                                                </p>
-                                            </div>
-                                        </>
-                                    )}
-                                </CardContent>
-                            </Card>
-                        </FormControl>
-                        <FormMessage />
-                    </FormItem>
-                </div>
-
-                {showUpload && (
                     <div className="mt-4">
-                        <FormLabel>{dictionary.form.images}</FormLabel>
-                        <FileUpload onChange={handleUploadComplete} dictionary={dictionary} />
-                    </div>
-                )}
+                        <FormItem>
+                            <FormLabel>{dictionary.form.location}</FormLabel>
+                            <FormControl>
+                                <Card>
+                                    <CardContent className="pt-6">
+                                        <LocationPicker
+                                            onLocationSelected={handleLocationSelected}
+                                            onAddressChange={handleAddressChange}
+                                            dictionary={dictionary}
+                                            onLockStatusChange={setIsLocked}
+                                        />
 
-                <div className="flex items-center gap-4 flex-wrap">
-                    <Button
-                        type="submit"
-                        disabled={createReport.isPending || !isLocked || !form.formState.isValid}
-                        className="shrink-0"
-                    >
-                        {createReport.isPending ? dictionary.form.submitting : dictionary.form.submit}
-                    </Button>
-                    {(createReport.isPending || !isLocked || !form.formState.isValid) ? (
-                        <p className="text-sm text-muted-foreground flex-1">
-                            {dictionary.form.submitInfo}
-                        </p>
-                    ) : (
-                        <p className="text-sm text-green-600 dark:text-green-400 flex-1">
-                            {dictionary.form.submitReadyInfo}
-                        </p>
+                                        {locationDescription && (
+                                            <>
+                                                <Separator className="my-4" />
+                                                <div className="flex items-center gap-2">
+                                                    <MapPin className="text-muted-foreground h-8 w-8" />
+                                                    <p className="text-sm text-muted-foreground">
+                                                        {locationDescription}
+                                                    </p>
+                                                </div>
+                                            </>
+                                        )}
+                                    </CardContent>
+                                </Card>
+                            </FormControl>
+                            <FormMessage />
+                        </FormItem>
+                    </div>
+
+                    {showUpload && (
+                        <div className="mt-4">
+                            <FormLabel>{dictionary.form.images}</FormLabel>
+                            <FileUpload onChange={handleUploadComplete} dictionary={dictionary} />
+                        </div>
                     )}
-                </div>
-            </form>
-        </Form>
+
+                    <div className="flex items-center gap-4 flex-wrap">
+                        <Button
+                            type="submit"
+                            disabled={createReport.isPending || !isLocked || !form.formState.isValid}
+                            className="shrink-0"
+                        >
+                            {createReport.isPending ? dictionary.form.submitting : dictionary.form.submit}
+                        </Button>
+                        {(createReport.isPending || !isLocked || !form.formState.isValid) ? (
+                            <p className="text-sm text-muted-foreground flex-1">
+                                {dictionary.form.submitInfo}
+                            </p>
+                        ) : (
+                            <p className="text-sm text-green-600 dark:text-green-400 flex-1">
+                                {dictionary.form.submitReadyInfo}
+                            </p>
+                        )}
+                    </div>
+                </form>
+            </Form>
+        </>
     )
 }
