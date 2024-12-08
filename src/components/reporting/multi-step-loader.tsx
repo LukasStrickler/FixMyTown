@@ -2,6 +2,7 @@
 import { cn } from "@/lib/utils";
 import { AnimatePresence, motion } from "framer-motion";
 import { useState, useEffect } from "react";
+import { Loader2 } from "lucide-react";
 
 const CheckIcon = ({ className }: { className?: string }) => {
     return (
@@ -41,43 +42,40 @@ type LoadingState = {
 
 const LoaderCore = ({
     loadingStates,
-    value = 0,
+    currentStep = 0,
 }: {
     loadingStates: LoadingState[];
-    value?: number;
+    currentStep?: number;
 }) => {
     return (
         <div className="flex relative justify-start max-w-xl mx-auto flex-col mt-40">
             {loadingStates.map((loadingState, index) => {
-                const distance = Math.abs(index - value);
-                const opacity = Math.max(1 - distance * 0.2, 0); // Minimum opacity is 0, keep it 0.2 if you're sane.
+                const distance = Math.abs(index - currentStep);
+                const opacity = Math.max(1 - distance * 0.2, 0);
 
                 return (
                     <motion.div
                         key={index}
                         className={cn("text-left flex gap-2 mb-4")}
-                        initial={{ opacity: 0, y: -(value * 40) }}
-                        animate={{ opacity: opacity, y: -(value * 40) }}
+                        initial={{ opacity: 0, y: -(currentStep * 40) }}
+                        animate={{ opacity: opacity, y: -(currentStep * 40) }}
                         transition={{ duration: 0.5 }}
                     >
                         <div>
-                            {index > value && (
+                            {index > currentStep && (
                                 <CheckIcon className="text-black dark:text-white" />
                             )}
-                            {index <= value && (
-                                <CheckFilled
-                                    className={cn(
-                                        "text-black dark:text-white",
-                                        value === index &&
-                                        "text-black dark:text-lime-500 opacity-100"
-                                    )}
-                                />
+                            {index < currentStep && (
+                                <CheckFilled className="text-black dark:text-white" />
+                            )}
+                            {index === currentStep && (
+                                <Loader2 className="w-6 h-6 animate-spin text-black dark:text-lime-500" />
                             )}
                         </div>
                         <span
                             className={cn(
                                 "text-black dark:text-white",
-                                value === index && "text-black dark:text-lime-500 opacity-100"
+                                currentStep === index && "text-black dark:text-lime-500 opacity-100"
                             )}
                         >
                             {loadingState.text}
@@ -89,53 +87,35 @@ const LoaderCore = ({
     );
 };
 
-export const MultiStepLoader = ({
-    loadingStates,
-    loading,
-    duration = 2000,
-    loop = true,
-}: {
+interface MultiStepLoaderProps {
     loadingStates: LoadingState[];
     loading?: boolean;
     duration?: number;
     loop?: boolean;
-}) => {
-    const [currentState, setCurrentState] = useState(0);
+    currentStep: number;
+}
 
-    useEffect(() => {
-        if (!loading) {
-            setCurrentState(0);
-            return;
-        }
-        const timeout = setTimeout(() => {
-            setCurrentState((prevState) =>
-                loop
-                    ? prevState === loadingStates.length - 1
-                        ? 0
-                        : prevState + 1
-                    : Math.min(prevState + 1, loadingStates.length - 1)
-            );
-        }, duration);
-
-        return () => clearTimeout(timeout);
-    }, [currentState, loading, loop, loadingStates.length, duration]);
+export const MultiStepLoader = ({
+    loadingStates,
+    loading,
+    duration = 2000,
+    loop = false,
+    currentStep,
+}: MultiStepLoaderProps) => {
     return (
         <AnimatePresence mode="wait">
             {loading && (
                 <motion.div
-                    initial={{
-                        opacity: 0,
-                    }}
-                    animate={{
-                        opacity: 1,
-                    }}
-                    exit={{
-                        opacity: 0,
-                    }}
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
                     className="w-full h-full fixed inset-0 z-[100] flex items-center justify-center backdrop-blur-2xl"
                 >
-                    <div className="h-96  relative">
-                        <LoaderCore value={currentState} loadingStates={loadingStates} />
+                    <div className="h-96 relative">
+                        <LoaderCore
+                            currentStep={currentStep}
+                            loadingStates={loadingStates}
+                        />
                     </div>
 
                     <div className="bg-gradient-to-t inset-x-0 z-20 bottom-0 bg-white dark:bg-black h-full absolute [mask-image:radial-gradient(900px_at_center,transparent_30%,white)]" />
