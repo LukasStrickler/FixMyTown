@@ -5,7 +5,7 @@ import {
     text,
 } from "drizzle-orm/sqlite-core";
 
-import { createTable } from "..";
+import { createTable } from "../table";
 import { users } from "./users";
 import { status } from "./status";
 import { reports } from "./reports";
