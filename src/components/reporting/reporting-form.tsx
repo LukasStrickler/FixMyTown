@@ -56,10 +56,8 @@ export function ReportingForm({ dictionary, preselectedType, showUpload = true }
     const [locationDescription, setLocationDescription] = useState("")
     const { data: types } = api.report.getTypes.useQuery()
     const { toast } = useToast()
-    const [imageIds, setImageIds] = useState<string[]>([])
     const [isSubmitting, setIsSubmitting] = useState(false)
     const [files, setFiles] = useState<File[]>([])
-    const [uploadComplete, setUploadComplete] = useState(false)
     const [currentStep, setCurrentStep] = useState(0)
     const [isImageProcessing, setIsImageProcessing] = useState(false)
 
@@ -81,9 +79,6 @@ export function ReportingForm({ dictionary, preselectedType, showUpload = true }
     }
 
     const createReport = api.report.create.useMutation({
-        onSuccess: () => {
-
-        },
         onError: (error) => {
             console.error("Error creating report:", error)
         }
@@ -105,18 +100,7 @@ export function ReportingForm({ dictionary, preselectedType, showUpload = true }
 
     // const registerImages = api.report.registerImages.useMutation()
 
-    const { startUpload, isUploading } = useUploadThing("imageUploader", {
-        onClientUploadComplete: (res) => {
-            const uploadedImageIds = res?.map((file) => file.key) ?? [];
-            setImageIds(uploadedImageIds);
-            setUploadComplete(true);
-
-            // toast({
-            //     title: dictionary.form.uploadSuccess,
-            //     description: dictionary.form.uploadSuccessDescription,
-            //     variant: "success",
-            // });
-        },
+    const { startUpload } = useUploadThing("imageUploader", {
         onUploadError: (error) => {
             console.error("Error uploading:", error);
             toast({
@@ -127,7 +111,7 @@ export function ReportingForm({ dictionary, preselectedType, showUpload = true }
         },
     });
 
-    const withMinDuration = async <T,>(promise: Promise<T>, minDuration: number = 500): Promise<T> => {
+    const withMinDuration = async <T,>(promise: Promise<T>, minDuration = 500): Promise<T> => {
         const start = Date.now();
         const result = await promise;
         const elapsed = Date.now() - start;
@@ -170,10 +154,9 @@ export function ReportingForm({ dictionary, preselectedType, showUpload = true }
             const reportPromise = new Promise<void>((resolve, reject) => {
                 createReport.mutate(validatedData, {
                     onSuccess: () => resolve(),
-                    onError: (error) => reject(error)
+                    onError: (error) => reject(new Error(error.message))
                 })
             })
-            // Wrap the report creation in withMinDuration
             await withMinDuration(reportPromise, 500)
 
             setCurrentStep(files.length > 0 ? 3 : 2)
@@ -212,7 +195,6 @@ export function ReportingForm({ dictionary, preselectedType, showUpload = true }
             })
         } finally {
             setIsSubmitting(false)
-            setUploadComplete(false)
         }
     }
 
@@ -221,7 +203,7 @@ export function ReportingForm({ dictionary, preselectedType, showUpload = true }
         if (isLocked) {
             void form.trigger(["latitude", "longitude"])
         }
-    }, [isLocked])
+    }, [form, isLocked])
 
     const handleLocationSelected = (loc: Location) => {
         form.setValue("latitude", loc.lat)
