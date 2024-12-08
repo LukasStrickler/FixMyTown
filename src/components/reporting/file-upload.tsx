@@ -60,10 +60,12 @@ const convertHeicToJpeg = async (file: File): Promise<File> => {
 
 export const FileUpload = ({
     onChange,
-    dictionary
+    dictionary,
+    setIsImageProcessing,
 }: {
     onChange?: (files: File[]) => void;
     dictionary: Dictionary
+    setIsImageProcessing: (isProcessing: boolean) => void
 }) => {
     const [files, setFiles] = useState<File[]>([]);
     const fileInputRef = useRef<HTMLInputElement>(null);
@@ -71,6 +73,14 @@ export const FileUpload = ({
 
     const handleFileChange = async (newFiles: File[]) => {
         const imageFiles = newFiles.filter(isImageFile);
+        const hasHeicImages = imageFiles.some(file =>
+            file.type === 'image/heic' || file.type === 'image/heif'
+        );
+
+        // Set processing state if there are HEIC images
+        if (hasHeicImages) {
+            setIsImageProcessing(true);
+        }
 
         // Create placeholders for HEIC images
         const placeholders = imageFiles.map((file) => {
@@ -86,6 +96,11 @@ export const FileUpload = ({
         const convertedFiles = await Promise.allSettled(
             imageFiles.map(file => convertHeicToJpeg(file))
         );
+
+        // Reset processing state after conversion
+        if (hasHeicImages) {
+            setIsImageProcessing(false);
+        }
 
         const successfulConversions = convertedFiles
             .filter((result): result is PromiseFulfilledResult<File> => result.status === 'fulfilled')
