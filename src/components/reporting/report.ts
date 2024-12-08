@@ -14,6 +14,7 @@ export const createReportSchema = z.object({
     }),
     locationDescription: z.string().min(1, "Location description is required"),
     prio: z.number().optional(),
+    imageIds: z.array(z.string()).optional(),
 })
 
 export type CreateReportInput = z.infer<typeof createReportSchema>
