@@ -110,7 +110,6 @@ export interface Dictionary {
         name: string;
         description: string;
         submit: string;
-        submitting: string;
         submitInfo: string;
         submitReadyInfo: string;
         selectType: string;
@@ -125,6 +124,16 @@ export interface Dictionary {
             error: string;
             errorDescription: string;
             converting: string;
-        }
+        },
+        uploadingImages: string;
+        submitting: string;
+        validatingData: string;
+        processingImages: string;
+        savingReport: string;
+        redirecting: string;
+        uploadSuccess: string;
+        uploadSuccessDescription: string;
+        uploadError: string;
+        generalError: string;
     }
 }

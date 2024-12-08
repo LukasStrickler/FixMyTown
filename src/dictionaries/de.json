@@ -111,6 +111,10 @@
         "description": "Beschreibung",
         "submit": "Meldung absenden",
         "submitting": "Wird gesendet...",
+        "validatingData": "Daten werden überprüft...",
+        "processingImages": "Bilder werden verarbeitet...",
+        "savingReport": "Meldung wird gespeichert...",
+        "redirecting": "Weiterleitung...",
         "selectType": "Art auswählen",
         "selectPriority": "Priorität auswählen",
         "success": "Meldung gesendet",
@@ -125,6 +129,11 @@
             "error": "Dateien nicht hochgeladen",
             "errorDescription": "Die Dateien konnten nicht hochgeladen werden. Maximal 10 Dateien und 10MB Dateigröße.",
             "converting": "Wird konvertiert zu JPG..."
-        }
+        },
+        "uploadSuccess": "Upload Erfolgreich",
+        "uploadSuccessDescription": "Ihre Dateien wurden erfolgreich hochgeladen.",
+        "uploadError": "Dateien konnten nicht hochgeladen werden.",
+        "generalError": "Ein unerwarteter Fehler ist aufgetreten.",
+        "uploadingImages": "Bilder werden hochgeladen"
     }
 }
