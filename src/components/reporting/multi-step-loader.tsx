@@ -1,7 +1,6 @@
 "use client";
 import { cn } from "@/lib/utils";
 import { AnimatePresence, motion } from "framer-motion";
-import { useState, useEffect } from "react";
 import { Loader2 } from "lucide-react";
 
 const CheckIcon = ({ className }: { className?: string }) => {
@@ -98,8 +97,6 @@ interface MultiStepLoaderProps {
 export const MultiStepLoader = ({
     loadingStates,
     loading,
-    duration = 2000,
-    loop = false,
     currentStep,
 }: MultiStepLoaderProps) => {
     return (
