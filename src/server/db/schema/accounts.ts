@@ -7,7 +7,7 @@ import {
 } from "drizzle-orm/sqlite-core";
 import { type AdapterAccount } from "next-auth/adapters";
 
-import { createTable } from "..";
+import { createTable } from "../table";
 import { users } from "./users";
 
 export const accounts = createTable(

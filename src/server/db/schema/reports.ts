@@ -6,7 +6,7 @@ import {
     index,
 } from "drizzle-orm/sqlite-core";
 
-import { createTable } from "..";
+import { createTable } from "../table";
 import { protocolls } from "./protocoll";
 import { pictures } from "./pictures";
 import { types } from "./types";
