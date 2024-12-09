@@ -2,6 +2,38 @@
     "index": {
         "helloWorld": "Diese Seite befindet sich derzeit im Aufbau. Bitte kommen Sie später wieder."
     },
+    "workspaces": {
+        "adminWorkspace": {
+        "adminWorkspaceTitle": "Administrator Arbeitsbereich",
+        "projects": {
+            "userAdministration": "Nutzerverwaltung"
+            }
+        },
+        "workerWorkspace": {
+        "workerWorkspaceTitle": "Arbeiter Arbeitsbereich",
+        "projects": {
+            "reportCardView": "Anträge Kartenansicht" ,
+            "reportEdit": "Anträge Bearbeiten"
+            }
+        },
+        "userWorkspace": {
+        "userWorkspaceTitle": "Nutzer Arbeitsbereich",
+        "navItems": {
+            "myReports": {
+                "folderTitle": "Meine Anträge",
+                "reportState": "Status Anträge",
+                "closedReports": "Abgeschlossene Anmeldungen",
+                "myReports": "Meine Anträge"
+            },
+            "reportSomething": {
+                "folderTitle": "Vorfall melden",
+                "defectsDamages": "Defekte und Schäden",
+                "contaminations": "Verunreinigungen",
+                "parkingViolations": "Parkverstöße"
+            }
+        }
+        }
+    },
     "auth": {
         "login": {
             "title": "Anmelden",
