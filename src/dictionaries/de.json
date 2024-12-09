@@ -44,35 +44,54 @@
         "workspaceSwitcherTitle": "Arbeitsbereiche",
         "more": "Mehr",
         "adminWorkspace": {
-        "adminWorkspaceTitle": "Administrator Arbeitsbereich",
-        "projects": {
-            "userAdministration": "Nutzerverwaltung"
+            "adminWorkspaceTitle": "Administrator Arbeitsbereich",
+            "projects": {
+                "userAdministration": "Nutzerverwaltung"
             }
         },
         "workerWorkspace": {
-        "workerWorkspaceTitle": "Arbeiter Arbeitsbereich",
-        "projects": {
-            "reportCardView": "Anträge Kartenansicht" ,
-            "reportEdit": "Anträge Bearbeiten"
+            "workerWorkspaceTitle": "Arbeiter Arbeitsbereich",
+            "projects": {
+                "reportCardView": "Anträge Kartenansicht",
+                "reportEdit": "Anträge Bearbeiten"
             }
         },
         "userWorkspace": {
-        "userWorkspaceTitle": "Nutzer Arbeitsbereich",
-        "navItems": {
-            "myReports": {
-                "folderTitle": "Meine Anträge",
-                "reportState": "Status Anträge",
-                "closedReports": "Abgeschlossene Anmeldungen",
-                "myReports": "Meine Anträge"
-            },
-            "reportSomething": {
-                "folderTitle": "Vorfall melden",
-                "defectsDamages": "Defekte und Schäden",
-                "contaminations": "Verunreinigungen",
-                "parkingViolations": "Parkverstöße"
+            "userWorkspaceTitle": "Nutzer Arbeitsbereich",
+            "navItems": {
+                "myReports": {
+                    "folderTitle": "Meine Anträge",
+                    "reportState": "Status Anträge",
+                    "closedReports": "Abgeschlossene Anmeldungen",
+                    "myReports": "Meine Anträge"
+                },
+                "reportSomething": {
+                    "folderTitle": "Vorfall melden",
+                    "defectsDamages": "Defekte und Schäden",
+                    "contaminations": "Verunreinigungen",
+                    "parkingViolations": "Parkverstöße"
+                }
             }
         }
-        }
+    },
+    "common": {
+        "seeDetails": "Details anzeigen"
+    },
+    "reportTable": {
+        "columns": {
+            "name": "Name",
+            "description": "Beschreibung",
+            "type": "Typ",
+            "status": "Status",
+            "pictures": "Bilder"
+        },
+        "actions": {
+            "label": "Aktionen",
+            "copyId": "ID kopieren",
+            "viewDetails": "Details anzeigen",
+            "viewLocation": "Standort anzeigen"
+        },
+        "noResults": "Keine Ergebnisse"
     },
     "auth": {
         "login": {
@@ -142,38 +161,5 @@
             },
             "loading": "Wird geladen..."
         }
-    },
-    "form": {
-        "type": "Art der Meldung",
-        "priority": "Priorität",
-        "location": "Standort",
-        "name": "Titel",
-        "description": "Beschreibung",
-        "submit": "Meldung absenden",
-        "submitting": "Wird gesendet...",
-        "validatingData": "Daten werden überprüft...",
-        "processingImages": "Bilder werden verarbeitet...",
-        "savingReport": "Meldung wird gespeichert...",
-        "redirecting": "Weiterleitung...",
-        "selectType": "Art auswählen",
-        "selectPriority": "Priorität auswählen",
-        "success": "Meldung gesendet",
-        "successDescription": "Ihre Meldung wurde erfolgreich gesendet.",
-        "images": "Bilder",
-        "submitInfo": "Alle Felder müssen ausgefüllt sein. Bilder sind optional.",
-        "submitReadyInfo": "Alles ausgefüllt! Klicken Sie auf 'Meldung absenden', wenn Sie fertig sind.",
-        "upload": {
-            "title": "Datei hochladen",
-            "description": "Ziehen Sie Ihre Dateien hierher oder klicken Sie zum Hochladen",
-            "dropHere": "Hier ablegen",
-            "error": "Dateien nicht hochgeladen",
-            "errorDescription": "Die Dateien konnten nicht hochgeladen werden. Maximal 10 Dateien und 10MB Dateigröße.",
-            "converting": "Wird konvertiert zu JPG..."
-        },
-        "uploadSuccess": "Upload Erfolgreich",
-        "uploadSuccessDescription": "Ihre Dateien wurden erfolgreich hochgeladen.",
-        "uploadError": "Dateien konnten nicht hochgeladen werden.",
-        "generalError": "Ein unerwarteter Fehler ist aufgetreten.",
-        "uploadingImages": "Bilder werden hochgeladen"
     }
 }

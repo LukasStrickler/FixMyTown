@@ -46,18 +46,18 @@ export interface Dictionary {
         more: string;
         adminWorkspace: {
             adminWorkspaceTitle: string;
-            projects:{
+            projects: {
                 userAdministration: string;
             }
         },
-        workerWorkspace: {            
+        workerWorkspace: {
             workerWorkspaceTitle: string;
-            projects:{
+            projects: {
                 reportCardView: string;
                 reportEdit: string;
             }
         },
-        userWorkspace: {            
+        userWorkspace: {
             userWorkspaceTitle: string;
             navItems: {
                 myReports: {
@@ -177,5 +177,25 @@ export interface Dictionary {
         uploadSuccessDescription: string;
         uploadError: string;
         generalError: string;
+    },
+    common: {
+        seeDetails: string;
+    },
+    reportTable: {
+        columns: {
+            name: string;
+            description: string;
+            type: string;
+            status: string;
+            pictures: string;
+            location: string;
+        },
+        actions: {
+            label: string;
+            copyId: string;
+            viewDetails: string;
+            viewLocation: string;
+        },
+        noResults: string;
     }
 }
