@@ -1,16 +1,16 @@
 import React from 'react';
 import { Body, Container, Preview } from '@react-email/components';
 import MailHeader from '@/components/email/mailHeader';
-import MailMainContent from '@/components/email/mailMainContent';
-import MailAuthButton from '@/components/email/mailAuthButton';
+import MailAuthContent from '@/components/email/en_mailAuthContent';
+import MailGenericButton from '@/components/email/mailGenericButton';
 import MailFooter from '@/components/email/mailFooter';
 
-type ModularAuthTemplateProps = {
+interface ModularAuthTemplateProps {
   firstName: string;
   userPrompt: string;
   authLink: string;
   preview: string;
-};
+}
 
 const extractToken = (magicLink: string): string => {
     try {
@@ -21,13 +21,13 @@ const extractToken = (magicLink: string): string => {
     }
   };
   
-const ModularAuthTemplate: React.FC<ModularAuthTemplateProps> = ({
-  firstName,
-  userPrompt,
-  authLink,
-  preview,
-}) => {
-  return (
+  const ModularAuthTemplate = ({
+    firstName,
+    userPrompt,
+    authLink,
+    preview,
+  }: ModularAuthTemplateProps) => {
+    return (
     <Body
       style={{
         backgroundColor: "#ffffff",
@@ -47,16 +47,24 @@ const ModularAuthTemplate: React.FC<ModularAuthTemplateProps> = ({
         }}
       >
         <MailHeader />
-        <MailMainContent
+        <MailAuthContent
           firstName={firstName}
           userPrompt={userPrompt}
           authCode={extractToken(authLink ?? "")}
         />
-        <MailAuthButton label="Confirm" authLink={authLink} />
+        <MailGenericButton label="Confirm" link={authLink} />
         <MailFooter />
       </Container>
     </Body>
   );
 };
+
+ModularAuthTemplate.PreviewProps = {
+  firstName: "John",
+  userPrompt: "to complete sign-up",
+  authLink: "https://fixmy.town/api/auth/callback/resend?token=302cf15d-07f",
+  preview: "Confirm your registration for FixMy.town",
+} as ModularAuthTemplateProps;
+
 
 export default ModularAuthTemplate;
