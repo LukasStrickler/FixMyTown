@@ -40,7 +40,7 @@
 **Beschreibung:** Als Bürger möchte ich mir ein Konto erstellen können, damit ich mich anmelden und Meldungen über das System einreichen kann.
 <br>**Priorität:** Hoch
 <br>**Akzeptanzkriterien:**
-- Bürger muss eine E-Mail Adresse und ein sicheres Passwort angeben
+- Bürger muss eine E-Mail Adresse angeben
 - Pflichtfelder müssen ausgefüllt sein, bevor die Registrierung abgeschlossen werden kann
 - Bürger erhält eine Bestätigung der erfolgreichen Kontoerstellung
 
@@ -48,14 +48,7 @@
 **Beschreibung:** Als Bürger möchte ich mich mit meinen Zugangsdaten anmelden können, um Meldungen zu verwalten und den Status zu verfolgen.
 <br>**Priorität:** Hoch
 <br>**Akzeptanzkriterien:**
-- Bürger muss gültige Anmeldedaten (E-Mail Adresse und Passwort) eingeben
-
-### Bürger kann Passwort wiederherstellen
-**Beschreibung:** Als Bürger möchte ich die Möglichkeit haben, mein Passwort zurückzusetzen, wenn ich es vergessen habe, um weiterhin auf mein Konto zugreifen zu können.
-<br>**Priorität:** Hoch
-<br>**Akzeptanzkriterien:**
-- Bürger kann über einen "Passwort vergessen"-Link den Passwort-Wiederherstellungsprozess starten
-- Bürger erhält eine E-Mail mit einem sicheren Link zu Passwort-Rücksetzung
+- Bürger muss gültige Anmeldedaten (E-Mail Adresse und Magiclink) eingeben
 
 ## Stadtmitarbeiter User Stories
 ### Stadtmitarbeiter können eine Liste der gemeldeten Probleme einsehen
@@ -114,36 +107,29 @@
 **Beschreibung:** Als Stadtmitarbeiter möchte ich mich mit meinen Zugangsdaten anmelden können, um Meldungen bearbeiten zu können.
 <br>**Priorität:** Hoch
 <br>**Akzeptanzkriterien:**
-- Stadtmitarbeiter muss gültige Anmeldedaten (E-Mail Adresse und Passwort) eingeben
+- Stadtmitarbeiter muss gültige Anmeldedaten (E-Mail Adresse und Magiclink) eingeben
 
 ## Admin User Stories
-### Admins können Konten für Stadtmitarbeiter erstellen, damit sie die Meldungen verwalten können
-**Beschreibung:** Als Administrator möchte ich Benutzerkonten für Stadtmitarbeiter erstellen können, damit sie Zugriff auf das System erhalten und ihrer Arbeit nachgehen können.
+### Admins können Konten zu einem Stadtmitarbeiter-Konto höher stufen
+**Beschreibung:** Als Administrator möchte ich Benutzerkonten für Stadtmitarbeiter höher stufen können, damit sie Zugriff auf das System erhalten und ihrer Arbeit nachgehen können.
 <br>**Priorität:** Hoch
 <br>**Akzeptanzkriterien:**
-- Admin kann neue Konten anlegen und Benutzerinformationen eingeben
-- Stadtmitarbeiter erhalten Zugangsdaten und können das System nutzen
+- Admin kann Benutzerkonten zu Stadtmitarbeiter-Konten höher stufen
+- Stadtmitarbeiter können das System nutzen
 
-### Admins können Stadtmitarbeiterkonten löschen, um den Zugriff bei Bedarf zu entziehen
-**Beschreibung:** Als Administrator möchte ich Benutzerkonten von Stadtmitarbeitern löschen können, damit sie keinen Zugriff mehr auf das System haben, wenn dies nicht mehr ihrer Stellenbeschreibung entspricht oder sie ihre Stelle verlassen.
+### Admins können Stadtmitarbeiterkonten herabstufen, um den Zugriff bei Bedarf zu entziehen
+**Beschreibung:** Als Administrator möchte ich Benutzerkonten von Stadtmitarbeitern herabstufen können, damit sie keinen Zugriff mehr auf das System haben, wenn dies nicht mehr ihrer Stellenbeschreibung entspricht oder sie ihre Stelle verlassen.
 <br>**Priorität:** Mittel
 <br>**Akzeptanzkriterien:**
-- Admin kann bestehende Benutzerkonten entfernen
-- Gelöschte Benutzer haben keinen Zugang mehr zum System
-
-### Admins können die Kontodaten der Stadtmitarbeiter bearbeiten (z.B. Rollen ändern, Informationen aktualisieren)
-**Beschreibung:** Als Administrator möchte ich die Kontodaten der Stadtmitarbeiter bearbeiten können, zum Beispiel Rollen ändern oder Informationen aktualisieren, damit die Berechtigungen richtig zugewiesen und verwaltet werden können.
-<br>**Priorität:** Mittel
-<br>**Akzeptanzkriterien:**
-- Admin kann Benutzerrollen und Informationen ändern
-- Änderungen werden sofort wirksam
+- Admin kann bestehende Benutzerkonten herabstufen
+- Herabgestufte Benutzer haben keinen Zugang mehr zum System
 
 ## System/General User Stories
 ### Das System erfordert eine Benutzerauthentifizierung für das Einreichen ode Verwalten von Meldungen
 **Beschreibung:** Als System möchte ich eine Benutzerauthentifizierung erfordern, damit nur autorisierte Personen Meldungen einreichen oder verwalten können.
 <br>**Priorität:** Hoch
 <br>**Akzeptanzkriterien:**
-- Benutzer müssen sich mit Benutzernamen/E-Mail und Passwort/Magiclink anmelden
+- Benutzer müssen sich mit Benutzernamen/E-Mail und Magiclink anmelden
 - Nicht autorisierte Benutzer haben keinen Zugriff
 
 ### Das System funktioniert sowohl auf Desktop- als auch auf mobilen Geräten
