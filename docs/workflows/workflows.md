@@ -31,12 +31,9 @@
 5. Archivierungsprozess
     - Erledigte Meldungen werden vom System nach 30 Tagen archiviert
     - Erledigte Meldungen werden auf Knopfdruck archiviert
-6. Upload-Validierung Workflow
-    - Hat Bild das richtige Format?
-    --> wird automatisch durch uploadthing helper gemacht, deshalb wird hierfür kein Workflow erstellt
-7. Bilderlöschung
+6. Bilderlöschung
     - nach Bedarf/1 mal im Monat werden alle ungenutzten Bilder älter als 72h gelöscht
-8. Konto-Löschung
+7. Konto-Löschung
     - Admin löscht Konto eines Nutzers
     - Nutzer löscht eigenes Konto
 
