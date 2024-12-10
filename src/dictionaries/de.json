@@ -83,7 +83,8 @@
             "description": "Beschreibung",
             "type": "Typ",
             "status": "Status",
-            "pictures": "Bilder"
+            "pictures": "Bilder",
+            "location": "Standort"
         },
         "actions": {
             "label": "Aktionen",
@@ -161,5 +162,38 @@
             },
             "loading": "Wird geladen..."
         }
+    },
+    "form": {
+        "type": "Typ",
+        "priority": "Priorität",
+        "location": "Standort",
+        "name": "Name",
+        "description": "Beschreibung",
+        "submit": "Einreichen",
+        "submitInfo": "Antrag einreichen",
+        "submitReadyInfo": "Antrag kann eingereicht werden",
+        "selectType": "Typ auswählen",
+        "selectPriority": "Priorität auswählen",
+        "success": "Erfolg",
+        "successDescription": "Ihr Antrag wurde erfolgreich eingereicht",
+        "images": "Bilder",
+        "upload": {
+            "title": "Bilder hochladen",
+            "description": "Laden Sie Bilder zu Ihrem Antrag hoch",
+            "dropHere": "Bilder hier ablegen",
+            "error": "Fehler",
+            "errorDescription": "Beim Hochladen ist ein Fehler aufgetreten",
+            "converting": "Konvertiere..."
+        },
+        "uploadingImages": "Bilder werden hochgeladen...",
+        "submitting": "Wird eingereicht...",
+        "validatingData": "Daten werden überprüft...",
+        "processingImages": "Bilder werden verarbeitet...",
+        "savingReport": "Antrag wird gespeichert...",
+        "redirecting": "Weiterleitung...",
+        "uploadSuccess": "Erfolgreich hochgeladen",
+        "uploadSuccessDescription": "Die Bilder wurden erfolgreich hochgeladen",
+        "uploadError": "Fehler beim Hochladen",
+        "generalError": "Ein Fehler ist aufgetreten"
     }
 }
