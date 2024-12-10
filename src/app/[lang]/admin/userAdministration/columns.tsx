@@ -5,11 +5,11 @@ import { ColumnDef } from "@tanstack/react-table"
 // Define the shape of the user data
 export type User = {
   id: string;
-  name?: string;
+  name: string | null;
   email: string;
-  emailVerified?: number;
-  image?: string;
-  role?: string;
+  emailVerified: Date | null;
+  image: string | null;
+  role: string | null;
 }
 
 export const columns: ColumnDef<User>[] = [
