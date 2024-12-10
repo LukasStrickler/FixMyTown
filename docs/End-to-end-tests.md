@@ -35,7 +35,7 @@
 - **Schritte**:
   1. Melden Sie sich als Bürger an.
   2. Gehen Sie zur Liste der eingereichten Meldungen.
-  3. Wählen Sie eine Meldung aus und löschen Sie diese.
+  3. Wählen Sie eine Meldung mit dem Status erstellt aus und löschen Sie diese.
 - **Erwartetes Ergebnis**: Die Meldung wird gelöscht, und der Bürger erhält eine Bestätigung der Löschung.
 
 ### Test: Bürger erhalten nutzerfreundliche Fehlermeldungen
@@ -79,13 +79,13 @@
   2. Wenden Sie einen Filter (nach Standort oder Art) an.
 - **Erwartetes Ergebnis**: Nur die entsprechenden Meldungen werden angezeigt.
 
-### Test: Stadtmitarbeiter können gemeldeten Problemen Prioritätsstufen zuweisen
-- **Testfallbeschreibung**: Überprüfen, ob Stadtmitarbeiter einer Meldung eine Prioritätsstufe zuweisen können.
+### Test: Stadtmitarbeiter können gemeldeten Problemen hohe Priorität zuweisen
+- **Testfallbeschreibung**: Überprüfen, ob Stadtmitarbeiter einer Meldung hohe Priorität zuweisen können.
 - **Schritte**:
   1. Melden Sie sich als Stadtmitarbeiter an.
   2. Wählen Sie eine Meldung aus.
-  3. Weisen Sie eine Prioritätsstufe zu (hoch, mittel, niedrig).
-- **Erwartetes Ergebnis**: Die Prioritätsstufe wird korrekt zugewiesen und angezeigt.
+  3. Weisen Sie der Meldung hohe Priorität zu.
+- **Erwartetes Ergebnis**: Die Meldung hat nun hohe Priorität.
 
 ---
 
@@ -142,7 +142,7 @@
 - **Erwartetes Ergebnis**: Das System wird in der ausgewählten Sprache angezeigt.
 
 ### Test: Das System erlaubt nur bestimmte Dateitypen zum Upload
-- **Testfallbeschreibung**: Überprüfen, ob das System nur bestimmte Dateitypen (z. B. JPG, PNG) für Uploads erlaubt.
+- **Testfallbeschreibung**: Überprüfen, ob das System nur bestimmte Dateitypen (JPG,JPEG, PNG, HEIC) für Uploads erlaubt.
 - **Schritte**:
   1. Versuchen Sie, eine Datei mit einem nicht unterstützten Dateityp hochzuladen.
 - **Erwartetes Ergebnis**: Eine Fehlermeldung wird angezeigt, dass der Dateityp nicht unterstützt wird.
