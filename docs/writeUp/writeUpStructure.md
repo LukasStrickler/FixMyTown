@@ -1,7 +1,7 @@
 - [x] Einleitung  (3/4 Seite)
 - [x] Funktionalität  (1 3/4 Seiten)
-- [ ] Eingesetzte Technik  
-- [x] Werkzeugeinsatz (2 1/2 Seiten)  
+- [x] Eingesetzte Technik (2 1/2 Seiten)   
+- [] Werkzeugeinsatz 
 - [x] Software Architektur  (2 Seiten)
 - [x] Projektmanagement  (2 1/2 Seiten)
 - [ ] Modellierungen  
