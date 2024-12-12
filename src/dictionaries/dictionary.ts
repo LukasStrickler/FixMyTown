@@ -102,5 +102,38 @@ export interface Dictionary {
             };
             loading: string;
         }
+    },
+    form: {
+        type: string;
+        priority: string;
+        location: string;
+        name: string;
+        description: string;
+        submit: string;
+        submitInfo: string;
+        submitReadyInfo: string;
+        selectType: string;
+        selectPriority: string;
+        success: string;
+        successDescription: string;
+        images: string;
+        upload: {
+            title: string;
+            description: string;
+            dropHere: string;
+            error: string;
+            errorDescription: string;
+            converting: string;
+        },
+        uploadingImages: string;
+        submitting: string;
+        validatingData: string;
+        processingImages: string;
+        savingReport: string;
+        redirecting: string;
+        uploadSuccess: string;
+        uploadSuccessDescription: string;
+        uploadError: string;
+        generalError: string;
     }
 }

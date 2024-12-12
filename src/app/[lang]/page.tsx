@@ -43,7 +43,6 @@ export default async function IndexPage({
           </div>
           <ModeToggle></ModeToggle>
 
-          <ButtonUpload />
         </div>
       </main>
     </HydrateClient>
