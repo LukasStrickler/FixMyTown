@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import { ColumnDef } from "@tanstack/react-table";
 import { ArrowUpDown, MoreHorizontal } from "lucide-react";
@@ -12,7 +12,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"; // Adjust import path based on your project structure
 import { useMutation } from '@tanstack/react-query';
-import { api } from "@/trpc/react"
+import { api } from "@/trpc/react";
 
 // Define the shape of the user data
 export type User = {
@@ -27,7 +27,13 @@ export type User = {
 const useUpdateUserRole = () => {
   const mutation = api.user.updateRole.useMutation();
   const updateUserRole = async (userId: string, role: 'admin' | 'worker' | 'user') => {
-    await mutation.mutateAsync({ userId, role });
+    try {
+      await mutation.mutateAsync({ userId, role });
+      // Refresh the page after a successful role update
+      window.location.reload();
+    } catch (error) {
+      console.error('Error updating role:', error);
+    }
   };
   return updateUserRole;
 };
