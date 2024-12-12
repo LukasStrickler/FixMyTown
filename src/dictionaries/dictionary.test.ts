@@ -4,9 +4,12 @@ import germanDictionary from './de.json';
 import fs from 'fs';
 import path from 'path';
 
-function parseNested(str: string): Record<string, any> {
-    const obj: Record<string, any> = {};
-    let depth = 0;
+interface NestedDictionary {
+    [key: string]: string | NestedDictionary;
+}
+
+function parseNested(str: string): NestedDictionary {
+    const obj: NestedDictionary = {};
     let currentKey = '';
     let buffer = '';
 
@@ -14,7 +17,6 @@ function parseNested(str: string): Record<string, any> {
         const char = str[i];
 
         if (char === '{') {
-            depth++;
             buffer = '';
             let nestedContent = '';
             let braceCount = 1;
@@ -34,7 +36,6 @@ function parseNested(str: string): Record<string, any> {
                 currentKey = '';
             }
         } else if (char === '}') {
-            depth--;
         } else if (char === ':') {
             currentKey = buffer.trim();
             buffer = '';
@@ -59,7 +60,7 @@ describe('Dictionary Type Check', () => {
             'utf-8'
         );
 
-        function parseInterface(content: string): Record<string, any> {
+        function parseInterface(content: string): NestedDictionary {
             content = content.replace(/\/\*[\s\S]*?\*\/|\/\/.*/g, '')
                 .replace(/\s+/g, ' ');
 
@@ -99,7 +100,11 @@ describe('Dictionary Type Check', () => {
         const template = parseInterface(interfaceContent);
         // console.log('Final template:', JSON.stringify(template, null, 2));
 
-        const checkNestedKeys = (obj: any, template: any, path: string[] = []): string[] => {
+        const checkNestedKeys = (
+            obj: NestedDictionary,
+            template: NestedDictionary,
+            path: string[] = []
+        ): string[] => {
             const errors: string[] = [];
 
             for (const key in template) {
@@ -112,11 +117,15 @@ describe('Dictionary Type Check', () => {
                 }
 
                 if (typeof template[key] === 'object' && template[key] !== null) {
-                    if (typeof obj[key] !== 'object') {
-                        errors.push(`Expected object at ${pathStr} but got ${typeof obj[key]}`);
-                        continue;
+                    if (typeof obj[key] === 'object' && obj[key] !== null) {
+                        errors.push(...checkNestedKeys(
+                            obj[key],
+                            template[key],
+                            currentPath
+                        ));
+                    } else {
+                        errors.push(`Type mismatch for key ${currentPath.join('.')}: expected object but got ${typeof obj[key]}`);
                     }
-                    errors.push(...checkNestedKeys(obj[key], template[key], currentPath));
                 }
             }
 
@@ -146,7 +155,7 @@ describe('Dictionary Type Check', () => {
     });
 
     it('should not have any empty string values', () => {
-        const findEmptyStrings = (obj: any, path: string[] = []): string[] => {
+        const findEmptyStrings = (obj: NestedDictionary, path: string[] = []): string[] => {
             const emptyPaths: string[] = [];
 
             for (const key in obj) {
