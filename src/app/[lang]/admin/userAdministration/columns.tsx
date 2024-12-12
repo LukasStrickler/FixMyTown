@@ -145,6 +145,15 @@ export const columns: ColumnDef<User>[] = [
 
       const handleUpdateUserRole = async (userId: string, role: 'admin' | 'worker' | 'user') => {
         try {
+          // Optimistically update the UI
+          utils.user.getUsers.setData(undefined, (oldData) => {
+            if (!oldData) return oldData;
+            return oldData.map((user) =>
+              user.id === userId ? { ...user, role } : user
+            );
+          });
+
+          // Make the API call
           console.log(`Updating user role for userId: ${userId} to role: ${role}`);
           const response = await updateUserRole(userId, role);
           console.log('Update response:', response);
@@ -156,14 +165,14 @@ export const columns: ColumnDef<User>[] = [
             variant: "success",
           });
 
-          console.log('Invalidating user cache');
-          void utils.user.getUsers.invalidate();
-
-          // Explicitly re-fetch user data
+          // Invalidate and refetch to ensure data consistency
+          await utils.user.getUsers.invalidate();
           await utils.user.getUsers.fetch();
 
-          setSuccessMessage(message);
         } catch (error) {
+          // Revert optimistic update on error
+          await utils.user.getUsers.invalidate();
+
           console.error('Failed to update user role:', error);
           toast({
             title: "Error",
