@@ -22,7 +22,7 @@ jobs:
       run: npm install
       
     - name: Run tests
-      run: npm run test:coverage
+      run: npm run test
       env:
         DATABASE_URL: ${{ secrets.DATABASE_URL }}
         DATABASE_AUTH_TOKEN: ${{ secrets.DATABASE_AUTH_TOKEN }}

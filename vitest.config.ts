@@ -9,11 +9,13 @@ export default defineConfig({
         globals: true,
         setupFiles: './src/test/setup.ts',
         coverage: {
-            reporter: ['text', 'json', 'html'],
+            provider: 'v8',
+            include: ['src/**/*.{ts,tsx}'],
             exclude: [
-                'node_modules/',
-                'src/test/setup.ts',
-            ],
+                'src/**/*.d.ts',
+                'node_modules/**',
+                '.next/**'
+            ]
         },
     },
     resolve: {
