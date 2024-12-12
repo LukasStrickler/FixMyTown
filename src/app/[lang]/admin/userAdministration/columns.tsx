@@ -11,8 +11,9 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"; // Adjust import path based on your project structure
-import { useMutation } from '@tanstack/react-query';
 import { api } from "@/trpc/react";
+import React, { useState, useEffect } from 'react';
+import { useToast } from '@/hooks/use-toast';
 
 // Define the shape of the user data
 export type User = {
@@ -24,13 +25,35 @@ export type User = {
   role: string | null;
 };
 
+// Add the refresh action listener
+const UserAdministration = () => {
+  const [refresh, setRefresh] = useState(false);
+
+  useEffect(() => {
+    if (refresh) {
+      // Perform the refresh action here
+      console.log("Refreshing data...");
+      // Reset the refresh state
+      setRefresh(false);
+    }
+  }, [refresh]);
+
+  return (
+    <div>
+      <Button onClick={() => setRefresh(true)}>Refresh</Button>
+      {/* Other components and logic */}
+    </div>
+  );
+};
+
+export default UserAdministration;
+
 const useUpdateUserRole = () => {
   const mutation = api.user.updateRole.useMutation();
   const updateUserRole = async (userId: string, role: 'admin' | 'worker' | 'user') => {
     try {
       await mutation.mutateAsync({ userId, role });
-      // Refresh the page after a successful role update
-      window.location.reload();
+
     } catch (error) {
       console.error('Error updating role:', error);
     }
@@ -116,34 +139,69 @@ export const columns: ColumnDef<User>[] = [
     cell: ({ row }) => {
       const user = row.original;
       const updateUserRole = useUpdateUserRole();
+      const [successMessage, setSuccessMessage] = useState<string | null>(null);
+      const { toast } = useToast();
+      const utils = api.useUtils();
+
+      const handleUpdateUserRole = async (userId: string, role: 'admin' | 'worker' | 'user') => {
+        try {
+          console.log(`Updating user role for userId: ${userId} to role: ${role}`);
+          const response = await updateUserRole(userId, role);
+          console.log('Update response:', response);
+
+          const message = `User role updated to ${role} successfully.`;
+          toast({
+            title: "Success",
+            description: message,
+            variant: "success",
+          });
+
+          console.log('Invalidating user cache');
+          void utils.user.getUsers.invalidate();
+
+          // Explicitly re-fetch user data
+          await utils.user.getUsers.fetch();
+
+          setSuccessMessage(message);
+        } catch (error) {
+          console.error('Failed to update user role:', error);
+          toast({
+            title: "Error",
+            description: "Failed to update user role.",
+            variant: "destructive",
+          });
+        }
+      };
 
       return (
-        <DropdownMenu>
-          <DropdownMenuTrigger asChild>
-            <Button variant="ghost" className="h-8 w-8 p-0">
-              <span className="sr-only">Open menu</span>
-              <MoreHorizontal className="h-4 w-4" />
-            </Button>
-          </DropdownMenuTrigger>
-          <DropdownMenuContent align="end">
-            <DropdownMenuLabel>Actions</DropdownMenuLabel>
-            <DropdownMenuItem
-              onClick={() => navigator.clipboard.writeText(user.id)}
-            >
-              Copy user ID
-            </DropdownMenuItem>
-            <DropdownMenuSeparator />
-            <DropdownMenuItem onClick={() => updateUserRole(user.id, 'admin')}>
-              Promote to admin
-            </DropdownMenuItem>
-            <DropdownMenuItem onClick={() => updateUserRole(user.id, 'worker')}>
-              Promote to worker
-            </DropdownMenuItem>
-            <DropdownMenuItem onClick={() => updateUserRole(user.id, 'user')}>
-              Promote to user
-            </DropdownMenuItem>
-          </DropdownMenuContent>
-        </DropdownMenu>
+        <>
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <Button variant="ghost" className="h-8 w-8 p-0">
+                <span className="sr-only">Open menu</span>
+                <MoreHorizontal className="h-4 w-4" />
+              </Button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent align="end">
+              <DropdownMenuLabel>Actions</DropdownMenuLabel>
+              <DropdownMenuItem
+                onClick={() => navigator.clipboard.writeText(user.id)}
+              >
+                Copy user ID
+              </DropdownMenuItem>
+              <DropdownMenuSeparator />
+              <DropdownMenuItem onClick={() => handleUpdateUserRole(user.id, 'admin')}>
+                Promote to admin
+              </DropdownMenuItem>
+              <DropdownMenuItem onClick={() => handleUpdateUserRole(user.id, 'worker')}>
+                Promote to worker
+              </DropdownMenuItem>
+              <DropdownMenuItem onClick={() => handleUpdateUserRole(user.id, 'user')}>
+                Promote to user
+              </DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
+        </>
       );
     },
   },
