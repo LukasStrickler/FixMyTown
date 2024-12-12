@@ -1,10 +1,10 @@
 import { users } from "@/server/db/schema/users";
-import { createTRPCRouter, userProcedure } from "../trpc";
+import { adminProcedure, createTRPCRouter, userProcedure } from "../trpc";
 import { z } from 'zod';
 import { eq } from 'drizzle-orm'; // Import eq for comparisons
 
 export const userRouter = createTRPCRouter({
-  updateRole: userProcedure
+  updateRole: adminProcedure
     .input(z.object({
       userId: z.string(),
       role: z.enum(['admin', 'worker', 'user']),
@@ -26,4 +26,18 @@ export const userRouter = createTRPCRouter({
 
       return updatedUser[0]; // Return the updated user object
     }),
+
+getUsers: adminProcedure
+
+    .query(async ({ ctx }) => {const userData = await ctx.db.select().from(users).all();
+    
+      return userData.map((user) => ({
+        id: user.id,
+        name: user.name,
+        email: user.email,
+        emailVerified: user.emailVerified,
+        image: user.image,
+        role: user.role,
+      }));}),
+
 });
