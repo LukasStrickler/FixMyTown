@@ -1,0 +1,32 @@
+name: Test
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Setup Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '20'
+        
+    - name: Install dependencies
+      run: npm install
+      
+    - name: Run tests
+      run: npm run test:coverage
+      env:
+        DATABASE_URL: ${{ secrets.DATABASE_URL }}
+        DATABASE_AUTH_TOKEN: ${{ secrets.DATABASE_AUTH_TOKEN }}
+        UPLOADTHING_TOKEN: ${{ secrets.UPLOADTHING_TOKEN }}
+        RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
+        NEXTAUTH_SECRET: ${{ secrets.NEXTAUTH_SECRET }}
+        NEXTAUTH_URL: ${{ secrets.NEXTAUTH_URL }}
