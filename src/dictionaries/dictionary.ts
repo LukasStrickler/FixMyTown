@@ -26,7 +26,7 @@ export interface Dictionary {
                     myReports: string,
                 }
                 reportSomething: {
-                    folderTitle: string
+                    folderTitle: string;
                     defectsDamages: string;
                     contaminations: string;
                     parkingViolations: string;
@@ -77,6 +77,7 @@ export interface Dictionary {
             settings: {
                 title: string;
                 theme: string;
+                language: string;
             };
         }
     },
