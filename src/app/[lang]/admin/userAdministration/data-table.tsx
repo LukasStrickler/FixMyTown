@@ -22,6 +22,10 @@ import {
 } from "@/components/ui/table";
 import { Input } from "@/components/ui/input";
 
+import { useDictionary } from "@/components/provider/dictionaryProvider";
+
+
+
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
   data: TData[];
@@ -35,6 +39,8 @@ export function DataTable<TData, TValue>({
   const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
     []
   );
+  const { dictionary } = useDictionary();  // useDictionary inside a functional component
+  
 
   const table = useReactTable({
     data,
@@ -51,12 +57,13 @@ export function DataTable<TData, TValue>({
   });
 
   return (
+    
     <div>
       {/* Filter Inputs for each column */}
       <div className="flex items-center space-x-4 py-4">
         <div className="flex items-center">
           <Input
-            placeholder="Filter by email..."
+            placeholder= {dictionary?.adminPages.userAdministration.filterByEmailText}
             value={(table.getColumn("email")?.getFilterValue() as string) ?? ""}
             onChange={(event) =>
               table.getColumn("email")?.setFilterValue(event.target.value)
@@ -67,7 +74,7 @@ export function DataTable<TData, TValue>({
 
         <div className="flex items-center">
           <Input
-            placeholder="Filter by role..."
+            placeholder={dictionary?.adminPages.userAdministration.filterByRoleText}
             value={(table.getColumn("role")?.getFilterValue() as string) ?? ""}
             onChange={(event) =>
               table.getColumn("role")?.setFilterValue(event.target.value)
@@ -78,7 +85,7 @@ export function DataTable<TData, TValue>({
 
         <div className="flex items-center">
           <Input
-            placeholder="Filter by name..."
+            placeholder={dictionary?.adminPages.userAdministration.filterByNameText}
             value={(table.getColumn("name")?.getFilterValue() as string) ?? ""}
             onChange={(event) =>
               table.getColumn("name")?.setFilterValue(event.target.value)

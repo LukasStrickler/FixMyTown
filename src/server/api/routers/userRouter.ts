@@ -1,5 +1,5 @@
 import { users } from "@/server/db/schema/users";
-import { adminProcedure, createTRPCRouter, userProcedure } from "../trpc";
+import { adminProcedure, createTRPCRouter} from "../trpc";
 import { z } from 'zod';
 import { eq } from 'drizzle-orm'; // Import eq for comparisons
 

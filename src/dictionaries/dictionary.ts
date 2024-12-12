@@ -2,6 +2,34 @@ export interface Dictionary {
     index: {
         helloWorld: string;
     },
+    adminPages: {
+        userAdministration: {
+            mainTitle: string;
+            filterByEmailText: string;
+            filterByRoleText: string;
+            filterByNameText: string;
+            IDColumnTitle: string;
+            nameColumnTitle: string;
+            emailColumnTitle: string;
+            emailVerifiedColumnTitle: string;
+            imageColumnTitle: string;
+            roleColumnTitle: string;
+
+            toastMessages: {
+                successTitle: string;
+                successMessage: string;
+                errorTitle: string;
+                errorMessage: string;
+            };
+            actions: {
+                copyID: string;
+                changeRoleToAdmin: string;
+                changeRoleToWorker: string;
+                changeRoleToUser: string;
+            }
+        }
+    },
+            
     workspaces: {
         adminWorkspace: {
             adminWorkspaceTitle: string;
