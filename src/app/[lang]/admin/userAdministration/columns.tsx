@@ -11,6 +11,8 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"; // Adjust import path based on your project structure
+import { useMutation } from '@tanstack/react-query';
+import { api } from "@/trpc/react"
 
 // Define the shape of the user data
 export type User = {
@@ -20,6 +22,14 @@ export type User = {
   emailVerified: Date | null;
   image: string | null;
   role: string | null;
+};
+
+const useUpdateUserRole = () => {
+  const mutation = api.user.updateRole.useMutation();
+  const updateUserRole = async (userId: string, role: 'admin' | 'worker' | 'user') => {
+    await mutation.mutateAsync({ userId, role });
+  };
+  return updateUserRole;
 };
 
 export const columns: ColumnDef<User>[] = [
@@ -99,6 +109,7 @@ export const columns: ColumnDef<User>[] = [
     id: "actions",
     cell: ({ row }) => {
       const user = row.original;
+      const updateUserRole = useUpdateUserRole();
 
       return (
         <DropdownMenu>
@@ -116,13 +127,13 @@ export const columns: ColumnDef<User>[] = [
               Copy user ID
             </DropdownMenuItem>
             <DropdownMenuSeparator />
-            <DropdownMenuItem onClick={() => alert(`Promote to user admin: ${user.name}`)}>
+            <DropdownMenuItem onClick={() => updateUserRole(user.id, 'admin')}>
               Promote to admin
             </DropdownMenuItem>
-            <DropdownMenuItem onClick={() => alert(`Promote to worker: ${user.name}`)}>
+            <DropdownMenuItem onClick={() => updateUserRole(user.id, 'worker')}>
               Promote to worker
             </DropdownMenuItem>
-            <DropdownMenuItem onClick={() => alert(`Promote to user user: ${user.name}`)}>
+            <DropdownMenuItem onClick={() => updateUserRole(user.id, 'user')}>
               Promote to user
             </DropdownMenuItem>
           </DropdownMenuContent>
