@@ -175,16 +175,16 @@ export function AppSidebar({
               items: [
                 {
                   title: dictionary.workspaces.userWorkspace.navItems.reportSomething.defectsDamages,
-                  url: `/${lang}/defectsDamages`,
-                },
-                {
+                  url: `/${lang}/report/defects-damage`,
+              },
+              {
                   title: dictionary.workspaces.userWorkspace.navItems.reportSomething.contaminations,
-                  url: `/${lang}/contaminations`,
-                },
-                {
+                  url: `/${lang}/report/contamination`,
+              },
+              {
                   title: dictionary.workspaces.userWorkspace.navItems.reportSomething.parkingViolations,
-                  url: `/${lang}/parkingViolations`,
-                },
+                  url: `/${lang}/report/parking-violation`,
+              },
               ],
             },
           ],
