@@ -27,12 +27,16 @@ import { signOut, useSession } from "next-auth/react"
 import { ModeToggle } from "@/components/modeToggle";
 
 import { useDictionary } from "@/components/provider/dictionaryProvider";
+import Link from "next/link"
+import { useParams } from "next/navigation"
 
 
 export function NavUser() {
   const { isMobile } = useSidebar();
   const user = useSession().data?.user;
   const { dictionary } = useDictionary();
+  const params = useParams();
+  const lang = params.lang as string;
   
 
   if (!user) {
@@ -80,9 +84,11 @@ export function NavUser() {
               </DropdownMenuLabel>
               <DropdownMenuSeparator />
               <DropdownMenuGroup>
-                <DropdownMenuItem>
-                  <BadgeCheck />
-                  {dictionary?.userToggle.account}
+                <DropdownMenuItem asChild>
+                  <Link href={`/${lang}/account`} className="flex items-center">
+                    <BadgeCheck className="mr-2" />
+                    {dictionary?.userToggle.account}
+                  </Link>
                 </DropdownMenuItem>
                 <DropdownMenuItem>
                   <Bell />
