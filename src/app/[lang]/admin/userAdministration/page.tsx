@@ -1,27 +1,23 @@
-import { auth } from "@/server/auth";
-import { HydrateClient } from "@/trpc/server";
-// import { getDictionary } from "../../../../get-dictionary";
-import { type Locale } from "@/i18n-config";
+"use client";
 
-export default async function UserAdministration({
-  params: { lang },
-}: {
-  params: { lang: Locale };
-}) {
+import { UserTableColumns } from "./columns";
+import { DataTable } from "./data-table";
+import { api } from "@/trpc/react";
+import { useDictionary } from "@/components/provider/dictionaryProvider";
 
-  const session = await auth();
-  const user = session?.user; // Get the user object from session
+export default function UserAdministrationPage() {
+  const { dictionary } = useDictionary();
+  const { data: users, isLoading } = api.user.getUsers.useQuery();
+  const columns = UserTableColumns();
 
-  if (!user || user.role !== "admin") {
-    return null;
+  if (isLoading) {
+    return <div>Loading...</div>;
   }
 
   return (
-    <HydrateClient>
-      <div>
-        <h1>User Administration</h1>
-        <p>Users will be displayed here</p>
-      </div>
-    </HydrateClient>
+    <div className="container mx-auto py-10">
+      <h1>{dictionary?.adminPages.userAdministration.mainTitle}</h1>
+      <DataTable columns={columns} data={users ?? []} />
+    </div>
   );
 }

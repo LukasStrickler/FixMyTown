@@ -2,6 +2,32 @@
     "index": {
         "helloWorld": "Diese Seite befindet sich derzeit im Aufbau. Bitte kommen Sie später wieder."
     },
+    "adminPages": {
+        "userAdministration": {
+            "mainTitle": "Nutzerverwaltung",
+            "filterByEmailText": "Nach E-Mail filtern",
+            "filterByRoleText": "Nach Rolle filtern",
+            "filterByNameText": "Nach Name filtern",
+            "IDColumnTitle": "ID",
+            "nameColumnTitle": "Name",
+            "emailColumnTitle": "E-Mail",
+            "emailVerifiedColumnTitle": "E-Mail verifiziert",
+            "imageColumnTitle": "Bild",
+            "roleColumnTitle": "Rolle",
+            "toastMessages": {
+                "successTitle": "Erfolg",
+                "successMessage": "Die Rolle des Benutzers wurde erfolgreich aktualisiert",
+                "errorTitle": "Fehler",
+                "errorMessage": "Ein Fehler ist aufgetreten. Die Rolle des Benutzers konnte nicht aktualisiert werden."
+            },
+            "actions": {
+                "copyID": "ID kopieren",
+                "changeRoleToAdmin": "Rolle zu Administrator ändern",
+                "changeRoleToWorker": "Rolle zu Arbeiter ändern",
+                "changeRoleToUser": "Rolle zu Nutzer ändern"
+            }
+        }
+    },
     "workspaces": {
         "adminWorkspace": {
         "adminWorkspaceTitle": "Administrator Arbeitsbereich",
