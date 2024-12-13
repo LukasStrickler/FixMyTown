@@ -22,6 +22,9 @@ import {
 import { useSession } from "next-auth/react"
 import { type Workspace } from "./app-sidebar"
 
+import { useDictionary } from "@/components/provider/dictionaryProvider";
+
+
 export function WorkplaceSwitcher({
   activeWorkspace,
   setActiveWorkspace,
@@ -34,6 +37,8 @@ export function WorkplaceSwitcher({
   const { isMobile } = useSidebar();
   const { data: session } = useSession(); // Grab session from useSession
   const user = session?.user; // Get the user object from session
+
+  const { dictionary } = useDictionary();
 
   // Set the active workspace to the first workspace in the list
 
@@ -74,7 +79,7 @@ export function WorkplaceSwitcher({
             sideOffset={4}
           >
             <DropdownMenuLabel className="text-xs text-muted-foreground">
-              Workspaces
+              {dictionary?.workspaces.workspaceSwitcherTitle}
             </DropdownMenuLabel>
             {workspaces.map((workspace, index) => (
               <DropdownMenuItem
@@ -87,7 +92,6 @@ export function WorkplaceSwitcher({
                   {workspace.icon}
                 </div>
                 {workspace.name}
-                <DropdownMenuShortcut>⌘{index + 1}</DropdownMenuShortcut>
               </DropdownMenuItem>
             ))}
           </DropdownMenuContent>

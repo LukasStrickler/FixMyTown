@@ -26,11 +26,14 @@ import {
 import { signOut, useSession } from "next-auth/react"
 import { ModeToggle } from "@/components/modeToggle";
 
+import { useDictionary } from "@/components/provider/dictionaryProvider";
 
 
 export function NavUser() {
   const { isMobile } = useSidebar();
   const user = useSession().data?.user;
+  const { dictionary } = useDictionary();
+  
 
   if (!user) {
     return null;
@@ -42,8 +45,8 @@ export function NavUser() {
         {/* Flex container to align ModeToggle and DropdownMenu */}
         <div className="flex items-center space-x-4">
           {/* Make ModeToggle square with specific width and height */}
-          <div className="w-8 h-8">
-            <ModeToggle />
+          <div className="flex aspect-square size-8 items-center justify-center rounded-lg bg-sidebar-primary text-sidebar-primary-foreground">
+            <ModeToggle /> 
           </div>
 
           <DropdownMenu>
@@ -79,17 +82,17 @@ export function NavUser() {
               <DropdownMenuGroup>
                 <DropdownMenuItem>
                   <BadgeCheck />
-                  Account
+                  {dictionary?.userToggle.account}
                 </DropdownMenuItem>
                 <DropdownMenuItem>
                   <Bell />
-                  Notifications
+                  {dictionary?.userToggle.notifications}
                 </DropdownMenuItem>
               </DropdownMenuGroup>
               <DropdownMenuSeparator />
                 <DropdownMenuItem onClick={() => signOut({ callbackUrl: '/api/auth/signin' })}>
                   <LogOut />
-                  Log Out
+                  {dictionary?.userToggle.logout}
                 </DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>

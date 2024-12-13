@@ -2,6 +2,12 @@
     "index": {
         "helloWorld": "Diese Seite befindet sich derzeit im Aufbau. Bitte kommen Sie später wieder."
     },
+    "modeToggle": {
+        "title": "Farbmodus anpassen",
+        "dark": "Dunkel",
+        "light": "Hell",
+        "system": "System"
+    },
     "adminPages": {
         "userAdministration": {
             "mainTitle": "Nutzerverwaltung",
@@ -28,7 +34,14 @@
             }
         }
     },
+    "userToggle": {
+        "account": "Konto",
+        "notifications": "Benachrichtigungen",
+        "logout": "Abmelden"
+    },
     "workspaces": {
+        "workspaceSwitcherTitle": "Arbeitsbereiche",
+        "more": "Mehr",
         "adminWorkspace": {
         "adminWorkspaceTitle": "Administrator Arbeitsbereich",
         "projects": {
