@@ -143,13 +143,22 @@ export function useUserTableColumns() {
                                     {sessionUser?.id !== user.id && (
                                         <>
                                             <DropdownMenuSeparator />
-                                            <DropdownMenuItem onClick={() => handleUpdateUserRole(user.id, "admin")}>
+                                            <DropdownMenuItem 
+                                                onClick={() => handleUpdateUserRole(user.id, "admin")}
+                                                disabled={user.role === "admin"}
+                                            >
                                                 {dictionary?.adminPages.userAdministration.actions.changeRoleToAdmin}
                                             </DropdownMenuItem>
-                                            <DropdownMenuItem onClick={() => handleUpdateUserRole(user.id, "worker")}>
+                                            <DropdownMenuItem 
+                                                onClick={() => handleUpdateUserRole(user.id, "worker")}
+                                                disabled={user.role === "worker"}
+                                            >
                                                 {dictionary?.adminPages.userAdministration.actions.changeRoleToWorker}
                                             </DropdownMenuItem>
-                                            <DropdownMenuItem onClick={() => handleUpdateUserRole(user.id, "user")}>
+                                            <DropdownMenuItem 
+                                                onClick={() => handleUpdateUserRole(user.id, "user")}
+                                                disabled={user.role === "user"}
+                                            >
                                                 {dictionary?.adminPages.userAdministration.actions.changeRoleToUser}
                                             </DropdownMenuItem>
                                         </>
@@ -163,4 +172,4 @@ export function useUserTableColumns() {
         },
         [dictionary, utils, mutation, session]
     );
-} 
+}
