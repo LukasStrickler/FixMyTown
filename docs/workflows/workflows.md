@@ -38,8 +38,4 @@
     - Nutzer löscht eigenes Konto
 
 ## Welche Modellierung nutzen wir?
-https://www.orghandbuch.de/Webs/OHB/DE/Organisationshandbuch/6_MethodenTechniken/62_Dokumentationstechniken/624_Prozessmodelle/prozessmodelle_inhalt.html;jsessionid=5A907619A29BA302553E1237CA5855BC.live892?nn=21099794#doc21099796bodyText2
-
-- In Software Engineering bei Herr Dorrhauer gelernt
-- EPK als Modellierung genutzt - Erweiterung weggelassen (Da die Symbolunterscheidung zwischen "Startpunkt oder Ende eines Prozesses" und "Organisationseinheit" schwierig ist, aber die Erweiterung, also auch das Symbol "Organisationseinheit" weggelassen wird, ist bei einem Ovalen-Symbol immer von einem "Startpunkt oder Ende eines Prozesses" auszugehen.)
-- Symbole für Prozessmodellierung wie in Link
+Nach Vorlesung Einführung Wirtschaftsinformatik von Herr Prof. Dr. Melcher
