@@ -42,8 +42,8 @@ export function NavUser() {
         {/* Flex container to align ModeToggle and DropdownMenu */}
         <div className="flex items-center space-x-4">
           {/* Make ModeToggle square with specific width and height */}
-          <div className="w-8 h-8">
-            <ModeToggle />
+          <div className="flex aspect-square size-8 items-center justify-center rounded-lg bg-sidebar-primary text-sidebar-primary-foreground">
+            <ModeToggle /> 
           </div>
 
           <DropdownMenu>
