@@ -54,7 +54,7 @@ export default function ReportDetails({ report, worker, dictionary }: ReportDeta
             {images.map((image) => (
               <div key={image.key} className="aspect-square relative">
                 <Image 
-                  src={`/api/images/${image.key}`} 
+                  src={`https://utfs.io/f/${image.key}`}
                   alt="Report image"
                   fill
                   className="object-cover rounded-lg"
