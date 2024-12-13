@@ -2,6 +2,12 @@ export interface Dictionary {
     index: {
         helloWorld: string;
     },
+    modeToggle: {
+        title: string;
+        dark: string;
+        light: string;
+        system: string;
+    },
     adminPages: {
         userAdministration: {
             mainTitle: string;
@@ -28,9 +34,15 @@ export interface Dictionary {
                 changeRoleToUser: string;
             }
         }
+    },    
+    userToggle: {
+        account: string;
+        notifications: string;
+        logout: string;
     },
-            
     workspaces: {
+        workspaceSwitcherTitle: string;
+        more: string;
         adminWorkspace: {
             adminWorkspaceTitle: string;
             projects:{

@@ -25,6 +25,9 @@ import {
   useSidebar,
 } from "@/components/ui/sidebar"
 
+import { useDictionary } from "@/components/provider/dictionaryProvider";
+
+
 export function NavProjects({
   projects,
 }: {
@@ -35,10 +38,11 @@ export function NavProjects({
   }[]
 }) {
   const { isMobile } = useSidebar()
+  const { dictionary } = useDictionary();
+  
 
   return (
     <SidebarGroup className="group-data-[collapsible=icon]:hidden">
-      <SidebarGroupLabel>Projects</SidebarGroupLabel>
       <SidebarMenu>
         {projects.map((item) => (
           <SidebarMenuItem key={item.name}>
@@ -52,7 +56,7 @@ export function NavProjects({
               <DropdownMenuTrigger asChild>
                 <SidebarMenuAction showOnHover>
                   <MoreHorizontal />
-                  <span className="sr-only">More</span>
+                  <span className="sr-only">{}</span>
                 </SidebarMenuAction>
               </DropdownMenuTrigger>
               <DropdownMenuContent
@@ -80,7 +84,7 @@ export function NavProjects({
         <SidebarMenuItem>
           <SidebarMenuButton className="text-sidebar-foreground/70">
             <MoreHorizontal className="text-sidebar-foreground/70" />
-            <span>More</span>
+            <span>{dictionary?.workspaces.more}</span>
           </SidebarMenuButton>
         </SidebarMenuItem>
       </SidebarMenu>
