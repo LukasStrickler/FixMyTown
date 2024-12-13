@@ -9,14 +9,16 @@
 //  delete only when in status 1
 
 import { auth } from "@/server/auth";
-import { HydrateClient } from "@/trpc/server";
+import { api, HydrateClient } from "@/trpc/server";
 import { type Locale } from "@/i18n-config";
 
 export default async function MyReports({
-    params: { lang },
+    params: { lang, reportID },
 }: {
-    params: { lang: Locale };
+    params: { lang: Locale; reportID: string };
 }) {
+
+    const data = await api.reportDetails.getReportDetails({ reportID });
 
     const session = await auth();
 
@@ -25,6 +27,16 @@ export default async function MyReports({
             <main className="flex min-h-screen flex-col items-center justify-center ">
                 <div className="container flex flex-col items-center justify-center gap-12 px-4 py-16">
                     <div>{JSON.stringify(session)}</div>
+                    <div>{JSON.stringify(data)}</div>
+
+
+                    {/*                 <
+                    ReportDetails
+                        dictionary={dictionary}
+                        report={data}
+                        worker={false}
+                    />
+                 */}
                 </div>
             </main>
         </HydrateClient>
