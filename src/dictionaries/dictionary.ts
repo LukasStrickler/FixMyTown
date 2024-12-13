@@ -332,5 +332,20 @@ export interface Dictionary {
             "2": { name: string; description: string };
             "3": { name: string; description: string };
         }
+    },
+    reports: {
+        details: {
+            reportId: string;
+            status: string;
+            createdAt: string;
+            category: string;
+            priority: string;
+            assignedTo: string;
+            lastUpdated: string;
+            location: string;
+            department: string;
+            description: string;
+            notes: string;
+        }
     }
 }

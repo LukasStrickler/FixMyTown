@@ -1,9 +1,10 @@
 import { relations } from "drizzle-orm";
+import { sql } from "drizzle-orm";
 import {
     int,
     text,
     real,
-    index,
+    index
 } from "drizzle-orm/sqlite-core";
 
 import { createTable } from "../table";
@@ -23,6 +24,8 @@ export const reports = createTable(
         latitude: real("latitude").notNull(),
         longitude: real("longitude").notNull(),
         locationDescription: text("location_description", { length: 500 }),
+        createdAt: int("created_at", { mode: "timestamp" }).notNull().default(sql`CURRENT_TIMESTAMP`),
+        updatedAt: int("updated_at", { mode: "timestamp" }).notNull().default(sql`CURRENT_TIMESTAMP`)
     },
     (reports) => ({
         typeIndex: index("type_idx").on(reports.type),
