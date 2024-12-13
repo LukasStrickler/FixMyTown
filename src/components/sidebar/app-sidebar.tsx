@@ -40,6 +40,7 @@ export function AppSidebar({
   const { lang } = params;
   const { dictionary } = useDictionary();
 
+
   // Get the current pathname
   const pathname = typeof window !== 'undefined' ? window.location.pathname : '';
 
@@ -106,8 +107,8 @@ export function AppSidebar({
   }, [pathname, user?.role]);
 
   // Loading spinner for no dictionary or no user session
-  if (!dictionary || !user) {
-    return <div>Loading...</div>;
+  if (!dictionary || !user || pathname === `/${lang}/login`) {
+    return null;
   }
 
   // Define navigation data based on the active workspace
