@@ -74,7 +74,7 @@ export interface Dictionary {
             };
         },
 
-    }
+    },
     auth: {
         login: {
             title: string;
@@ -176,5 +176,20 @@ export interface Dictionary {
         uploadSuccessDescription: string;
         uploadError: string;
         generalError: string;
+    },
+    reports: {
+        details: {
+            reportId: string;
+            status: string;
+            createdAt: string;
+            category: string;
+            priority: string;
+            assignedTo: string;
+            lastUpdated: string;
+            location: string;
+            department: string;
+            description: string;
+            notes: string;
+        }
     }
 }
