@@ -1,7 +1,7 @@
 import Image from "next/image";
-import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import type { Dictionary } from "@/dictionaries/dictionary";
 
 interface ReportDetailsProps {
   report: {
@@ -24,7 +24,7 @@ interface ReportDetailsProps {
     }[];
   };
   worker: boolean;
-  dictionary: Record<string, any>;
+  dictionary: Dictionary;
 }
 
 export default function ReportDetails({ report, worker, dictionary }: ReportDetailsProps) {
