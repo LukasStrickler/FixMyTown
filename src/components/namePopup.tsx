@@ -5,29 +5,25 @@ import { useToast } from "@/hooks/use-toast";
 import { api } from "@/trpc/react";
 import { useSession } from "next-auth/react";
 
-
-
 export default function NamePopup({ userName }: { userName: string | null }) {
   const [showPopup, setShowPopup] = useState(false);
 
   const utils = api.useUtils();
   const { data: session } = useSession();
-  const mutation = api.user.updateRole.useMutation();
+  const updateUserName = api.user.updateUserName.useMutation();
   const { toast } = useToast();
 
-  const userId = session?.user.id!;
-
-  if (!userId) {
-    console.error("User ID is missing");
-    return;
-  }
-    
-
-  const updateUserName = api.user.updateUserName.useMutation();
+  // Get user ID safely
+  const userId = session?.user?.id;
 
   const handleUpdateName = async () => {
+    if (!userId) {
+      console.error("User ID is missing");
+      return;
+    }
+
     try {
-      await updateUserName.mutateAsync({ userId: session?.user.id, name: "Maximilian" });
+      await updateUserName.mutateAsync({ userId, name: "Maximilian" });
       toast({
         title: "Success!",
         description: "Your name has been updated to Maximilian.",
@@ -42,7 +38,7 @@ export default function NamePopup({ userName }: { userName: string | null }) {
       });
     }
   };
-  
+
   useEffect(() => {
     if (!userName) {
       setShowPopup(true);
