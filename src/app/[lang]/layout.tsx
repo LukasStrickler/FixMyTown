@@ -20,7 +20,8 @@ import { AuthProvider } from "@/components/provider/authProvider";
 import { DictionaryProvider } from "@/components/provider/dictionaryProvider";
 import { Toaster } from "@/components/ui/toaster";
 
-import NamePopup from "@/components/NamePopup";
+import NamePopup from "@/components/namePopup";
+import { auth } from "@/server/auth";
 
 
 export const metadata: Metadata = {
@@ -29,9 +30,13 @@ export const metadata: Metadata = {
   icons: [{ rel: "icon", url: "/favicon.ico" }],
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
+  
+  const session = await auth(); // Fetch session server-side
+  const userName = session?.user?.name || null; // Extract name
+
   return (
     // suppressHydrationWarning is needed to prevent hydration errors with the theme provider 
     // TODO: find a better solution / fix for prod
@@ -52,7 +57,7 @@ export default function RootLayout({
                   }} />
                   <SidebarInset>
                     <SidebarTrigger className="-ml-1" />
-                    <NamePopup /> {/* Add this here */}
+                    <NamePopup userName={userName} /> {/* Pass name as prop */}
 
 
                     <NextSSRPlugin
