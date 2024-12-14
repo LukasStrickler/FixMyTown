@@ -28,13 +28,7 @@
 4. Administrationsprozess (Admin Workflow)
     - Bestehende Konten zu Mitarbeiterkonten befördern
     - Bestehende Mitarbeiterkonten zu Bürgerkonten herabstufen
-5. Archivierungsprozess
-    - Erledigte Meldungen werden vom System nach 30 Tagen archiviert
-    - Erledigte Meldungen werden auf Knopfdruck archiviert
-6. Bilderlöschung
-    - nach Bedarf/1 mal im Monat werden alle ungenutzten Bilder älter als 72h gelöscht
-7. Konto-Löschung
-    - Admin löscht Konto eines Nutzers
+5. Konto-Löschung
     - Nutzer löscht eigenes Konto
 
 ## Welche Modellierung nutzen wir?
