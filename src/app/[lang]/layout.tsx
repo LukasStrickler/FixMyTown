@@ -34,8 +34,7 @@ export default async function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   
-  const session = await auth(); // Fetch session server-side
-  const userName = session?.user?.name || null; // Extract name
+  const session = await auth();
 
   return (
     // suppressHydrationWarning is needed to prevent hydration errors with the theme provider 
@@ -57,7 +56,7 @@ export default async function RootLayout({
                   }} />
                   <SidebarInset>
                     <SidebarTrigger className="-ml-1" />
-                    <NamePopup userName={userName} /> {/* Pass name as prop */}
+                    <NamePopup /> {}
 
 
                     <NextSSRPlugin
