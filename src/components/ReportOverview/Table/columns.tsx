@@ -35,13 +35,19 @@ export type ReportData = {
     prioId: number
 }
 
-const ActionCell = ({ row, dictionary }: { row: Row<ReportData>; dictionary: Dictionary }) => {
+const ActionCell = ({ row, dictionary, worker }: { row: Row<ReportData>; dictionary: Dictionary, worker: boolean }) => {
     const router = useRouter()
     const report = row.original
 
     const copyId = () => {
         if (typeof window !== 'undefined') {
             void navigator.clipboard.writeText(report.report.id.toString())
+        }
+    }
+
+    const copyAll = () => {
+        if (typeof window !== 'undefined') {
+            void navigator.clipboard.writeText(JSON.stringify(report))
         }
     }
 
@@ -58,8 +64,11 @@ const ActionCell = ({ row, dictionary }: { row: Row<ReportData>; dictionary: Dic
                 <DropdownMenuItem onClick={copyId}>
                     {dictionary.reportTable.actions.copyId}
                 </DropdownMenuItem>
+                {worker && <DropdownMenuItem onClick={copyAll}>
+                    {dictionary.reportTable.actions.copyAll}
+                </DropdownMenuItem>}
                 <DropdownMenuSeparator />
-                <DropdownMenuItem onClick={() => router.push(`/myReports/${report.report.id}`)}>
+                <DropdownMenuItem onClick={() => router.replace(worker ? `/worker/report/details/${report.report.id}` : `/myReports/${report.report.id}`)}>
                     {dictionary.common.seeDetails}
                 </DropdownMenuItem>
                 <DropdownMenuItem>{dictionary.reportTable.actions.viewLocation}</DropdownMenuItem>
@@ -68,7 +77,7 @@ const ActionCell = ({ row, dictionary }: { row: Row<ReportData>; dictionary: Dic
     )
 }
 
-export const columns = (dictionary: Dictionary): ColumnDef<ReportData>[] => [
+export const columns = (dictionary: Dictionary, worker: boolean): ColumnDef<ReportData>[] => [
     {
         accessorKey: "report.name",
         header: dictionary.reportTable.columns.name,
@@ -127,6 +136,6 @@ export const columns = (dictionary: Dictionary): ColumnDef<ReportData>[] => [
     },
     {
         id: "actions",
-        cell: ({ row }) => <ActionCell row={row} dictionary={dictionary} />
+        cell: ({ row }) => <ActionCell row={row} dictionary={dictionary} worker={worker} />
     },
 ]

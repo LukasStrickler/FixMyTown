@@ -90,6 +90,7 @@
         "actions": {
             "label": "Aktionen",
             "copyId": "ID kopieren",
+            "copyAll": "Alle Daten kopieren",
             "viewDetails": "Details anzeigen",
             "viewLocation": "Standort anzeigen"
         },
