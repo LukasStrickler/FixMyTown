@@ -195,6 +195,7 @@ export interface Dictionary {
             copyId: string;
             viewDetails: string;
             viewLocation: string;
+            copyAll: string;
         },
         noResults: string;
     },
