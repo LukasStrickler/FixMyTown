@@ -128,7 +128,7 @@ export default function MapContent({
                                 <Button
                                     variant="outline"
                                     className="w-full mt-2 text-foreground hover:text-foreground"
-                                    onClick={() => router.replace(worker ? `/worker/report/details/${report.report.id}` : `/myReports/${report.report.id}`)}
+                                    onClick={() => router.push(worker ? `/worker/report/details/${report.report.id}` : `/myReports/${report.report.id}`)}
                                 >
                                     {dictionary.common.seeDetails}
                                 </Button>

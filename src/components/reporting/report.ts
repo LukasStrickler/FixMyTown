@@ -18,3 +18,27 @@ export const createReportSchema = z.object({
 })
 
 export type CreateReportInput = z.infer<typeof createReportSchema>
+
+
+export type ReportData = {
+    report: {
+        id: number
+        name: string
+        description: string | null
+        latitude: number
+        longitude: number
+        locationDescription: string | null
+    }
+    protocols: {
+        id: number
+        time: Date
+        statusId: number
+        comment: string | null
+    }[]
+    pictures: {
+        id: string
+        timestamp: Date
+    }[]
+    typeId: number
+    prioId: number
+}
