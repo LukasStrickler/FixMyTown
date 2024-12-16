@@ -1,8 +1,9 @@
 "use client"
 
-import { columns, type ReportData } from "./columns"
+import { columns } from "./columns"
 import { DataTable } from "./data-table"
 import type { Dictionary } from "@/dictionaries/dictionary"
+import type { ReportData } from "@/components/reporting/report"
 
 interface ReportsTableProps {
     reports: ReportData[]
