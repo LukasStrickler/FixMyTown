@@ -84,7 +84,8 @@
             "type": "Typ",
             "status": "Status",
             "pictures": "Bilder",
-            "location": "Standort"
+            "location": "Standort",
+            "createdAt": "Erstellt am"
         },
         "actions": {
             "label": "Aktionen",
@@ -195,5 +196,49 @@
         "uploadSuccessDescription": "Die Bilder wurden erfolgreich hochgeladen",
         "uploadError": "Fehler beim Hochladen",
         "generalError": "Ein Fehler ist aufgetreten"
+    },
+    "metadata": {
+        "types": {
+            "1": {
+                "name": "Defekte und Schäden",
+                "description": "Melden Sie Schäden an öffentlichen Einrichtungen"
+            },
+            "2": {
+                "name": "Verunreinigungen",
+                "description": "Melden Sie Verschmutzungen im öffentlichen Raum"
+            },
+            "3": {
+                "name": "Parkverstöße",
+                "description": "Melden Sie Falschparker"
+            }
+        },
+        "statuses": {
+            "1": {
+                "name": "Neu",
+                "description": "Neu eingegangene Meldung"
+            },
+            "2": {
+                "name": "In Bearbeitung",
+                "description": "Meldung wird bearbeitet"
+            },
+            "3": {
+                "name": "Abgeschlossen",
+                "description": "Meldung wurde bearbeitet"
+            }
+        },
+        "prios": {
+            "1": {
+                "name": "Niedrig",
+                "description": "Niedrige Priorität"
+            },
+            "2": {
+                "name": "Mittel",
+                "description": "Mittlere Priorität"
+            },
+            "3": {
+                "name": "Hoch",
+                "description": "Hohe Priorität"
+            }
+        }
     }
 }
