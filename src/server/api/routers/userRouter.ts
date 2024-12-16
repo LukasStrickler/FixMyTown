@@ -27,7 +27,6 @@ export const userRouter = createTRPCRouter({
       return updatedUser[0]; // Return the updated user object
     }),
 
-      // New mutation to update user's name
   updateUserName: userProcedure
   .input(z.object({
     userId: z.string(),
@@ -36,10 +35,9 @@ export const userRouter = createTRPCRouter({
   .mutation(async ({ ctx, input }) => {
     const { userId, name } = input;
 
-    // Update the user's name
     const updatedUser = await ctx.db
       .update(users)
-      .set({ name }) // Set the new name
+      .set({ name })
       .where(eq(users.id, userId))
       .returning({ id: users.id, name: users.name });
 
