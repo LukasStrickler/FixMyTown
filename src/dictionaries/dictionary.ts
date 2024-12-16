@@ -34,7 +34,7 @@ export interface Dictionary {
                 changeRoleToUser: string;
             }
         }
-    },    
+    },
     userToggle: {
         account: string;
         notifications: string;
@@ -188,6 +188,7 @@ export interface Dictionary {
             status: string;
             pictures: string;
             location: string;
+            createdAt: string;
         },
         actions: {
             label: string;
@@ -196,5 +197,22 @@ export interface Dictionary {
             viewLocation: string;
         },
         noResults: string;
+    },
+    metadata: {
+        types: {
+            "1": { name: string; description: string };
+            "2": { name: string; description: string };
+            "3": { name: string; description: string };
+        };
+        statuses: {
+            "1": { name: string; description: string };
+            "2": { name: string; description: string };
+            "3": { name: string; description: string };
+        };
+        prios: {
+            "1": { name: string; description: string };
+            "2": { name: string; description: string };
+            "3": { name: string; description: string };
+        };
     }
 }
