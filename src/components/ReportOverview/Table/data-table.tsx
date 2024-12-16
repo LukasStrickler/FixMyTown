@@ -21,24 +21,17 @@ interface DataTableProps<TData, TValue> {
     columns: ColumnDef<TData, TValue>[]
     data: TData[]
     dictionary: Dictionary
-    metadata?: {
-        statuses: Record<number, { id: number; name: string; description: string | null; icon: string | null }>
-        types: Record<number, { id: number; name: string; description: string; icon: string }>
-        prios: Record<number, { id: number; name: string; description: string; icon: string }>
-    }
 }
 
 export function DataTable<TData, TValue>({
     columns,
     data,
-    metadata,
     dictionary,
 }: DataTableProps<TData, TValue>) {
     const table = useReactTable({
         data,
         columns,
         getCoreRowModel: getCoreRowModel(),
-        meta: { metadata },
     })
 
     return (

@@ -2,9 +2,7 @@ import { auth } from "@/server/auth";
 import { api, HydrateClient } from "@/trpc/server";
 import { getDictionary } from "../../../get-dictionary";
 import { type Locale } from "@/i18n-config";
-import ReportMap from "@/components/ReportOverview/Map/report-map";
-import { metadata } from "../layout";
-import { reports } from "@/server/db/schema/reports";
+import { ReportsTable } from "@/components/ReportOverview/Table/reports-table";
 export default async function MyReports({
   params: { lang },
 }: {
@@ -12,13 +10,11 @@ export default async function MyReports({
 }) {
   const dictionary = await getDictionary(lang);
   const session = await auth();
-  const { reports, metadata } = await api.report.getReports.query({
-    userId: session?.user.id,
-  });
+  const { reports } = await api.report.getUserReports();
   return (
     <HydrateClient>
       <main className="flex min-h-screen flex-col items-center justify-center ">
-        <ReportMap dictionary={dictionary} metadata={metadata} reports={reports} />
+        <ReportsTable dictionary={dictionary} reports={reports} />
       </main>
     </HydrateClient>
   );
