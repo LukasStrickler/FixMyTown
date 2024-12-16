@@ -1,73 +1,73 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState, useEffect } from "react";
 import { useToast } from "@/hooks/use-toast";
 import { api } from "@/trpc/react";
 import { useSession } from "next-auth/react";
-import { Input } from "@/components/ui/input"; // Your custom Input component
-import { Button } from "@/components/ui/button"; // Your custom Button component
+import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
+import { useDictionary } from "@/components/provider/dictionaryProvider";
 
-export default function NamePopup() {
+export default function NamePopup({ params }: { params: { lang: Locale } }) {
   const [showPopup, setShowPopup] = useState(false);
-  const [nameInput, setNameInput] = useState(""); // State for input field
-
-  const { data: session, status } = useSession();
-  const updateUserName = api.user.updateUserName.useMutation();
+  const [name, setName] = useState("");
+  const { data: session } = useSession();
   const { toast } = useToast();
-
+  const { dictionary } = useDictionary();
+  const updateUserName = api.user.updateUserName.useMutation();
   const userId = session?.user?.id;
 
   const handleUpdateName = async () => {
-    if (!userId || !nameInput.trim()) {
+    if (!userId || !name.trim()) {
       toast({
-        title: "Invalid Input",
-        description: "Please enter a valid name.",
+        title: dictionary?.popup.errorTitle,
+        description: dictionary?.popup.errorMessage,
         variant: "destructive",
       });
       return;
     }
 
     try {
-      await updateUserName.mutateAsync({ userId, name: nameInput });
+      await updateUserName.mutateAsync({ userId, name });
       toast({
-        title: "Success!",
-        description: `Your name has been updated to ${nameInput}.`,
+        title: dictionary?.popup.successTitle,
+        description: dictionary?.popup.successMessage,
         variant: "success",
       });
       setShowPopup(false);
     } catch {
       toast({
-        title: "Error!",
-        description: "Failed to update your name. Please try again.",
+        title: dictionary?.popup.errorTitle,
+        description: dictionary?.popup.errorMessage,
         variant: "destructive",
       });
     }
   };
 
   useEffect(() => {
-    if (status === "authenticated" && !session?.user?.name) {
+    if (!session?.user?.name) {
       setShowPopup(true);
     }
-  }, [status, session?.user?.name]);
+  }, [session?.user?.name]);
 
-  if (!showPopup) return null;
+  if (!showPopup || !dictionary) return null;
 
   return (
     <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
-      <div className="bg-background p-6 rounded-lg shadow-lg text-center space-y-4">
-        <h2 className="text-2xl font-semibold text-foreground">Complete Your Signup</h2>
-        <p className="text-foreground">Please enter your name to continue:</p>
+      <div className="bg-background p-6 rounded-lg shadow-lg text-center">
+        <h2 className="text-2xl font-semibold text-foreground">
+          {dictionary.popup.title}
+        </h2>
+        <p className="text-foreground mt-2">{dictionary.popup.message}</p>
         <Input
-          placeholder="Enter your name"
-          value={nameInput}
-          onChange={(e) => setNameInput(e.target.value)}
-          className="text-foreground"
+          type="text"
+          placeholder={dictionary.popup.inputPlaceholder}
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+          className="mt-4"
         />
-        <Button
-          onClick={handleUpdateName}
-          className="w-full bg-primary text-primary-foreground hover:bg-primary/90 transition"
-        >
-          Save Name
+        <Button onClick={handleUpdateName} className="mt-4">
+          {dictionary.popup.saveButton}
         </Button>
       </div>
     </div>

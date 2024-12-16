@@ -176,5 +176,15 @@ export interface Dictionary {
         uploadSuccessDescription: string;
         uploadError: string;
         generalError: string;
-    }
+    },
+    popup: {
+        title: string;
+        message: string;
+        inputPlaceholder: string;
+        saveButton: string;
+        successTitle: string;
+        successMessage: string;
+        errorTitle: string;
+        errorMessage: string;
+    }    
 }

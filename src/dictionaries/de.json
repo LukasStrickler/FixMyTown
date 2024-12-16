@@ -174,5 +174,15 @@
         "uploadError": "Dateien konnten nicht hochgeladen werden.",
         "generalError": "Ein unerwarteter Fehler ist aufgetreten.",
         "uploadingImages": "Bilder werden hochgeladen"
-    }
+    },
+    "popup": {
+          "title": "Willkommen!",
+          "message": "Gerne würden wir Dich mit Deinem Name ansprechend. Bitte gib Deinen Namen ein, um fortzufahren:",
+          "inputPlaceholder": "Dein Name",
+          "saveButton": "Name speichern",
+          "successTitle": "Erfolg!",
+          "successMessage": "Dein Name wurde erfolgreich gespeichert.",
+          "errorTitle": "Fehler!",
+          "errorMessage": "Leider ist ein Fehler aufgetreten und das Speichern ist fehlgeschlagen."
+    }      
 }
