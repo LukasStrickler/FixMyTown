@@ -8,20 +8,22 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { useDictionary } from "@/components/provider/dictionaryProvider";
 
-export default function NamePopup({ params }: { params: { lang: Locale } }) {
+export default function NamePopup() {
   const [showPopup, setShowPopup] = useState(false);
   const [name, setName] = useState("");
-  const { data: session } = useSession();
+
+  const { data: session, status } = useSession();
   const { toast } = useToast();
   const { dictionary } = useDictionary();
   const updateUserName = api.user.updateUserName.useMutation();
+
   const userId = session?.user?.id;
 
   const handleUpdateName = async () => {
     if (!userId || !name.trim()) {
       toast({
         title: dictionary?.popup.errorTitle,
-        description: dictionary?.popup.errorMessage,
+        description: dictionary?.popup.errorMessageA,
         variant: "destructive",
       });
       return;
@@ -38,33 +40,33 @@ export default function NamePopup({ params }: { params: { lang: Locale } }) {
     } catch {
       toast({
         title: dictionary?.popup.errorTitle,
-        description: dictionary?.popup.errorMessage,
+        description: dictionary?.popup.errorMessageB,
         variant: "destructive",
       });
     }
   };
 
   useEffect(() => {
-    if (!session?.user?.name) {
+    if (status === "authenticated" && !session?.user?.name) {
       setShowPopup(true);
     }
-  }, [session?.user?.name]);
+  }, [status, session?.user?.name]);
 
   if (!showPopup || !dictionary) return null;
 
   return (
     <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
-      <div className="bg-background p-6 rounded-lg shadow-lg text-center">
+      <div className="bg-background p-6 rounded-lg shadow-lg text-center space-y-4">
         <h2 className="text-2xl font-semibold text-foreground">
           {dictionary.popup.title}
         </h2>
-        <p className="text-foreground mt-2">{dictionary.popup.message}</p>
+        <p className="text-foreground">{dictionary.popup.message}</p>
         <Input
           type="text"
           placeholder={dictionary.popup.inputPlaceholder}
           value={name}
           onChange={(e) => setName(e.target.value)}
-          className="mt-4"
+          className="text-foreground"
         />
         <Button onClick={handleUpdateName} className="mt-4">
           {dictionary.popup.saveButton}

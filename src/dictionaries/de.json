@@ -177,12 +177,13 @@
     },
     "popup": {
           "title": "Willkommen!",
-          "message": "Gerne würden wir Dich mit Deinem Name ansprechend. Bitte gib Deinen Namen ein, um fortzufahren:",
+          "message": "Gerne würden wir Dich mit Deinem Name ansprechen. Bitte gebe Deinen Namen ein, um fortzufahren:",
           "inputPlaceholder": "Dein Name",
           "saveButton": "Name speichern",
           "successTitle": "Erfolg!",
           "successMessage": "Dein Name wurde erfolgreich gespeichert.",
           "errorTitle": "Fehler!",
-          "errorMessage": "Leider ist ein Fehler aufgetreten und das Speichern ist fehlgeschlagen."
+          "errorMessageA": "Bitte gebe einen gültigen Name ein.",
+          "errorMessageB": "Leider ist ein Fehler aufgetreten und das Speichern ist fehlgeschlagen."
     }      
 }
