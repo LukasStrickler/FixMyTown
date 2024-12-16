@@ -1,9 +1,10 @@
 "use client";
 
-import { useState } from 'react';
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import { divIcon } from 'leaflet';
 import type { Dictionary } from '@/dictionaries/dictionary';
+import { Button } from '@/components/ui/button';
+import { useRouter } from 'next/navigation'
 
 interface MapContentProps {
     reports: {
@@ -28,34 +29,48 @@ interface MapContentProps {
         typeId: number;
         prioId: number;
     }[];
-    metadata: {
-        statuses: Record<number, { name: string }>;
-        types: Record<number, { name: string }>;
-        prios: Record<number, { name: string }>;
-    };
     dictionary: Dictionary;
+    worker?: boolean;
 }
 
-const createCustomIcon = (typeId: number) => {
-    // You could customize the icon color based on type
-    const color = `hsl(${(typeId * 100) % 360} 40% 40%)`;
+const createCustomIcon = (typeId: number, prioId: number, statusId: number) => {
+    // Size based on priority (0: unset, 1: small, 2: medium, 3: large)
+    const size = 24 + (prioId * 8);
+
+    // Color based on status
+    const color = `hsl(${(statusId * 100) % 360} 40% 40%)`;
+
+    // Different shapes for the center based on type
+    const innerShapes = {
+        1: `<circle cx="12" cy="10" r="3"/>`, // Circle
+        2: `<rect x="9" y="7" width="6" height="6"/>`, // Square
+        3: `<polygon points="12 7 15 13 9 13"/>`, // Triangle
+    };
+
+    const innerShape = innerShapes[typeId as keyof typeof innerShapes] || innerShapes[1];
+
     const iconHtml = document.createElement('div');
-    iconHtml.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="${color}" stroke="hsl(0 0% 100%)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"></path><circle cx="12" cy="10" r="3"></circle></svg>`;
+    iconHtml.innerHTML = `
+        <svg xmlns="http://www.w3.org/2000/svg" width="${size}" height="${size}" viewBox="0 0 24 24" fill="${color}" stroke="hsl(0 0% 100%)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/>
+            ${innerShape}
+        </svg>
+    `;
 
     return divIcon({
         html: iconHtml.innerHTML,
         className: 'custom-marker-icon',
-        iconSize: [32, 32],
-        iconAnchor: [16, 32],
+        iconSize: [size, size],
+        iconAnchor: [size / 2, size],
     });
 };
 
 export default function MapContent({
     reports,
-    metadata,
-    dictionary
+    dictionary,
+    worker
 }: MapContentProps) {
-    // Calculate center based on reports or default to a central location
+    const router = useRouter()
     const defaultCenter = [49.4804, 8.4459] as const;
     const center = reports.length > 0 && reports[0]
         ? [reports[0].report.latitude, reports[0].report.longitude] as const
@@ -76,7 +91,11 @@ export default function MapContent({
                     <Marker
                         key={report.report.id}
                         position={[report.report.latitude, report.report.longitude]}
-                        icon={createCustomIcon(report.typeId)}
+                        icon={createCustomIcon(
+                            report.typeId,
+                            report.prioId,
+                            report.protocols[report.protocols.length - 1]?.statusId ?? 0
+                        )}
                     >
                         <Popup minWidth={300}>
                             <div className="space-y-2 p-1">
@@ -95,22 +114,24 @@ export default function MapContent({
                                     )}
 
                                     <span className="font-medium">{dictionary.reportTable.columns.type}:</span>
-                                    <span>{metadata.types[report.typeId]?.name}</span>
-
+                                    <span>
+                                        {dictionary.metadata?.types?.[report.typeId.toString() as keyof typeof dictionary.metadata.types]?.name}
+                                    </span>
                                     <span className="font-medium">{dictionary.reportTable.columns.status}:</span>
                                     <span>
-                                        {metadata.statuses[report.protocols[report.protocols.length - 1]?.statusId ?? 0]?.name}
+                                        {dictionary.metadata?.statuses?.[(report.protocols[report.protocols.length - 1]?.statusId ?? 0).toString() as keyof typeof dictionary.metadata.statuses]?.name}
                                     </span>
 
                                     <span className="font-medium">{dictionary.reportTable.columns.pictures}:</span>
                                     <span>{report.pictures.length}</span>
                                 </div>
-                                <a
-                                    href={`/reports/${report.report.id}`}
-                                    className="block w-full mt-2 px-4 py-2 text-center text-sm text-white bg-primary hover:bg-primary/90 rounded-md transition-colors"
+                                <Button
+                                    variant="outline"
+                                    className="w-full mt-2 text-foreground hover:text-foreground"
+                                    onClick={() => router.replace(worker ? `/worker/report/details/${report.report.id}` : `/myReports/${report.report.id}`)}
                                 >
                                     {dictionary.common.seeDetails}
-                                </a>
+                                </Button>
                             </div>
                         </Popup>
                     </Marker>
