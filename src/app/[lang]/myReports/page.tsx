@@ -14,7 +14,7 @@ export default async function MyReports({
   return (
     <HydrateClient>
       <main className="flex min-h-screen flex-col items-center justify-center ">
-        <ReportsTable dictionary={dictionary} reports={reports} />
+        <ReportsTable dictionary={dictionary} reports={reports} worker={false} />
       </main>
     </HydrateClient>
   );
