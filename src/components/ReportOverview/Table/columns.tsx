@@ -11,30 +11,7 @@ import {
 } from "@/components/ui/dropdown-menu"
 import type { Dictionary } from "@/dictionaries/dictionary"
 import { useRouter } from 'next/navigation'
-
-export type ReportData = {
-    report: {
-        id: number
-        name: string
-        description: string | null
-        latitude: number
-        longitude: number
-        locationDescription: string | null
-    }
-    protocols: {
-        id: number
-        time: Date
-        statusId: number
-        comment: string | null
-    }[]
-    pictures: {
-        id: string
-        timestamp: Date
-    }[]
-    typeId: number
-    prioId: number
-}
-
+import { type ReportData } from "@/components/reporting/report"
 const ActionCell = ({ row, dictionary, worker }: { row: Row<ReportData>; dictionary: Dictionary, worker: boolean }) => {
     const router = useRouter()
     const report = row.original
@@ -68,7 +45,7 @@ const ActionCell = ({ row, dictionary, worker }: { row: Row<ReportData>; diction
                     {dictionary.reportTable.actions.copyAll}
                 </DropdownMenuItem>}
                 <DropdownMenuSeparator />
-                <DropdownMenuItem onClick={() => router.replace(worker ? `/worker/report/details/${report.report.id}` : `/myReports/${report.report.id}`)}>
+                <DropdownMenuItem onClick={() => router.push(worker ? `/worker/report/details/${report.report.id}` : `/myReports/${report.report.id}`)}>
                     {dictionary.common.seeDetails}
                 </DropdownMenuItem>
                 <DropdownMenuItem>{dictionary.reportTable.actions.viewLocation}</DropdownMenuItem>

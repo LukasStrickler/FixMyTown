@@ -13,15 +13,23 @@ import { type Locale } from "@/i18n-config";
 import ReportMap from "@/components/ReportOverview/Map/report-map";
 import { api } from "@/trpc/server"
 import { getDictionary } from "@/get-dictionary";
+import { redirect } from "next/navigation";
+import type { ReportData } from "@/components/reporting/report";
 
 export default async function MyReports({
     params: { lang },
 }: {
     params: { lang: Locale };
 }) {
-
     const session = await auth();
-    const { reports } = await api.report.getWorkerReports();
+
+    // Redirect if not authenticated
+    if (!session?.user) {
+        redirect(`/${lang}/login`);
+    }
+
+    // Type assertion for the reports data
+    const { reports } = await api.report.getWorkerReports() as { reports: ReportData[] };
     const dictionary = await getDictionary(lang)
 
     return (
