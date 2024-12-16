@@ -21,8 +21,6 @@ import { DictionaryProvider } from "@/components/provider/dictionaryProvider";
 import { Toaster } from "@/components/ui/toaster";
 
 import NamePopup from "@/components/namePopup";
-import { auth } from "@/server/auth";
-
 
 export const metadata: Metadata = {
   title: "FixMyTown",
@@ -30,12 +28,9 @@ export const metadata: Metadata = {
   icons: [{ rel: "icon", url: "/favicon.ico" }],
 };
 
-export default async function RootLayout({
+export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
-  
-  const session = await auth();
-
   return (
     // suppressHydrationWarning is needed to prevent hydration errors with the theme provider 
     // TODO: find a better solution / fix for prod
