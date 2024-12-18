@@ -30,6 +30,11 @@ export default async function MyReports({
     // Transform report data
     const transformedReport = {
         ...data,
+        report: {
+            ...data.report,
+            createdAt: data.protocolls[0]?.timestamp ?? new Date(),
+            updatedAt: data.protocolls[data.protocolls.length - 1]?.timestamp ?? new Date()
+        },
         protocolls: data.protocolls.map(protocol => ({
             ...protocol,
             status: protocol.status ?? 0 
