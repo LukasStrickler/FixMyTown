@@ -28,6 +28,7 @@ export interface Dictionary {
                 errorMessage: string;
             };
             actions: {
+                actionsTitle: string;
                 copyID: string;
                 changeRoleToAdmin: string;
                 changeRoleToWorker: string;

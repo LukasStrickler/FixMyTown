@@ -27,6 +27,7 @@
                 "errorMessage": "Ein Fehler ist aufgetreten. Die Rolle des Benutzers konnte nicht aktualisiert werden."
             },
             "actions": {
+                "actionsTitle": "Aktionen",
                 "copyID": "ID kopieren",
                 "changeRoleToAdmin": "Rolle zu Administrator ändern",
                 "changeRoleToWorker": "Rolle zu Arbeiter ändern",
