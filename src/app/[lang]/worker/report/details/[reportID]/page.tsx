@@ -1,11 +1,3 @@
-// fetches report data from the database based on the reportID slug
-// shows ReportDetails component but with all access to the worker
-
-
-// can edit status and priority
-// can set commetns
-// can delete report
-
 import { auth } from "@/server/auth";
 import { HydrateClient } from "@/trpc/server";
 import { type Locale } from "@/i18n-config";
@@ -18,12 +10,7 @@ export default async function ReportDetailsPage({
 }: {
     params: { lang: Locale; reportID: string };
 }) {
-    // If you need the session for authentication but don't use it directly,
-    // you can prefix it with an underscore to indicate it's intentionally unused
     const _session = await auth();
-    
-    // Or if you don't need the session at all, simply remove the line:
-    // const session = await auth();
 
     // Get dictionary for translations
     const dictionary = await getDictionary(lang);
@@ -44,6 +31,11 @@ export default async function ReportDetailsPage({
                         dictionary={dictionary}
                         report={{
                             ...data,
+                            report: {
+                                ...data.report,
+                                createdAt: new Date(),
+                                updatedAt: new Date(),
+                            },
                             protocolls: data.protocolls.map(protocol => ({
                                 ...protocol,
                                 status: protocol.status ?? 0 // Default to 0 if null
