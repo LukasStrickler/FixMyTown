@@ -4,7 +4,7 @@
 - [ ] Werkzeugeinsatz  
 - [x] Software Architektur  (2 Seiten)
 - [x] Projektmanagement  (2 1/2 Seiten)
-- [ ] Modellierungen  
+- [x] Modellierungen  (6 3/4 Seiten)
 - [x] Qualitätssicherung  (1 3/4 Seiten)
 - [x] Ausblick  (1 1/4 Seiten)
 - [ ] Fazit/Zusammenfassung  
