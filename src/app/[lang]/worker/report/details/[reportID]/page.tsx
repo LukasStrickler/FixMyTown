@@ -1,37 +1,48 @@
-// fetches report data from the database based on the reportID slug
-// shows ReportDetails component but with all access to the worker
-
-
-// can edit status and priority
-// can set commetns
-// can delete report
-
 import { auth } from "@/server/auth";
 import { HydrateClient } from "@/trpc/server";
 import { type Locale } from "@/i18n-config";
+import ReportDetails from "@/components/reportDetails/reportDetails";
+import { getDictionary } from "@/get-dictionary"; // Import dictionary helper
+import { api } from "@/trpc/server"; // Import your TRPC API
 
-export default async function MyReports({
-    params: { lang },
+export default async function ReportDetailsPage({
+    params: { lang, reportID },
 }: {
-    params: { lang: Locale };
+    params: { lang: Locale; reportID: string };
 }) {
+    const _session = await auth();
 
-    const session = await auth();
+    // Get dictionary for translations
+    const dictionary = await getDictionary(lang);
+
+    // Fetch report data using TRPC
+    const data = await api.reportDetails.getReportDetails({ reportID });
+
+    // You might want to add error handling here
+    if (!data) {
+        return <div>Report not found</div>;
+    }
 
     return (
         <HydrateClient>
-            <main className="flex min-h-screen flex-col items-center justify-center ">
+            <main className="flex min-h-screen flex-col items-center justify-center">
                 <div className="container flex flex-col items-center justify-center gap-12 px-4 py-16">
-                    <div>{JSON.stringify(session)}</div>
-
-
-                    {/*                 <
-                    ReportDetails
+                    <ReportDetails
                         dictionary={dictionary}
-                        report={data}
+                        report={{
+                            ...data,
+                            report: {
+                                ...data.report,
+                                createdAt: new Date(),
+                                updatedAt: new Date(),
+                            },
+                            protocolls: data.protocolls.map(protocol => ({
+                                ...protocol,
+                                status: protocol.status ?? 0 // Default to 0 if null
+                            }))
+                        }}
                         worker={true}
                     />
-                 */}
                 </div>
             </main>
         </HydrateClient>

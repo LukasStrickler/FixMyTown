@@ -1,9 +1,10 @@
 import { relations } from "drizzle-orm";
+import { sql } from "drizzle-orm";
 import {
     int,
     text,
     real,
-    index,
+    index
 } from "drizzle-orm/sqlite-core";
 
 import { createTable } from "../table";
