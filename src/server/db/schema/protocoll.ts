@@ -3,6 +3,7 @@ import {
     index,
     int,
     text,
+    integer,
 } from "drizzle-orm/sqlite-core";
 
 import { createTable } from "../table";
@@ -23,6 +24,7 @@ export const protocolls = createTable(
     (protocolls) => ({
         userIdIndex: index("userIdIndex").on(protocolls.userId),
         statusIdIndex: index("statusIdIndex").on(protocolls.statusId),
+        reportIdIndex: index("reportIdIndex").on(protocolls.reportId),
     })
 )
 
