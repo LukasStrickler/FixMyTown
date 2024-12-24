@@ -1,7 +1,11 @@
+"use client";
+
 import Image from "next/image";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import type { Dictionary } from "@/dictionaries/dictionary";
+import { WorkerActions } from "./workerActions";
+import { api } from "@/trpc/react";
 
 interface ReportDetailsProps {
   report: {
@@ -31,13 +35,25 @@ export default function ReportDetails({ report, worker, dictionary }: ReportDeta
   console.log('Report type:', typeof report.report.createdAt);
   const { report: reportData, images, protocolls } = report;
   const currentStatus = protocolls[protocolls.length - 1]?.status ?? 1;
+  const utils = api.useUtils();
+
+  const statusMap = {
+    1: "New",
+    2: "In Progress",
+    3: "Completed",
+    4: "Rejected"
+  };
+
+  const handleActionComplete = () => {
+    void utils.reportDetails.getReportDetails.invalidate();
+  };
 
   return (
     <Card className="w-full max-w-4xl">
       <CardHeader>
         <div className="flex justify-between">
           <CardTitle>{reportData.name}</CardTitle>
-          <Badge>{currentStatus}</Badge>
+          <Badge>{statusMap[currentStatus as keyof typeof statusMap]}</Badge>
         </div>
       </CardHeader>
       <CardContent className="space-y-4">
@@ -63,13 +79,22 @@ export default function ReportDetails({ report, worker, dictionary }: ReportDeta
             ))}
           </div>
         )}
-        {worker && protocolls.length > 0 && (
+        {worker && (
+          <WorkerActions
+            reportId={reportData.id}
+            dictionary={dictionary}
+            currentStatus={currentStatus}
+            onActionComplete={handleActionComplete}
+          />
+        )}
+        
+        {protocolls.length > 0 && (
           <div>
-            <h3 className="font-semibold">History</h3>
+            <h3 className="font-semibold mb-4">History</h3>
             {protocolls.map((protocol, idx) => (
               <div key={idx} className="border-b py-2">
                 <p>{new Date(protocol.timestamp).toLocaleDateString()}</p>
-                <p>Status: {protocol.status}</p>
+                <p>Status: {statusMap[protocol.status as keyof typeof statusMap]}</p>
                 {protocol.comment && <p>{protocol.comment}</p>}
               </div>
             ))}

@@ -11,6 +11,7 @@ import { users } from "./schema/users";
 import { sessions } from "./schema/sessions";
 import { pictures } from "./schema/pictures";
 import { protocolls } from "./schema/protocoll";
+import { status } from "./schema/status";
 
 /**
  * Cache the database connection in development. This avoids creating a new connection on every HMR
@@ -34,5 +35,6 @@ export const db = drizzle(client, {
     sessions,
     pictures,
     protocolls,
+    status,
   }
 });
