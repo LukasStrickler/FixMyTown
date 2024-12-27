@@ -1,5 +1,5 @@
-import { type ColumnDef, type Row } from "@tanstack/react-table"
-import { MoreHorizontal } from "lucide-react"
+import type { ColumnDef, Row, Column } from "@tanstack/react-table"
+import { MoreHorizontal, ArrowUpDown, Filter, ArrowUp, ArrowDown } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import {
     DropdownMenu,
@@ -8,10 +8,44 @@ import {
     DropdownMenuLabel,
     DropdownMenuSeparator,
     DropdownMenuTrigger,
+    DropdownMenuCheckboxItem,
 } from "@/components/ui/dropdown-menu"
 import type { Dictionary } from "@/dictionaries/dictionary"
 import { useRouter } from 'next/navigation'
 import { type ReportData } from "@/components/reporting/report"
+
+const SortButton = ({ column, children }: {
+    column: Column<ReportData, unknown>,
+    children: React.ReactNode
+}) => {
+    const sortDirection = column.getIsSorted()
+
+    return (
+        <Button
+            variant="ghost"
+            onClick={() => {
+                if (sortDirection === false) {
+                    column.toggleSorting(false)
+                } else if (sortDirection === "asc") {
+                    column.toggleSorting(true)
+                } else {
+                    column.clearSorting()
+                }
+            }}
+            className="flex items-center gap-2"
+        >
+            {children}
+            {sortDirection === "asc" ? (
+                <ArrowUp className="h-4 w-4" />
+            ) : sortDirection === "desc" ? (
+                <ArrowDown className="h-4 w-4" />
+            ) : (
+                <ArrowUpDown className="h-4 w-4" />
+            )}
+        </Button>
+    )
+}
+
 const ActionCell = ({ row, dictionary, worker }: { row: Row<ReportData>; dictionary: Dictionary, worker: boolean }) => {
     const router = useRouter()
     const report = row.original
@@ -57,33 +91,98 @@ const ActionCell = ({ row, dictionary, worker }: { row: Row<ReportData>; diction
 export const columns = (dictionary: Dictionary, worker: boolean): ColumnDef<ReportData>[] => [
     {
         accessorKey: "report.name",
-        header: dictionary.reportTable.columns.name,
+        enableGlobalFilter: true,
+        header: ({ column }) => (
+            <SortButton column={column}>
+                {dictionary.reportTable.columns.name}
+            </SortButton>
+        ),
     },
     {
         accessorKey: "report.description",
-        header: dictionary.reportTable.columns.description,
+        enableGlobalFilter: true,
+        header: ({ column }) => (
+            <SortButton column={column}>
+                {dictionary.reportTable.columns.description}
+            </SortButton>
+        ),
     },
     {
         accessorKey: "report.locationDescription",
-        header: dictionary.reportTable.columns.location,
+        enableGlobalFilter: false,
+        header: ({ column }) => (
+            <SortButton column={column}>
+                {dictionary.reportTable.columns.location}
+            </SortButton>
+        ),
     },
     {
         accessorKey: "protocols",
-        header: dictionary.reportTable.columns.status,
+        enableGlobalFilter: false,
+        header: ({ column }) => {
+            const filterValue = column.getFilterValue() as string[] || []
+            const isFiltered = filterValue.length > 0
+
+            return (
+                <div className="flex items-center gap-2">
+                    <SortButton column={column}>
+                        {dictionary.reportTable.columns.status}
+                    </SortButton>
+                    <DropdownMenu modal={false}>
+                        <DropdownMenuTrigger asChild>
+                            <Button
+                                variant={isFiltered ? "secondary" : "ghost"}
+                                className="h-8 w-8 p-0"
+                            >
+                                <Filter className={`h-4 w-4 ${isFiltered ? "text-primary" : ""}`} />
+                            </Button>
+                        </DropdownMenuTrigger>
+                        <DropdownMenuContent align="start" onCloseAutoFocus={(e) => e.preventDefault()}>
+                            {Object.entries(dictionary.metadata?.statuses || {}).map(([id, status]) => (
+                                <DropdownMenuCheckboxItem
+                                    key={id}
+                                    checked={filterValue.includes(id)}
+                                    onSelect={(e) => e.preventDefault()}
+                                    onCheckedChange={(_checked) => {
+                                        const newFilterValue = filterValue.includes(id)
+                                            ? filterValue.filter(item => item !== id)
+                                            : [...filterValue, id]
+                                        column.setFilterValue(newFilterValue.length ? newFilterValue : undefined)
+                                    }}
+                                >
+                                    {status.name}
+                                </DropdownMenuCheckboxItem>
+                            ))}
+                        </DropdownMenuContent>
+                    </DropdownMenu>
+                </div>
+            )
+        },
+        filterFn: (row, id, value: string[]) => {
+            if (!value?.length) return true
+            const protocols = row.getValue<ReportData["protocols"]>("protocols")
+            const latestStatus = protocols[protocols.length - 1]?.statusId?.toString()
+            return latestStatus ? value.includes(latestStatus) : false
+        },
         cell: ({ row }) => {
             const protocols = row.getValue<ReportData["protocols"]>("protocols")
             const latestStatus = protocols[protocols.length - 1]?.statusId
 
-            if (!latestStatus || !dictionary.metadata?.statuses?.[latestStatus.toString() as keyof typeof dictionary.metadata.statuses]) {
+            if (!latestStatus || !dictionary.metadata?.statuses?.[String(latestStatus) as keyof typeof dictionary.metadata.statuses]) {
                 return null
             }
 
-            return dictionary.metadata.statuses[latestStatus.toString() as keyof typeof dictionary.metadata.statuses].name
+            return dictionary.metadata.statuses[String(latestStatus) as keyof typeof dictionary.metadata.statuses].name
         },
     },
     {
         accessorKey: "pictures",
-        header: dictionary.reportTable.columns.pictures,
+        enableGlobalFilter: false,
+        header: ({ column }) => (
+            <SortButton column={column}>
+                {dictionary.reportTable.columns.pictures}
+            </SortButton>
+        ),
         cell: ({ row }) => {
             const pictures = row.getValue<ReportData["pictures"]>("pictures")
             return pictures?.length || 0
@@ -91,7 +190,51 @@ export const columns = (dictionary: Dictionary, worker: boolean): ColumnDef<Repo
     },
     {
         accessorKey: "typeId",
-        header: dictionary.reportTable.columns.type,
+        enableGlobalFilter: false,
+        header: ({ column }) => {
+            const filterValue = column.getFilterValue() as string[] || []
+            const isFiltered = filterValue.length > 0
+
+            return (
+                <div className="flex items-center gap-2">
+                    <SortButton column={column}>
+                        {dictionary.reportTable.columns.type}
+                    </SortButton>
+                    <DropdownMenu modal={false}>
+                        <DropdownMenuTrigger asChild>
+                            <Button
+                                variant={isFiltered ? "secondary" : "ghost"}
+                                className="h-8 w-8 p-0"
+                            >
+                                <Filter className={`h-4 w-4 ${isFiltered ? "text-primary" : ""}`} />
+                            </Button>
+                        </DropdownMenuTrigger>
+                        <DropdownMenuContent align="start" onCloseAutoFocus={(e) => e.preventDefault()}>
+                            {Object.entries(dictionary.metadata?.types || {}).map(([id, type]) => (
+                                <DropdownMenuCheckboxItem
+                                    key={id}
+                                    checked={filterValue.includes(id)}
+                                    onSelect={(e) => e.preventDefault()}
+                                    onCheckedChange={(_checked) => {
+                                        const newFilterValue = filterValue.includes(id)
+                                            ? filterValue.filter(item => item !== id)
+                                            : [...filterValue, id]
+                                        column.setFilterValue(newFilterValue.length ? newFilterValue : undefined)
+                                    }}
+                                >
+                                    {type.name}
+                                </DropdownMenuCheckboxItem>
+                            ))}
+                        </DropdownMenuContent>
+                    </DropdownMenu>
+                </div>
+            )
+        },
+        filterFn: (row, id, value: string[]) => {
+            if (!value?.length) return true
+            const typeId = row.getValue<number>("typeId")?.toString()
+            return value.includes(typeId)
+        },
         cell: ({ row }) => {
             const typeId = row.getValue<number>("typeId")
 
@@ -104,7 +247,12 @@ export const columns = (dictionary: Dictionary, worker: boolean): ColumnDef<Repo
     },
     {
         accessorKey: "createdAt",
-        header: dictionary.reportTable.columns.createdAt,
+        enableGlobalFilter: false,
+        header: ({ column }) => (
+            <SortButton column={column}>
+                {dictionary.reportTable.columns.createdAt}
+            </SortButton>
+        ),
         cell: ({ row }) => {
             const protocols = row.getValue<ReportData["protocols"]>("protocols")
             const firstProtocol = protocols?.[0]
@@ -113,6 +261,8 @@ export const columns = (dictionary: Dictionary, worker: boolean): ColumnDef<Repo
     },
     {
         id: "actions",
+        enableGlobalFilter: false,
+        header: dictionary.reportTable.actions.label,
         cell: ({ row }) => <ActionCell row={row} dictionary={dictionary} worker={worker} />
     },
 ]
