@@ -1,6 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import { type Dictionary } from './dictionary';
 import germanDictionary from './de.json';
+import englishDictionary from './en.json';
 import fs from 'fs';
 import path from 'path';
 
@@ -182,7 +183,7 @@ describe('Dictionary Type Check', () => {
         return errors;
     }
 
-    it('should have all required keys from Dictionary interface', () => {
+    it('(de) should have all required keys from Dictionary interface', () => {
         const interfaceContent = fs.readFileSync(
             path.join(__dirname, 'dictionary.ts'),
             'utf-8'
@@ -202,7 +203,7 @@ describe('Dictionary Type Check', () => {
         expect(typedDictionary).toBeDefined();
     });
 
-    it('should not have any empty string values', () => {
+    it('(de) should not have any empty string values', () => {
         /**
          * Recursively finds empty string values in the dictionary
          */
@@ -234,4 +235,55 @@ describe('Dictionary Type Check', () => {
             );
         }
     });
+
+    it('(en) should have all required keys from Dictionary interface', () => {
+        const interfaceContent = fs.readFileSync(
+            path.join(__dirname, 'dictionary.ts'),
+            'utf-8'
+        );
+
+        const template = parseInterface(interfaceContent);
+        const errors = checkNestedKeys(englishDictionary, template);
+
+        if (errors.length > 0) {
+            throw new Error(
+                'Dictionary structure mismatch:\n' +
+                errors.map(error => `- ${error}`).join('\n')
+            );
+        }
+    });
+
+    it('(en) should not have any empty string values', () => {
+        /**
+         * Recursively finds empty string values in the dictionary
+         */
+        const findEmptyStrings = (
+            obj: NestedDictionary,
+            path: string[] = []
+        ): string[] => {
+            const emptyPaths: string[] = [];
+
+            for (const key in obj) {
+                const currentPath = [...path, key];
+
+                if (typeof obj[key] === 'string' && obj[key].trim() === '') {
+                    emptyPaths.push(currentPath.join('.'));
+                } else if (typeof obj[key] === 'object' && obj[key] !== null) {
+                    emptyPaths.push(...findEmptyStrings(obj[key], currentPath));
+                }
+            }
+
+            return emptyPaths;
+        };
+
+        const emptyStrings = findEmptyStrings(englishDictionary);
+
+        if (emptyStrings.length > 0) {
+            throw new Error(
+                'Empty strings found in dictionary:\n' +
+                emptyStrings.map(path => `- ${path}`).join('\n')
+            );
+        }
+    });
+
 });

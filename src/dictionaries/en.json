@@ -1,0 +1,319 @@
+{
+    "pages": {
+        "landing": {
+            "heroText": "Report Issues in Your City",
+            "heroDescription": "With FixMyTown, you can quickly and easily report problems in your city. We help you improve infrastructure and maintain order in the city.",
+            "reportButton": "Report Incident",
+            "featuresTitle": "Features",
+            "feature1Title": "Improve Infrastructure",
+            "feature1Text": "Actively help improve urban infrastructure by reporting damage and defects to public facilities.",
+            "feature2Title": "Promote Cleanliness",
+            "feature2Text": "Contribute to a clean city by quickly and easily reporting pollution and illegal dumping.",
+            "feature3Title": "Maintain Order",
+            "feature3Text": "Support traffic safety by reporting parking violations and other traffic-related issues."
+        },
+        "auth": {
+            "login": {
+                "title": "Sign In",
+                "description": "Sign in to your FixMyTown account",
+                "emailLabel": "Email",
+                "emailPlaceholder": "name@example.com",
+                "submit": "Sign In",
+                "submitLoading": "Submitting...",
+                "backToHome": "Back to Home"
+            },
+            "verifyRequest": {
+                "title": "Check Email",
+                "description": "Please check your email for the login link",
+                "backToHome": "Back to Home",
+                "checkEmail": "A login link has been sent to your email address. Please check your inbox.",
+                "enterCode": "Enter the verification code from your email or click the link in the email.",
+                "enterCodeInput": "Enter confirmation code",
+                "verifyButton": "Verify",
+                "resendIn": "Resend code in",
+                "resend": "Resend code"
+            },
+            "error": {
+                "title": "Error",
+                "description": "An error has occurred",
+                "Configuration": "There is a problem with the server configuration.",
+                "Verification": "The login link is no longer valid.",
+                "LogoutError": "An error occurred while signing out.",
+                "Default": "An unexpected error has occurred.",
+                "backToHome": "Back to Home"
+            },
+            "account": {
+                "title": "Account Details",
+                "description": "Manage your FixMyTown account settings",
+                "settings": {
+                    "title": "Settings",
+                    "theme": "Theme",
+                    "language": "Language"
+                },
+                "profile": {
+                    "title": "Profile",
+                    "email": "Email address",
+                    "signOut": "Sign Out",
+                    "role": "Role",
+                    "backToWorkspace": "Back to Workspace"
+                }
+            }
+        },
+        "admin": {
+            "userAdministration": {
+                "mainTitle": "User Administration",
+                "filterByEmailText": "Filter by email",
+                "filterByRoleText": "Filter by role",
+                "filterByNameText": "Filter by name",
+                "IDColumnTitle": "ID",
+                "nameColumnTitle": "Name",
+                "emailColumnTitle": "Email",
+                "emailVerifiedColumnTitle": "Email verified",
+                "imageColumnTitle": "Image",
+                "roleColumnTitle": "Role",
+                "toastMessages": {
+                    "successTitle": "Success",
+                    "successMessage": "User role has been successfully updated",
+                    "errorTitle": "Error",
+                    "errorMessage": "An error occurred. The user role could not be updated."
+                },
+                "actions": {
+                    "actionsTitle": "Actions",
+                    "copyID": "Copy ID",
+                    "changeRoleToAdmin": "Change role to Administrator",
+                    "changeRoleToWorker": "Change role to Worker",
+                    "changeRoleToUser": "Change role to User"
+                }
+            }
+        }
+    },
+    "layout": {
+        "navigation": {
+            "workspaces": {
+                "workspaceSwitcherTitle": "Workspaces",
+                "more": "More",
+                "adminWorkspace": {
+                    "adminWorkspaceTitle": "Administrator Workspace",
+                    "projects": {
+                        "userAdministration": "User Administration"
+                    }
+                },
+                "workerWorkspace": {
+                    "workerWorkspaceTitle": "Worker Workspace",
+                    "projects": {
+                        "reportMapView": "Reports Map View",
+                        "reportTableView": "Reports Table"
+                    }
+                },
+                "userWorkspace": {
+                    "userWorkspaceTitle": "User Workspace",
+                    "navItems": {
+                        "myReports": {
+                            "folderTitle": "My Reports",
+                            "myReports": "My Reports"
+                        },
+                        "reportSomething": {
+                            "folderTitle": "Report Incident",
+                            "defectsDamages": "Defects and Damages",
+                            "contaminations": "Contaminations",
+                            "parkingViolations": "Parking Violations"
+                        }
+                    }
+                }
+            },
+            "userToggle": {
+                "account": "Account",
+                "logout": "Sign Out"
+            },
+            "modeToggle": {
+                "title": "Adjust color mode",
+                "dark": "Dark",
+                "light": "Light",
+                "system": "System"
+            }
+        },
+        "footer": {
+            "contact": "Contact",
+            "about": "About",
+            "imprint": "Imprint",
+            "privacy": "Privacy",
+            "terms": "Terms"
+        }
+    },
+    "components": {
+        "locationPicker": {
+            "title": "Location Selection",
+            "description": "Interactive selection and management of locations",
+            "help": "Click once on the map to set the location. After that, you can drag and modify the location.",
+            "status": {
+                "locked": "Locked",
+                "unlocked": "Unlocked"
+            },
+            "actions": {
+                "lock": "Save location",
+                "unlock": "Edit location",
+                "clear": "Clear location"
+            },
+            "info": {
+                "latitude": "Latitude",
+                "longitude": "Longitude",
+                "address": "Address",
+                "status": "Status"
+            },
+            "loading": "Loading..."
+        },
+        "mapLegend": {
+            "title": "Legend"
+        },
+        "reportTable": {
+            "search": {
+                "placeholder": "Search by name or description..."
+            },
+            "columns": {
+                "name": "Name",
+                "description": "Description",
+                "type": "Type",
+                "status": "Status",
+                "pictures": "Pictures",
+                "location": "Location",
+                "createdAt": "Created at"
+            },
+            "actions": {
+                "label": "Actions",
+                "copyId": "Copy ID",
+                "copyAll": "Copy all data",
+                "viewDetails": "View details",
+                "viewLocation": "View location"
+            },
+            "noResults": "No results"
+        },
+        "reportForm": {
+            "type": "Type",
+            "priority": "Priority",
+            "location": "Location",
+            "name": "Name",
+            "description": "Description",
+            "submit": "Submit",
+            "submitInfo": "Submit report",
+            "submitReadyInfo": "Report can be submitted",
+            "selectType": "Select type",
+            "selectPriority": "Select priority",
+            "success": "Success",
+            "successDescription": "Your report has been successfully submitted",
+            "images": "Images",
+            "upload": {
+                "title": "Upload Images",
+                "description": "Upload images for your report",
+                "dropHere": "Drop images here",
+                "error": "Error",
+                "errorDescription": "An error occurred during upload",
+                "converting": "Converting..."
+            },
+            "uploadingImages": "Uploading images...",
+            "submitting": "Submitting...",
+            "validatingData": "Validating data...",
+            "processingImages": "Processing images...",
+            "savingReport": "Saving report...",
+            "redirecting": "Redirecting...",
+            "uploadSuccess": "Successfully uploaded",
+            "uploadSuccessDescription": "The images have been successfully uploaded",
+            "uploadError": "Upload error",
+            "generalError": "An error has occurred"
+        }
+    },
+    "emails": {
+        "signature": {
+            "greeting": "Best regards,",
+            "team": "- Your FixMyTown Team"
+        },
+        "magicLink": {
+            "mailData": {
+                "subject": "Your login link for FixMyTown",
+                "preview": "Your login link for FixMyTown is here"
+            },
+            "content": {
+                "heading": "Hello, here is your code to login!",
+                "codeInstructions": "Enter the code in your open browser window or click the link below. This code expires in 60 minutes.",
+                "disclaimerText1": "Not expecting this email?",
+                "disclaimerText2": "Contact ",
+                "disclaimerLink": "support@fixmy.town",
+                "disclaimerText3": " if you did not request this code."
+            }
+        },
+        "creationNotification": {
+            "mailData": {
+                "subject": "Your new report has been received!",
+                "preview": "Your new report has been received!"
+            },
+            "content": {
+                "greeting": "Hello {firstName}, thank you for reporting a new problem!",
+                "reportReceived": "We have received your report about the problem",
+                "thankYou": "Thank you for your support in keeping our city clean and tidy!",
+                "promise": "We will do our best to fix the problem as soon as possible."
+            }
+        },
+        "statusUpdate": {
+            "mailData": {
+                "subject": "We have an update to your reported problem!",
+                "preview": "We have an update to your reported problem!"
+            },
+            "content": {
+                "greeting": "Hello {firstName}, we have an update to your reported problem!",
+                "reportTitle": "Your reported problem",
+                "newStatus": "has the status:",
+                "learnMore": "Learn more"
+            }
+        }
+    },
+    "common": {
+        "seeDetails": "View details"
+    },
+    "metadata": {
+        "types": {
+            "1": {
+                "name": "Defects and Damages",
+                "description": "Report damage to public facilities"
+            },
+            "2": {
+                "name": "Contaminations",
+                "description": "Report pollution in public spaces"
+            },
+            "3": {
+                "name": "Parking Violations",
+                "description": "Report illegal parking"
+            }
+        },
+        "statuses": {
+            "1": {
+                "name": "New",
+                "description": "Newly received report"
+            },
+            "2": {
+                "name": "In Progress",
+                "description": "Report is being processed"
+            },
+            "3": {
+                "name": "Completed",
+                "description": "Report has been processed"
+            }
+        },
+        "prios": {
+            "0": {
+                "name": "Unset",
+                "description": "Unknown priority"
+            },
+            "1": {
+                "name": "Low",
+                "description": "Low priority"
+            },
+            "2": {
+                "name": "Medium",
+                "description": "Medium priority"
+            },
+            "3": {
+                "name": "High",
+                "description": "High priority"
+            }
+        }
+    }
+}
