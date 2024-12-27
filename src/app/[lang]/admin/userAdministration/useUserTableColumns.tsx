@@ -135,8 +135,8 @@ export function useUserTableColumns() {
                                         <MoreHorizontal className="h-4 w-4" />
                                     </Button>
                                 </DropdownMenuTrigger>
-                                <DropdownMenuContent align="end">
-                                    <DropdownMenuLabel>{dictionary?.adminPages.userAdministration.actions.copyID}</DropdownMenuLabel>
+                                <DropdownMenuContent align="end"> 
+                                    <DropdownMenuLabel>{dictionary?.adminPages.userAdministration.actions.actionsTitle}</DropdownMenuLabel>
                                     <DropdownMenuItem onClick={() => navigator.clipboard.writeText(user.id)}>
                                         {dictionary?.adminPages.userAdministration.actions.copyID}
                                     </DropdownMenuItem>
