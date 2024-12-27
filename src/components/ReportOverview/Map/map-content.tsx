@@ -114,26 +114,26 @@ export default function MapContent({
                                     <span className="font-medium">ID:</span>
                                     <span>{report.report.id}</span>
 
-                                    <span className="font-medium">{dictionary.reportTable.columns.name}:</span>
+                                    <span className="font-medium">{dictionary.components.reportTable.columns.name}:</span>
                                     <span>{report.report.name}</span>
 
                                     {report.report.description && (
                                         <>
-                                            <span className="font-medium">{dictionary.reportTable.columns.description}:</span>
+                                            <span className="font-medium">{dictionary.components.reportTable.columns.description}:</span>
                                             <span className="break-words">{report.report.description}</span>
                                         </>
                                     )}
 
-                                    <span className="font-medium">{dictionary.reportTable.columns.type}:</span>
+                                    <span className="font-medium">{dictionary.components.reportTable.columns.type}:</span>
                                     <span>
                                         {dictionary.metadata?.types?.[report.typeId.toString() as keyof typeof dictionary.metadata.types]?.name}
                                     </span>
-                                    <span className="font-medium">{dictionary.reportTable.columns.status}:</span>
+                                    <span className="font-medium">{dictionary.components.reportTable.columns.status}:</span>
                                     <span>
                                         {dictionary.metadata?.statuses?.[(report.protocols[report.protocols.length - 1]?.statusId ?? 0).toString() as keyof typeof dictionary.metadata.statuses]?.name}
                                     </span>
 
-                                    <span className="font-medium">{dictionary.reportTable.columns.pictures}:</span>
+                                    <span className="font-medium">{dictionary.components.reportTable.columns.pictures}:</span>
                                     <span>{report.pictures.length}</span>
                                 </div>
                                 <Button

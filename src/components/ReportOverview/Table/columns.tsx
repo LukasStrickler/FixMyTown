@@ -66,23 +66,23 @@ const ActionCell = ({ row, dictionary, worker }: { row: Row<ReportData>; diction
         <DropdownMenu>
             <DropdownMenuTrigger asChild>
                 <Button variant="ghost" className="h-8 w-8 p-0">
-                    <span className="sr-only">{dictionary.reportTable.actions.label}</span>
+                    <span className="sr-only">{dictionary.components.reportTable.actions.label}</span>
                     <MoreHorizontal className="h-4 w-4" />
                 </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end">
-                <DropdownMenuLabel>{dictionary.reportTable.actions.label}</DropdownMenuLabel>
+                <DropdownMenuLabel>{dictionary.components.reportTable.actions.label}</DropdownMenuLabel>
                 <DropdownMenuItem onClick={copyId}>
-                    {dictionary.reportTable.actions.copyId}
+                    {dictionary.components.reportTable.actions.copyId}
                 </DropdownMenuItem>
                 {worker && <DropdownMenuItem onClick={copyAll}>
-                    {dictionary.reportTable.actions.copyAll}
+                    {dictionary.components.reportTable.actions.copyAll}
                 </DropdownMenuItem>}
                 <DropdownMenuSeparator />
                 <DropdownMenuItem onClick={() => router.push(worker ? `/worker/report/details/${report.report.id}` : `/myReports/${report.report.id}`)}>
                     {dictionary.common.seeDetails}
                 </DropdownMenuItem>
-                <DropdownMenuItem>{dictionary.reportTable.actions.viewLocation}</DropdownMenuItem>
+                <DropdownMenuItem>{dictionary.components.reportTable.actions.viewLocation}</DropdownMenuItem>
             </DropdownMenuContent>
         </DropdownMenu>
     )
@@ -94,7 +94,7 @@ export const columns = (dictionary: Dictionary, worker: boolean): ColumnDef<Repo
         enableGlobalFilter: true,
         header: ({ column }) => (
             <SortButton column={column}>
-                {dictionary.reportTable.columns.name}
+                {dictionary.components.reportTable.columns.name}
             </SortButton>
         ),
     },
@@ -103,7 +103,7 @@ export const columns = (dictionary: Dictionary, worker: boolean): ColumnDef<Repo
         enableGlobalFilter: true,
         header: ({ column }) => (
             <SortButton column={column}>
-                {dictionary.reportTable.columns.description}
+                {dictionary.components.reportTable.columns.description}
             </SortButton>
         ),
     },
@@ -112,7 +112,7 @@ export const columns = (dictionary: Dictionary, worker: boolean): ColumnDef<Repo
         enableGlobalFilter: false,
         header: ({ column }) => (
             <SortButton column={column}>
-                {dictionary.reportTable.columns.location}
+                {dictionary.components.reportTable.columns.location}
             </SortButton>
         ),
     },
@@ -126,7 +126,7 @@ export const columns = (dictionary: Dictionary, worker: boolean): ColumnDef<Repo
             return (
                 <div className="flex items-center gap-2">
                     <SortButton column={column}>
-                        {dictionary.reportTable.columns.status}
+                        {dictionary.components.reportTable.columns.status}
                     </SortButton>
                     <DropdownMenu modal={false}>
                         <DropdownMenuTrigger asChild>
@@ -180,7 +180,7 @@ export const columns = (dictionary: Dictionary, worker: boolean): ColumnDef<Repo
         enableGlobalFilter: false,
         header: ({ column }) => (
             <SortButton column={column}>
-                {dictionary.reportTable.columns.pictures}
+                {dictionary.components.reportTable.columns.pictures}
             </SortButton>
         ),
         cell: ({ row }) => {
@@ -198,7 +198,7 @@ export const columns = (dictionary: Dictionary, worker: boolean): ColumnDef<Repo
             return (
                 <div className="flex items-center gap-2">
                     <SortButton column={column}>
-                        {dictionary.reportTable.columns.type}
+                        {dictionary.components.reportTable.columns.type}
                     </SortButton>
                     <DropdownMenu modal={false}>
                         <DropdownMenuTrigger asChild>
@@ -250,7 +250,7 @@ export const columns = (dictionary: Dictionary, worker: boolean): ColumnDef<Repo
         enableGlobalFilter: false,
         header: ({ column }) => (
             <SortButton column={column}>
-                {dictionary.reportTable.columns.createdAt}
+                {dictionary.components.reportTable.columns.createdAt}
             </SortButton>
         ),
         cell: ({ row }) => {
@@ -262,7 +262,7 @@ export const columns = (dictionary: Dictionary, worker: boolean): ColumnDef<Repo
     {
         id: "actions",
         enableGlobalFilter: false,
-        header: dictionary.reportTable.actions.label,
+        header: dictionary.components.reportTable.actions.label,
         cell: ({ row }) => <ActionCell row={row} dictionary={dictionary} worker={worker} />
     },
 ]

@@ -31,7 +31,7 @@ export default function AccountPage({ params: { lang }, dict }: AccountPageProps
             await signOut({ redirect: false });
             router.push(`/${lang}`);
         } catch (error) {
-            console.error(dict.auth.error.LogoutError, error);
+            console.error(dict.pages.auth.error.LogoutError, error);
             router.push(`/${lang}?error=LogoutError`);
         }
     };
@@ -41,12 +41,12 @@ export default function AccountPage({ params: { lang }, dict }: AccountPageProps
             <div className="min-h-screen flex items-center justify-center bg-background p-4">
                 <Card className="w-full max-w-md">
                     <CardHeader className="pb-4">
-                        <CardTitle className="text-2xl">{dict.auth.account.title}</CardTitle>
+                        <CardTitle className="text-2xl">{dict.pages.auth.account.title}</CardTitle>
                     </CardHeader>
                     <Separator />
                     <CardContent className="space-y-6 pt-6">
                         <div className="space-y-1">
-                            <h2 className="text-sm font-medium text-muted-foreground">{dict.auth.account.profile.email}</h2>
+                            <h2 className="text-sm font-medium text-muted-foreground">{dict.pages.auth.account.profile.email}</h2>
                             <Skeleton className="h-6 w-48" />
                         </div>
 
@@ -69,7 +69,7 @@ export default function AccountPage({ params: { lang }, dict }: AccountPageProps
                             variant="destructive"
                             disabled
                         >
-                            {dict.auth.account.profile.signOut}
+                            {dict.pages.auth.account.profile.signOut}
                         </Button>
                     </CardFooter>
                 </Card>
@@ -85,12 +85,12 @@ export default function AccountPage({ params: { lang }, dict }: AccountPageProps
         <div className="min-h-screen flex items-center justify-center bg-background p-4">
             <Card className="w-full max-w-md">
                 <CardHeader className="pb-4">
-                    <CardTitle className="text-2xl">{dict.auth.account.title}</CardTitle>
+                    <CardTitle className="text-2xl">{dict.pages.auth.account.title}</CardTitle>
                 </CardHeader>
                 <Separator />
                 <CardContent className="space-y-6 pt-6">
                     <div className="space-y-1">
-                        <h2 className="text-sm font-medium text-muted-foreground">{dict.auth.account.profile.email}</h2>
+                        <h2 className="text-sm font-medium text-muted-foreground">{dict.pages.auth.account.profile.email}</h2>
                         <p className="text-base">{session.user.email}</p>
                     </div>
 
@@ -106,14 +106,14 @@ export default function AccountPage({ params: { lang }, dict }: AccountPageProps
                         variant="outline"
                         onClick={() => router.push(`/${lang}`)}
                     >
-                        {dict.auth.login.backToHome}
+                        {dict.pages.auth.login.backToHome}
                     </Button>
                     <Button
                         className="w-full"
                         variant="destructive"
                         onClick={handleLogout}
                     >
-                        {dict.auth.account.profile.signOut}
+                        {dict.pages.auth.account.profile.signOut}
                     </Button>
                 </CardFooter>
             </Card>

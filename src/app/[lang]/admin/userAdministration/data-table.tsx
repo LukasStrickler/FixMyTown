@@ -2,21 +2,20 @@
 
 import React from "react";
 import {
-  ColumnDef,
+  type ColumnDef,
   flexRender,
   getCoreRowModel,
   getSortedRowModel,
   getFilteredRowModel,
   useReactTable,
-  SortingState,
-  ColumnFiltersState,
+  type SortingState,
+  type ColumnFiltersState,
 } from "@tanstack/react-table";
 
 import {
   Table,
   TableBody,
   TableCell,
-  TableHead,
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
@@ -40,7 +39,7 @@ export function DataTable<TData, TValue>({
     []
   );
   const { dictionary } = useDictionary();  // useDictionary inside a functional component
-  
+
 
   const table = useReactTable({
     data,
@@ -57,13 +56,13 @@ export function DataTable<TData, TValue>({
   });
 
   return (
-    
+
     <div>
       {/* Filter Inputs for each column */}
       <div className="flex items-center space-x-4 py-4">
         <div className="flex items-center">
           <Input
-            placeholder= {dictionary?.adminPages.userAdministration.filterByEmailText}
+            placeholder={dictionary?.pages.admin.userAdministration.filterByEmailText}
             value={(table.getColumn("email")?.getFilterValue() as string) ?? ""}
             onChange={(event) =>
               table.getColumn("email")?.setFilterValue(event.target.value)
@@ -74,7 +73,7 @@ export function DataTable<TData, TValue>({
 
         <div className="flex items-center">
           <Input
-            placeholder={dictionary?.adminPages.userAdministration.filterByRoleText}
+            placeholder={dictionary?.pages.admin.userAdministration.filterByRoleText}
             value={(table.getColumn("role")?.getFilterValue() as string) ?? ""}
             onChange={(event) =>
               table.getColumn("role")?.setFilterValue(event.target.value)
@@ -85,7 +84,7 @@ export function DataTable<TData, TValue>({
 
         <div className="flex items-center">
           <Input
-            placeholder={dictionary?.adminPages.userAdministration.filterByNameText}
+            placeholder={dictionary?.pages.admin.userAdministration.filterByNameText}
             value={(table.getColumn("name")?.getFilterValue() as string) ?? ""}
             onChange={(event) =>
               table.getColumn("name")?.setFilterValue(event.target.value)
@@ -104,9 +103,8 @@ export function DataTable<TData, TValue>({
                 <TableCell key={header.id}>
                   {header.isPlaceholder ? null : (
                     <div
-                      className={`flex items-center ${
-                        header.column.getCanSort() ? "cursor-pointer" : ""
-                      }`}
+                      className={`flex items-center ${header.column.getCanSort() ? "cursor-pointer" : ""
+                        }`}
                       onClick={header.column.getToggleSortingHandler()}
                     >
                       {flexRender(

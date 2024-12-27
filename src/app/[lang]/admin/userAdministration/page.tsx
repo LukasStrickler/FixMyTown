@@ -1,28 +1,20 @@
-"use client";
+import UserAdministrationClient from "./client";
+import { redirect } from "next/navigation";
+import { auth } from "@/server/auth";
+import { type Locale } from "@/i18n-config";
 
-import { UserTableColumns } from "./columns";
-import { DataTable } from "./data-table";
-import { api } from "@/trpc/react";
-import { useDictionary } from "@/components/provider/dictionaryProvider";
-import { Loader2 } from "lucide-react";
-
-
-export default function UserAdministrationPage() {
-  const { dictionary } = useDictionary();
-  const { data: users, isLoading } = api.user.getUsers.useQuery();
-  
-  const columns = UserTableColumns();
-
-  if (isLoading) {
-    return <Loader2 className="h-4 w-4 animate-spin" />;
+export default async function UserAdministrationPage({
+  params: { lang },
+}: {
+  params: { lang: Locale };
+}) {
+  const session = await auth();
+  if (!session) {
+    return redirect(`/${lang}/login`);
+  }
+  if (session.user.role !== "admin") {
+    return redirect(`/${lang}/`);
   }
 
-  const filteredUsers = users?.filter(user => user.name) ?? [];
-
-  return (
-    <div className="container mx-auto py-10">
-      <h1>{dictionary?.adminPages.userAdministration.mainTitle}</h1>
-      <DataTable columns={columns} data={filteredUsers} />
-    </div>
-  );
+  return <UserAdministrationClient />;
 }

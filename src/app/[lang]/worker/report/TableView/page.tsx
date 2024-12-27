@@ -20,6 +20,9 @@ export default async function MyReports({
     if (!session?.user) {
         redirect(`/${lang}/login`);
     }
+    if (session.user.role !== "worker" && session.user.role !== "admin") {
+        redirect(`/${lang}/`);
+    }
 
     const { reports } = await api.report.getWorkerReports() as { reports: ReportData[] };
 
