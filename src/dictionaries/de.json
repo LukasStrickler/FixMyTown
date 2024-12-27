@@ -221,6 +221,50 @@
             "generalError": "Ein Fehler ist aufgetreten"
         }
     },
+    "emails": {
+        "signature": {
+            "greeting": "Mit freundlichen Grüßen,",
+            "team": "- Ihr FixMyTown Team"
+        },
+        "magicLink": {
+            "mailData": {
+                "subject": "Ihr Anmeldelink für FixMyTown",
+                "preview": "Ihr Anmeldelink für FixMyTown ist hier"
+            },
+            "content": {
+                "heading": "Hallo, hier ist dein Code um dich einzuloggen!",
+                "codeInstructions": "Gib den Code in Deinem offenen Browserfenster ein oder drücke auf den Link unten. Dieser Code läuft in 60 Minuten ab.",
+                "disclaimerText1": "Diese E-Mail wurde nicht von Ihnen angefordert? ",
+                "disclaimerText2": "Kontaktieren Sie ",
+                "disclaimerLink": "support@fixmy.town",
+                "disclaimerText3": "wenn Sie diesen Code nicht angefordert haben."
+            }
+        },
+        "creationNotification": {
+            "mailData": {
+                "subject": "Dein neues Problem wurde erfolgreich eingereicht!",
+                "preview": "Dein neues Problem wurde erfolgreich eingereicht!"
+            },
+            "content": {
+                "greeting": "Hallo {firstName}, vielen Dank, dass Du ein neues Problem gemeldet hast!",
+                "reportReceived": "Wir haben Deinen Bericht über das Problem",
+                "thankYou": "erhelten. Vielen Dank für Deine Unterstützung, unsere Stadt sauber und ansprechend zu halten!",
+                "promise": "Wir werden unser Bestes tun, um das Problem so schnell wie möglich zu beheben."
+            }
+        },
+        "statusUpdate": {
+            "mailData": {
+                "subject": "Wir haben eine Aktualisierung zu Deinem eingereichten Problem!",
+                "preview": "Wir haben eine Aktualisierung zu Deinem eingereichten Problem!"
+            },
+            "content": {
+                "greeting": "Hallo {firstName}, wir haben eine Aktualisierung zu Deinem eingereichten Problem!",
+                "reportTitle": "Dein eingereichter Bericht",
+                "newStatus": "hat den Status:",
+                "learnMore": "Mehr erfahren"
+            }
+        }
+    },
     "common": {
         "seeDetails": "Details anzeigen"
     },
