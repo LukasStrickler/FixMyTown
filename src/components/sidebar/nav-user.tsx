@@ -37,7 +37,7 @@ export function NavUser() {
   const { dictionary } = useDictionary();
   const params = useParams();
   const lang = params.lang as string;
-  
+
 
   if (!user) {
     return null;
@@ -49,15 +49,14 @@ export function NavUser() {
         {/* Flex container to align ModeToggle and DropdownMenu */}
         <div className="flex items-center space-x-4">
           {/* Make ModeToggle square with specific width and height */}
-          <div className="flex aspect-square size-8 items-center justify-center rounded-lg bg-sidebar-primary text-sidebar-primary-foreground">
-            <ModeToggle /> 
+          <div className="flex aspect-square items-center justify-center rounded-lg bg-sidebar-primary text-sidebar-primary-foreground">
+            <ModeToggle />
           </div>
 
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
               <SidebarMenuButton
-                size="lg"
-                className="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground"
+                className="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground h-10"
               >
                 <div className="grid flex-1 text-left text-sm leading-tight">
                   <span className="truncate font-semibold">{user.name}</span>
@@ -90,16 +89,15 @@ export function NavUser() {
                     {dictionary?.userToggle.account}
                   </Link>
                 </DropdownMenuItem>
-                <DropdownMenuItem>
-                  <Bell />
-                  {dictionary?.userToggle.notifications}
-                </DropdownMenuItem>
               </DropdownMenuGroup>
               <DropdownMenuSeparator />
-                <DropdownMenuItem onClick={() => signOut({ callbackUrl: '/api/auth/signin' })}>
-                  <LogOut />
-                  {dictionary?.userToggle.logout}
-                </DropdownMenuItem>
+              <DropdownMenuItem
+                onClick={() => signOut({ callbackUrl: '/api/auth/signin' })}
+                className="text-destructive focus:bg-destructive focus:text-destructive-foreground"
+              >
+                <LogOut className="mr-2" />
+                {dictionary?.userToggle.logout}
+              </DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
         </div>

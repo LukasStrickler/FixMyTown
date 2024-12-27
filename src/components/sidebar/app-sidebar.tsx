@@ -4,6 +4,7 @@ import { Shield, HelpCircle, User, FileText, FolderPlus } from "lucide-react";
 import { type ReactNode } from "react";
 import * as React from "react";
 import { Frame } from "lucide-react";
+import { SidebarSkeleton } from "./sidebar-skeleton";
 
 import { NavMain } from "@/components/sidebar/nav-main";
 import { NavProjects } from "@/components/sidebar/nav-projects";
@@ -21,6 +22,7 @@ import { useSession } from "next-auth/react";
 import { type Locale } from "@/i18n-config";
 
 import { useDictionary } from "@/components/provider/dictionaryProvider";
+import { Button } from "../ui/button";
 
 export interface Workspace {
   workspaceType: string; // Worker, User, or Admin
@@ -34,7 +36,7 @@ export function AppSidebar({
 }: {
   params: { lang: Locale };
 } & React.ComponentProps<typeof Sidebar>) {
-  const { data: session } = useSession(); // Access session data
+  const { data: session, status } = useSession(); // Add status from useSession
   const user = session?.user;
 
   const { lang } = params;
@@ -106,10 +108,20 @@ export function AppSidebar({
     setActiveWorkspace(getInitialWorkspace());
   }, [pathname, user?.role]);
 
-  // Loading spinner for no dictionary or no user session
-  if (!dictionary || !user || pathname === `/${lang}/login`) {
-    return null;
+  if (!dictionary || status === "loading") {
+    return <SidebarSkeleton />;
   }
+
+  if (!user) {
+    return <div className="flex justify-center items-center h-screen">
+      <Sidebar>
+        <SidebarHeader className="flex justify-center items-center h-screen">
+          <Button>{dictionary?.auth.login.title}</Button>
+        </SidebarHeader>
+      </Sidebar>
+    </div>;
+  }
+
 
   // Define navigation data based on the active workspace
   const data = (() => {

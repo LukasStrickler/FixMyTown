@@ -38,7 +38,6 @@ export interface Dictionary {
     },
     userToggle: {
         account: string;
-        notifications: string;
         logout: string;
     },
     workspaces: {
