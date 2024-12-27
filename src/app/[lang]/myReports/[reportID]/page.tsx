@@ -11,16 +11,19 @@
 import { auth } from "@/server/auth";
 import { api, HydrateClient } from "@/trpc/server";
 import { type Locale } from "@/i18n-config";
+import { redirect } from "next/navigation";
 
 export default async function MyReports({
     params: { lang, reportID },
 }: {
     params: { lang: Locale; reportID: string };
 }) {
+    const session = await auth();
+    if (!session) {
+        return redirect(`/${lang}/login`);
+    }
 
     const data = await api.reportDetails.getReportDetails({ reportID });
-
-    const session = await auth();
 
     return (
         <HydrateClient>

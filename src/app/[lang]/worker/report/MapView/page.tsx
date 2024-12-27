@@ -28,6 +28,10 @@ export default async function MyReports({
         redirect(`/${lang}/login`);
     }
 
+    if (session.user.role !== "worker" && session.user.role !== "admin") {
+        redirect(`/${lang}/`);
+    }
+
     // Type assertion for the reports data
     const { reports } = await api.report.getWorkerReports() as { reports: ReportData[] };
     const dictionary = await getDictionary(lang)
