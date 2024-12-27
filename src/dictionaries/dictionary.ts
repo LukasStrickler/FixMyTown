@@ -229,7 +229,51 @@ export interface Dictionary {
             generalError: string;
         }
     },
-
+    // Emails
+    emails: {
+        signature: {
+            greeting: string;
+            team: string;
+        },
+        magicLink: {
+            mailData: {
+                subject: string;
+                preview: string;
+            },
+            content: {
+                heading: string;
+                codeInstructions: string;
+                disclaimerText1: string;
+                disclaimerText2: string;
+                disclaimerLink: string;
+                disclaimerText3: string;
+            }
+        },
+        creationNotification: {
+            mailData: {
+                subject: string;
+                preview: string;
+            },
+            content: {
+                greeting: string;
+                reportReceived: string;
+                thankYou: string;
+                promise: string;
+            }
+        },
+        statusUpdate: {
+            mailData: {
+                subject: string;
+                preview: string;
+            },
+            content: {
+                greeting: string;
+                reportTitle: string;
+                newStatus: string;
+                learnMore: string;
+            }
+        }
+    },
     // Common/shared strings
     common: {
         seeDetails: string;

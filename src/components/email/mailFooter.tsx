@@ -1,26 +1,18 @@
 import React from 'react';
-import { Text, Link } from '@react-email/components';
+import { Text } from '@react-email/components';
+import type { Dictionary } from '@/dictionaries/dictionary';
 
-const MailFooter: React.FC = () => {
+interface MailFooterProps {
+  dictionary: Dictionary;
+}
+
+const MailFooter: React.FC<MailFooterProps> = ({ dictionary }) => {
   return (
     <div>
-    <Text
-        style={{
-          textAlign: "center",
-          color: "#666",
-          fontSize: "12px",
-          marginBottom: "16px",
-        }}
-      >
-        Not expecting this email?<br/>
-        Contact{" "}
-      <Link
-        href="mailto:support@fixmy.town"
-        style={{ color: "#444", textDecoration: "underline" }}
-      >
-        support@fixmy.town
-      </Link>{" "}
-      if you did not request this code.
+      <Text className="text-center text-gray-500 text-xs mb-4">
+        {dictionary.emails.signature.greeting}
+        <br />
+        {dictionary.emails.signature.team}
       </Text>
     </div>
   );
