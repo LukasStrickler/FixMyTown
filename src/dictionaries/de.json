@@ -131,6 +131,13 @@
                 "light": "Hell",
                 "system": "System"
             }
+        },
+        "footer": {
+            "contact": "Kontakt",
+            "about": "Über",
+            "imprint": "Impressum",
+            "privacy": "Datenschutz",
+            "terms": "AGB"
         }
     },
     "components": {

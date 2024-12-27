@@ -186,7 +186,7 @@ export default async function IndexPage({
           </Button>
         </div>
       </section>
-      <Footer />
+      <Footer dictionary={dictionary} />
     </HydrateClient>
   );
 }

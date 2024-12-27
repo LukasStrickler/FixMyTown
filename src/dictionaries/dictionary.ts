@@ -137,6 +137,13 @@ export interface Dictionary {
                 light: string;
                 system: string;
             }
+        },
+        footer: {
+            contact: string;
+            about: string;
+            imprint: string;
+            privacy: string;
+            terms: string;
         }
     },
 

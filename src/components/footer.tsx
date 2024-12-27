@@ -1,8 +1,9 @@
 import React from "react";
 import Link from "next/link";
 import { TextHoverEffect } from "./ui/text-hover-effect";
+import type { Dictionary } from "@/dictionaries/dictionary";
 
-export function Footer() {
+export function Footer({ dictionary }: { dictionary: Dictionary }) {
     return (
         <footer className="min-h-32 py-8 flex flex-col md:flex-row items-center justify-between px-8 md:px-16">
             <div className="flex items-center mb-6 md:mb-0 p-2">
@@ -14,31 +15,31 @@ export function Footer() {
                     href="/contact"
                     className="hover:text-neutral-900 dark:hover:text-neutral-100 transition-colors"
                 >
-                    Contact
+                    {dictionary.layout.footer.contact}
                 </Link>
                 <Link
                     href="/about"
                     className="hover:text-neutral-900 dark:hover:text-neutral-100 transition-colors"
                 >
-                    About
+                    {dictionary.layout.footer.about}
                 </Link>
                 <Link
                     href="/impressum"
                     className="hover:text-neutral-900 dark:hover:text-neutral-100 transition-colors"
                 >
-                    Impressum
+                    {dictionary.layout.footer.imprint}
                 </Link>
                 <Link
                     href="/datenschutz"
                     className="hover:text-neutral-900 dark:hover:text-neutral-100 transition-colors"
                 >
-                    Datenschutz
+                    {dictionary.layout.footer.privacy}
                 </Link>
                 <Link
                     href="/agb"
                     className="hover:text-neutral-900 dark:hover:text-neutral-100 transition-colors"
                 >
-                    AGB
+                    {dictionary.layout.footer.terms}
                 </Link>
             </nav>
         </footer>
