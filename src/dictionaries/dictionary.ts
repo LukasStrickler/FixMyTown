@@ -221,5 +221,16 @@ export interface Dictionary {
             "2": { name: string; description: string };
             "3": { name: string; description: string };
         };
+    },
+    landing: {
+        heroText: string;
+        reportButton: string;
+        featuresTitle: string;
+        feature1Title: string;
+        feature1Text: string;
+        feature2Title: string;
+        feature2Text: string;
+        feature3Title: string;
+        feature3Text: string;
     }
 }

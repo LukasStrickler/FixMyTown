@@ -249,5 +249,16 @@
                 "description": "Hohe Priorität"
             }
         }
+    },
+    "landing": {
+        "heroText": "Melden Sie Probleme in Ihrer Stadt",
+        "reportButton": "Vorfall melden",
+        "featuresTitle": "Features",
+        "feature1Title": "Infrastruktur verbessern",
+        "feature1Text": "Helfen Sie aktiv mit, die städtische Infrastruktur zu verbessern, indem Sie Schäden und Defekte an öffentlichen Einrichtungen melden.",
+        "feature2Title": "Sauberkeit fördern",
+        "feature2Text": "Tragen Sie zu einer sauberen Stadt bei, indem Sie Verschmutzungen und wilde Müllablagerungen schnell und einfach melden können.",
+        "feature3Title": "Ordnung bewahren",
+        "feature3Text": "Unterstützen Sie die Verkehrssicherheit durch das Melden von Parkverstoßen und anderen verkehrsbezogenen Problemen."
     }
 }
