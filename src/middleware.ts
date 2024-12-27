@@ -26,7 +26,8 @@ function getLocale(request: NextRequest): string | undefined {
 
 const IGNORED_PATHS = new Set([
     '/favicon.ico',
-    '/hero-image.webp'
+    '/hero-image.webp',
+    '/FixMyTown_logo.png'
 ]);
 type ValidLocale = typeof i18n.locales[number];
 const LOCALES = new Set<ValidLocale>(i18n.locales);
