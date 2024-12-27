@@ -53,8 +53,8 @@ export interface Dictionary {
         workerWorkspace: {
             workerWorkspaceTitle: string;
             projects: {
-                reportCardView: string;
-                reportEdit: string;
+                reportMapView: string;
+                reportTableView: string;
             }
         },
         userWorkspace: {
@@ -62,8 +62,6 @@ export interface Dictionary {
             navItems: {
                 myReports: {
                     folderTitle: string,
-                    reportState: string,
-                    closedReports: string,
                     myReports: string,
                 }
                 reportSomething: {

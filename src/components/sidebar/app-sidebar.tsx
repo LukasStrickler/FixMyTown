@@ -1,6 +1,6 @@
 "use client";
 
-import { Shield, HelpCircle, User } from "lucide-react";
+import { Shield, HelpCircle, User, FileText, FolderPlus } from "lucide-react";
 import { type ReactNode } from "react";
 import * as React from "react";
 import { Frame } from "lucide-react";
@@ -131,13 +131,13 @@ export function AppSidebar({
           navMain: [],
           projects: [
             {
-              name: dictionary.workspaces.workerWorkspace.projects.reportCardView,
-              url: `/${lang}/worker/reportCardView`,
+              name: dictionary.workspaces.workerWorkspace.projects.reportMapView,
+              url: `/${lang}/worker/report/MapView`,
               icon: Frame,
             },
             {
-              name: dictionary.workspaces.workerWorkspace.projects.reportEdit,
-              url: `/${lang}/worker/reportEdit`,
+              name: dictionary.workspaces.workerWorkspace.projects.reportTableView,
+              url: `/${lang}/worker/report/TableView`,
               icon: Frame,
             },
           ],
@@ -148,43 +148,28 @@ export function AppSidebar({
         return {
           navMain: [
             {
-              title: dictionary.workspaces.userWorkspace.navItems.myReports.folderTitle,
-              url: `/${lang}/user/myReports`,
-              icon: User,
-              isActive: true,
-              items: [
-                {
-                  title: dictionary.workspaces.userWorkspace.navItems.myReports.reportState,
-                  url: `/${lang}/reportState`,
-                },
-                {
-                  title: dictionary.workspaces.userWorkspace.navItems.myReports.closedReports,
-                  url: `/${lang}/closedReports`,
-                },
-                {
-                  title: dictionary.workspaces.userWorkspace.navItems.myReports.myReports,
-                  url: `/${lang}/myReports`,
-                },
-              ],
+              title: dictionary.workspaces.userWorkspace.navItems.myReports.myReports,
+              url: `/${lang}/myReports`,
+              icon: FileText,
             },
             {
               title: dictionary.workspaces.userWorkspace.navItems.reportSomething.folderTitle,
               url: "#",
-              icon: User,
+              icon: FolderPlus,
               isActive: true,
               items: [
                 {
                   title: dictionary.workspaces.userWorkspace.navItems.reportSomething.defectsDamages,
                   url: `/${lang}/report/defects-damage`,
-              },
-              {
+                },
+                {
                   title: dictionary.workspaces.userWorkspace.navItems.reportSomething.contaminations,
                   url: `/${lang}/report/contamination`,
-              },
-              {
+                },
+                {
                   title: dictionary.workspaces.userWorkspace.navItems.reportSomething.parkingViolations,
                   url: `/${lang}/report/parking-violation`,
-              },
+                },
               ],
             },
           ],
