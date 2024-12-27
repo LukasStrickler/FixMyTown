@@ -4,23 +4,31 @@
 // can click on a report to go to details page
 
 import { auth } from "@/server/auth";
-import { HydrateClient } from "@/trpc/server";
+import { api, HydrateClient } from "@/trpc/server";
 import { type Locale } from "@/i18n-config";
+import { ReportsTable } from "@/components/ReportOverview/Table/reports-table";
+import { getDictionary } from "@/get-dictionary";
+import { redirect } from "next/navigation";
+import type { ReportData } from "@/components/reporting/report";
 
 export default async function MyReports({
     params: { lang },
 }: {
     params: { lang: Locale };
 }) {
-
     const session = await auth();
+    if (!session?.user) {
+        redirect(`/${lang}/login`);
+    }
+
+    const { reports } = await api.report.getWorkerReports() as { reports: ReportData[] };
+
+    const dictionary = await getDictionary(lang);
 
     return (
         <HydrateClient>
             <main className="flex min-h-screen flex-col items-center justify-center ">
-                <div className="container flex flex-col items-center justify-center gap-12 px-4 py-16">
-                    <div>{JSON.stringify(session)}</div>
-                </div>
+                <ReportsTable dictionary={dictionary} reports={reports} worker={true} />
             </main>
         </HydrateClient>
     );

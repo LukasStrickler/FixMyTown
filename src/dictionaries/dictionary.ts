@@ -35,7 +35,7 @@ export interface Dictionary {
                 changeRoleToUser: string;
             }
         }
-    },    
+    },
     userToggle: {
         account: string;
         notifications: string;
@@ -46,24 +46,22 @@ export interface Dictionary {
         more: string;
         adminWorkspace: {
             adminWorkspaceTitle: string;
-            projects:{
+            projects: {
                 userAdministration: string;
             }
         },
-        workerWorkspace: {            
+        workerWorkspace: {
             workerWorkspaceTitle: string;
-            projects:{
-                reportCardView: string;
-                reportEdit: string;
+            projects: {
+                reportMapView: string;
+                reportTableView: string;
             }
         },
-        userWorkspace: {            
+        userWorkspace: {
             userWorkspaceTitle: string;
             navItems: {
                 myReports: {
                     folderTitle: string,
-                    reportState: string,
-                    closedReports: string,
                     myReports: string,
                 }
                 reportSomething: {
@@ -143,7 +141,10 @@ export interface Dictionary {
                 status: string;
             };
             loading: string;
-        }
+        },
+        mapLegend: {
+            title: string;
+        },
     },
     form: {
         type: string;
@@ -177,5 +178,48 @@ export interface Dictionary {
         uploadSuccessDescription: string;
         uploadError: string;
         generalError: string;
+    },
+    common: {
+        seeDetails: string;
+    },
+    reportTable: {
+        search: {
+            placeholder: string;
+        },
+        columns: {
+            name: string;
+            description: string;
+            type: string;
+            status: string;
+            pictures: string;
+            location: string;
+            createdAt: string;
+        },
+        actions: {
+            label: string;
+            copyId: string;
+            viewDetails: string;
+            viewLocation: string;
+            copyAll: string;
+        },
+        noResults: string;
+    },
+    metadata: {
+        types: {
+            "1": { name: string; description: string };
+            "2": { name: string; description: string };
+            "3": { name: string; description: string };
+        };
+        statuses: {
+            "1": { name: string; description: string };
+            "2": { name: string; description: string };
+            "3": { name: string; description: string };
+        };
+        prios: {
+            "0": { name: string; description: string };
+            "1": { name: string; description: string };
+            "2": { name: string; description: string };
+            "3": { name: string; description: string };
+        };
     }
 }

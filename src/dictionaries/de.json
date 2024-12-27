@@ -44,35 +44,58 @@
         "workspaceSwitcherTitle": "Arbeitsbereiche",
         "more": "Mehr",
         "adminWorkspace": {
-        "adminWorkspaceTitle": "Administrator Arbeitsbereich",
-        "projects": {
-            "userAdministration": "Nutzerverwaltung"
+            "adminWorkspaceTitle": "Administrator Arbeitsbereich",
+            "projects": {
+                "userAdministration": "Nutzerverwaltung"
             }
         },
         "workerWorkspace": {
-        "workerWorkspaceTitle": "Arbeiter Arbeitsbereich",
-        "projects": {
-            "reportCardView": "Anträge Kartenansicht" ,
-            "reportEdit": "Anträge Bearbeiten"
+            "workerWorkspaceTitle": "Arbeiter Arbeitsbereich",
+            "projects": {
+                "reportMapView": "Anträge Kartenansicht",
+                "reportTableView": "Anträge Tabelle"
             }
         },
         "userWorkspace": {
-        "userWorkspaceTitle": "Nutzer Arbeitsbereich",
-        "navItems": {
-            "myReports": {
-                "folderTitle": "Meine Anträge",
-                "reportState": "Status Anträge",
-                "closedReports": "Abgeschlossene Anmeldungen",
-                "myReports": "Meine Anträge"
-            },
-            "reportSomething": {
-                "folderTitle": "Vorfall melden",
-                "defectsDamages": "Defekte und Schäden",
-                "contaminations": "Verunreinigungen",
-                "parkingViolations": "Parkverstöße"
+            "userWorkspaceTitle": "Nutzer Arbeitsbereich",
+            "navItems": {
+                "myReports": {
+                    "folderTitle": "Meine Anträge",
+                    "myReports": "Meine Anträge"
+                },
+                "reportSomething": {
+                    "folderTitle": "Vorfall melden",
+                    "defectsDamages": "Defekte und Schäden",
+                    "contaminations": "Verunreinigungen",
+                    "parkingViolations": "Parkverstöße"
+                }
             }
         }
-        }
+    },
+    "common": {
+        "seeDetails": "Details anzeigen"
+    },
+    "reportTable": {
+        "search": {
+            "placeholder": "Suche nach Name oder Beschreibung ..."
+        },
+        "columns": {
+            "name": "Name",
+            "description": "Beschreibung",
+            "type": "Typ",
+            "status": "Status",
+            "pictures": "Bilder",
+            "location": "Standort",
+            "createdAt": "Erstellt am"
+        },
+        "actions": {
+            "label": "Aktionen",
+            "copyId": "ID kopieren",
+            "copyAll": "Alle Daten kopieren",
+            "viewDetails": "Details anzeigen",
+            "viewLocation": "Standort anzeigen"
+        },
+        "noResults": "Keine Ergebnisse"
     },
     "auth": {
         "login": {
@@ -141,39 +164,90 @@
                 "status": "Status"
             },
             "loading": "Wird geladen..."
+        },
+        "mapLegend": {
+            "title": "Legende"
         }
     },
     "form": {
-        "type": "Art der Meldung",
+        "type": "Typ",
         "priority": "Priorität",
         "location": "Standort",
-        "name": "Titel",
+        "name": "Name",
         "description": "Beschreibung",
-        "submit": "Meldung absenden",
-        "submitting": "Wird gesendet...",
+        "submit": "Einreichen",
+        "submitInfo": "Antrag einreichen",
+        "submitReadyInfo": "Antrag kann eingereicht werden",
+        "selectType": "Typ auswählen",
+        "selectPriority": "Priorität auswählen",
+        "success": "Erfolg",
+        "successDescription": "Ihr Antrag wurde erfolgreich eingereicht",
+        "images": "Bilder",
+        "upload": {
+            "title": "Bilder hochladen",
+            "description": "Laden Sie Bilder zu Ihrem Antrag hoch",
+            "dropHere": "Bilder hier ablegen",
+            "error": "Fehler",
+            "errorDescription": "Beim Hochladen ist ein Fehler aufgetreten",
+            "converting": "Konvertiere..."
+        },
+        "uploadingImages": "Bilder werden hochgeladen...",
+        "submitting": "Wird eingereicht...",
         "validatingData": "Daten werden überprüft...",
         "processingImages": "Bilder werden verarbeitet...",
-        "savingReport": "Meldung wird gespeichert...",
+        "savingReport": "Antrag wird gespeichert...",
         "redirecting": "Weiterleitung...",
-        "selectType": "Art auswählen",
-        "selectPriority": "Priorität auswählen",
-        "success": "Meldung gesendet",
-        "successDescription": "Ihre Meldung wurde erfolgreich gesendet.",
-        "images": "Bilder",
-        "submitInfo": "Alle Felder müssen ausgefüllt sein. Bilder sind optional.",
-        "submitReadyInfo": "Alles ausgefüllt! Klicken Sie auf 'Meldung absenden', wenn Sie fertig sind.",
-        "upload": {
-            "title": "Datei hochladen",
-            "description": "Ziehen Sie Ihre Dateien hierher oder klicken Sie zum Hochladen",
-            "dropHere": "Hier ablegen",
-            "error": "Dateien nicht hochgeladen",
-            "errorDescription": "Die Dateien konnten nicht hochgeladen werden. Maximal 10 Dateien und 10MB Dateigröße.",
-            "converting": "Wird konvertiert zu JPG..."
+        "uploadSuccess": "Erfolgreich hochgeladen",
+        "uploadSuccessDescription": "Die Bilder wurden erfolgreich hochgeladen",
+        "uploadError": "Fehler beim Hochladen",
+        "generalError": "Ein Fehler ist aufgetreten"
+    },
+    "metadata": {
+        "types": {
+            "1": {
+                "name": "Defekte und Schäden",
+                "description": "Melden Sie Schäden an öffentlichen Einrichtungen"
+            },
+            "2": {
+                "name": "Verunreinigungen",
+                "description": "Melden Sie Verschmutzungen im öffentlichen Raum"
+            },
+            "3": {
+                "name": "Parkverstöße",
+                "description": "Melden Sie Falschparker"
+            }
         },
-        "uploadSuccess": "Upload Erfolgreich",
-        "uploadSuccessDescription": "Ihre Dateien wurden erfolgreich hochgeladen.",
-        "uploadError": "Dateien konnten nicht hochgeladen werden.",
-        "generalError": "Ein unerwarteter Fehler ist aufgetreten.",
-        "uploadingImages": "Bilder werden hochgeladen"
+        "statuses": {
+            "1": {
+                "name": "Neu",
+                "description": "Neu eingegangene Meldung"
+            },
+            "2": {
+                "name": "In Bearbeitung",
+                "description": "Meldung wird bearbeitet"
+            },
+            "3": {
+                "name": "Abgeschlossen",
+                "description": "Meldung wurde bearbeitet"
+            }
+        },
+        "prios": {
+            "0": {
+                "name": "Ungesetzt",
+                "description": "Unbekannte Priorität"
+            },
+            "1": {
+                "name": "Niedrig",
+                "description": "Niedrige Priorität"
+            },
+            "2": {
+                "name": "Mittel",
+                "description": "Mittlere Priorität"
+            },
+            "3": {
+                "name": "Hoch",
+                "description": "Hohe Priorität"
+            }
+        }
     }
 }
