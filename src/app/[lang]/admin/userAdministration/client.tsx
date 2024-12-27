@@ -21,7 +21,7 @@ export default function UserAdministrationPage() {
 
     return (
         <div className="container mx-auto py-10">
-            <h1>{dictionary?.adminPages.userAdministration.mainTitle}</h1>
+            <h1>{dictionary?.pages.admin.userAdministration.mainTitle}</h1>
             <DataTable columns={columns} data={filteredUsers} />
         </div>
     );

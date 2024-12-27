@@ -1,12 +1,13 @@
 import Link from "next/link";
 import { auth } from "@/server/auth";
-import { api, HydrateClient } from "@/trpc/server";
+import { HydrateClient } from "@/trpc/server";
 import { getDictionary } from "../../get-dictionary";
 import { type Locale } from "@/i18n-config";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Shield, Brush, Car } from "lucide-react";
 import { WobbleCard } from "@/components/ui/wobble-card";
 import { Footer } from "@/components/footer";
+import Image from "next/image";
 
 export default async function IndexPage({
   params: { lang },
@@ -25,22 +26,22 @@ export default async function IndexPage({
           <div className="flex flex-col md:flex-row items-center gap-12">
             <div className="flex-1 text-center md:text-left">
               <h1 className="text-4xl md:text-6xl font-bold tracking-tight mb-6">
-                {dictionary.landing.heroText}
+                {dictionary.pages.landing.heroText}
               </h1>
               <p className="text-lg md:text-xl text-muted-foreground mb-8 max-w-2xl">
-                {dictionary.landing.feature1Text}
+                {dictionary.pages.landing.heroDescription}
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
                 <Button size="lg" asChild>
                   <Link href={`/${lang}/report`}>
-                    {dictionary.landing.reportButton}
+                    {dictionary.pages.landing.reportButton}
                     <ArrowRight className="ml-2 h-4 w-4" />
                   </Link>
                 </Button>
                 {!session && (
                   <Button variant="outline" size="lg" asChild>
                     <Link href={`/${lang}/login`}>
-                      {dictionary.auth.login.title}
+                      {dictionary.pages.auth.login.title}
                     </Link>
                   </Button>
                 )}
@@ -49,8 +50,10 @@ export default async function IndexPage({
             <div className="flex-1">
               <div className="relative">
                 <div className="absolute inset-0 bg-gradient-to-br from-primary/20 via-accent/20 to-secondary/20 rounded-lg blur-3xl" />
-                <img
+                <Image
                   src="/hero-image.webp"
+                  height={420}
+                  width={730}
                   alt="City maintenance"
                   className="relative rounded-lg shadow-2xl"
                 />
@@ -76,7 +79,7 @@ export default async function IndexPage({
 
         <div className="container px-4 mx-auto relative">
           <h2 className="text-3xl font-bold text-center mb-12">
-            {dictionary.landing.featuresTitle}
+            {dictionary.pages.landing.featuresTitle}
           </h2>
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
             <WobbleCard containerClassName="col-span-1 min-h-[200px]">
@@ -84,10 +87,10 @@ export default async function IndexPage({
                 <Shield className="h-6 w-6 text-primary" />
               </div>
               <h3 className="text-xl font-semibold mb-3 text-gray-800 dark:text-white">
-                {dictionary.landing.feature1Title}
+                {dictionary.pages.landing.feature1Title}
               </h3>
-              <p className="text-gray-500 dark:text-neutral-800">
-                {dictionary.landing.feature1Text}
+              <p className="text-gray-500 dark:text-neutral-300">
+                {dictionary.pages.landing.feature1Text}
               </p>
             </WobbleCard>
 
@@ -96,10 +99,10 @@ export default async function IndexPage({
                 <Brush className="h-6 w-6 text-primary" />
               </div>
               <h3 className="text-xl font-semibold mb-3 text-gray-800 dark:text-white">
-                {dictionary.landing.feature2Title}
+                {dictionary.pages.landing.feature2Title}
               </h3>
-              <p className="text-gray-500 dark:text-neutral-800">
-                {dictionary.landing.feature2Text}
+              <p className="text-gray-500 dark:text-neutral-300">
+                {dictionary.pages.landing.feature2Text}
               </p>
             </WobbleCard>
 
@@ -108,10 +111,10 @@ export default async function IndexPage({
                 <Car className="h-6 w-6 text-primary" />
               </div>
               <h3 className="text-xl font-semibold mb-3 text-gray-800 dark:text-white">
-                {dictionary.landing.feature3Title}
+                {dictionary.pages.landing.feature3Title}
               </h3>
-              <p className="text-gray-500 dark:text-neutral-800">
-                {dictionary.landing.feature3Text}
+              <p className="text-gray-500 dark:text-neutral-300">
+                {dictionary.pages.landing.feature3Text}
               </p>
             </WobbleCard>
           </div>
@@ -168,7 +171,7 @@ export default async function IndexPage({
 
         <div className="container px-4 mx-auto text-center relative">
           <h2 className="text-3xl md:text-4xl font-bold mb-6 text-gray-800 dark:text-white">
-            {dictionary.landing.heroText}
+            {dictionary.pages.landing.heroText}
           </h2>
           <Button
             size="lg"
@@ -177,7 +180,7 @@ export default async function IndexPage({
             asChild
           >
             <Link href={`/${lang}/report`}>
-              {dictionary.landing.reportButton}
+              {dictionary.pages.landing.reportButton}
               <ArrowRight className="ml-2 h-4 w-4" />
             </Link>
           </Button>

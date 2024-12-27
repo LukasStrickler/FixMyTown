@@ -11,8 +11,8 @@ export async function generateMetadata({
 }): Promise<Metadata> {
     const dictionary = await getDictionary(lang);
     return {
-        title: dictionary.auth.account.title + " | FixMyTown",
-        description: dictionary.auth.account.description,
+        title: dictionary.pages.auth.account.title + " | FixMyTown",
+        description: dictionary.pages.auth.account.description,
     };
 }
 

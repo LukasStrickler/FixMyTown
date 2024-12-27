@@ -10,8 +10,8 @@ import { ResendTimer } from "./resend-timer";
 export async function generateMetadata({ params: { lang } }: { params: { lang: Locale } }): Promise<Metadata> {
     const dictionary = await getDictionary(lang);
     return {
-        title: dictionary.auth.verifyRequest.title + " | FixMyTown",
-        description: dictionary.auth.verifyRequest.description,
+        title: dictionary.pages.auth.verifyRequest.title + " | FixMyTown",
+        description: dictionary.pages.auth.verifyRequest.description,
     };
 }
 
@@ -32,17 +32,17 @@ export default async function VerifyRequestPage({
                         className="inline-flex items-center text-sm text-foreground/60 hover:text-foreground transition-colors"
                     >
                         <ArrowLeft className="mr-2 h-4 w-4" />
-                        {dictionary.auth.verifyRequest.backToHome}
+                        {dictionary.pages.auth.verifyRequest.backToHome}
                     </Link>
                     <h1 className="text-3xl font-bold text-center tracking-tight text-foreground">
-                        {dictionary.auth.verifyRequest.title}
+                        {dictionary.pages.auth.verifyRequest.title}
                     </h1>
                 </CardHeader>
                 <CardContent className="px-6">
                     <VerifyTokenInput dictionary={dictionary} />
                     <div className="text-center space-y-2 mt-4">
                         <p className="text-foreground/60">
-                            {dictionary.auth.verifyRequest.checkEmail}
+                            {dictionary.pages.auth.verifyRequest.checkEmail}
                         </p>
                         <ResendTimer dictionary={dictionary} />
                     </div>

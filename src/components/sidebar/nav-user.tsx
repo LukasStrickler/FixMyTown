@@ -2,11 +2,9 @@
 
 import {
   BadgeCheck,
-  Bell,
   ChevronsUpDown,
   LogOut,
 } from "lucide-react"
-
 
 import {
   DropdownMenu,
@@ -86,7 +84,7 @@ export function NavUser() {
                 <DropdownMenuItem asChild>
                   <Link href={`/${lang}/account`} className="flex items-center">
                     <BadgeCheck className="mr-2" />
-                    {dictionary?.userToggle.account}
+                    {dictionary?.layout?.navigation?.userToggle?.account}
                   </Link>
                 </DropdownMenuItem>
               </DropdownMenuGroup>
@@ -96,7 +94,7 @@ export function NavUser() {
                 className="text-destructive focus:bg-destructive focus:text-destructive-foreground"
               >
                 <LogOut className="mr-2" />
-                {dictionary?.userToggle.logout}
+                {dictionary?.layout?.navigation?.userToggle?.logout}
               </DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>

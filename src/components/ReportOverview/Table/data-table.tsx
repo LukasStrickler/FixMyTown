@@ -76,7 +76,7 @@ export function DataTable<TData extends Record<string, unknown>, TValue>({
         <div>
             <div className="flex items-center py-4">
                 <Input
-                    placeholder={dictionary.reportTable.search.placeholder}
+                    placeholder={dictionary.components.reportTable.search.placeholder}
                     value={globalFilter ?? ""}
                     onChange={(event) => setGlobalFilter(event.target.value)}
                     className="max-w-sm"

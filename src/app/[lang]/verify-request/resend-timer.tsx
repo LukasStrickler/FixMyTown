@@ -3,18 +3,11 @@
 import { useEffect, useState } from 'react';
 import { signIn } from "next-auth/react";
 import { Button } from '@/components/ui/button';
+import type { Dictionary } from '@/dictionaries/dictionary';
 
-interface VerifyRequestDictionary {
-    auth: {
-        verifyRequest: {
-            resendIn: string;
-            resend: string;
-        };
-    };
-}
 
 interface ResendTimerProps {
-    dictionary: VerifyRequestDictionary;
+    dictionary: Dictionary;
 }
 
 export function ResendTimer({ dictionary }: ResendTimerProps) {
@@ -57,8 +50,8 @@ export function ResendTimer({ dictionary }: ResendTimerProps) {
             className="bg-transparent font-normal hover:bg-transparent disabled:opacity-100 text-black/80 hover:text-black/60 disabled:text-muted-foreground/60 disabled:hover:text-muted-foreground/60"
         >
             {isActive
-                ? `${dictionary.auth.verifyRequest.resendIn} ${seconds}s`
-                : dictionary.auth.verifyRequest.resend}
+                ? `${dictionary.pages.auth.verifyRequest.resendIn} ${seconds}s`
+                : dictionary.pages.auth.verifyRequest.resend}
         </Button>
     );
 }

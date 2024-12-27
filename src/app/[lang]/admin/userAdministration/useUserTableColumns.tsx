@@ -34,15 +34,15 @@ export function useUserTableColumns() {
                     await mutation.mutateAsync({ userId, role });
                     await utils.user.getUsers.invalidate();
                     toast({
-                        title: dictionary?.adminPages.userAdministration.toastMessages.successTitle,
-                        description: dictionary?.adminPages.userAdministration.toastMessages.successMessage,
+                        title: dictionary?.pages.admin.userAdministration.toastMessages.successTitle,
+                        description: dictionary?.pages.admin.userAdministration.toastMessages.successMessage,
                         variant: "success",
                     });
                 } catch {
                     await utils.user.getUsers.invalidate();
                     toast({
-                        title: dictionary?.adminPages.userAdministration.toastMessages.errorTitle,
-                        description: dictionary?.adminPages.userAdministration.toastMessages.errorMessage,
+                        title: dictionary?.pages.admin.userAdministration.toastMessages.errorTitle,
+                        description: dictionary?.pages.admin.userAdministration.toastMessages.errorMessage,
                         variant: "destructive",
                     });
                 }
@@ -56,7 +56,7 @@ export function useUserTableColumns() {
                             variant="ghost"
                             onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
                         >
-                            {dictionary?.adminPages.userAdministration.IDColumnTitle}
+                            {dictionary?.pages.admin.userAdministration.IDColumnTitle}
                             <ArrowUpDown className="ml-2 h-4 w-4" />
                         </Button>
                     ),
@@ -68,7 +68,7 @@ export function useUserTableColumns() {
                             variant="ghost"
                             onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
                         >
-                            {dictionary?.adminPages.userAdministration.nameColumnTitle}
+                            {dictionary?.pages.admin.userAdministration.nameColumnTitle}
                             <ArrowUpDown className="ml-2 h-4 w-4" />
                         </Button>
                     ),
@@ -80,7 +80,7 @@ export function useUserTableColumns() {
                             variant="ghost"
                             onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
                         >
-                            {dictionary?.adminPages.userAdministration.emailColumnTitle}
+                            {dictionary?.pages.admin.userAdministration.emailColumnTitle}
                             <ArrowUpDown className="ml-2 h-4 w-4" />
                         </Button>
                     ),
@@ -92,7 +92,7 @@ export function useUserTableColumns() {
                             variant="ghost"
                             onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
                         >
-                            {dictionary?.adminPages.userAdministration.emailVerifiedColumnTitle}
+                            {dictionary?.pages.admin.userAdministration.emailVerifiedColumnTitle}
                             <ArrowUpDown className="ml-2 h-4 w-4" />
                         </Button>
                     ),
@@ -104,7 +104,7 @@ export function useUserTableColumns() {
                             variant="ghost"
                             onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
                         >
-                            {dictionary?.adminPages.userAdministration.imageColumnTitle}
+                            {dictionary?.pages.admin.userAdministration.imageColumnTitle}
                             <ArrowUpDown className="ml-2 h-4 w-4" />
                         </Button>
                     ),
@@ -116,7 +116,7 @@ export function useUserTableColumns() {
                             variant="ghost"
                             onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
                         >
-                            {dictionary?.adminPages.userAdministration.roleColumnTitle}
+                            {dictionary?.pages.admin.userAdministration.roleColumnTitle}
                             <ArrowUpDown className="ml-2 h-4 w-4" />
                         </Button>
                     ),
@@ -135,31 +135,31 @@ export function useUserTableColumns() {
                                         <MoreHorizontal className="h-4 w-4" />
                                     </Button>
                                 </DropdownMenuTrigger>
-                                <DropdownMenuContent align="end"> 
-                                    <DropdownMenuLabel>{dictionary?.adminPages.userAdministration.actions.actionsTitle}</DropdownMenuLabel>
+                                <DropdownMenuContent align="end">
+                                    <DropdownMenuLabel>{dictionary?.pages.admin.userAdministration.actions.actionsTitle}</DropdownMenuLabel>
                                     <DropdownMenuItem onClick={() => navigator.clipboard.writeText(user.id)}>
-                                        {dictionary?.adminPages.userAdministration.actions.copyID}
+                                        {dictionary?.pages.admin.userAdministration.actions.copyID}
                                     </DropdownMenuItem>
                                     {sessionUser?.id !== user.id && (
                                         <>
                                             <DropdownMenuSeparator />
-                                            <DropdownMenuItem 
+                                            <DropdownMenuItem
                                                 onClick={() => handleUpdateUserRole(user.id, "admin")}
                                                 disabled={user.role === "admin"}
                                             >
-                                                {dictionary?.adminPages.userAdministration.actions.changeRoleToAdmin}
+                                                {dictionary?.pages.admin.userAdministration.actions.changeRoleToAdmin}
                                             </DropdownMenuItem>
-                                            <DropdownMenuItem 
+                                            <DropdownMenuItem
                                                 onClick={() => handleUpdateUserRole(user.id, "worker")}
                                                 disabled={user.role === "worker"}
                                             >
-                                                {dictionary?.adminPages.userAdministration.actions.changeRoleToWorker}
+                                                {dictionary?.pages.admin.userAdministration.actions.changeRoleToWorker}
                                             </DropdownMenuItem>
-                                            <DropdownMenuItem 
+                                            <DropdownMenuItem
                                                 onClick={() => handleUpdateUserRole(user.id, "user")}
                                                 disabled={user.role === "user"}
                                             >
-                                                {dictionary?.adminPages.userAdministration.actions.changeRoleToUser}
+                                                {dictionary?.pages.admin.userAdministration.actions.changeRoleToUser}
                                             </DropdownMenuItem>
                                         </>
                                     )}
@@ -170,6 +170,7 @@ export function useUserTableColumns() {
                 },
             ];
         },
+        // eslint-disable-next-line react-hooks/exhaustive-deps
         [dictionary, utils, mutation, session]
     );
 }

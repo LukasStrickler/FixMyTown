@@ -1,124 +1,146 @@
 export interface Dictionary {
-    index: {
-        helloWorld: string;
-    },
-    modeToggle: {
-        title: string;
-        dark: string;
-        light: string;
-        system: string;
-    },
-    adminPages: {
-        userAdministration: {
-            mainTitle: string;
-            filterByEmailText: string;
-            filterByRoleText: string;
-            filterByNameText: string;
-            IDColumnTitle: string;
-            nameColumnTitle: string;
-            emailColumnTitle: string;
-            emailVerifiedColumnTitle: string;
-            imageColumnTitle: string;
-            roleColumnTitle: string;
-
-            toastMessages: {
-                successTitle: string;
-                successMessage: string;
-                errorTitle: string;
-                errorMessage: string;
-            };
-            actions: {
-                actionsTitle: string;
-                copyID: string;
-                changeRoleToAdmin: string;
-                changeRoleToWorker: string;
-                changeRoleToUser: string;
+    // Pages
+    pages: {
+        // Landing page
+        landing: {
+            heroText: string;
+            heroDescription: string;
+            reportButton: string;
+            featuresTitle: string;
+            feature1Title: string;
+            feature1Text: string;
+            feature2Title: string;
+            feature2Text: string;
+            feature3Title: string;
+            feature3Text: string;
+        },
+        // Auth pages
+        auth: {
+            login: {
+                title: string;
+                description: string;
+                emailLabel: string;
+                emailPlaceholder: string;
+                submit: string;
+                submitLoading: string;
+                backToHome: string;
+            },
+            verifyRequest: {
+                title: string;
+                description: string;
+                backToHome: string;
+                checkEmail: string;
+                enterCode: string;
+                enterCodeInput: string;
+                verifyButton: string;
+                resendIn: string;
+                resend: string;
+            },
+            error: {
+                title: string;
+                description: string;
+                Configuration: string;
+                Verification: string;
+                LogoutError: string;
+                Default: string;
+                backToHome: string;
+            },
+            account: {
+                title: string;
+                description: string;
+                profile: {
+                    title: string;
+                    email: string;
+                    role: string;
+                    signOut: string;
+                    backToWorkspace: string;
+                },
+                settings: {
+                    title: string;
+                    theme: string;
+                    language: string;
+                }
+            }
+        },
+        // Admin pages
+        admin: {
+            userAdministration: {
+                mainTitle: string;
+                filterByEmailText: string;
+                filterByRoleText: string;
+                filterByNameText: string;
+                IDColumnTitle: string;
+                nameColumnTitle: string;
+                emailColumnTitle: string;
+                emailVerifiedColumnTitle: string;
+                imageColumnTitle: string;
+                roleColumnTitle: string;
+                toastMessages: {
+                    successTitle: string;
+                    successMessage: string;
+                    errorTitle: string;
+                    errorMessage: string;
+                },
+                actions: {
+                    actionsTitle: string;
+                    copyID: string;
+                    changeRoleToAdmin: string;
+                    changeRoleToWorker: string;
+                    changeRoleToUser: string;
+                }
             }
         }
     },
-    userToggle: {
-        account: string;
-        logout: string;
-    },
-    workspaces: {
-        workspaceSwitcherTitle: string;
-        more: string;
-        adminWorkspace: {
-            adminWorkspaceTitle: string;
-            projects: {
-                userAdministration: string;
-            }
-        },
-        workerWorkspace: {
-            workerWorkspaceTitle: string;
-            projects: {
-                reportMapView: string;
-                reportTableView: string;
-            }
-        },
-        userWorkspace: {
-            userWorkspaceTitle: string;
-            navItems: {
-                myReports: {
-                    folderTitle: string,
-                    myReports: string,
-                }
-                reportSomething: {
-                    folderTitle: string;
-                    defectsDamages: string;
-                    contaminations: string;
-                    parkingViolations: string;
-                }
-            };
-        },
 
-    }
-    auth: {
-        login: {
-            title: string;
-            description: string;
-            emailLabel: string;
-            emailPlaceholder: string;
-            submit: string;
-            backToHome: string;
-        },
-        verifyRequest: {
-            title: string;
-            description: string;
-            backToHome: string;
-            checkEmail: string;
-            enterCode: string;
-            enterCodeInput: string;
-            verifyButton: string;
-            resendIn: string;
-            resend: string;
-        },
-        error: {
-            title: string;
-            description: string;
-            Configuration: string;
-            Verification: string;
-            LogoutError: string;
-            Default: string;
-            backToHome: string;
-        },
-        account: {
-            title: string;
-            description: string;
-            profile: {
+    // Layout components
+    layout: {
+        navigation: {
+            workspaces: {
+                workspaceSwitcherTitle: string;
+                more: string;
+                adminWorkspace: {
+                    adminWorkspaceTitle: string;
+                    projects: {
+                        userAdministration: string;
+                    }
+                },
+                workerWorkspace: {
+                    workerWorkspaceTitle: string;
+                    projects: {
+                        reportMapView: string;
+                        reportTableView: string;
+                    }
+                },
+                userWorkspace: {
+                    userWorkspaceTitle: string;
+                    navItems: {
+                        myReports: {
+                            folderTitle: string;
+                            myReports: string;
+                        },
+                        reportSomething: {
+                            folderTitle: string;
+                            defectsDamages: string;
+                            contaminations: string;
+                            parkingViolations: string;
+                        }
+                    }
+                }
+            },
+            userToggle: {
+                account: string;
+                logout: string;
+            },
+            modeToggle: {
                 title: string;
-                email: string;
-                role: string;
-                signOut: string;
-                backToWorkspace: string;
-            };
-            settings: {
-                title: string;
-                theme: string;
-                language: string;
-            };
+                dark: string;
+                light: string;
+                system: string;
+            }
         }
     },
+
+    // Reusable components
     components: {
         locationPicker: {
             title: string;
@@ -144,92 +166,85 @@ export interface Dictionary {
         mapLegend: {
             title: string;
         },
-    },
-    form: {
-        type: string;
-        priority: string;
-        location: string;
-        name: string;
-        description: string;
-        submit: string;
-        submitInfo: string;
-        submitReadyInfo: string;
-        selectType: string;
-        selectPriority: string;
-        success: string;
-        successDescription: string;
-        images: string;
-        upload: {
-            title: string;
-            description: string;
-            dropHere: string;
-            error: string;
-            errorDescription: string;
-            converting: string;
+        reportTable: {
+            search: {
+                placeholder: string;
+            },
+            columns: {
+                name: string;
+                description: string;
+                type: string;
+                status: string;
+                pictures: string;
+                location: string;
+                createdAt: string;
+            },
+            actions: {
+                label: string;
+                copyId: string;
+                viewDetails: string;
+                viewLocation: string;
+                copyAll: string;
+            },
+            noResults: string;
         },
-        uploadingImages: string;
-        submitting: string;
-        validatingData: string;
-        processingImages: string;
-        savingReport: string;
-        redirecting: string;
-        uploadSuccess: string;
-        uploadSuccessDescription: string;
-        uploadError: string;
-        generalError: string;
+        reportForm: {
+            type: string;
+            priority: string;
+            location: string;
+            name: string;
+            description: string;
+            submit: string;
+            submitInfo: string;
+            submitReadyInfo: string;
+            selectType: string;
+            selectPriority: string;
+            success: string;
+            successDescription: string;
+            images: string;
+            upload: {
+                title: string;
+                description: string;
+                dropHere: string;
+                error: string;
+                errorDescription: string;
+                converting: string;
+            },
+            uploadingImages: string;
+            submitting: string;
+            validatingData: string;
+            processingImages: string;
+            savingReport: string;
+            redirecting: string;
+            uploadSuccess: string;
+            uploadSuccessDescription: string;
+            uploadError: string;
+            generalError: string;
+        }
     },
+
+    // Common/shared strings
     common: {
         seeDetails: string;
     },
-    reportTable: {
-        search: {
-            placeholder: string;
-        },
-        columns: {
-            name: string;
-            description: string;
-            type: string;
-            status: string;
-            pictures: string;
-            location: string;
-            createdAt: string;
-        },
-        actions: {
-            label: string;
-            copyId: string;
-            viewDetails: string;
-            viewLocation: string;
-            copyAll: string;
-        },
-        noResults: string;
-    },
+
+    // Metadata of the report
     metadata: {
         types: {
             "1": { name: string; description: string };
             "2": { name: string; description: string };
             "3": { name: string; description: string };
-        };
+        },
         statuses: {
             "1": { name: string; description: string };
             "2": { name: string; description: string };
             "3": { name: string; description: string };
-        };
+        },
         prios: {
             "0": { name: string; description: string };
             "1": { name: string; description: string };
             "2": { name: string; description: string };
             "3": { name: string; description: string };
-        };
-    },
-    landing: {
-        heroText: string;
-        reportButton: string;
-        featuresTitle: string;
-        feature1Title: string;
-        feature1Text: string;
-        feature2Title: string;
-        feature2Text: string;
-        feature3Title: string;
-        feature3Text: string;
+        }
     }
 }

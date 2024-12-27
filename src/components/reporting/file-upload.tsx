@@ -124,8 +124,8 @@ export const FileUpload = ({
 
             if (wouldExceedSizeLimit || wouldExceedFileLimit) {
                 toast({
-                    title: dictionary.form.upload.error,
-                    description: dictionary.form.upload.errorDescription,
+                    title: dictionary.components.reportForm.upload.error,
+                    description: dictionary.components.reportForm.upload.errorDescription,
                     variant: "destructive",
                 });
                 return prevFiles;
@@ -194,10 +194,10 @@ export const FileUpload = ({
                 </div>
                 <div className="flex flex-col items-center justify-center">
                     <p className="relative z-20 font-sans font-bold text-neutral-700 dark:text-neutral-300 text-base">
-                        {dictionary.form.upload.title}
+                        {dictionary.components.reportForm.upload.title}
                     </p>
                     <p className="relative z-20 font-sans font-normal text-neutral-400 dark:text-neutral-400 text-base mt-2">
-                        {dictionary.form.upload.description}
+                        {dictionary.components.reportForm.upload.description}
                     </p>
                     <div className="relative w-full mt-10 max-w-xl mx-auto">
                         {files.length > 0 &&
@@ -235,7 +235,7 @@ export const FileUpload = ({
                                             layout
                                             className="rounded-lg px-2 py-1 w-fit flex-shrink-0 text-sm text-neutral-600 dark:bg-neutral-800 dark:text-white shadow-input"
                                         >
-                                            {file.size === 0 ? dictionary.form.upload.converting : `${(file.size / (1024 * 1024)).toFixed(2)} MB`}
+                                            {file.size === 0 ? dictionary.components.reportForm.upload.converting : `${(file.size / (1024 * 1024)).toFixed(2)} MB`}
                                         </motion.p>
                                     </div>
 
@@ -299,7 +299,7 @@ export const FileUpload = ({
                                         animate={{ opacity: 1 }}
                                         className="text-neutral-600 flex flex-col items-center"
                                     >
-                                        {dictionary.form.upload.dropHere}
+                                        {dictionary.components.reportForm.upload.dropHere}
                                         <IconUpload className="h-4 w-4 text-neutral-600 dark:text-neutral-400" />
                                     </motion.p>
                                 ) : (

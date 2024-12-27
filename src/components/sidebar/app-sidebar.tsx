@@ -51,17 +51,17 @@ export function AppSidebar({
     user?.role === "admin"
       ? [
         {
-          name: dictionary?.workspaces.adminWorkspace.adminWorkspaceTitle ?? "Admin Workspace",
+          name: dictionary?.layout?.navigation?.workspaces?.adminWorkspace?.adminWorkspaceTitle ?? "Admin Workspace",
           icon: <Shield />,
           workspaceType: "admin",
         },
         {
-          name: dictionary?.workspaces.workerWorkspace.workerWorkspaceTitle ?? "Worker Workspace",
+          name: dictionary?.layout?.navigation?.workspaces?.workerWorkspace?.workerWorkspaceTitle ?? "Worker Workspace",
           icon: <HelpCircle />,
           workspaceType: "worker",
         },
         {
-          name: dictionary?.workspaces.userWorkspace.userWorkspaceTitle ?? "Default Workspace Title",
+          name: dictionary?.layout?.navigation?.workspaces?.userWorkspace?.userWorkspaceTitle ?? "Default Workspace Title",
           icon: <User />,
           workspaceType: "user",
         },
@@ -69,19 +69,19 @@ export function AppSidebar({
       : user?.role === "worker"
         ? [
           {
-            name: dictionary?.workspaces.workerWorkspace.workerWorkspaceTitle ?? "Worker Workspace",
+            name: dictionary?.layout?.navigation?.workspaces?.workerWorkspace?.workerWorkspaceTitle ?? "Worker Workspace",
             icon: <HelpCircle />,
             workspaceType: "worker",
           },
           {
-            name: dictionary?.workspaces.userWorkspace.userWorkspaceTitle ?? "User Workspace",
+            name: dictionary?.layout?.navigation?.workspaces?.userWorkspace?.userWorkspaceTitle ?? "User Workspace",
             icon: <User />,
             workspaceType: "user",
           },
         ]
         : [
           {
-            name: dictionary?.workspaces.userWorkspace.userWorkspaceTitle ?? "Default Workspace Title",
+            name: dictionary?.layout?.navigation?.workspaces?.userWorkspace?.userWorkspaceTitle ?? "Default Workspace Title",
             icon: <User />,
             workspaceType: "user",
           },
@@ -106,7 +106,9 @@ export function AppSidebar({
 
   React.useEffect(() => {
     setActiveWorkspace(getInitialWorkspace());
-  }, [pathname, user?.role]);
+  },
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [pathname, user?.role]);
 
   if (!dictionary || status === "loading") {
     return <SidebarSkeleton />;
@@ -116,7 +118,7 @@ export function AppSidebar({
     return <div className="flex justify-center items-center h-screen">
       <Sidebar>
         <SidebarHeader className="flex justify-center items-center h-screen">
-          <Button>{dictionary?.auth.login.title}</Button>
+          <Button>{dictionary?.pages?.auth?.login?.title}</Button>
         </SidebarHeader>
       </Sidebar>
     </div>;
@@ -131,7 +133,7 @@ export function AppSidebar({
           navMain: [],
           projects: [
             {
-              name: dictionary.workspaces.adminWorkspace.projects.userAdministration,
+              name: dictionary.layout.navigation.workspaces.adminWorkspace.projects.userAdministration,
               url: `/${lang}/admin/userAdministration`,
               icon: Frame,
             },
@@ -143,12 +145,12 @@ export function AppSidebar({
           navMain: [],
           projects: [
             {
-              name: dictionary.workspaces.workerWorkspace.projects.reportMapView,
+              name: dictionary.layout.navigation.workspaces.workerWorkspace.projects.reportMapView,
               url: `/${lang}/worker/report/MapView`,
               icon: Frame,
             },
             {
-              name: dictionary.workspaces.workerWorkspace.projects.reportTableView,
+              name: dictionary.layout.navigation.workspaces.workerWorkspace.projects.reportTableView,
               url: `/${lang}/worker/report/TableView`,
               icon: Frame,
             },
@@ -160,26 +162,26 @@ export function AppSidebar({
         return {
           navMain: [
             {
-              title: dictionary.workspaces.userWorkspace.navItems.myReports.myReports,
+              title: dictionary.layout.navigation.workspaces.userWorkspace.navItems.myReports.myReports,
               url: `/${lang}/myReports`,
               icon: FileText,
             },
             {
-              title: dictionary.workspaces.userWorkspace.navItems.reportSomething.folderTitle,
+              title: dictionary.layout.navigation.workspaces.userWorkspace.navItems.reportSomething.folderTitle,
               url: "#",
               icon: FolderPlus,
               isActive: true,
               items: [
                 {
-                  title: dictionary.workspaces.userWorkspace.navItems.reportSomething.defectsDamages,
+                  title: dictionary.layout.navigation.workspaces.userWorkspace.navItems.reportSomething.defectsDamages,
                   url: `/${lang}/report/defects-damage`,
                 },
                 {
-                  title: dictionary.workspaces.userWorkspace.navItems.reportSomething.contaminations,
+                  title: dictionary.layout.navigation.workspaces.userWorkspace.navItems.reportSomething.contaminations,
                   url: `/${lang}/report/contamination`,
                 },
                 {
-                  title: dictionary.workspaces.userWorkspace.navItems.reportSomething.parkingViolations,
+                  title: dictionary.layout.navigation.workspaces.userWorkspace.navItems.reportSomething.parkingViolations,
                   url: `/${lang}/report/parking-violation`,
                 },
               ],

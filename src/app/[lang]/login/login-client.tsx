@@ -80,22 +80,22 @@ export function LoginClient({ dictionary }: LoginClientProps) {
                         className="inline-flex items-center text-sm text-muted-foreground hover:text-foreground transition-colors"
                     >
                         <ArrowLeft className="mr-2 h-4 w-4" />
-                        {dictionary.auth.login.backToHome}
+                        {dictionary.pages.auth.login.backToHome}
                     </Link>
                     <h1 className="text-3xl font-bold text-center tracking-tight">
-                        {dictionary.auth.login.title} <br /> <i>FixMyTown</i>
+                        {dictionary.pages.auth.login.title} <br /> <i>FixMyTown</i>
                     </h1>
                 </CardHeader>
                 <CardContent className="px-6">
                     <form onSubmit={handleSubmit} className="space-y-6">
                         <div className="space-y-3">
                             <Label htmlFor="email" className="text-sm font-medium">
-                                {dictionary.auth.login.emailLabel}
+                                {dictionary.pages.auth.login.emailLabel}
                             </Label>
                             <Input
                                 type="email"
                                 id="email"
-                                placeholder={dictionary.auth.login.emailPlaceholder}
+                                placeholder={dictionary.pages.auth.login.emailPlaceholder}
                                 value={email}
                                 onChange={(e) => setEmail(e.target.value)}
                                 required
@@ -107,7 +107,7 @@ export function LoginClient({ dictionary }: LoginClientProps) {
                             className="w-full h-11 font-medium"
                             disabled={isLoading}
                         >
-                            {isLoading ? "Wird gesendet..." : dictionary.auth.login.submit}
+                            {isLoading ? dictionary.pages.auth.login.submitLoading : dictionary.pages.auth.login.submit}
                         </Button>
                     </form>
                 </CardContent>
