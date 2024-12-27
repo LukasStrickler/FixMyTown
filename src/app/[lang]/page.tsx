@@ -83,10 +83,10 @@ export default async function IndexPage({
               <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mb-4">
                 <Shield className="h-6 w-6 text-primary" />
               </div>
-              <h3 className="text-xl font-semibold mb-3 text-white">
+              <h3 className="text-xl font-semibold mb-3 text-gray-800 dark:text-white">
                 {dictionary.landing.feature1Title}
               </h3>
-              <p className="text-neutral-200">
+              <p className="text-gray-500 dark:text-neutral-800">
                 {dictionary.landing.feature1Text}
               </p>
             </WobbleCard>
@@ -95,10 +95,10 @@ export default async function IndexPage({
               <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mb-4">
                 <Brush className="h-6 w-6 text-primary" />
               </div>
-              <h3 className="text-xl font-semibold mb-3 text-white">
+              <h3 className="text-xl font-semibold mb-3 text-gray-800 dark:text-white">
                 {dictionary.landing.feature2Title}
               </h3>
-              <p className="text-neutral-200">
+              <p className="text-gray-500 dark:text-neutral-800">
                 {dictionary.landing.feature2Text}
               </p>
             </WobbleCard>
@@ -107,10 +107,10 @@ export default async function IndexPage({
               <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mb-4">
                 <Car className="h-6 w-6 text-primary" />
               </div>
-              <h3 className="text-xl font-semibold mb-3 text-white">
+              <h3 className="text-xl font-semibold mb-3 text-gray-800 dark:text-white">
                 {dictionary.landing.feature3Title}
               </h3>
-              <p className="text-neutral-200">
+              <p className="text-gray-500 dark:text-neutral-800">
                 {dictionary.landing.feature3Text}
               </p>
             </WobbleCard>
@@ -125,14 +125,30 @@ export default async function IndexPage({
         <div
           className="absolute inset-0 opacity-10"
           style={{
+            backgroundImage: `radial-gradient(at 40% 40%, rgb(0, 0, 0) 0, transparent 50%),
+              radial-gradient(at 90% 90%, rgb(0, 0, 0) 0, transparent 50%)`,
+          }}
+          data-theme="light"
+        />
+        <div
+          className="absolute inset-0 opacity-10 hidden dark:block"
+          style={{
             backgroundImage: `radial-gradient(at 40% 40%, rgb(255, 255, 255) 0, transparent 50%),
-              radial-gradient(at 90% 90%, rgb(255, 255, 255) 0, transparent 50%)`
+              radial-gradient(at 90% 90%, rgb(255, 255, 255) 0, transparent 50%)`,
           }}
         />
 
         {/* Grid pattern */}
         <div
-          className="absolute inset-0"
+          className="absolute inset-0 block dark:hidden"
+          style={{
+            backgroundSize: '40px 40px',
+            backgroundImage: `linear-gradient(to right, rgba(0, 0, 0, 0.1) 1px, transparent 1px),
+              linear-gradient(to bottom, rgba(0, 0, 0, 0.1) 1px, transparent 1px)`
+          }}
+        />
+        <div
+          className="absolute inset-0 hidden dark:block"
           style={{
             backgroundSize: '40px 40px',
             backgroundImage: `linear-gradient(to right, rgba(255, 255, 255, 0.1) 1px, transparent 1px),
@@ -151,13 +167,13 @@ export default async function IndexPage({
         />
 
         <div className="container px-4 mx-auto text-center relative">
-          <h2 className="text-3xl md:text-4xl font-bold mb-6 text-white">
+          <h2 className="text-3xl md:text-4xl font-bold mb-6 text-gray-800 dark:text-white">
             {dictionary.landing.heroText}
           </h2>
           <Button
             size="lg"
-            variant="secondary"
-            className="backdrop-blur-sm bg-white/10 hover:bg-white/20 transition-colors"
+            variant="ghost"
+            className="backdrop-blur-xs bg-white/10 hover:bg-white/30 hover:backdrop-blur-sm transition-colors"
             asChild
           >
             <Link href={`/${lang}/report`}>
