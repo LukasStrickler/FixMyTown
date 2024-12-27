@@ -141,7 +141,10 @@ export interface Dictionary {
                 status: string;
             };
             loading: string;
-        }
+        },
+        mapLegend: {
+            title: string;
+        },
     },
     form: {
         type: string;
@@ -180,6 +183,9 @@ export interface Dictionary {
         seeDetails: string;
     },
     reportTable: {
+        search: {
+            placeholder: string;
+        },
         columns: {
             name: string;
             description: string;
@@ -210,6 +216,7 @@ export interface Dictionary {
             "3": { name: string; description: string };
         };
         prios: {
+            "0": { name: string; description: string };
             "1": { name: string; description: string };
             "2": { name: string; description: string };
             "3": { name: string; description: string };

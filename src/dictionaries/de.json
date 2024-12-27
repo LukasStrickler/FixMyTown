@@ -76,6 +76,9 @@
         "seeDetails": "Details anzeigen"
     },
     "reportTable": {
+        "search": {
+            "placeholder": "Suche nach Name oder Beschreibung ..."
+        },
         "columns": {
             "name": "Name",
             "description": "Beschreibung",
@@ -161,6 +164,9 @@
                 "status": "Status"
             },
             "loading": "Wird geladen..."
+        },
+        "mapLegend": {
+            "title": "Legende"
         }
     },
     "form": {
@@ -226,6 +232,10 @@
             }
         },
         "prios": {
+            "0": {
+                "name": "Ungesetzt",
+                "description": "Unbekannte Priorität"
+            },
             "1": {
                 "name": "Niedrig",
                 "description": "Niedrige Priorität"
