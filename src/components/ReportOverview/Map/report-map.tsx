@@ -4,6 +4,7 @@ import dynamic from 'next/dynamic';
 import 'leaflet/dist/leaflet.css';
 import type { Dictionary } from '@/dictionaries/dictionary';
 import { Skeleton } from "@/components/ui/skeleton";
+import Legend from './map-legend';
 
 interface ReportMapProps {
     reports: {
@@ -38,7 +39,7 @@ const MapWithNoSSR = dynamic(
     {
         ssr: false,
         loading: () => (
-            <Skeleton className="w-full h-[400px] rounded-lg" />
+            <Skeleton className="w-full h-[600px] rounded-lg" />
         )
     }
 );
@@ -52,11 +53,18 @@ export default function ReportMap({
 
     return (
         <div style={{ '--map-height': height } as React.CSSProperties}>
-            <MapWithNoSSR
-                reports={reports}
-                dictionary={dictionary}
-                worker={worker}
-            />
+            <div className="flex gap-4">
+                <div className="flex-1">
+                    <MapWithNoSSR
+                        reports={reports}
+                        dictionary={dictionary}
+                        worker={worker}
+                    />
+                </div>
+                <div className="w-[200px]">
+                    <Legend dictionary={dictionary} />
+                </div>
+            </div>
         </div>
     );
 } 

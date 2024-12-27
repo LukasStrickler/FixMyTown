@@ -33,12 +33,16 @@ interface MapContentProps {
     worker?: boolean;
 }
 
-const createCustomIcon = (typeId: number, prioId: number, statusId: number) => {
+export const createSvgContent = (typeId: number, prioId: number, statusId: number, restrictTo = 'all'): string => {
     // Size based on priority (0: unset, 1: small, 2: medium, 3: large)
-    const size = 24 + (prioId * 8);
+    const size = restrictTo === 'all' || restrictTo === 'size'
+        ? 24 + (prioId * 8)
+        : 32; // Default size if size is not included
 
     // Color based on status
-    const color = `hsl(${(statusId * 100) % 360} 40% 40%)`;
+    const color = restrictTo === 'all' || restrictTo === 'color'
+        ? `hsl(${(statusId * 100) % 360} 40% 40%)`
+        : 'hsl(223 40% 40%)'; // Default blue-ish color if color is not included
 
     // Different shapes for the center based on type
     const innerShapes = {
@@ -47,21 +51,28 @@ const createCustomIcon = (typeId: number, prioId: number, statusId: number) => {
         3: `<polygon points="12 7 15 13 9 13"/>`, // Triangle
     };
 
-    const innerShape = innerShapes[typeId as keyof typeof innerShapes] || innerShapes[1];
+    const innerShape = restrictTo === 'all' || restrictTo === 'shape'
+        ? (innerShapes[typeId as keyof typeof innerShapes] || innerShapes[1])
+        : ''; // No inner shape if shape is not included
 
-    const iconHtml = document.createElement('div');
-    iconHtml.innerHTML = `
+    return `
         <svg xmlns="http://www.w3.org/2000/svg" width="${size}" height="${size}" viewBox="0 0 24 24" fill="${color}" stroke="hsl(0 0% 100%)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
             <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/>
             ${innerShape}
         </svg>
     `;
+};
+
+export const createCustomIcon = (typeId: number, prioId: number, statusId: number, restrictTo = 'all') => {
+    const svgContent = createSvgContent(typeId, prioId, statusId, restrictTo);
+    const iconHtml = document.createElement('div');
+    iconHtml.innerHTML = svgContent;
 
     return divIcon({
         html: iconHtml.innerHTML,
         className: 'custom-marker-icon',
-        iconSize: [size, size],
-        iconAnchor: [size / 2, size],
+        iconSize: [24 + (prioId * 8), 24 + (prioId * 8)],
+        iconAnchor: [(24 + (prioId * 8)) / 2, 24 + (prioId * 8)],
     });
 };
 
@@ -77,7 +88,7 @@ export default function MapContent({
         : defaultCenter;
 
     return (
-        <div className="w-full h-[400px] rounded-lg overflow-hidden border border-border">
+        <div className="w-full h-[600px] rounded-lg overflow-hidden border border-border">
             <MapContainer
                 center={[center[0], center[1]]}
                 zoom={13}
