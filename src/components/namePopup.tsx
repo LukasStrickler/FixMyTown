@@ -11,6 +11,7 @@ import { useDictionary } from "@/components/provider/dictionaryProvider";
 export default function NamePopup() {
   const [showPopup, setShowPopup] = useState(false);
   const [name, setName] = useState("");
+  const [termsAccepted, setTermsAccepted] = useState(false);
 
   const { data: session, status } = useSession();
   const { toast } = useToast();
@@ -20,10 +21,30 @@ export default function NamePopup() {
   const userId = session?.user?.id;
 
   const handleUpdateName = async () => {
+    const nameRegex = /^[a-zA-Z0-9 ]{1,50}$/;
+
     if (!userId || !name.trim()) {
       toast({
         title: dictionary?.popup.errorTitle,
         description: dictionary?.popup.errorMessageA,
+        variant: "destructive",
+      });
+      return;
+    }
+
+    if (!nameRegex.test(name)) {
+      toast({
+        title: dictionary?.popup.errorTitle,
+        description: dictionary?.popup.errorMessageA,
+        variant: "destructive",
+      });
+      return;
+    }
+
+    if (!termsAccepted) {
+      toast({
+        title: dictionary?.popup.errorTitle,
+        description: dictionary?.popup.errorMessageC,
         variant: "destructive",
       });
       return;
@@ -68,6 +89,18 @@ export default function NamePopup() {
           onChange={(e) => setName(e.target.value)}
           className="text-foreground"
         />
+        <div className="flex items-center space-x-2 mt-2">
+          <input
+            type="checkbox"
+            id="terms"
+            checked={termsAccepted}
+            onChange={(e) => setTermsAccepted(e.target.checked)}
+            className="h-4 w-4"
+          />
+          <label htmlFor="terms" className="text-foreground">
+            {dictionary.popup.termsAndConditions}
+          </label>
+        </div>
         <Button onClick={handleUpdateName} className="mt-4">
           {dictionary.popup.saveButton}
         </Button>

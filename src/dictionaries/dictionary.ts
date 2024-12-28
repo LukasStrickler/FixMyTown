@@ -185,7 +185,9 @@ export interface Dictionary {
         successTitle: string;
         successMessage: string;
         errorTitle: string;
+        termsAndConditions: string;
         errorMessageA: string;
         errorMessageB: string;
+        errorMessageC: string;
     }    
 }
