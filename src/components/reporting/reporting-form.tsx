@@ -88,14 +88,14 @@ export function ReportingForm({ dictionary, preselectedType, showUpload = true }
                                 name="type"
                                 render={({ field }) => (
                                     <FormItem>
-                                        <FormLabel>{dictionary.form.type}</FormLabel>
+                                        <FormLabel>{dictionary.components.reportForm.type}</FormLabel>
                                         <Select
                                             onValueChange={(value) => field.onChange(parseInt(value))}
                                             defaultValue={field.value?.toString()}
                                         >
                                             <FormControl>
                                                 <SelectTrigger className="w-full">
-                                                    <SelectValue placeholder={dictionary.form.selectType} />
+                                                    <SelectValue placeholder={dictionary.components.reportForm.selectType} />
                                                 </SelectTrigger>
                                             </FormControl>
                                             <SelectContent>
@@ -116,7 +116,7 @@ export function ReportingForm({ dictionary, preselectedType, showUpload = true }
                                 name="name"
                                 render={({ field }) => (
                                     <FormItem>
-                                        <FormLabel>{dictionary.form.name}</FormLabel>
+                                        <FormLabel>{dictionary.components.reportForm.name}</FormLabel>
                                         <FormControl>
                                             <Input {...field} maxLength={50} />
                                         </FormControl>
@@ -131,7 +131,7 @@ export function ReportingForm({ dictionary, preselectedType, showUpload = true }
                             name="description"
                             render={({ field }) => (
                                 <FormItem>
-                                    <FormLabel>{dictionary.form.description}</FormLabel>
+                                    <FormLabel>{dictionary.components.reportForm.description}</FormLabel>
                                     <FormControl>
                                         <Textarea {...field} />
                                     </FormControl>
@@ -143,7 +143,7 @@ export function ReportingForm({ dictionary, preselectedType, showUpload = true }
 
                     <div className="mt-4">
                         <FormItem>
-                            <FormLabel>{dictionary.form.location}</FormLabel>
+                            <FormLabel>{dictionary.components.reportForm.location}</FormLabel>
                             <FormControl>
                                 <Card>
                                     <CardContent className="pt-6 relative z-10">
@@ -174,7 +174,7 @@ export function ReportingForm({ dictionary, preselectedType, showUpload = true }
 
                     {showUpload && (
                         <div className="mt-4">
-                            <FormLabel>{dictionary.form.images}</FormLabel>
+                            <FormLabel>{dictionary.components.reportForm.images}</FormLabel>
                             <FileUpload onChange={handleUploadComplete} dictionary={dictionary} setIsImageProcessing={setIsImageProcessing} />
                         </div>
                     )}
@@ -185,15 +185,15 @@ export function ReportingForm({ dictionary, preselectedType, showUpload = true }
                             disabled={isSubmitting || !isLocked || !form.formState.isValid || isImageProcessing}
                             className="shrink-0"
                         >
-                            {isSubmitting ? dictionary.form.submitting : dictionary.form.submit}
+                            {isSubmitting ? dictionary.components.reportForm.submitting : dictionary.components.reportForm.submit}
                         </Button>
                         {(isSubmitting || !isLocked || !form.formState.isValid || isImageProcessing) ? (
                             <p className="text-sm text-muted-foreground flex-1">
-                                {dictionary.form.submitInfo}
+                                {dictionary.components.reportForm.submitInfo}
                             </p>
                         ) : (
                             <p className="text-sm text-green-600 dark:text-green-400 flex-1">
-                                {dictionary.form.submitReadyInfo}
+                                {dictionary.components.reportForm.submitReadyInfo}
                             </p>
                         )}
                     </div>

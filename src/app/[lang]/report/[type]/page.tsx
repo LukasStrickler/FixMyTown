@@ -1,9 +1,9 @@
 import { HydrateClient } from "@/trpc/server";
 import { type Locale } from "@/i18n-config";
-import { notFound } from "next/navigation";
+import { notFound, redirect } from "next/navigation";
 import { ReportingForm } from "@/components/reporting/reporting-form";
 import { getDictionary } from "@/get-dictionary";
-
+import { auth } from "@/server/auth";
 // Define valid report types with slug to ID mapping
 const VALID_REPORT_TYPES = {
     "defects-damage": "1",      // Defekte und Schäden
@@ -21,6 +21,10 @@ export default async function ReportPage({
 }: {
     params: { lang: Locale; type: ReportSlug };
 }) {
+    const session = await auth();
+    if (!session) {
+        return redirect(`/${lang}/login`);
+    }
     // Check if the type exists in our valid report types
     if (!(type in VALID_REPORT_TYPES)) {
         notFound();

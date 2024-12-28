@@ -1,122 +1,143 @@
 {
-    "index": {
-        "helloWorld": "Diese Seite befindet sich derzeit im Aufbau. Bitte kommen Sie später wieder."
-    },
-    "modeToggle": {
-        "title": "Farbmodus anpassen",
-        "dark": "Dunkel",
-        "light": "Hell",
-        "system": "System"
-    },
-    "adminPages": {
-        "userAdministration": {
-            "mainTitle": "Nutzerverwaltung",
-            "filterByEmailText": "Nach E-Mail filtern",
-            "filterByRoleText": "Nach Rolle filtern",
-            "filterByNameText": "Nach Name filtern",
-            "IDColumnTitle": "ID",
-            "nameColumnTitle": "Name",
-            "emailColumnTitle": "E-Mail",
-            "emailVerifiedColumnTitle": "E-Mail verifiziert",
-            "imageColumnTitle": "Bild",
-            "roleColumnTitle": "Rolle",
-            "toastMessages": {
-                "successTitle": "Erfolg",
-                "successMessage": "Die Rolle des Benutzers wurde erfolgreich aktualisiert",
-                "errorTitle": "Fehler",
-                "errorMessage": "Ein Fehler ist aufgetreten. Die Rolle des Benutzers konnte nicht aktualisiert werden."
+    "pages": {
+        "landing": {
+            "heroText": "Melden Sie Probleme in Ihrer Stadt",
+            "heroDescription": "Mit FixMyTown können Sie Probleme in Ihrer Stadt schnell und einfach melden. Wir helfen Ihnen, die Infrastruktur zu verbessern und die Ordnung in der Stadt zu bewahren.",
+            "reportButton": "Vorfall melden",
+            "featuresTitle": "Features",
+            "feature1Title": "Infrastruktur verbessern",
+            "feature1Text": "Helfen Sie aktiv mit, die städtische Infrastruktur zu verbessern, indem Sie Schäden und Defekte an öffentlichen Einrichtungen melden.",
+            "feature2Title": "Sauberkeit fördern",
+            "feature2Text": "Tragen Sie zu einer sauberen Stadt bei, indem Sie Verschmutzungen und wilde Müllablagerungen schnell und einfach melden können.",
+            "feature3Title": "Ordnung bewahren",
+            "feature3Text": "Unterstützen Sie die Verkehrssicherheit durch das Melden von Parkverstoßen und anderen verkehrsbezogenen Problemen."
+        },
+        "auth": {
+            "login": {
+                "title": "Anmelden",
+                "description": "Melden Sie sich bei Ihrem FixMyTown-Konto an",
+                "emailLabel": "E-Mail",
+                "emailPlaceholder": "name@beispiel.de",
+                "submit": "Anmelden",
+                "submitLoading": "Wird gesendet ...",
+                "backToHome": "Zurück zur Startseite"
             },
-            "actions": {
-                "copyID": "ID kopieren",
-                "changeRoleToAdmin": "Rolle zu Administrator ändern",
-                "changeRoleToWorker": "Rolle zu Arbeiter ändern",
-                "changeRoleToUser": "Rolle zu Nutzer ändern"
+            "verifyRequest": {
+                "title": "E-Mail prüfen",
+                "description": "Bitte prüfen Sie Ihre E-Mails für den Anmeldelink",
+                "backToHome": "Zurück zur Startseite",
+                "checkEmail": "Ein Anmeldelink wurde an Ihre E-Mail-Adresse gesendet. Bitte prüfen Sie Ihren Posteingang.",
+                "enterCode": "Geben Sie den Verifizierungscode aus Ihrer E-Mail ein oder klicken Sie auf den Link in der E-Mail.",
+                "enterCodeInput": "Bestätigungscode eingeben",
+                "verifyButton": "Verifizieren",
+                "resendIn": "Code erneut senden in",
+                "resend": "Code erneut senden"
+            },
+            "error": {
+                "title": "Fehler",
+                "description": "Ein Fehler ist aufgetreten",
+                "Configuration": "Es gibt ein Problem mit der Serverkonfiguration.",
+                "Verification": "Der Anmeldelink ist nicht mehr gültig.",
+                "LogoutError": "Beim Abmelden ist ein Fehler aufgetreten.",
+                "Default": "Ein unerwarteter Fehler ist aufgetreten.",
+                "backToHome": "Zurück zur Startseite"
+            },
+            "account": {
+                "title": "Konto Details",
+                "description": "Verwalten Sie Ihre FixMyTown-Kontoeinstellungen",
+                "settings": {
+                    "title": "Einstellungen",
+                    "theme": "Design",
+                    "language": "Sprache"
+                },
+                "profile": {
+                    "title": "Profil",
+                    "email": "E-Mail-Adresse",
+                    "signOut": "Abmelden",
+                    "role": "Rolle",
+                    "backToWorkspace": "Zurück zum Arbeitsbereich"
+                }
+            }
+        },
+        "admin": {
+            "userAdministration": {
+                "mainTitle": "Nutzerverwaltung",
+                "filterByEmailText": "Nach E-Mail filtern",
+                "filterByRoleText": "Nach Rolle filtern",
+                "filterByNameText": "Nach Name filtern",
+                "IDColumnTitle": "ID",
+                "nameColumnTitle": "Name",
+                "emailColumnTitle": "E-Mail",
+                "emailVerifiedColumnTitle": "E-Mail verifiziert",
+                "imageColumnTitle": "Bild",
+                "roleColumnTitle": "Rolle",
+                "toastMessages": {
+                    "successTitle": "Erfolg",
+                    "successMessage": "Die Rolle des Benutzers wurde erfolgreich aktualisiert",
+                    "errorTitle": "Fehler",
+                    "errorMessage": "Ein Fehler ist aufgetreten. Die Rolle des Benutzers konnte nicht aktualisiert werden."
+                },
+                "actions": {
+                    "actionsTitle": "Aktionen",
+                    "copyID": "ID kopieren",
+                    "changeRoleToAdmin": "Rolle zu Administrator ändern",
+                    "changeRoleToWorker": "Rolle zu Arbeiter ändern",
+                    "changeRoleToUser": "Rolle zu Nutzer ändern"
+                }
             }
         }
     },
-    "userToggle": {
-        "account": "Konto",
-        "notifications": "Benachrichtigungen",
-        "logout": "Abmelden"
-    },
-    "workspaces": {
-        "workspaceSwitcherTitle": "Arbeitsbereiche",
-        "more": "Mehr",
-        "adminWorkspace": {
-        "adminWorkspaceTitle": "Administrator Arbeitsbereich",
-        "projects": {
-            "userAdministration": "Nutzerverwaltung"
-            }
-        },
-        "workerWorkspace": {
-        "workerWorkspaceTitle": "Arbeiter Arbeitsbereich",
-        "projects": {
-            "reportCardView": "Anträge Kartenansicht" ,
-            "reportEdit": "Anträge Bearbeiten"
-            }
-        },
-        "userWorkspace": {
-        "userWorkspaceTitle": "Nutzer Arbeitsbereich",
-        "navItems": {
-            "myReports": {
-                "folderTitle": "Meine Anträge",
-                "reportState": "Status Anträge",
-                "closedReports": "Abgeschlossene Anmeldungen",
-                "myReports": "Meine Anträge"
+    "layout": {
+        "navigation": {
+            "workspaces": {
+                "workspaceSwitcherTitle": "Arbeitsbereiche",
+                "more": "Mehr",
+                "adminWorkspace": {
+                    "adminWorkspaceTitle": "Administrator Arbeitsbereich",
+                    "projects": {
+                        "userAdministration": "Nutzerverwaltung"
+                    }
+                },
+                "workerWorkspace": {
+                    "workerWorkspaceTitle": "Arbeiter Arbeitsbereich",
+                    "projects": {
+                        "reportMapView": "Anträge Kartenansicht",
+                        "reportTableView": "Anträge Tabelle"
+                    }
+                },
+                "userWorkspace": {
+                    "userWorkspaceTitle": "Nutzer Arbeitsbereich",
+                    "navItems": {
+                        "myReports": {
+                            "folderTitle": "Meine Anträge",
+                            "myReports": "Meine Anträge"
+                        },
+                        "reportSomething": {
+                            "folderTitle": "Vorfall melden",
+                            "defectsDamages": "Defekte und Schäden",
+                            "contaminations": "Verunreinigungen",
+                            "parkingViolations": "Parkverstöße"
+                        }
+                    }
+                }
             },
-            "reportSomething": {
-                "folderTitle": "Vorfall melden",
-                "defectsDamages": "Defekte und Schäden",
-                "contaminations": "Verunreinigungen",
-                "parkingViolations": "Parkverstöße"
-            }
-        }
-        }
-    },
-    "auth": {
-        "login": {
-            "title": "Anmelden",
-            "description": "Melden Sie sich bei Ihrem FixMyTown-Konto an",
-            "emailLabel": "E-Mail",
-            "emailPlaceholder": "name@beispiel.de",
-            "submit": "Anmelden",
-            "backToHome": "Zurück zur Startseite"
-        },
-        "verifyRequest": {
-            "title": "E-Mail prüfen",
-            "description": "Bitte prüfen Sie Ihre E-Mails für den Anmeldelink",
-            "backToHome": "Zurück zur Startseite",
-            "checkEmail": "Ein Anmeldelink wurde an Ihre E-Mail-Adresse gesendet. Bitte prüfen Sie Ihren Posteingang.",
-            "enterCode": "Geben Sie den Verifizierungscode aus Ihrer E-Mail ein oder klicken Sie auf den Link in der E-Mail.",
-            "enterCodeInput": "Bestätigungscode eingeben",
-            "verifyButton": "Verifizieren",
-            "resendIn": "Code erneut senden in",
-            "resend": "Code erneut senden"
-        },
-        "error": {
-            "title": "Fehler",
-            "description": "Ein Fehler ist aufgetreten",
-            "Configuration": "Es gibt ein Problem mit der Serverkonfiguration.",
-            "Verification": "Der Anmeldelink ist nicht mehr gültig.",
-            "LogoutError": "Beim Abmelden ist ein Fehler aufgetreten.",
-            "Default": "Ein unerwarteter Fehler ist aufgetreten.",
-            "backToHome": "Zurück zur Startseite"
-        },
-        "account": {
-            "title": "Konto Details",
-            "description": "Verwalten Sie Ihre FixMyTown-Kontoeinstellungen",
-            "settings": {
-                "title": "Einstellungen",
-                "theme": "Design",
-                "language": "Sprache"
+            "userToggle": {
+                "account": "Konto",
+                "logout": "Abmelden"
             },
-            "profile": {
-                "title": "Profil",
-                "email": "E-Mail-Adresse",
-                "signOut": "Abmelden",
-                "role": "Rolle",
-                "backToWorkspace": "Zurück zum Arbeitsbereich"
+            "modeToggle": {
+                "title": "Farbmodus anpassen",
+                "dark": "Dunkel",
+                "light": "Hell",
+                "system": "System"
             }
+        },
+        "footer": {
+            "contact": "Kontakt",
+            "about": "Über",
+            "imprint": "Impressum",
+            "privacy": "Datenschutz",
+            "terms": "AGB"
         }
     },
     "components": {
@@ -140,34 +161,96 @@
                 "status": "Status"
             },
             "loading": "Wird geladen..."
+        },
+        "mapLegend": {
+            "title": "Legende"
+        },
+        "reportTable": {
+            "search": {
+                "placeholder": "Suche nach Name oder Beschreibung ..."
+            },
+            "columns": {
+                "name": "Name",
+                "description": "Beschreibung",
+                "type": "Typ",
+                "status": "Status",
+                "pictures": "Bilder",
+                "location": "Standort",
+                "createdAt": "Erstellt am"
+            },
+            "actions": {
+                "label": "Aktionen",
+                "copyId": "ID kopieren",
+                "copyAll": "Alle Daten kopieren",
+                "viewDetails": "Details anzeigen",
+                "viewLocation": "Standort anzeigen"
+            },
+            "noResults": "Keine Ergebnisse"
+        },
+        "reportForm": {
+            "type": "Typ",
+            "priority": "Priorität",
+            "location": "Standort",
+            "name": "Name",
+            "description": "Beschreibung",
+            "submit": "Einreichen",
+            "submitInfo": "Antrag einreichen",
+            "submitReadyInfo": "Antrag kann eingereicht werden",
+            "selectType": "Typ auswählen",
+            "selectPriority": "Priorität auswählen",
+            "success": "Erfolg",
+            "successDescription": "Ihr Antrag wurde erfolgreich eingereicht",
+            "images": "Bilder",
+            "upload": {
+                "title": "Bilder hochladen",
+                "description": "Laden Sie Bilder zu Ihrem Antrag hoch",
+                "dropHere": "Bilder hier ablegen",
+                "error": "Fehler",
+                "errorDescription": "Beim Hochladen ist ein Fehler aufgetreten",
+                "converting": "Konvertiere..."
+            },
+            "uploadingImages": "Bilder werden hochgeladen...",
+            "submitting": "Wird eingereicht...",
+            "validatingData": "Daten werden überprüft...",
+            "processingImages": "Bilder werden verarbeitet...",
+            "savingReport": "Antrag wird gespeichert...",
+            "redirecting": "Weiterleitung...",
+            "uploadSuccess": "Erfolgreich hochgeladen",
+            "uploadSuccessDescription": "Die Bilder wurden erfolgreich hochgeladen",
+            "uploadError": "Fehler beim Hochladen",
+            "generalError": "Ein Fehler ist aufgetreten"
         }
     },
-    "form": {
-        "type": "Art der Meldung",
-        "priority": "Priorität",
-        "location": "Standort",
-        "name": "Titel",
-        "description": "Beschreibung",
-        "submit": "Meldung absenden",
-        "submitting": "Wird gesendet...",
-        "validatingData": "Daten werden überprüft...",
-        "processingImages": "Bilder werden verarbeitet...",
-        "savingReport": "Meldung wird gespeichert...",
-        "redirecting": "Weiterleitung...",
-        "selectType": "Art auswählen",
-        "selectPriority": "Priorität auswählen",
-        "success": "Meldung gesendet",
-        "successDescription": "Ihre Meldung wurde erfolgreich gesendet.",
-        "images": "Bilder",
-        "submitInfo": "Alle Felder müssen ausgefüllt sein. Bilder sind optional.",
-        "submitReadyInfo": "Alles ausgefüllt! Klicken Sie auf 'Meldung absenden', wenn Sie fertig sind.",
-        "upload": {
-            "title": "Datei hochladen",
-            "description": "Ziehen Sie Ihre Dateien hierher oder klicken Sie zum Hochladen",
-            "dropHere": "Hier ablegen",
-            "error": "Dateien nicht hochgeladen",
-            "errorDescription": "Die Dateien konnten nicht hochgeladen werden. Maximal 10 Dateien und 10MB Dateigröße.",
-            "converting": "Wird konvertiert zu JPG..."
+    "emails": {
+        "signature": {
+            "greeting": "Mit freundlichen Grüßen,",
+            "team": "- Ihr FixMyTown Team"
+        },
+        "magicLink": {
+            "mailData": {
+                "subject": "Ihr Anmeldelink für FixMyTown",
+                "preview": "Ihr Anmeldelink für FixMyTown ist hier"
+            },
+            "content": {
+                "heading": "Hallo, hier ist dein Code um dich einzuloggen!",
+                "codeInstructions": "Gib den Code in Deinem offenen Browserfenster ein oder drücke auf den Link unten. Dieser Code läuft in 60 Minuten ab.",
+                "disclaimerText1": "Diese E-Mail wurde nicht von Ihnen angefordert? ",
+                "disclaimerText2": "Kontaktieren Sie ",
+                "disclaimerLink": "support@fixmy.town",
+                "disclaimerText3": "wenn Sie diesen Code nicht angefordert haben."
+            }
+        },
+        "creationNotification": {
+            "mailData": {
+                "subject": "Dein neues Problem wurde erfolgreich eingereicht!",
+                "preview": "Dein neues Problem wurde erfolgreich eingereicht!"
+            },
+            "content": {
+                "greeting": "Hallo {firstName}, vielen Dank, dass Du ein neues Problem gemeldet hast!",
+                "reportReceived": "Wir haben Deinen Bericht über das Problem",
+                "thankYou": "erhelten. Vielen Dank für Deine Unterstützung, unsere Stadt sauber und ansprechend zu halten!",
+                "promise": "Wir werden unser Bestes tun, um das Problem so schnell wie möglich zu beheben."
+            }
         },
         "uploadSuccess": "Upload Erfolgreich",
         "uploadSuccessDescription": "Ihre Dateien wurden erfolgreich hochgeladen.",
@@ -188,4 +271,68 @@
           "errorMessageC": "Bitte akzeptiere die Nutzungs- und Datenschutzbedingungen um fortzufahren.",
           "errorMessageB": "Leider ist ein Fehler aufgetreten und das Speichern ist fehlgeschlagen."
     }      
+        "statusUpdate": {
+            "mailData": {
+                "subject": "Wir haben eine Aktualisierung zu Deinem eingereichten Problem!",
+                "preview": "Wir haben eine Aktualisierung zu Deinem eingereichten Problem!"
+            },
+            "content": {
+                "greeting": "Hallo {firstName}, wir haben eine Aktualisierung zu Deinem eingereichten Problem!",
+                "reportTitle": "Dein eingereichter Bericht",
+                "newStatus": "hat den Status:",
+                "learnMore": "Mehr erfahren"
+            }
+        }
+    },
+    "common": {
+        "seeDetails": "Details anzeigen"
+    },
+    "metadata": {
+        "types": {
+            "1": {
+                "name": "Defekte und Schäden",
+                "description": "Melden Sie Schäden an öffentlichen Einrichtungen"
+            },
+            "2": {
+                "name": "Verunreinigungen",
+                "description": "Melden Sie Verschmutzungen im öffentlichen Raum"
+            },
+            "3": {
+                "name": "Parkverstöße",
+                "description": "Melden Sie Falschparker"
+            }
+        },
+        "statuses": {
+            "1": {
+                "name": "Neu",
+                "description": "Neu eingegangene Meldung"
+            },
+            "2": {
+                "name": "In Bearbeitung",
+                "description": "Meldung wird bearbeitet"
+            },
+            "3": {
+                "name": "Abgeschlossen",
+                "description": "Meldung wurde bearbeitet"
+            }
+        },
+        "prios": {
+            "0": {
+                "name": "Ungesetzt",
+                "description": "Unbekannte Priorität"
+            },
+            "1": {
+                "name": "Niedrig",
+                "description": "Niedrige Priorität"
+            },
+            "2": {
+                "name": "Mittel",
+                "description": "Mittlere Priorität"
+            },
+            "3": {
+                "name": "Hoch",
+                "description": "Hohe Priorität"
+            }
+        }
+    }
 }

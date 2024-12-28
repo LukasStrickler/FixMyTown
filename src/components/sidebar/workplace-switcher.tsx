@@ -8,8 +8,6 @@ import {
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuLabel,
-  //DropdownMenuSeparator,
-  DropdownMenuShortcut,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
 import {
@@ -79,12 +77,12 @@ export function WorkplaceSwitcher({
             sideOffset={4}
           >
             <DropdownMenuLabel className="text-xs text-muted-foreground">
-              {dictionary?.workspaces.workspaceSwitcherTitle}
+              {dictionary?.layout?.navigation?.workspaces?.workspaceSwitcherTitle}
             </DropdownMenuLabel>
-            {workspaces.map((workspace, index) => (
+            {workspaces.map((workspace) => (
               <DropdownMenuItem
-              key={workspace.workspaceType} // Use workspaceType as the key
-              onClick={() => setActiveWorkspace(workspace)}
+                key={workspace.workspaceType}
+                onClick={() => setActiveWorkspace(workspace)}
                 className="gap-2 p-2"
               >
                 <div className="flex size-6 items-center justify-center rounded-sm border">

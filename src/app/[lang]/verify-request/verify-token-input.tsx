@@ -47,12 +47,12 @@ export function VerifyTokenInput({ dictionary }: VerifyTokenInputProps) {
     return (
         <div className="space-y-4">
             <p className="text-sm text-center">
-                {dictionary.auth.verifyRequest.enterCode}
+                {dictionary.pages.auth.verifyRequest.enterCode}
             </p>
             <div className="flex gap-2">
                 <Input
                     type="text"
-                    placeholder={dictionary.auth.verifyRequest.enterCodeInput}
+                    placeholder={dictionary.pages.auth.verifyRequest.enterCodeInput}
                     value={token}
                     onChange={(e) => setToken(e.target.value)}
                     className="flex-1"
@@ -62,7 +62,7 @@ export function VerifyTokenInput({ dictionary }: VerifyTokenInputProps) {
                     onClick={handleVerification}
                     disabled={!token || isLoading}
                 >
-                    {isLoading ? "..." : dictionary.auth.verifyRequest.verifyButton}
+                    {isLoading ? "..." : dictionary.pages.auth.verifyRequest.verifyButton}
                 </Button>
             </div>
         </div>
