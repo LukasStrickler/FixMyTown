@@ -186,15 +186,15 @@ export interface Dictionary {
             comment: string;
 
             statuses: {
-                "title": string;
-                "placeholderText":string;
-                "updateButtonText": string;
+                title: string;
+                placeholderText:string;
+                updateButtonText: string;
 
             },
             prios: {
-                "title": string;
-                "placeholderText":string;
-                "updateButtonText": string;
+                title: string;
+                placeholderText:string;
+                updateButtonText: string;
 
             }
         },
