@@ -228,7 +228,9 @@
             "successTitle": "Success!",
             "successMessage": "Your name has been successfully saved.",
             "errorTitle": "Error!",
-            "termsAndConditions": "I have read and agree to the terms of use and privacy policy.",
+            "termsAndConditionsPartA": "I have read and agree to the ",
+            "termsAndConditionsPartB": " of use as well as to the ",
+            "termsAndConditionsPartC": " policy.",
             "errorMessageA": "Please enter a valid name.",
             "errorMessageC": "Please accept the terms of use and privacy policy to proceed.",
             "errorMessageB": "An error occurred, and saving failed."

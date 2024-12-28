@@ -228,7 +228,9 @@
               "successTitle": "Erfolg!",
               "successMessage": "Dein Name wurde erfolgreich gespeichert.",
               "errorTitle": "Fehler!",
-              "termsAndConditions": "Ich habe die Nutzungs- und Datenschutzbedingungen gelesen und stimme zu.",
+              "termsAndConditionsPartA": "Ich habe die ",
+              "termsAndConditionsPartB": " sowie die Hinweise zum ",
+              "termsAndConditionsPartC": " gelesen und stimme zu.",
               "errorMessageA": "Bitte gebe einen gültigen Name ein.",
               "errorMessageC": "Bitte akzeptiere die Nutzungs- und Datenschutzbedingungen um fortzufahren.",
               "errorMessageB": "Leider ist ein Fehler aufgetreten und das Speichern ist fehlgeschlagen."

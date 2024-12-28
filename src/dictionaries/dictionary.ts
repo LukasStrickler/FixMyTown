@@ -237,7 +237,9 @@ export interface Dictionary {
             successTitle: string;
             successMessage: string;
             errorTitle: string;
-            termsAndConditions: string;
+            termsAndConditionsPartA: string;
+            termsAndConditionsPartB: string;
+            termsAndConditionsPartC: string;
             errorMessageA: string;
             errorMessageC: string;
             errorMessageB: string;

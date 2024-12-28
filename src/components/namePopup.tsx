@@ -95,9 +95,19 @@ export default function NamePopup() {
             onChange={(e) => setTermsAccepted(e.target.checked)}
             className="h-4 w-4"
           />
+
           <label htmlFor="terms" className="text-foreground">
-            {dictionary.components.signUpPopup.termsAndConditions}
+            {dictionary.components.signUpPopup.termsAndConditionsPartA}
+            <a href="/agb" >
+              {dictionary.layout.footer.terms}
+            </a>
+            {dictionary.components.signUpPopup.termsAndConditionsPartB}
+            <a href="/datenschutz">
+              {dictionary.layout.footer.privacy}
+            </a>
+            {dictionary.components.signUpPopup.termsAndConditionsPartC}
           </label>
+
         </div>
         <Button onClick={handleUpdateName} className="mt-4">
           {dictionary.components.signUpPopup.saveButton}
