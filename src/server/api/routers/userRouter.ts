@@ -27,26 +27,30 @@ export const userRouter = createTRPCRouter({
       return updatedUser[0]; // Return the updated user object
     }),
 
-  updateUserName: userProcedure
-  .input(z.object({
-    userId: z.string(),
-    name: z.string(),
-  }))
-  .mutation(async ({ ctx, input }) => {
-    const { userId, name } = input;
-
-    const updatedUser = await ctx.db
-      .update(users)
-      .set({ name })
-      .where(eq(users.id, userId))
-      .returning({ id: users.id, name: users.name });
-
-    if (updatedUser.length === 0) {
-      throw new Error("User not found or update failed");
-    }
-
-    return updatedUser[0];
-  }),
+    updateUserName: userProcedure
+    .input(z.object({
+      name: z.string().regex(/^[a-zA-Z0-9 ]{1,50}$/, "Invalid name format"),
+    }))
+    .mutation(async ({ ctx, input }) => {
+      const { name } = input;
+      const userId = ctx.session?.user?.id;
+  
+      if (!userId) {
+        throw new Error("User not authenticated");
+      }
+  
+      const updatedUser = await ctx.db
+        .update(users)
+        .set({ name })
+        .where(eq(users.id, userId))
+        .returning({ id: users.id, name: users.name });
+  
+      if (updatedUser.length === 0) {
+        throw new Error("User not found or update failed");
+      }
+  
+      return updatedUser[0];
+    }),  
 
 getUsers: adminProcedure
 

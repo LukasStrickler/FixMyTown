@@ -18,12 +18,10 @@ export default function NamePopup() {
   const { dictionary } = useDictionary();
   const updateUserName = api.user.updateUserName.useMutation();
 
-  const userId = session?.user?.id;
-
   const handleUpdateName = async () => {
     const nameRegex = /^[a-zA-Z0-9 ]{1,50}$/;
 
-    if (!userId || !name.trim()) {
+    if (!name.trim()) {
       toast({
         title: dictionary?.popup.errorTitle,
         description: dictionary?.popup.errorMessageA,
@@ -51,7 +49,7 @@ export default function NamePopup() {
     }
 
     try {
-      await updateUserName.mutateAsync({ userId, name });
+      await updateUserName.mutateAsync({ name });
       toast({
         title: dictionary?.popup.successTitle,
         description: dictionary?.popup.successMessage,
