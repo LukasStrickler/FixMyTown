@@ -270,18 +270,17 @@
           "errorMessageA": "Bitte gebe einen gültigen Name ein.",
           "errorMessageC": "Bitte akzeptiere die Nutzungs- und Datenschutzbedingungen um fortzufahren.",
           "errorMessageB": "Leider ist ein Fehler aufgetreten und das Speichern ist fehlgeschlagen."
-    }      
-        "statusUpdate": {
-            "mailData": {
-                "subject": "Wir haben eine Aktualisierung zu Deinem eingereichten Problem!",
-                "preview": "Wir haben eine Aktualisierung zu Deinem eingereichten Problem!"
-            },
-            "content": {
-                "greeting": "Hallo {firstName}, wir haben eine Aktualisierung zu Deinem eingereichten Problem!",
-                "reportTitle": "Dein eingereichter Bericht",
-                "newStatus": "hat den Status:",
-                "learnMore": "Mehr erfahren"
-            }
+    },      
+    "statusUpdate": {
+        "mailData": {
+            "subject": "Wir haben eine Aktualisierung zu Deinem eingereichten Problem!",
+            "preview": "Wir haben eine Aktualisierung zu Deinem eingereichten Problem!"
+        },
+        "content": {
+            "greeting": "Hallo {firstName}, wir haben eine Aktualisierung zu Deinem eingereichten Problem!",
+            "reportTitle": "Dein eingereichter Bericht",
+            "newStatus": "hat den Status:",
+            "learnMore": "Mehr erfahren"
         }
     },
     "common": {

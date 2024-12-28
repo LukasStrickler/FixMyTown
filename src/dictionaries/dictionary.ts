@@ -284,7 +284,7 @@ export interface Dictionary {
         errorMessageA: string;
         errorMessageB: string;
         errorMessageC: string;
-    }    
+    },    
         statusUpdate: {
             mailData: {
                 subject: string;
@@ -297,7 +297,7 @@ export interface Dictionary {
                 learnMore: string;
             }
         }
-    },
+    
     // Common/shared strings
     common: {
         seeDetails: string;
