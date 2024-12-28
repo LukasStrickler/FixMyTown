@@ -89,7 +89,7 @@
         "imprint": {
             "heroText": "Impressum",
             "heroDescription": "Informationen über unser Unternehmen.",
-            "reportButton": "Vertreten durch",
+            "labelA": "Vertreten durch",
             "featuresTitle": "Kontakt",
             "feature1Title": "EU-Streitschlichtung",
             "feature1Text": "Die Europäische Kommission stellt eine Plattform zur Online-Streitbeilegung bereit.",

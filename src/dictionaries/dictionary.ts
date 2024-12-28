@@ -94,7 +94,7 @@ export interface Dictionary {
         imprint: {
         heroText: string;
         heroDescription: string;
-        reportButton: string;
+        labelA: string;
         featuresTitle: string;
         feature1Title: string;
         feature1Text: string;

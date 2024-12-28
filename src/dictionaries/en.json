@@ -89,7 +89,7 @@
         "imprint": {
             "heroText": "Impressum",
             "heroDescription": "Information about our company.",
-            "reportButton": "Represented by",
+            "labelA": "Represented by",
             "featuresTitle": "Contact",
             "feature1Title": "EU Dispute Resolution",
             "feature1Text": "The European Commission provides a platform for online dispute resolution.",

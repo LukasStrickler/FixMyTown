@@ -19,7 +19,7 @@ export default async function IndexPage({
           <p>c/o HWG Ludwigshafen, Studiengang IBAIT</p>
           <p>67059 Ludwigshafen am Rhein</p>
           <p className="mt-4">
-            <strong>{dictionary.pages.imprint.reportButton}:</strong>
+            <strong>{dictionary.pages.imprint.labelA}:</strong>
           </p>
           <p>
             Lukas Strickler<br />
