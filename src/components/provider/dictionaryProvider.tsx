@@ -2,6 +2,7 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import type { Dictionary } from '@/dictionaries/dictionary';
 import type { Locale } from '@/i18n-config';
+import { usePathname } from 'next/navigation';
 
 type DictionaryContextType = {
     dictionary: Dictionary | null;
@@ -12,6 +13,7 @@ const DictionaryContext = createContext<DictionaryContextType | undefined>(undef
 
 export const DictionaryProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
     const [dictionary, setDictionary] = useState<Dictionary | null>(null);
+    const pathname = usePathname();
 
     const loadDictionary = async (locale: Locale) => {
         try {
@@ -27,9 +29,11 @@ export const DictionaryProvider: React.FC<{ children: React.ReactNode }> = ({ ch
     };
 
     useEffect(() => {
-        void loadDictionary('de');
-        void loadDictionary('en');
-    }, []);
+        const urlLang = pathname.split('/')[1] as Locale;
+        if (urlLang && (urlLang === 'en' || urlLang === 'de')) {
+            void loadDictionary(urlLang);
+        }
+    }, [pathname]);
 
     return (
         <DictionaryContext.Provider value={{ dictionary, setLocale }}>

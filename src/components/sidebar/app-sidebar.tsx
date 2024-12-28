@@ -19,10 +19,10 @@ import {
 } from "@/components/ui/sidebar";
 
 import { useSession } from "next-auth/react";
-import { type Locale } from "@/i18n-config";
 
 import { useDictionary } from "@/components/provider/dictionaryProvider";
 import { Button } from "../ui/button";
+import { useParams } from "next/navigation";
 
 export interface Workspace {
   workspaceType: string; // Worker, User, or Admin
@@ -31,17 +31,13 @@ export interface Workspace {
 }
 
 export function AppSidebar({
-  params,
   ...props
-}: {
-  params: { lang: Locale };
-} & React.ComponentProps<typeof Sidebar>) {
+}: React.ComponentProps<typeof Sidebar>) {
   const { data: session, status } = useSession(); // Add status from useSession
   const user = session?.user;
-
-  const { lang } = params;
   const { dictionary } = useDictionary();
-
+  const params = useParams();
+  const lang = params.lang as string;
 
   // Get the current pathname
   const pathname = typeof window !== 'undefined' ? window.location.pathname : '';

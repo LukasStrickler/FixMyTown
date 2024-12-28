@@ -44,9 +44,7 @@ export default function RootLayout({
             <AuthProvider>
               <TRPCReactProvider>
                 <SidebarProvider>
-                  <AppSidebar params={{
-                    lang: "de"
-                  }} />
+                  <AppSidebar />
                   <SidebarInset>
                     <SidebarTrigger className="block md:hidden fixed top-1 left-1 z-50 bg-sidebar" />
                     <NextSSRPlugin
