@@ -219,6 +219,19 @@
             "uploadSuccessDescription": "The images have been successfully uploaded",
             "uploadError": "Upload error",
             "generalError": "An error has occurred"
+        },
+        "signUpPopup": {
+            "title": "Welcome!",
+            "message": "We would like to address you by your name. Please enter your name to proceed:",
+            "inputPlaceholder": "Your name",
+            "saveButton": "Save name",
+            "successTitle": "Success!",
+            "successMessage": "Your name has been successfully saved.",
+            "errorTitle": "Error!",
+            "termsAndConditions": "I have read and agree to the terms of use and privacy policy.",
+            "errorMessageA": "Please enter a valid name.",
+            "errorMessageC": "Please accept the terms of use and privacy policy to proceed.",
+            "errorMessageB": "An error occurred, and saving failed."
         }
     },
     "emails": {
@@ -315,18 +328,5 @@
                 "description": "High priority"
             }
         }
-    },
-    "popup": {
-        "title": "Welcome!",
-        "message": "We would like to address you by your name. Please enter your name to proceed:",
-        "inputPlaceholder": "Your name",
-        "saveButton": "Save name",
-        "successTitle": "Success!",
-        "successMessage": "Your name has been successfully saved.",
-        "errorTitle": "Error!",
-        "termsAndConditions": "I have read and agree to the terms of use and privacy policy.",
-        "errorMessageA": "Please enter a valid name.",
-        "errorMessageC": "Please accept the terms of use and privacy policy to proceed.",
-        "errorMessageB": "An error occurred, and saving failed."
     }
 }

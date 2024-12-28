@@ -219,6 +219,19 @@
             "uploadSuccessDescription": "Die Bilder wurden erfolgreich hochgeladen",
             "uploadError": "Fehler beim Hochladen",
             "generalError": "Ein Fehler ist aufgetreten"
+        },
+        "signUpPopup": {
+              "title": "Willkommen!",
+              "message": "Gerne würden wir Dich mit Deinem Name ansprechen. Bitte gebe Deinen Namen ein, um fortzufahren:",
+              "inputPlaceholder": "Dein Name",
+              "saveButton": "Name speichern",
+              "successTitle": "Erfolg!",
+              "successMessage": "Dein Name wurde erfolgreich gespeichert.",
+              "errorTitle": "Fehler!",
+              "termsAndConditions": "Ich habe die Nutzungs- und Datenschutzbedingungen gelesen und stimme zu.",
+              "errorMessageA": "Bitte gebe einen gültigen Name ein.",
+              "errorMessageC": "Bitte akzeptiere die Nutzungs- und Datenschutzbedingungen um fortzufahren.",
+              "errorMessageB": "Leider ist ein Fehler aufgetreten und das Speichern ist fehlgeschlagen."
         }
     },
     "emails": {
@@ -315,18 +328,5 @@
                 "description": "Hohe Priorität"
             }
         }
-    },
-    "popup": {
-          "title": "Willkommen!",
-          "message": "Gerne würden wir Dich mit Deinem Name ansprechen. Bitte gebe Deinen Namen ein, um fortzufahren:",
-          "inputPlaceholder": "Dein Name",
-          "saveButton": "Name speichern",
-          "successTitle": "Erfolg!",
-          "successMessage": "Dein Name wurde erfolgreich gespeichert.",
-          "errorTitle": "Fehler!",
-          "termsAndConditions": "Ich habe die Nutzungs- und Datenschutzbedingungen gelesen und stimme zu.",
-          "errorMessageA": "Bitte gebe einen gültigen Name ein.",
-          "errorMessageC": "Bitte akzeptiere die Nutzungs- und Datenschutzbedingungen um fortzufahren.",
-          "errorMessageB": "Leider ist ein Fehler aufgetreten und das Speichern ist fehlgeschlagen."
     }
 }
