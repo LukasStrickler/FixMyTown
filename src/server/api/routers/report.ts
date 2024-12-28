@@ -4,7 +4,6 @@ import { reports } from "@/server/db/schema/reports"
 import { pictures } from "@/server/db/schema/pictures"
 import { protocolls } from "@/server/db/schema/protocoll"
 import { eq, inArray } from "drizzle-orm"
-import { types } from "@/server/db/schema/types"
 
 export const reportRouter = createTRPCRouter({
     create: userProcedure

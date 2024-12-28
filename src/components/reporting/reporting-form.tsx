@@ -2,7 +2,6 @@
 
 import { useEffect, useState } from "react"
 import type { Dictionary } from "@/dictionaries/dictionary"
-import { api } from "@/trpc/react"
 import LocationPicker, { type Location, type Address } from "@/components/LocationPicker/LocationPicker"
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
