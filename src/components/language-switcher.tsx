@@ -3,7 +3,7 @@
 import * as React from "react"
 import { useRouter, usePathname } from "next/navigation"
 import { Languages } from "lucide-react"
-import { Dictionary } from "@/dictionaries/dictionary"
+import type { Dictionary } from "@/dictionaries/dictionary"
 import { nativeLanguageNames } from "@/dictionaries/native-names"
 
 export function LanguageSwitcher(
