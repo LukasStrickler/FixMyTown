@@ -1,7 +1,7 @@
 import { users } from "@/server/db/schema/users";
 import { adminProcedure, createTRPCRouter, userProcedure} from "../trpc";
 import { z } from 'zod';
-import { eq } from 'drizzle-orm'; // Import eq for comparisons
+import { and, eq, isNull, lt } from 'drizzle-orm'; // Import eq for comparisons
 
 export const userRouter = createTRPCRouter({
   updateRole: adminProcedure
@@ -27,7 +27,7 @@ export const userRouter = createTRPCRouter({
       return updatedUser[0]; // Return the updated user object
     }),
 
-    updateUserName: userProcedure
+  updateUserName: userProcedure
     .input(z.object({
       name: z.string().regex(/^[a-zA-Z0-9 ]{1,50}$/, "Invalid name format"),
     }))
@@ -65,4 +65,18 @@ getUsers: adminProcedure
         role: user.role,
       }));}),
 
+deleteUnNamedUsers: adminProcedure
+      .mutation(async ({ ctx }) => {
+        const now = new Date();
+        const twentyFourHoursAgo = new Date(now.getTime() - 24 * 60 * 60 * 1000);
+    
+        const deletedUsers = await ctx.db
+          .delete(users)
+          .where(
+            and(
+            isNull(users.name),
+            lt(users.emailVerified, twentyFourHoursAgo))
+            );
+
+        }),  
 });
