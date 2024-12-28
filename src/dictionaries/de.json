@@ -130,6 +130,13 @@
                 "dark": "Dunkel",
                 "light": "Hell",
                 "system": "System"
+            },
+            "languageSwitcher": {
+                "text": "Sprache wechseln zu",
+                "languages": {
+                    "en": "Englisch",
+                    "de": "Deutsch"
+                }
             }
         },
         "footer": {

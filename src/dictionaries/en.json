@@ -130,6 +130,13 @@
                 "dark": "Dark",
                 "light": "Light",
                 "system": "System"
+            },
+            "languageSwitcher": {
+                "text": "Switch to",
+                "languages": {
+                    "en": "English",
+                    "de": "German"
+                }
             }
         },
         "footer": {

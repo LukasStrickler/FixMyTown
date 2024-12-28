@@ -22,24 +22,23 @@ import {
   useSidebar,
 } from "@/components/ui/sidebar"
 import { signOut, useSession } from "next-auth/react"
-import { ModeToggle } from "@/components/modeToggle";
+import { ModeToggle } from "@/components/modeToggle"
+import { LanguageSwitcher } from "@/components/language-switcher"
 
-import { useDictionary } from "@/components/provider/dictionaryProvider";
+import { useDictionary } from "@/components/provider/dictionaryProvider"
 import Link from "next/link"
 import { useParams } from "next/navigation"
 import { cn } from "@/lib/utils"
 
-
 export function NavUser() {
-  const { isMobile, state } = useSidebar();
-  const user = useSession().data?.user;
-  const { dictionary } = useDictionary();
-  const params = useParams();
-  const lang = params.lang as string;
-
+  const { isMobile, state } = useSidebar()
+  const user = useSession().data?.user
+  const { dictionary } = useDictionary()
+  const params = useParams()
+  const lang = params.lang as string
 
   if (!user) {
-    return null;
+    return null
   }
 
   return (
@@ -90,6 +89,11 @@ export function NavUser() {
                       {dictionary?.layout?.navigation?.userToggle?.account}
                     </Link>
                   </DropdownMenuItem>
+                  <DropdownMenuItem
+                    className="flex items-center w-full px-2 py-1.5 text-sm cursor-pointer"
+                  >
+                    {dictionary && <LanguageSwitcher {...dictionary} />}
+                  </DropdownMenuItem>
                 </DropdownMenuGroup>
                 <DropdownMenuSeparator />
                 <DropdownMenuItem
@@ -105,5 +109,5 @@ export function NavUser() {
         </div>
       </SidebarMenuItem>
     </SidebarMenu>
-  );
+  )
 }
