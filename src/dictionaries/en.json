@@ -171,6 +171,23 @@
         }
     },
     "components": {
+        "reportDetails": {
+            "description": "Description",
+            "history": "History",
+            "location": "Location",
+            "comment": "Comment",
+
+            "statuses": {
+                "title": "Status",
+                "placeholderText": "Select Status",
+                "updateButtonText": "Update Status and Comment"
+            },
+            "prios": {
+                "title": "Priority",
+                "placeholderText": "Select Priority",
+                "updateButtonText": "Update Priority"
+            }
+        },
         "locationPicker": {
             "title": "Location Selection",
             "description": "Interactive selection and management of locations",

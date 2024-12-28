@@ -31,10 +31,17 @@ export function WorkerActions({
   const [selectedPriority, setSelectedPriority] = useState<number | undefined>(undefined);
 
   const statusMap = {
-    "1": "New",
-    "2": "In Progress",
-    "3": "Completed",
-    "4": "Rejected"
+    1: dictionary.metadata.statuses[1],
+    2: dictionary.metadata.statuses[2],
+    3: dictionary.metadata.statuses[3],
+    4: dictionary.metadata.statuses[4]
+  };
+
+  const prioMap = {
+    0: dictionary.metadata.prios[0],
+    1: dictionary.metadata.prios[1],
+    2: dictionary.metadata.prios[2],
+    3: dictionary.metadata.prios[3]
   };
 
   const addProtocoll = api.reportDetails.addProtocoll.useMutation({
@@ -70,61 +77,68 @@ export function WorkerActions({
 
   return (
     <div className="space-y-4 border p-4 rounded-lg">
-      <div className="space-y-2">
-        <label className="text-sm font-medium">Status</label>
-        <Select value={selectedStatus} onValueChange={setSelectedStatus}>
-          <SelectTrigger>
-            <SelectValue placeholder="Select status">
-              {statusMap[selectedStatus as keyof typeof statusMap]}
-            </SelectValue>
-          </SelectTrigger>
-          <SelectContent>
-            <SelectItem value="1">{statusMap["1"]}</SelectItem>
-            <SelectItem value="2">{statusMap["2"]}</SelectItem>
-            <SelectItem value="3">{statusMap["3"]}</SelectItem>
-            <SelectItem value="4">{statusMap["4"]}</SelectItem>
-          </SelectContent>
-        </Select>
+      <div className="border p-4 rounded-lg">
+        <div className="space-y-4">
+          <div className="space-y-2">
+            <label className="text-sm font-medium">{dictionary.components.reportDetails.statuses.title}</label>
+            <Select value={selectedStatus} onValueChange={setSelectedStatus}>
+              <SelectTrigger>
+                <SelectValue placeholder={dictionary.components.reportDetails.statuses.placeholderText}>
+                  {statusMap[parseInt(selectedStatus) as keyof typeof statusMap].name}
+                </SelectValue>
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="1">{statusMap["1"].name}</SelectItem>
+                <SelectItem value="2">{statusMap["2"].name}</SelectItem>
+                <SelectItem value="3">{statusMap["3"].name}</SelectItem>
+                <SelectItem value="4">{statusMap["4"].name}</SelectItem>
+              </SelectContent>
+            </Select>
+          </div>
+
+          <div className="space-y-2">
+            <label className="text-sm font-medium">{dictionary.components.reportDetails.comment}</label>
+            <Textarea
+              value={comment}
+              onChange={(e) => setComment(e.target.value)}
+              placeholder={dictionary.components.reportDetails.comment + " ..."}
+            />
+          </div>
+          <div className="space-y-2">
+          <Button 
+            onClick={handleStatusAndCommentSubmit}
+            disabled={addProtocoll.isPending}
+          >
+            {addProtocoll.isPending ? "Submitting..." : dictionary.components.reportDetails.statuses.updateButtonText}
+          </Button>
+        </div>
+        </div>
       </div>
 
-      <div className="space-y-2">
-        <label className="text-sm font-medium">Priority</label>
-        <Select value={selectedPriority?.toString()} onValueChange={(value) => setSelectedPriority(parseInt(value))}>
-          <SelectTrigger>
-            <SelectValue placeholder="Select priority" />
-          </SelectTrigger>
-          <SelectContent>
-            <SelectItem value="0">N/A</SelectItem>
-            <SelectItem value="1">Low</SelectItem>
-            <SelectItem value="2">Medium</SelectItem>
-            <SelectItem value="3">High</SelectItem>
-          </SelectContent>
-        </Select>
-      </div>
-
-      <div className="space-y-2">
-        <label className="text-sm font-medium">Comment</label>
-        <Textarea
-          value={comment}
-          onChange={(e) => setComment(e.target.value)}
-          placeholder="Add a comment..."
-        />
-      </div>
-
-      <div className="flex space-x-4">
-        <Button 
-          onClick={handleStatusAndCommentSubmit}
-          disabled={addProtocoll.isPending}
-        >
-          {addProtocoll.isPending ? "Submitting..." : "Update Status and Comment"}
-        </Button>
-
-        <Button 
+      <div className="border p-4 rounded-lg">
+        <div className="space-y-2">
+          <label className="text-sm font-medium">{dictionary.components.reportDetails.prios.title}</label>
+          <Select value={selectedPriority?.toString()} onValueChange={(value) => setSelectedPriority(parseInt(value))}>
+            <SelectTrigger>
+              <SelectValue placeholder={dictionary.components.reportDetails.prios.placeholderText} />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="0">{prioMap[0].name}</SelectItem>
+              <SelectItem value="1">{prioMap[1].name}</SelectItem>
+              <SelectItem value="2">{prioMap[2].name}</SelectItem>
+              <SelectItem value="3">{prioMap[3].name}</SelectItem>
+            </SelectContent>
+          </Select>
+          <div className="space-y-2">
+          <Button 
           onClick={handlePriorityChange}
           disabled={addProtocoll.isPending}
         >
-          Update Priority
+          {dictionary.components.reportDetails.prios.updateButtonText}
         </Button>
+          </div>
+        </div>
+
       </div>
     </div>
   );

@@ -179,6 +179,25 @@ export interface Dictionary {
 
     // Reusable components
     components: {
+        reportDetails:{
+            description: string;
+            history: string;
+            location:string;
+            comment: string;
+
+            statuses: {
+                "title": string;
+                "placeholderText":string;
+                "updateButtonText": string;
+
+            },
+            prios: {
+                "title": string;
+                "placeholderText":string;
+                "updateButtonText": string;
+
+            }
+        },
         locationPicker: {
             title: string;
             description: string;

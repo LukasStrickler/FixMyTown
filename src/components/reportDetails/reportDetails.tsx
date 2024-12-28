@@ -39,17 +39,17 @@ export default function ReportDetails({ report, worker, dictionary }: ReportDeta
   const utils = api.useUtils();
 
   const statusMap = {
-    1: "New",
-    2: "In Progress",
-    3: "Completed",
-    4: "Rejected"
+    1: dictionary.metadata.statuses[1],
+    2: dictionary.metadata.statuses[2],
+    3: dictionary.metadata.statuses[3],
+    4: dictionary.metadata.statuses[4]
   };
 
   const prioMap = {
-    0: "Not Set",
-    1: "Low",
-    2: "Medium",
-    3: "High"
+    0: dictionary.metadata.prios[0],
+    1: dictionary.metadata.prios[1],
+    2: dictionary.metadata.prios[2],
+    3: dictionary.metadata.prios[3]
   };
 
   const handleActionComplete = () => {
@@ -62,18 +62,18 @@ export default function ReportDetails({ report, worker, dictionary }: ReportDeta
         <div className="flex justify-between">
           <CardTitle>{reportData.name}</CardTitle>
           <div className="flex space-x-2">
-            <Badge>{prioMap[reportData.prio as keyof typeof prioMap]}</Badge>
-            <Badge>{statusMap[currentStatus as keyof typeof statusMap]}</Badge>
+            <Badge>{prioMap[reportData.prio as keyof typeof prioMap].name}</Badge>
+            <Badge>{statusMap[currentStatus as keyof typeof statusMap].name}</Badge>
           </div>
         </div>
       </CardHeader>
       <CardContent className="space-y-4">
         <div>
-          <h3 className="font-semibold">Description</h3>
+          <h3 className="font-semibold">{dictionary.components.reportDetails.description}</h3>
           <p>{reportData.description}</p>
         </div>
         <div>
-          <h3 className="font-semibold">Location</h3>
+          <h3 className="font-semibold">{dictionary.components.reportDetails.location}</h3>
           <p>{reportData.locationDescription}</p>
         </div>
         {images.length > 0 && (
@@ -101,11 +101,11 @@ export default function ReportDetails({ report, worker, dictionary }: ReportDeta
         
         {protocolls.length > 0 && (
           <div>
-            <h3 className="font-semibold mb-4">History</h3>
+            <h3 className="font-semibold mb-4">{dictionary.components.reportDetails.history}</h3>
             {protocolls.map((protocol, idx) => (
               <div key={idx} className="border-b py-2">
-                <p>{new Date(protocol.timestamp).toLocaleDateString()}</p>
-                <p>Status: {statusMap[protocol.status as keyof typeof statusMap]}</p>
+                <p>{new Date(protocol.timestamp).toLocaleDateString('de-GB')}</p>
+                <p>{dictionary.components.reportDetails.statuses.title}: {statusMap[protocol.status as keyof typeof statusMap].name}</p>
                 {protocol.comment && <p>{protocol.comment}</p>}
               </div>
             ))}

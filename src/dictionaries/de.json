@@ -171,6 +171,23 @@
         }
     },
     "components": {
+        "reportDetails": {
+            "description": "Beschreibung",
+            "history": "Logbuch",
+            "location": "Ort",
+            "comment": "Kommentar",
+
+            "statuses": {
+                "title": "Status",
+                "placeholderText": "Status auswählen",
+                "updateButtonText": "Status setzen"
+            },
+            "prios": {
+                "title": "Prioritaet",
+                "placeholderText": "Prioritaet auswählen",
+                "updateButtonText": "Prioritaet setzen"
+            }
+        },
         "locationPicker": {
             "title": "Standortauswahl",
             "description": "Interaktive Auswahl und Verwaltung von Standorten",
