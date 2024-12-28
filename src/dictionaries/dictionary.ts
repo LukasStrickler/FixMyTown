@@ -100,7 +100,59 @@ export interface Dictionary {
         feature1Text: string;
         feature2Title: string;
         feature2Text: string;
-        }
+        },
+        // Privacy page
+        privacy: {
+            heroText: string;
+            generalNotesTitle: string;
+            generalNotesDescription: string[];
+            dataCollectionTitle: string;
+            dataCollectionDescription: string[];
+            hostingTitle: string;
+            hostingDescription: string[];
+            rightsTitle: string;
+            rightsDescription: string[];
+            legalBasisTitle: string;
+            legalBasisDescription: string[];
+            cookieTitle: string;
+            cookieDescription: string[];
+            logFilesTitle: string;
+            logFilesDescription: string[];
+            contactFormTitle: string;
+            contactFormDescription: string[];
+            sslTitle: string;
+            sslDescription: string[];
+            creditsTitle: string;
+            creditsDescription: string[];
+        },
+        // Terms and Conditions page
+        termsAndConditions: {
+            heroText: string;
+            introTitle: string;
+            introDescription: string[];
+            generalTermsTitle: string;
+            generalTermsDescription: string[];
+            accountRegistrationTitle: string;
+            accountRegistrationDescription: string[];
+            useOfPlatformTitle: string;
+            useOfPlatformDescription: string[];
+            subscriptionAndFeesTitle: string;
+            subscriptionAndFeesDescription: string[];
+            paymentMethodsTitle: string;
+            paymentMethodsDescription: string[];
+            terminationAndAccountDeletionTitle: string;
+            terminationAndAccountDeletionDescription: string[];
+            intellectualPropertyTitle: string;
+            intellectualPropertyDescription: string[];
+            liabilityTitle: string;
+            liabilityDescription: string[];
+            dataProtectionTitle: string;
+            dataProtectionDescription: string[];
+            disputeResolutionTitle: string;
+            disputeResolutionDescription: string[];
+            finalProvisionsTitle: string;
+            finalProvisionsDescription: string[];
+        };
     },
     // Layout components
     layout: {

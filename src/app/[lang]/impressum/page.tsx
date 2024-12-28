@@ -2,7 +2,7 @@ import { getDictionary } from "@/get-dictionary";
 import { type Locale } from "@/i18n-config";
 import { Footer } from "@/components/footer";
 
-export default async function IndexPage({
+export default async function ImprintPage({
   params: { lang },
 }: {
   params: { lang: Locale };
