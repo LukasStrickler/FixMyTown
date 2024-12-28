@@ -98,11 +98,11 @@ export default function NamePopup() {
 
           <label htmlFor="terms" className="text-foreground">
             {dictionary.components.signUpPopup.termsAndConditionsPartA}
-            <a href="/agb" >
+            <a href="/agb" className="underline text-link">
               {dictionary.layout.footer.terms}
             </a>
             {dictionary.components.signUpPopup.termsAndConditionsPartB}
-            <a href="/datenschutz">
+            <a href="/datenschutz" className="underline text-link">
               {dictionary.layout.footer.privacy}
             </a>
             {dictionary.components.signUpPopup.termsAndConditionsPartC}
