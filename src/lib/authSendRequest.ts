@@ -1,6 +1,8 @@
 import { resend } from "@/server/email"
 
-import MagicLinkEmail from "@/emails/magic-links"
+import { getDictionary } from "@/get-dictionary"
+import type { Locale } from "@/i18n-config"
+import ModularAuthTemplate from "@/emails/modularAuthTemplate"
 
 interface VerificationRequestParams {
     identifier: string
@@ -14,12 +16,30 @@ interface VerificationRequestParams {
 export async function sendVerificationRequest(params: VerificationRequestParams) {
     const { identifier: to, provider, url } = params
 
+    let lang: Locale = 'de';
+    try {
+        const callbackUrl = new URL(url).searchParams.get('callbackUrl');
+        if (callbackUrl) {
+            const pathSegments = new URL(decodeURIComponent(callbackUrl)).pathname.split('/');
+            if (pathSegments.length > 1 && pathSegments[1]) {
+                lang = pathSegments[1] as Locale;
+            }
+        }
+    } catch (error) {
+        console.warn('Failed to extract language from URL, using default:', error);
+    }
+
+    const dictionary = await getDictionary(lang);
+
     try {
         const { error } = await resend.emails.send({
             from: provider.from,
             to: to,
-            subject: `Ihr Anmeldelink für FixMyTown`,
-            react: MagicLinkEmail({ magicLink: url }),
+            subject: dictionary.emails.magicLink?.mailData?.subject ?? "Ihr Anmeldelink für FixMyTown",
+            react: ModularAuthTemplate({
+                authLink: url,
+                dictionary: dictionary
+            }),
         })
 
         if (error) {

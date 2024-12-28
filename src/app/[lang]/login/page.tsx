@@ -6,8 +6,8 @@ import { type Metadata } from "next";
 export async function generateMetadata({ params: { lang } }: { params: { lang: Locale } }): Promise<Metadata> {
     const dictionary = await getDictionary(lang);
     return {
-        title: dictionary.auth.login.title + " | FixMyTown",
-        description: dictionary.auth.login.description,
+        title: dictionary.pages.auth.login.title + " | FixMyTown",
+        description: dictionary.pages.auth.login.description,
     };
 }
 export default async function LoginPage({

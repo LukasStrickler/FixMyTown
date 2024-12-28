@@ -28,6 +28,7 @@ export const DictionaryProvider: React.FC<{ children: React.ReactNode }> = ({ ch
 
     useEffect(() => {
         void loadDictionary('de');
+        void loadDictionary('en');
     }, []);
 
     return (

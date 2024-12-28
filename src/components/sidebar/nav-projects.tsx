@@ -17,7 +17,6 @@ import {
 } from "@/components/ui/dropdown-menu"
 import {
   SidebarGroup,
-  SidebarGroupLabel,
   SidebarMenu,
   SidebarMenuAction,
   SidebarMenuButton,
@@ -39,7 +38,7 @@ export function NavProjects({
 }) {
   const { isMobile } = useSidebar()
   const { dictionary } = useDictionary();
-  
+
 
   return (
     <SidebarGroup className="group-data-[collapsible=icon]:hidden">
@@ -56,7 +55,7 @@ export function NavProjects({
               <DropdownMenuTrigger asChild>
                 <SidebarMenuAction showOnHover>
                   <MoreHorizontal />
-                  <span className="sr-only">{}</span>
+                  <span className="sr-only">{ }</span>
                 </SidebarMenuAction>
               </DropdownMenuTrigger>
               <DropdownMenuContent
@@ -84,7 +83,7 @@ export function NavProjects({
         <SidebarMenuItem>
           <SidebarMenuButton className="text-sidebar-foreground/70">
             <MoreHorizontal className="text-sidebar-foreground/70" />
-            <span>{dictionary?.workspaces.more}</span>
+            <span>{dictionary?.layout?.navigation?.workspaces?.more}</span>
           </SidebarMenuButton>
         </SidebarMenuItem>
       </SidebarMenu>

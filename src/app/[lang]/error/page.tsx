@@ -11,8 +11,8 @@ export const revalidate = 3600
 export async function generateMetadata({ params: { lang } }: { params: { lang: Locale } }): Promise<Metadata> {
     const dictionary = await getDictionary(lang);
     return {
-        title: dictionary.auth.error.title + " | FixMyTown",
-        description: dictionary.auth.error.description,
+        title: dictionary.pages.auth.error.title + " | FixMyTown",
+        description: dictionary.pages.auth.error.description,
     };
 }
 export default async function ErrorPage({
@@ -29,17 +29,17 @@ export default async function ErrorPage({
         redirect(`/${lang}/account`);
     }
 
-    const error = searchParams.error as keyof typeof dictionary.auth.error;
-    const errorMessage = dictionary.auth.error[error] ?? dictionary.auth.error.Default;
+    const error = searchParams.error as keyof typeof dictionary.pages.auth.error;
+    const errorMessage = dictionary.pages.auth.error[error] ?? dictionary.pages.auth.error.Default;
 
     return (
         <div className="min-h-screen flex flex-col items-center justify-center p-4">
             <div className="max-w-md w-full space-y-4 text-center">
-                <h1 className="text-4xl font-bold">{dictionary.auth.error.title}</h1>
+                <h1 className="text-4xl font-bold">{dictionary.pages.auth.error.title}</h1>
                 <p className="text-muted-foreground">{errorMessage}</p>
                 <Button asChild>
                     <Link href={`/${lang}/`}>
-                        {dictionary.auth.error.backToHome}
+                        {dictionary.pages.auth.error.backToHome}
                     </Link>
                 </Button>
             </div>

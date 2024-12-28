@@ -3,33 +3,17 @@ import { Img, Heading } from '@react-email/components';
 
 const MailHeader: React.FC = () => {
   return (
-    <div
-      style={{
-        textAlign: "center",
-        margin: "0 auto",
-        maxWidth: "480px",
-      }}
-    >
+    <div className="mx-auto text-center max-w-[480px]">
       <Img
-        src="https://projects.jstaehle.de/assets/images/hwg_only_temporary_FIXMYTOWN_logo.png"
+        src={process.env.NODE_ENV === 'development' ? 'http://localhost:3000/FixMyTown_logo.png' : 'https://fixmy.town/FixMyTown_logo.png'}
         alt="logo"
-        style={{
-          width: "100%",
-          maxWidth: "350px",
-          display: "block",
-          margin: "0 auto",
-        }}
+        className="w-full max-w-[350px] block mx-auto"
       />
       <Heading
         as="h1"
-        style={{
-          fontWeight: "bold",
-          fontSize: "18px",
-          textAlign: "center",
-          paddingTop: "20px",
-        }}
+        className="font-bold text-lg text-center pt-5"
       >
-          FixMy<span>.</span>Town
+        FixMy<span>.</span>Town
       </Heading>
     </div>
   );

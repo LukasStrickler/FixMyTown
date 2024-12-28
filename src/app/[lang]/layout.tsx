@@ -50,10 +50,8 @@ export default function RootLayout({
                     lang: "de"
                   }} />
                   <SidebarInset>
-                    <SidebarTrigger className="-ml-1" />
                     <NamePopup /> {}
-
-
+                    <SidebarTrigger className="absolute top-2 left-2" />
                     <NextSSRPlugin
                       /**
                        * The `extractRouterConfig` will extract **only** the route configs

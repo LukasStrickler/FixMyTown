@@ -9,6 +9,7 @@
 import { auth } from "@/server/auth";
 import { HydrateClient } from "@/trpc/server";
 import { type Locale } from "@/i18n-config";
+import { getDictionary } from "@/get-dictionary";
 
 export default async function MyReports({
     params: { lang },
@@ -17,6 +18,7 @@ export default async function MyReports({
 }) {
 
     const session = await auth();
+    await getDictionary(lang);
 
     return (
         <HydrateClient>

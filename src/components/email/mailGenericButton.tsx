@@ -10,18 +10,7 @@ const MailGenericButton: React.FC<MailGenericButtonProps> = ({ label, link }) =>
   return (
     <Button
       href={link}
-      style={{
-        backgroundColor: "#5e6ad2",
-        borderRadius: "3px",
-        fontWeight: "600",
-        color: "#fff",
-        textAlign: "center",
-        padding: "12px 24px",
-        textDecoration: "none",
-        display: "inline-block",
-        margin: "27px auto",
-        width: "auto",
-      }}
+      className="bg-[#5e6ad2] rounded px-6 py-3 font-semibold text-white text-center no-underline inline-block my-[27px] mx-auto w-auto"
     >
       {label}
     </Button>

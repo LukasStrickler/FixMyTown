@@ -41,7 +41,7 @@ export function useReportForm(dictionary: Dictionary, preselectedType?: string) 
             console.error("Error uploading:", error)
             toast({
                 title: "Error",
-                description: dictionary.form.uploadError,
+                description: dictionary.components.reportForm.uploadError,
                 variant: "destructive",
             })
         },
@@ -59,14 +59,14 @@ export function useReportForm(dictionary: Dictionary, preselectedType?: string) 
 
     const getLoadingStates = (fileCount: number) => {
         const states = [
-            { text: dictionary.form.validatingData },
-            { text: dictionary.form.savingReport },
-            { text: dictionary.form.redirecting }
+            { text: dictionary.components.reportForm.validatingData },
+            { text: dictionary.components.reportForm.savingReport },
+            { text: dictionary.components.reportForm.redirecting }
         ]
 
         if (fileCount > 0) {
             states.splice(1, 0, {
-                text: `${dictionary.form.uploadingImages} (${fileCount})`
+                text: `${dictionary.components.reportForm.uploadingImages} (${fileCount})`
             })
         }
 
@@ -86,7 +86,7 @@ export function useReportForm(dictionary: Dictionary, preselectedType?: string) 
             if (files.length > 0) {
                 const uploadResult = await startUpload(files)
                 if (!uploadResult) {
-                    throw new Error(dictionary.form.uploadError)
+                    throw new Error(dictionary.components.reportForm.uploadError)
                 }
                 finalImageIds = uploadResult.map((file) => file.key)
                 setCurrentStep(2)
@@ -110,22 +110,22 @@ export function useReportForm(dictionary: Dictionary, preselectedType?: string) 
             await withMinDuration(Promise.resolve(), 1000)
 
             toast({
-                title: dictionary.form.success,
-                description: dictionary.form.successDescription,
+                title: dictionary.components.reportForm.success,
+                description: dictionary.components.reportForm.successDescription,
                 variant: "success",
             })
             form.reset()
             router.replace("/myReports")
         } catch (error) {
             console.error("Error during submission:", error)
-            let errorMessage = dictionary.form.generalError
+            let errorMessage = dictionary.components.reportForm.generalError
             if (error instanceof Error) {
                 switch (error.message) {
-                    case "form.uploadError":
-                        errorMessage = dictionary.form.uploadError
+                    case "components.reportForm.uploadError":
+                        errorMessage = dictionary.components.reportForm.uploadError
                         break
-                    case "form.generalError":
-                        errorMessage = dictionary.form.generalError
+                    case "components.reportForm.generalError":
+                        errorMessage = dictionary.components.reportForm.generalError
                         break
                     default:
                         errorMessage = error.message
