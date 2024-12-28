@@ -7,5 +7,5 @@
 - [ ] Modellierungen  
 - [x] Qualitätssicherung  (1 3/4 Seiten)
 - [x] Ausblick  (1 1/4 Seiten)
-- [ ] Fazit/Zusammenfassung  
+- [x] Fazit/Zusammenfassung  (3/4 Seiten)
 
