@@ -78,7 +78,7 @@ export default function ReportMap({
 
     return (
         <div style={{ '--map-height': height } as React.CSSProperties}>
-            <div className="flex gap-4">
+            <div className="flex gap-4 relative z-0">
                 <div className="flex-1">
                     <MapWithNoSSR
                         reports={filteredReports}
