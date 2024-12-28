@@ -172,6 +172,9 @@ export interface Dictionary {
         },
         mapLegend: {
             title: string;
+            typeTitle: string;
+            statusTitle: string;
+            priorityTitle: string;
         },
         reportTable: {
             search: {
@@ -290,6 +293,7 @@ export interface Dictionary {
             "1": { name: string; description: string };
             "2": { name: string; description: string };
             "3": { name: string; description: string };
+            "4": { name: string; description: string };
         },
         prios: {
             "0": { name: string; description: string };

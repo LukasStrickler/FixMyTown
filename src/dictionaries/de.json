@@ -163,7 +163,10 @@
             "loading": "Wird geladen..."
         },
         "mapLegend": {
-            "title": "Legende"
+            "title": "Legende",
+            "typeTitle": "Typ",
+            "statusTitle": "Status",
+            "priorityTitle": "Priorität"
         },
         "reportTable": {
             "search": {
@@ -295,6 +298,10 @@
             "3": {
                 "name": "Abgeschlossen",
                 "description": "Meldung wurde bearbeitet"
+            },
+            "4": {
+                "name": "Abgelehnt",
+                "description": "Meldung wurde abgelehnt"
             }
         },
         "prios": {

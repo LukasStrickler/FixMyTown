@@ -88,7 +88,7 @@ export default function MapContent({
         : defaultCenter;
 
     return (
-        <div className="w-full h-[600px] rounded-lg overflow-hidden border border-border">
+        <div className="w-full h-[620px] rounded-lg overflow-hidden border border-border">
             <MapContainer
                 center={[center[0], center[1]]}
                 zoom={13}
