@@ -64,12 +64,6 @@ export const reportRouter = createTRPCRouter({
             return reportId;
         }),
 
-    getTypes: userProcedure.query(async ({ ctx }) => {
-        return await ctx.db
-            .select()
-            .from(types);
-    }),
-
     getUserReports: userProcedure
         .query(async ({ ctx }) => {
             if (!ctx.session?.user?.id) {
