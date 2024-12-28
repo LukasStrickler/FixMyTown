@@ -23,8 +23,8 @@ export default function NamePopup() {
 
     if (!name.trim()) {
       toast({
-        title: dictionary?.popup.errorTitle,
-        description: dictionary?.popup.errorMessageA,
+        title: dictionary?.components.signUpPopup.errorTitle,
+        description: dictionary?.components.signUpPopup.errorMessageA,
         variant: "destructive",
       });
       return;
@@ -32,8 +32,8 @@ export default function NamePopup() {
 
     if (!nameRegex.test(name)) {
       toast({
-        title: dictionary?.popup.errorTitle,
-        description: dictionary?.popup.errorMessageA,
+        title: dictionary?.components.signUpPopup.errorTitle,
+        description: dictionary?.components.signUpPopup.errorMessageA,
         variant: "destructive",
       });
       return;
@@ -41,8 +41,8 @@ export default function NamePopup() {
 
     if (!termsAccepted) {
       toast({
-        title: dictionary?.popup.errorTitle,
-        description: dictionary?.popup.errorMessageC,
+        title: dictionary?.components.signUpPopup.errorTitle,
+        description: dictionary?.components.signUpPopup.errorMessageC,
         variant: "destructive",
       });
       return;
@@ -51,15 +51,15 @@ export default function NamePopup() {
     try {
       await updateUserName.mutateAsync({ name });
       toast({
-        title: dictionary?.popup.successTitle,
-        description: dictionary?.popup.successMessage,
+        title: dictionary?.components.signUpPopup.successTitle,
+        description: dictionary?.components.signUpPopup.successMessage,
         variant: "success",
       });
       setShowPopup(false);
     } catch {
       toast({
-        title: dictionary?.popup.errorTitle,
-        description: dictionary?.popup.errorMessageB,
+        title: dictionary?.components.signUpPopup.errorTitle,
+        description: dictionary?.components.signUpPopup.errorMessageB,
         variant: "destructive",
       });
     }
@@ -77,12 +77,12 @@ export default function NamePopup() {
     <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
       <div className="bg-background p-6 rounded-lg shadow-lg text-center space-y-4">
         <h2 className="text-2xl font-semibold text-foreground">
-          {dictionary.popup.title}
+          {dictionary.components.signUpPopup.title}
         </h2>
-        <p className="text-foreground">{dictionary.popup.message}</p>
+        <p className="text-foreground">{dictionary.components.signUpPopup.message}</p>
         <Input
           type="text"
-          placeholder={dictionary.popup.inputPlaceholder}
+          placeholder={dictionary.components.signUpPopup.inputPlaceholder}
           value={name}
           onChange={(e) => setName(e.target.value)}
           className="text-foreground"
@@ -96,11 +96,11 @@ export default function NamePopup() {
             className="h-4 w-4"
           />
           <label htmlFor="terms" className="text-foreground">
-            {dictionary.popup.termsAndConditions}
+            {dictionary.components.signUpPopup.termsAndConditions}
           </label>
         </div>
         <Button onClick={handleUpdateName} className="mt-4">
-          {dictionary.popup.saveButton}
+          {dictionary.components.signUpPopup.saveButton}
         </Button>
       </div>
     </div>
