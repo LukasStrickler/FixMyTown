@@ -261,17 +261,20 @@ export interface Dictionary {
                 promise: string;
             }
         },
-        uploadingImages: string;
-        submitting: string;
-        validatingData: string;
-        processingImages: string;
-        savingReport: string;
-        redirecting: string;
-        uploadSuccess: string;
-        uploadSuccessDescription: string;
-        uploadError: string;
-        generalError: string;
+        statusUpdate: {
+            mailData: {
+                subject: string;
+                preview: string;
+            },
+            content: {
+                greeting: string;
+                reportTitle: string;
+                newStatus: string;
+                learnMore: string;
+            }
+        }
     },
+    //Popup sign up
     popup: {
         title: string;
         message: string;
