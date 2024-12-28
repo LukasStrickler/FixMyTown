@@ -16,6 +16,17 @@ export default defineConfig({
             '**/lighthouse/**',
             'src/tests/lighthouse/**'
         ],
+        globals: true,
+        coverage: {
+            provider: 'v8',
+            include: ['src/**/*.{ts,tsx}'],
+            exclude: [
+                'src/**/*.d.ts',
+                'node_modules/**',
+                '.next/**'
+            ]
+        },
+
     },
     resolve: {
         alias: {
