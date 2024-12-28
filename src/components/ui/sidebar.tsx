@@ -257,6 +257,7 @@ const Sidebar = React.forwardRef<
             {children}
           </div>
         </div>
+        <SidebarTrigger className="hidden md:block" />
       </div>
     )
   }
@@ -267,26 +268,27 @@ const SidebarTrigger = React.forwardRef<
   React.ElementRef<typeof Button>,
   React.ComponentProps<typeof Button>
 >(({ className, onClick, ...props }, ref) => {
-  const { toggleSidebar } = useSidebar()
+  const { toggleSidebar, open } = useSidebar()
 
-  const { data: session } = useSession()  // Grab session from useSession
-  const user = session?.user  // Get the user object from session
+  const { data: session } = useSession()
+  const user = session?.user
   if (!user) { return null }
 
   return (
     <Button
       ref={ref}
       data-sidebar="trigger"
+      data-sidebar-open={open}
       variant="ghost"
       size="icon"
-      className={cn("h-7 w-7", className)}
+      className={cn("h-7 w-7 fixed top-2 left-[264px] data-[sidebar-open=false]:left-14 transition-all z-50", className)}
       onClick={(event) => {
         onClick?.(event)
         toggleSidebar()
       }}
       {...props}
     >
-      <PanelLeft />
+      <PanelLeft className="ml-1.5" />
       <span className="sr-only">Toggle Sidebar</span>
     </Button>
   )
