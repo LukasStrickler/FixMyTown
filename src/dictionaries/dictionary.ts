@@ -288,19 +288,6 @@ export interface Dictionary {
         errorMessageB: string;
         errorMessageC: string;
     },    
-        statusUpdate: {
-            mailData: {
-                subject: string;
-                preview: string;
-            },
-            content: {
-                greeting: string;
-                reportTitle: string;
-                newStatus: string;
-                learnMore: string;
-            }
-        }
-    
     // Common/shared strings
     common: {
         seeDetails: string;

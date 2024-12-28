@@ -317,16 +317,16 @@
         }
     },
     "popup": {
-          "title": "Willkommen!",
-          "message": "Gerne würden wir Dich mit Deinem Name ansprechen. Bitte gebe Deinen Namen ein, um fortzufahren:",
-          "inputPlaceholder": "Dein Name",
-          "saveButton": "Name speichern",
-          "successTitle": "Erfolg!",
-          "successMessage": "Dein Name wurde erfolgreich gespeichert.",
-          "errorTitle": "Fehler!",
-          "termsAndConditions": "Ich habe die Nutzungs- und Datenschutzbedingungen gelesen und stimme zu.",
-          "errorMessageA": "Bitte gebe einen gültigen Name ein.",
-          "errorMessageC": "Bitte akzeptiere die Nutzungs- und Datenschutzbedingungen um fortzufahren.",
-          "errorMessageB": "Leider ist ein Fehler aufgetreten und das Speichern ist fehlgeschlagen."
+        "title": "Welcome!",
+        "message": "We would like to address you by your name. Please enter your name to proceed:",
+        "inputPlaceholder": "Your name",
+        "saveButton": "Save name",
+        "successTitle": "Success!",
+        "successMessage": "Your name has been successfully saved.",
+        "errorTitle": "Error!",
+        "termsAndConditions": "I have read and agree to the terms of use and privacy policy.",
+        "errorMessageA": "Please enter a valid name.",
+        "errorMessageC": "Please accept the terms of use and privacy policy to proceed.",
+        "errorMessageB": "An error occurred, and saving failed."
     }
 }
