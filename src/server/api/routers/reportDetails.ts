@@ -65,9 +65,16 @@ export const reportDetailsRouter = createTRPCRouter({
             reportId: z.string(),
             statusId: z.number(),
             comment: z.string(),
+            prio: z.number().optional(),
         }))
         .mutation(async ({ ctx, input }) => {
-            const { reportId, statusId, comment } = input;
+            const { reportId, statusId, comment, prio } = input;
+
+            if (prio !== undefined) {
+                await ctx.db.update(reports)
+                    .set({ prio })
+                    .where(eq(reports.id, parseInt(reportId)));
+            }
 
             const protocol = await ctx.db.insert(protocolls)
                 .values({
@@ -80,5 +87,18 @@ export const reportDetailsRouter = createTRPCRouter({
                 .returning();
 
             return protocol[0];
+        }),
+
+    updatePriority: workerProcedure
+        .input(z.object({
+            reportId: z.string(),
+            prio: z.number(),
+        }))
+        .mutation(async ({ ctx, input }) => {
+            const { reportId, prio } = input;
+
+            await ctx.db.update(reports)
+                .set({ prio })
+                .where(eq(reports.id, parseInt(reportId)));
         }),
 })

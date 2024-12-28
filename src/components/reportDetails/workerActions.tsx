@@ -28,6 +28,7 @@ export function WorkerActions({
 }: WorkerActionsProps) {
   const [comment, setComment] = useState("");
   const [selectedStatus, setSelectedStatus] = useState<string>(currentStatus.toString());
+  const [selectedPriority, setSelectedPriority] = useState<number | undefined>(undefined);
 
   const statusMap = {
     "1": "New",
@@ -45,12 +46,26 @@ export function WorkerActions({
     },
   });
 
-  const handleSubmit = () => {
+  const updatePriority = api.reportDetails.updatePriority.useMutation();
+
+  const handleStatusAndCommentSubmit = () => {
     addProtocoll.mutate({
       reportId: reportId.toString(),
       statusId: parseInt(selectedStatus),
       comment: comment,
+      prio: selectedPriority,
     });
+  };
+
+  const handlePriorityChange = () => {
+    if (selectedPriority !== undefined) {
+      updatePriority.mutate({
+        reportId: reportId.toString(),
+        prio: selectedPriority,
+      });
+    } else {
+      console.error("Priority must be selected before updating.");
+    }
   };
 
   return (
@@ -73,6 +88,21 @@ export function WorkerActions({
       </div>
 
       <div className="space-y-2">
+        <label className="text-sm font-medium">Priority</label>
+        <Select value={selectedPriority?.toString()} onValueChange={(value) => setSelectedPriority(parseInt(value))}>
+          <SelectTrigger>
+            <SelectValue placeholder="Select priority" />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectItem value="0">N/A</SelectItem>
+            <SelectItem value="1">Low</SelectItem>
+            <SelectItem value="2">Medium</SelectItem>
+            <SelectItem value="3">High</SelectItem>
+          </SelectContent>
+        </Select>
+      </div>
+
+      <div className="space-y-2">
         <label className="text-sm font-medium">Comment</label>
         <Textarea
           value={comment}
@@ -82,10 +112,17 @@ export function WorkerActions({
       </div>
 
       <Button 
-        onClick={handleSubmit}
+        onClick={handleStatusAndCommentSubmit}
         disabled={addProtocoll.isPending}
       >
-        {addProtocoll.isPending ? "Submitting..." : "Submit"}
+        {addProtocoll.isPending ? "Submitting..." : "Update Status and Comment"}
+      </Button>
+
+      <Button 
+        onClick={handlePriorityChange}
+        disabled={addProtocoll.isPending}
+      >
+        Update Priority
       </Button>
     </div>
   );
