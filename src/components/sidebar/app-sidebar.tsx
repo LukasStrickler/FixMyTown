@@ -114,7 +114,9 @@ export function AppSidebar({
     return <div className="flex justify-center items-center h-screen">
       <Sidebar>
         <SidebarHeader className="flex justify-center items-center h-screen">
-          <Button>{dictionary.pages.auth.login.title}</Button>
+          <Button onClick={() => window.location.href = `/${lang}/login`}>
+            {dictionary.pages.auth.login.title}
+          </Button>
         </SidebarHeader>
       </Sidebar>
     </div>;
