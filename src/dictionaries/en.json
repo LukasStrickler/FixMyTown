@@ -40,7 +40,8 @@
                 "Verification": "The login link is no longer valid.",
                 "LogoutError": "An error occurred while signing out.",
                 "Default": "An unexpected error has occurred.",
-                "backToHome": "Back to Home"
+                "backToHome": "Back to Home",
+                "DeleteAccountError": "Failed to delete account"
             },
             "account": {
                 "title": "Account Details",
@@ -55,7 +56,29 @@
                     "email": "Email address",
                     "signOut": "Sign Out",
                     "role": "Role",
-                    "backToWorkspace": "Back to Workspace"
+                    "name": "Name",
+                    "editName": "Edit name",
+                    "deleteAccount": "Delete Account",
+                    "deleteAccountConfirm": "Are you sure you want to delete your account? This action cannot be undone."
+                },
+                "editNameDialog": {
+                    "title": "Edit Name",
+                    "description": "Enter your new display name below.",
+                    "nameLabel": "Name",
+                    "namePlaceholder": "Enter your name",
+                    "cancel": "Cancel",
+                    "confirm": "Save Changes",
+                    "nameTooLong": "Name is too long",
+                    "nameTooShort": "Name is too short",
+                    "nameEmpty": "Name cannot be empty",
+                    "success": "Name has been successfully updated",
+                    "validInput": "Name is valid"
+                },
+                "deleteDialog": {
+                    "title": "Delete Account",
+                    "description": "Are you sure you want to delete your account? This action cannot be undone.",
+                    "cancel": "Cancel",
+                    "confirm": "Delete Account"
                 }
             }
         },
@@ -266,7 +289,8 @@
         }
     },
     "common": {
-        "seeDetails": "View details"
+        "seeDetails": "View details",
+        "backToLanding": "Back to Landing Page"
     },
     "metadata": {
         "types": {
