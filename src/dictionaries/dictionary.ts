@@ -227,6 +227,22 @@ export interface Dictionary {
             uploadSuccessDescription: string;
             uploadError: string;
             generalError: string;
+        },
+        //Popup sign up
+        signUpPopup: {
+            title: string;
+            message: string;
+            inputPlaceholder: string;
+            saveButton: string;
+            successTitle: string;
+            successMessage: string;
+            errorTitle: string;
+            termsAndConditionsPartA: string;
+            termsAndConditionsPartB: string;
+            termsAndConditionsPartC: string;
+            errorMessageA: string;
+            errorMessageC: string;
+            errorMessageB: string;
         }
     },
     // Emails
@@ -273,7 +289,7 @@ export interface Dictionary {
                 learnMore: string;
             }
         }
-    },
+    },    
     // Common/shared strings
     common: {
         seeDetails: string;

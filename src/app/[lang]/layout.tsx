@@ -20,6 +20,8 @@ import { AuthProvider } from "@/components/provider/authProvider";
 import { DictionaryProvider } from "@/components/provider/dictionaryProvider";
 import { Toaster } from "@/components/ui/toaster";
 
+import NamePopup from "@/components/namePopup";
+
 export const metadata: Metadata = {
   title: "FixMyTown",
   description: "Melden Sie Probleme in Ihrer Stadt",
@@ -48,6 +50,7 @@ export default function RootLayout({
                     lang: "de"
                   }} />
                   <SidebarInset>
+                    <NamePopup /> {}
                     <SidebarTrigger className="absolute top-2 left-2" />
                     <NextSSRPlugin
                       /**
