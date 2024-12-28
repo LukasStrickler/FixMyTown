@@ -89,9 +89,19 @@ export interface Dictionary {
                     changeRoleToUser: string;
                 }
             }
+        },
+        // Impressum page
+        imprint: {
+        heroText: string;
+        heroDescription: string;
+        reportButton: string;
+        featuresTitle: string;
+        feature1Title: string;
+        feature1Text: string;
+        feature2Title: string;
+        feature2Text: string;
         }
     },
-
     // Layout components
     layout: {
         navigation: {

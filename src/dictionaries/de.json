@@ -85,7 +85,17 @@
                     "changeRoleToUser": "Rolle zu Nutzer ändern"
                 }
             }
-        }
+        },
+        "imprint": {
+            "heroText": "Impressum",
+            "heroDescription": "Informationen über unser Unternehmen.",
+            "reportButton": "Vertreten durch",
+            "featuresTitle": "Kontakt",
+            "feature1Title": "EU-Streitschlichtung",
+            "feature1Text": "Die Europäische Kommission stellt eine Plattform zur Online-Streitbeilegung bereit.",
+            "feature2Title": "Verbraucherstreitbeilegung/Universalschlichtungsstelle",
+            "feature2Text": "Wir sind nicht bereit oder verpflichtet, an Streitbeilegungsverfahren vor einer Verbraucherschlichtungsstelle teilzunehmen."
+        }  
     },
     "layout": {
         "navigation": {

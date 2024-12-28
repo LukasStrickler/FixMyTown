@@ -85,6 +85,16 @@
                     "changeRoleToUser": "Change role to User"
                 }
             }
+        },
+        "imprint": {
+            "heroText": "Impressum",
+            "heroDescription": "Information about our company.",
+            "reportButton": "Represented by",
+            "featuresTitle": "Contact",
+            "feature1Title": "EU Dispute Resolution",
+            "feature1Text": "The European Commission provides a platform for online dispute resolution.",
+            "feature2Title": "Consumer Dispute Settlement/Universal Arbitration Board",
+            "feature2Text": "We are neither willing nor obliged to participate in dispute resolution proceedings before a consumer arbitration board."
         }
     },
     "layout": {
