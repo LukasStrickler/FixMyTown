@@ -47,7 +47,7 @@ export const reportDetailsRouter = createTRPCRouter({
 
 
         return {
-            report: reportWithoutPriority,
+            report: { ...reportWithoutPriority, prio },
             images: imagesProcessed,
             protocolls: protocollDataProcessed,
         };

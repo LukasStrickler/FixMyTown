@@ -12,6 +12,7 @@ interface ReportDetailsProps {
     report: {
       id: number;
       type: number;
+      prio: number;
       name: string;
       description: string | null;
       latitude: number;
@@ -44,6 +45,13 @@ export default function ReportDetails({ report, worker, dictionary }: ReportDeta
     4: "Rejected"
   };
 
+  const prioMap = {
+    0: "Not Set",
+    1: "Low",
+    2: "Medium",
+    3: "High"
+  };
+
   const handleActionComplete = () => {
     void utils.reportDetails.getReportDetails.invalidate();
   };
@@ -53,7 +61,10 @@ export default function ReportDetails({ report, worker, dictionary }: ReportDeta
       <CardHeader>
         <div className="flex justify-between">
           <CardTitle>{reportData.name}</CardTitle>
-          <Badge>{statusMap[currentStatus as keyof typeof statusMap]}</Badge>
+          <div className="flex space-x-2">
+            <Badge>{prioMap[reportData.prio as keyof typeof prioMap]}</Badge>
+            <Badge>{statusMap[currentStatus as keyof typeof statusMap]}</Badge>
+          </div>
         </div>
       </CardHeader>
       <CardContent className="space-y-4">

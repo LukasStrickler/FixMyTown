@@ -111,19 +111,21 @@ export function WorkerActions({
         />
       </div>
 
-      <Button 
-        onClick={handleStatusAndCommentSubmit}
-        disabled={addProtocoll.isPending}
-      >
-        {addProtocoll.isPending ? "Submitting..." : "Update Status and Comment"}
-      </Button>
+      <div className="flex space-x-4">
+        <Button 
+          onClick={handleStatusAndCommentSubmit}
+          disabled={addProtocoll.isPending}
+        >
+          {addProtocoll.isPending ? "Submitting..." : "Update Status and Comment"}
+        </Button>
 
-      <Button 
-        onClick={handlePriorityChange}
-        disabled={addProtocoll.isPending}
-      >
-        Update Priority
-      </Button>
+        <Button 
+          onClick={handlePriorityChange}
+          disabled={addProtocoll.isPending}
+        >
+          Update Priority
+        </Button>
+      </div>
     </div>
   );
 } 

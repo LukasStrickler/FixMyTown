@@ -35,6 +35,7 @@ export default async function ReportDetailsPage({
                                 ...data.report,
                                 createdAt: new Date(),
                                 updatedAt: new Date(),
+                                prio: data.report.prio ?? 0
                             },
                             protocolls: data.protocolls.map(protocol => ({
                                 ...protocol,
