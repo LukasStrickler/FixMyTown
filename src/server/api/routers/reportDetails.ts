@@ -1,5 +1,4 @@
-import { users } from "@/server/db/schema/users";
-import { adminProcedure, createTRPCRouter, workerProcedure, userProcedure } from "../trpc";
+import {createTRPCRouter, workerProcedure, userProcedure } from "../trpc";
 import { z } from 'zod';
 import { eq } from 'drizzle-orm'; // Import eq for comparisons
 import { db } from "@/server/db";
@@ -12,7 +11,7 @@ export const reportDetailsRouter = createTRPCRouter({
 
     getReportDetails: userProcedure.input(z.object({
         reportID: z.string(),
-    })).query(async ({ ctx, input }) => {
+    })).query(async ({input }) => {
         const { reportID } = input;
 
 
@@ -51,13 +50,6 @@ export const reportDetailsRouter = createTRPCRouter({
             images: imagesProcessed,
             protocolls: protocollDataProcessed,
         };
-    }),
-
-
-    getReportWorkerReportDetails: workerProcedure.input(z.object({
-        reportID: z.string(),
-    })).query(async ({ ctx, input }) => {
-        const { reportID } = input;
     }),
 
     addProtocoll: workerProcedure

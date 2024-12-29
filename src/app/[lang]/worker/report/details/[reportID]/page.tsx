@@ -1,4 +1,3 @@
-import { auth } from "@/server/auth";
 import { HydrateClient } from "@/trpc/server";
 import { type Locale } from "@/i18n-config";
 import { getDictionary } from "@/get-dictionary";
@@ -10,8 +9,6 @@ export default async function ReportDetailsPage({
 }: {
     params: { lang: Locale; reportID: string };
 }) {
-    const _session = await auth();
-
     // Get dictionary for translations
     const dictionary = await getDictionary(lang);
 
