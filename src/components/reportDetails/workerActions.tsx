@@ -55,10 +55,28 @@ export function WorkerActions({
 
   const updatePriority = api.reportDetails.updatePriority.useMutation();
 
+  const isValidTransition = (currentStatus: number, newStatus: number): boolean => {
+    const validTransitions: { [key: number]: number[] } = {
+      1: [2], // new → in progress
+      2: [3], // in progress → completed
+      3: [2], // completed → in progress (for rework)
+      4: [1], // declined → new (to reset after reconsideration)
+    };
+
+    return validTransitions[currentStatus]?.includes(newStatus) || false;
+  };
+
   const handleStatusAndCommentSubmit = () => {
+    const newStatusId = parseInt(selectedStatus);
+    
+    if (!isValidTransition(currentStatus, newStatusId)) {
+      console.error("Invalid status transition.");
+      return;
+    }
+
     addProtocoll.mutate({
       reportId: reportId.toString(),
-      statusId: parseInt(selectedStatus),
+      statusId: newStatusId,
       comment: comment,
       prio: selectedPriority,
     });
@@ -75,6 +93,16 @@ export function WorkerActions({
     }
   };
 
+  const validStatusOptions = (currentStatus: number) => {
+    const options: { [key: number]: number[] } = {
+      1: [2], // new → in progress
+      2: [3], // in progress → completed
+      3: [2], // completed → in progress (for rework)
+      4: [1], // declined → new (to reset after reconsideration)
+    };
+    return options[currentStatus] || [];
+  };
+
   return (
     <div className="space-y-4 border p-4 rounded-lg">
       <div className="border p-4 rounded-lg">
@@ -88,10 +116,11 @@ export function WorkerActions({
                 </SelectValue>
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="1">{statusMap["1"].name}</SelectItem>
-                <SelectItem value="2">{statusMap["2"].name}</SelectItem>
-                <SelectItem value="3">{statusMap["3"].name}</SelectItem>
-                <SelectItem value="4">{statusMap["4"].name}</SelectItem>
+                {validStatusOptions(currentStatus).map((statusId) => (
+                  <SelectItem key={statusId} value={statusId.toString()}>
+                    {statusMap[statusId as keyof typeof statusMap].name}
+                  </SelectItem>
+                ))}
               </SelectContent>
             </Select>
           </div>
@@ -123,10 +152,11 @@ export function WorkerActions({
               <SelectValue placeholder={dictionary.components.reportDetails.prios.placeholderText} />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value="0">{prioMap[0].name}</SelectItem>
-              <SelectItem value="1">{prioMap[1].name}</SelectItem>
-              <SelectItem value="2">{prioMap[2].name}</SelectItem>
-              <SelectItem value="3">{prioMap[3].name}</SelectItem>
+              {Object.keys(prioMap).map((prioId) => (
+                <SelectItem key={prioId} value={prioId}>
+                  {prioMap[parseInt(prioId) as keyof typeof prioMap]?.name}
+                </SelectItem>
+              ))}
             </SelectContent>
           </Select>
           <div className="space-y-2">
