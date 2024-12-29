@@ -15,7 +15,7 @@ export default async function ReportDetailsPage({
     // Fetch report data using TRPC
     const data = await api.reportDetails.getReportDetails({ reportID });
 
-    // You might want to add error handling here
+    // Error handling
     if (!data) {
         return <div>Report not found</div>;
     }
