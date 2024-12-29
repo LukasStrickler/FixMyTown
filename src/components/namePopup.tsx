@@ -7,11 +7,14 @@ import { useSession } from "next-auth/react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { useDictionary } from "@/components/provider/dictionaryProvider";
+import { usePathname } from "next/navigation";
 
 export default function NamePopup() {
   const [showPopup, setShowPopup] = useState(false);
   const [name, setName] = useState("");
   const [termsAccepted, setTermsAccepted] = useState(false);
+
+  const pathname = usePathname()
 
   const { data: session, status } = useSession();
   const { toast } = useToast();
@@ -66,11 +69,17 @@ export default function NamePopup() {
   };
 
   useEffect(() => {
-    if (status === "authenticated" && !session?.user?.name) {
+ 
+    if (
+      status === "authenticated" && 
+      !session?.user?.name && 
+      !pathname.endsWith("datenschutz") && 
+      !pathname.endsWith("agb")
+    ) {
       setShowPopup(true);
     }
   }, [status, session?.user?.name]);
-
+  
   if (!showPopup || !dictionary) return null;
 
   return (
