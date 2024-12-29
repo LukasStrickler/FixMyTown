@@ -44,6 +44,7 @@ export interface Dictionary {
                 LogoutError: string;
                 Default: string;
                 backToHome: string;
+                DeleteAccountError: string;
             },
             account: {
                 title: string;
@@ -53,12 +54,34 @@ export interface Dictionary {
                     email: string;
                     role: string;
                     signOut: string;
-                    backToWorkspace: string;
+                    deleteAccount: string;
+                    deleteAccountConfirm: string;
+                    name: string;
+                    editName: string;
                 },
                 settings: {
                     title: string;
                     theme: string;
                     language: string;
+                },
+                deleteDialog: {
+                    title: string;
+                    description: string;
+                    cancel: string;
+                    confirm: string;
+                },
+                editNameDialog: {
+                    title: string;
+                    description: string;
+                    nameLabel: string;
+                    namePlaceholder: string;
+                    cancel: string;
+                    confirm: string;
+                    nameTooLong: string;
+                    nameTooShort: string;
+                    nameEmpty: string;
+                    success: string;
+                    validInput: string;
                 }
             }
         },
@@ -287,6 +310,7 @@ export interface Dictionary {
     // Common/shared strings
     common: {
         seeDetails: string;
+        backToLanding: string;
     },
 
     // Metadata of the report
