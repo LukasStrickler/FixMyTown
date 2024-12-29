@@ -41,7 +41,7 @@ export default async function VerifyRequestPage({
                 <CardContent className="px-6">
                     <VerifyTokenInput dictionary={dictionary} />
                     <div className="text-center space-y-2 mt-4">
-                        <p className="text-foreground/60">
+                        <p className="text-foreground/80">
                             {dictionary.pages.auth.verifyRequest.checkEmail}
                         </p>
                         <ResendTimer dictionary={dictionary} />
