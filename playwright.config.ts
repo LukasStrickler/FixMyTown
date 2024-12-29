@@ -1,4 +1,4 @@
-import test from '@playwright/test';
+import { defineConfig, devices } from '@playwright/test';
 import dotenv from 'dotenv';
 import path from 'path';
 
@@ -8,7 +8,7 @@ dotenv.config({
     override: true
 });
 
-export default {
+export default defineConfig({
     testDir: './src/tests',
     fullyParallel: true,
     forbidOnly: !!process.env.CI,
@@ -26,8 +26,18 @@ export default {
     projects: [
         {
             name: 'chromium',
+            use: { ...devices['Desktop Chrome'] },
+        },
+        {
+            name: 'auth-tests',
+            testMatch: /auth\.test\.ts/,
             use: {
-                ...test.devices['Desktop Chrome']
+                ...devices['Desktop Chrome'],
+                headless: false,
+                launchOptions: {
+                    slowMo: 1000,
+                    args: ['--remote-debugging-port=9222']
+                }
             },
         },
     ],
@@ -36,5 +46,5 @@ export default {
         url: 'http://localhost:3000',
         reuseExistingServer: !process.env.CI,
     },
-};
+});
 
