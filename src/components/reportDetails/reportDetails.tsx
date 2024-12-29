@@ -57,6 +57,14 @@ export default function ReportDetails({ report, worker, dictionary }: ReportDeta
     void utils.reportDetails.getReportDetails.invalidate();
   };
 
+  const { data: users, isLoading: isLoadingUsers } = api.user.getUsers.useQuery();
+
+  if (isLoadingUsers) {
+    return <p>Loading users...</p>;
+  }
+
+  const userMap = new Map(users?.map(user => [user.id, user.name]) ?? []);
+
   return (
     <Card className="w-full max-w-4xl">
       <CardHeader>
@@ -105,7 +113,7 @@ export default function ReportDetails({ report, worker, dictionary }: ReportDeta
             <h3 className="font-semibold mb-4">{dictionary.components.reportDetails.history}</h3>
             {protocolls.map((protocol, idx) => (
               <div key={idx} className="border-b py-2">
-                <p>{new Date(protocol.timestamp).toLocaleDateString('de-GB')} | {protocol.userId}</p>
+                <p>{new Date(protocol.timestamp).toLocaleDateString('de-GB')} | {userMap.get(protocol.userId) ?? 'Unknown User'}</p>
                 <p>{dictionary.components.reportDetails.statuses.title}: {statusMap[protocol.status as keyof typeof statusMap].name}</p>
                 {protocol.comment && <p>{protocol.comment}</p>}
               </div>
