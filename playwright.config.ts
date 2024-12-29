@@ -28,18 +28,6 @@ export default defineConfig({
             name: 'chromium',
             use: { ...devices['Desktop Chrome'] },
         },
-        {
-            name: 'auth-tests',
-            testMatch: /auth\.test\.ts/,
-            use: {
-                ...devices['Desktop Chrome'],
-                headless: false,
-                launchOptions: {
-                    slowMo: 1000,
-                    args: ['--remote-debugging-port=9222']
-                }
-            },
-        },
     ],
     webServer: {
         command: 'npm run dev',
