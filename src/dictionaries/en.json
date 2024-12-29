@@ -171,6 +171,21 @@
         }
     },
     "components": {
+        "reports": {
+            "details": {
+                "reportId": "Report ID",
+                "status": "Status",
+                "createdAt": "Created at",
+                "category": "Category",
+                "priority": "Priority",
+                "assignedTo": "Assigned to",
+                "lastUpdated": "Last updated",
+                "location": "Location",
+                "department": "Department",
+                "description": "Description",
+                "notes": "Notes"
+            }
+        },
         "reportDetails": {
             "description": "Description",
             "history": "History",
@@ -369,21 +384,6 @@
                 "name": "High",
                 "description": "High priority"
             }
-        }
-    },
-    "reports": {
-        "details": {
-            "reportId": "Report ID",
-            "status": "Status",
-            "createdAt": "Created at",
-            "category": "Category",
-            "priority": "Priority",
-            "assignedTo": "Assigned to",
-            "lastUpdated": "Last updated",
-            "location": "Location",
-            "department": "Department",
-            "description": "Description",
-            "notes": "Notes"
         }
     }
 }

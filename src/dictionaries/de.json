@@ -171,6 +171,21 @@
         }
     },
     "components": {
+        "reports": {
+        "details": {
+            "reportId": "Meldungs-ID",
+            "status": "Status",
+            "createdAt": "Erstellt am",
+            "category": "Kategorie",
+            "priority": "Priorität",
+            "assignedTo": "Zugewiesen an",
+            "lastUpdated": "Zuletzt aktualisiert",
+            "location": "Standort",
+            "department": "Abteilung",
+            "description": "Beschreibung",
+            "notes": "Arbeitsnotizen"
+        }
+    },
         "reportDetails": {
             "description": "Beschreibung",
             "history": "Logbuch",
@@ -369,21 +384,6 @@
                 "name": "Hoch",
                 "description": "Hohe Priorität"
             }
-        }
-    },
-    "reports": {
-        "details": {
-            "reportId": "Meldungs-ID",
-            "status": "Status",
-            "createdAt": "Erstellt am",
-            "category": "Kategorie",
-            "priority": "Priorität",
-            "assignedTo": "Zugewiesen an",
-            "lastUpdated": "Zuletzt aktualisiert",
-            "location": "Standort",
-            "department": "Abteilung",
-            "description": "Beschreibung",
-            "notes": "Arbeitsnotizen"
         }
     }
 }

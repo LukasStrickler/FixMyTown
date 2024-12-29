@@ -179,6 +179,21 @@ export interface Dictionary {
 
     // Reusable components
     components: {
+        reports: {
+            details: {
+                reportId: string;
+                status: string;
+                createdAt: string;
+                category: string;
+                priority: string;
+                assignedTo: string;
+                lastUpdated: string;
+                location: string;
+                department: string;
+                description: string;
+                notes: string;
+            }
+        },
         reportDetails:{
             description: string;
             history: string;
@@ -350,21 +365,6 @@ export interface Dictionary {
             "1": { name: string; description: string };
             "2": { name: string; description: string };
             "3": { name: string; description: string };
-        }
-    },
-    reports: {
-        details: {
-            reportId: string;
-            status: string;
-            createdAt: string;
-            category: string;
-            priority: string;
-            assignedTo: string;
-            lastUpdated: string;
-            location: string;
-            department: string;
-            description: string;
-            notes: string;
         }
     }
 }
