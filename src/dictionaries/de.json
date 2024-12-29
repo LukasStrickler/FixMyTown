@@ -40,7 +40,8 @@
                 "Verification": "Der Anmeldelink ist nicht mehr gültig.",
                 "LogoutError": "Beim Abmelden ist ein Fehler aufgetreten.",
                 "Default": "Ein unerwarteter Fehler ist aufgetreten.",
-                "backToHome": "Zurück zur Startseite"
+                "backToHome": "Zurück zur Startseite",
+                "DeleteAccountError": "Fehler beim Löschen des Kontos"
             },
             "account": {
                 "title": "Konto Details",
@@ -55,7 +56,29 @@
                     "email": "E-Mail-Adresse",
                     "signOut": "Abmelden",
                     "role": "Rolle",
-                    "backToWorkspace": "Zurück zum Arbeitsbereich"
+                    "name": "Name",
+                    "editName": "Name ändern",
+                    "deleteAccount": "Konto löschen",
+                    "deleteAccountConfirm": "Sind Sie sicher, dass Sie Ihr Konto löschen möchten? Dieser Vorgang kann nicht rückgängig gemacht werden."
+                },
+                "editNameDialog": {
+                    "title": "Name ändern",
+                    "description": "Geben Sie Ihren neuen Anzeigenamen unten ein.",
+                    "nameLabel": "Name",
+                    "namePlaceholder": "Geben Sie Ihren Namen ein",
+                    "cancel": "Abbrechen",
+                    "confirm": "Änderungen speichern",
+                    "nameTooLong": "Name ist zu lang",
+                    "nameTooShort": "Name ist zu kurz",
+                    "nameEmpty": "Name darf nicht leer sein",
+                    "success": "Name wurde erfolgreich aktualisiert",
+                    "validInput": "Name ist gültig"
+                },
+                "deleteDialog": {
+                    "title": "Konto löschen",
+                    "description": "Sind Sie sicher, dass Sie Ihr Konto löschen möchten? Diese Aktion kann nicht rückgängig gemacht werden.",
+                    "cancel": "Abbrechen",
+                    "confirm": "Konto löschen"
                 }
             }
         },
@@ -130,6 +153,13 @@
                 "dark": "Dunkel",
                 "light": "Hell",
                 "system": "System"
+            },
+            "languageSwitcher": {
+                "text": "Sprache wechseln zu",
+                "languages": {
+                    "en": "Englisch",
+                    "de": "Deutsch"
+                }
             }
         },
         "footer": {
@@ -163,7 +193,10 @@
             "loading": "Wird geladen..."
         },
         "mapLegend": {
-            "title": "Legende"
+            "title": "Legende",
+            "typeTitle": "Typ",
+            "statusTitle": "Status",
+            "priorityTitle": "Priorität"
         },
         "reportTable": {
             "search": {
@@ -281,7 +314,8 @@
         }
     },
     "common": {
-        "seeDetails": "Details anzeigen"
+        "seeDetails": "Details anzeigen",
+        "backToLanding": "Zurück zur Startseite"
     },
     "metadata": {
         "types": {
@@ -310,6 +344,10 @@
             "3": {
                 "name": "Abgeschlossen",
                 "description": "Meldung wurde bearbeitet"
+            },
+            "4": {
+                "name": "Abgelehnt",
+                "description": "Meldung wurde abgelehnt"
             }
         },
         "prios": {

@@ -44,6 +44,7 @@ export interface Dictionary {
                 LogoutError: string;
                 Default: string;
                 backToHome: string;
+                DeleteAccountError: string;
             },
             account: {
                 title: string;
@@ -53,12 +54,34 @@ export interface Dictionary {
                     email: string;
                     role: string;
                     signOut: string;
-                    backToWorkspace: string;
+                    deleteAccount: string;
+                    deleteAccountConfirm: string;
+                    name: string;
+                    editName: string;
                 },
                 settings: {
                     title: string;
                     theme: string;
                     language: string;
+                },
+                deleteDialog: {
+                    title: string;
+                    description: string;
+                    cancel: string;
+                    confirm: string;
+                },
+                editNameDialog: {
+                    title: string;
+                    description: string;
+                    nameLabel: string;
+                    namePlaceholder: string;
+                    cancel: string;
+                    confirm: string;
+                    nameTooLong: string;
+                    nameTooShort: string;
+                    nameEmpty: string;
+                    success: string;
+                    validInput: string;
                 }
             }
         },
@@ -136,6 +159,13 @@ export interface Dictionary {
                 dark: string;
                 light: string;
                 system: string;
+            },
+            languageSwitcher: {
+                text: string;
+                languages: {
+                    en: string;
+                    de: string;
+                }
             }
         },
         footer: {
@@ -172,6 +202,9 @@ export interface Dictionary {
         },
         mapLegend: {
             title: string;
+            typeTitle: string;
+            statusTitle: string;
+            priorityTitle: string;
         },
         reportTable: {
             search: {
@@ -293,6 +326,7 @@ export interface Dictionary {
     // Common/shared strings
     common: {
         seeDetails: string;
+        backToLanding: string;
     },
 
     // Metadata of the report
@@ -306,6 +340,7 @@ export interface Dictionary {
             "1": { name: string; description: string };
             "2": { name: string; description: string };
             "3": { name: string; description: string };
+            "4": { name: string; description: string };
         },
         prios: {
             "0": { name: string; description: string };

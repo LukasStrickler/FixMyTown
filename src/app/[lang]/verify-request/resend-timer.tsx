@@ -47,7 +47,7 @@ export function ResendTimer({ dictionary }: ResendTimerProps) {
             disabled={isActive || isLoading}
             variant="default"
             size="sm"
-            className="bg-transparent font-normal hover:bg-transparent disabled:opacity-100 text-black/80 hover:text-black/60 disabled:text-muted-foreground/60 disabled:hover:text-muted-foreground/60"
+            className="text-primary font-normal disabled:opacity-100 text-black/80 hover:text-black/60 disabled:text-muted-foreground/60 disabled:hover:text-muted-foreground/60"
         >
             {isActive
                 ? `${dictionary.pages.auth.verifyRequest.resendIn} ${seconds}s`
