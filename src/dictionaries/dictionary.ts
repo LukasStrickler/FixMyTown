@@ -179,20 +179,23 @@ export interface Dictionary {
 
     // Reusable components
     components: {
-        reportDetails: {
+        reportDetails:{
             description: string;
             history: string;
-            location: string;
+            location:string;
             comment: string;
+
             statuses: {
                 title: string;
-                placeholderText: string;
+                placeholderText:string;
                 updateButtonText: string;
+
             },
             prios: {
                 title: string;
-                placeholderText: string;
+                placeholderText:string;
                 updateButtonText: string;
+
             }
         },
         locationPicker: {
