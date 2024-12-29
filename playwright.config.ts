@@ -1,4 +1,4 @@
-import { defineConfig, devices } from '@playwright/test';
+import test from '@playwright/test';
 import dotenv from 'dotenv';
 import path from 'path';
 
@@ -8,7 +8,7 @@ dotenv.config({
     override: true
 });
 
-export default defineConfig({
+export default {
     testDir: './src/tests',
     fullyParallel: true,
     forbidOnly: !!process.env.CI,
@@ -26,7 +26,9 @@ export default defineConfig({
     projects: [
         {
             name: 'chromium',
-            use: { ...devices['Desktop Chrome'] },
+            use: {
+                ...test.devices['Desktop Chrome']
+            },
         },
     ],
     webServer: {
@@ -34,5 +36,5 @@ export default defineConfig({
         url: 'http://localhost:3000',
         reuseExistingServer: !process.env.CI,
     },
-});
+};
 
