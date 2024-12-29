@@ -90,16 +90,33 @@ export interface Dictionary {
                 }
             }
         },
+        // About Page
+        about: {
+            heroText: string;
+            description: string; 
+            missionTitle: string;
+            missionText: string; 
+            companyDescription: string; 
+            goalsTitle: string; 
+            feature1Title: string;
+            feature1Description: string;
+            feature2Title: string; 
+            feature2Description: string;
+            feature3Title: string; 
+            feature3Description: string;
+            additionalInfoTitle: string;
+            additionalInfoText: string; 
+        },
         // Impressum page
         imprint: {
-        heroText: string;
-        heroDescription: string;
-        labelA: string;
-        featuresTitle: string;
-        feature1Title: string;
-        feature1Text: string;
-        feature2Title: string;
-        feature2Text: string;
+            heroText: string;
+            heroDescription: string;
+            labelA: string;
+            featuresTitle: string;
+            feature1Title: string;
+            feature1Text: string;
+            feature2Title: string;
+            feature2Text: string;
         },
         // Privacy page
         privacy: {

@@ -86,6 +86,22 @@
                 }
             }
         },
+        "about": {
+            "heroText": "About FixMyTown",
+            "description": "FixMyTown empowers citizens to report issues in their city quickly and easily. Together, we improve urban infrastructure and maintain order.",
+            "missionTitle": "Our Mission",
+            "missionText": "At FixMyTown, we strive to create better living spaces by enabling active citizen participation and fostering cleaner, safer, and more efficient urban environments.",
+            "companyDescription": "We are a small, dedicated company based in Ludwigshafen, passionate about improving urban living through technology and community engagement.",
+            "goalsTitle": "Our Goals",
+            "feature1Title": "Improve Infrastructure",
+            "feature1Description": "Actively help improve urban infrastructure by reporting damage and defects to public facilities.",
+            "feature2Title": "Promote Cleanliness",
+            "feature2Description": "Contribute to a clean city by reporting pollution and illegal dumping.",
+            "feature3Title": "Maintain Order",
+            "feature3Description": "Support traffic safety by reporting parking violations and other traffic-related issues.",
+            "additionalInfoTitle": "Why FixMyTown?",
+            "additionalInfoText": "FixMyTown believes in leveraging community power to bring about meaningful change in urban environments. Together, we can make cities more liveable for everyone."
+        },
         "imprint": {
             "heroText": "Impressum",
             "heroDescription": "Information about our company.",
