@@ -86,6 +86,22 @@
                 }
             }
         },
+        "about": {
+            "heroText": "Über FixMyTown",
+            "description": "FixMyTown ermöglicht es Bürgern, Probleme in ihrer Stadt schnell und einfach zu melden. Gemeinsam verbessern wir die städtische Infrastruktur und wahren die Ordnung.",
+            "missionTitle": "Unsere Mission",
+            "missionText": "Bei FixMyTown setzen wir uns dafür ein, lebenswertere Räume zu schaffen, indem wir aktive Bürgerbeteiligung fördern und sauberere, sicherere und effizientere urbane Umgebungen ermöglichen.",
+            "companyDescription": "Wir sind ein kleines, engagiertes Unternehmen mit Sitz in Ludwigshafen, das sich leidenschaftlich dafür einsetzt, das urbane Leben durch Technologie und Gemeinschaftsengagement zu verbessern.",
+            "goalsTitle": "Unsere Ziele",
+            "feature1Title": "Infrastruktur verbessern",
+            "feature1Description": "Helfen Sie aktiv mit, die städtische Infrastruktur zu verbessern, indem Sie Schäden und Defekte an öffentlichen Einrichtungen melden.",
+            "feature2Title": "Sauberkeit fördern",
+            "feature2Description": "Tragen Sie zu einer sauberen Stadt bei, indem Sie Verschmutzungen und illegale Müllablagerungen melden.",
+            "feature3Title": "Ordnung aufrechterhalten",
+            "feature3Description": "Unterstützen Sie die Verkehrssicherheit, indem Sie Parkverstöße und andere verkehrsbezogene Probleme melden.",
+            "additionalInfoTitle": "Warum FixMyTown?",
+            "additionalInfoText": "FixMyTown glaubt daran, die Kraft der Gemeinschaft zu nutzen, um sinnvolle Veränderungen in urbanen Umgebungen herbeizuführen. Gemeinsam können wir Städte lebenswerter machen."
+        },          
         "imprint": {
             "heroText": "Impressum",
             "heroDescription": "Informationen über unser Unternehmen.",
