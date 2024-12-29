@@ -2,7 +2,6 @@
 
 import { useEffect, useState } from "react"
 import type { Dictionary } from "@/dictionaries/dictionary"
-import { api } from "@/trpc/react"
 import LocationPicker, { type Location, type Address } from "@/components/LocationPicker/LocationPicker"
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
@@ -46,7 +45,11 @@ export function ReportingForm({ dictionary, preselectedType, showUpload = true }
     } = useReportForm(dictionary, preselectedType)
     const [locationDescription, setLocationDescription] = useState("")
     const [isLocked, setIsLocked] = useState(false)
-    const { data: types } = api.report.getTypes.useQuery();
+
+    const types = Object.entries(dictionary.metadata.types).map(([id, type]) => ({
+        id,
+        name: type.name
+    }))
 
     //on is locked, trigger validation of latitude and longitude
     useEffect(() => {
