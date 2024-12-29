@@ -42,6 +42,7 @@ export const reportDetailsRouter = createTRPCRouter({
             timestamp: protocoll.time,
             status: protocoll.statusId,
             comment: protocoll.comment,
+            userId: protocoll.userId
         }))
 
 

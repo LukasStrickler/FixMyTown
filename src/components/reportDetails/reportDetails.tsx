@@ -26,6 +26,7 @@ interface ReportDetailsProps {
       timestamp: string | Date;
       status: number;
       comment: string | null;
+      userId: string;
     }[];
   };
   worker: boolean;
@@ -104,7 +105,7 @@ export default function ReportDetails({ report, worker, dictionary }: ReportDeta
             <h3 className="font-semibold mb-4">{dictionary.components.reportDetails.history}</h3>
             {protocolls.map((protocol, idx) => (
               <div key={idx} className="border-b py-2">
-                <p>{new Date(protocol.timestamp).toLocaleDateString('de-GB')}</p>
+                <p>{new Date(protocol.timestamp).toLocaleDateString('de-GB')} | {protocol.userId}</p>
                 <p>{dictionary.components.reportDetails.statuses.title}: {statusMap[protocol.status as keyof typeof statusMap].name}</p>
                 {protocol.comment && <p>{protocol.comment}</p>}
               </div>

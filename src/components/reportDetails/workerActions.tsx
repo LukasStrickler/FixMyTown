@@ -30,7 +30,7 @@ export function WorkerActions({
   const [selectedStatus, setSelectedStatus] = useState<string>(currentStatus.toString());
   const [selectedPriority, setSelectedPriority] = useState<number | undefined>(undefined);
 
-  const statusMap = {
+  const statusMap: Record<number, { name: string }> = {
     1: dictionary.metadata.statuses[1],
     2: dictionary.metadata.statuses[2],
     3: dictionary.metadata.statuses[3],
@@ -56,14 +56,14 @@ export function WorkerActions({
   const updatePriority = api.reportDetails.updatePriority.useMutation();
 
   const isValidTransition = (currentStatus: number, newStatus: number): boolean => {
-    const validTransitions: { [key: number]: number[] } = {
+    const validTransitions: Record<number, number[]> = {
       1: [2], // new → in progress
       2: [3], // in progress → completed
       3: [2], // completed → in progress (for rework)
       4: [1], // declined → new (to reset after reconsideration)
     };
 
-    return validTransitions[currentStatus]?.includes(newStatus) || false;
+    return validTransitions[currentStatus]?.includes(newStatus) ?? false;
   };
 
   const handleStatusAndCommentSubmit = () => {
@@ -94,13 +94,13 @@ export function WorkerActions({
   };
 
   const validStatusOptions = (currentStatus: number) => {
-    const options: { [key: number]: number[] } = {
+    const options: Record<number, number[]> = {
       1: [2], // new → in progress
       2: [3], // in progress → completed
       3: [2], // completed → in progress (for rework)
       4: [1], // declined → new (to reset after reconsideration)
     };
-    return options[currentStatus] || [];
+    return options[currentStatus] ?? [];
   };
 
   return (
@@ -112,13 +112,13 @@ export function WorkerActions({
             <Select value={selectedStatus} onValueChange={setSelectedStatus}>
               <SelectTrigger>
                 <SelectValue placeholder={dictionary.components.reportDetails.statuses.placeholderText}>
-                  {statusMap[parseInt(selectedStatus) as keyof typeof statusMap].name}
+                  {statusMap[parseInt(selectedStatus)]?.name ?? ""}
                 </SelectValue>
               </SelectTrigger>
               <SelectContent>
                 {validStatusOptions(currentStatus).map((statusId) => (
                   <SelectItem key={statusId} value={statusId.toString()}>
-                    {statusMap[statusId as keyof typeof statusMap].name}
+                    {statusMap[statusId]?.name ?? "Unknown Status"}
                   </SelectItem>
                 ))}
               </SelectContent>
