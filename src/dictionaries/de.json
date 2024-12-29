@@ -101,7 +101,23 @@
             "feature3Description": "Unterstützen Sie die Verkehrssicherheit, indem Sie Parkverstöße und andere verkehrsbezogene Probleme melden.",
             "additionalInfoTitle": "Warum FixMyTown?",
             "additionalInfoText": "FixMyTown glaubt daran, die Kraft der Gemeinschaft zu nutzen, um sinnvolle Veränderungen in urbanen Umgebungen herbeizuführen. Gemeinsam können wir Städte lebenswerter machen."
-        },          
+        },
+        "contact": {
+            "heroText": "Kontaktieren Sie uns",
+            "description": "Wir würden gerne von Ihnen hören! Ob Sie eine Frage haben, einen Vorschlag machen möchten oder einfach nur Hallo sagen wollen, zögern Sie nicht, sich bei uns zu melden.",
+            "contactInfoTitle": "Unsere Kontaktinformationen",
+            "contactInfoText": "Sie können uns über die folgenden Kanäle kontaktieren. Wir stehen Ihnen für alle Anfragen oder Rückmeldungen zur Verfügung.",
+            "supportTitle": "Support",
+            "supportEmailText": "Senden Sie uns eine E-Mail für Support-Anfragen an ",
+            "supportEmailTo": "support@fixmytown.com",
+            "supportEmailSubject": "Support-Anfrage",
+            "inquiriesTitle": "Allgemeine Anfragen & Zusammenarbeit",
+            "inquiriesEmailText": "Senden Sie uns allgemeine Anfragen oder Vorschläge für eine Zusammenarbeit an ",
+            "inquiriesEmailTo": "info@fixmytown.com",
+            "inquiriesEmailSubject": "Allgemeine Anfrage & Zusammenarbeit",
+            "additionalInfoTitle": "Warum sollten Sie sich melden?",
+            "additionalInfoText": "Wir sind stets bemüht, unsere Plattform zu verbessern und bessere Dienstleistungen anzubieten. Ihr Feedback hilft uns, zu wachsen und Ihnen besser zu dienen."
+        },   
         "imprint": {
             "heroText": "Impressum",
             "heroDescription": "Informationen über unser Unternehmen.",
