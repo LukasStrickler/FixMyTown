@@ -25,7 +25,7 @@ export const userRouter = createTRPCRouter({
       return updatedUser[0];
     }),
 
-  getUsers: adminProcedure
+  getUsers: userProcedure
     .query(async ({ ctx }) => {
       const userData = await ctx.db.select().from(users).all();
       return userData.map((user) => ({
