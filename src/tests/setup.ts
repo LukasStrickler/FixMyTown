@@ -13,6 +13,7 @@ dotenv.config({
 })
 
 declare module 'vitest' {
+    // eslint-disable-next-line 
     interface Assertion extends TestingLibraryMatchers<typeof expect.stringContaining, unknown> { }
 }
 
