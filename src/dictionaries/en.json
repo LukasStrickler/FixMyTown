@@ -102,6 +102,22 @@
             "additionalInfoTitle": "Why FixMyTown?",
             "additionalInfoText": "FixMyTown believes in leveraging community power to bring about meaningful change in urban environments. Together, we can make cities more liveable for everyone."
         },
+        "contact": {
+            "heroText": "Contact Us",
+            "description": "We’d love to hear from you! Whether you have a question, suggestion, or just want to say hello, feel free to reach out.",
+            "contactInfoTitle": "Our Contact Information",
+            "contactInfoText": "You can contact us through the following channels. We are available to help with any inquiries or feedback.",
+            "supportTitle": "Support",
+            "supportEmailText": "Send us an email for support requestst at ",
+            "supportEmailTo": "support@fixmytown.com",
+            "supportEmailSubject": "Support Request",
+            "inquiriesTitle": "General Contact & Collaboration",
+            "inquiriesEmailText": "Send us any general inquirys or ollaboration proposals at ",
+            "inquiriesEmailTo": "info@fixmytown.com",
+            "inquiriesEmailSubject": "General & Collaboration Inquiry",
+            "additionalInfoTitle": "Why Reach Out?",
+            "additionalInfoText": "We are always looking to improve our platform and provide better services. Your feedback helps us grow and serve you better."
+        },
         "imprint": {
             "heroText": "Impressum",
             "heroDescription": "Information about our company.",

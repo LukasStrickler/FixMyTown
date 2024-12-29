@@ -107,6 +107,23 @@ export interface Dictionary {
             additionalInfoTitle: string;
             additionalInfoText: string; 
         },
+        // Contact Page
+        contact: {
+            heroText: string;
+            description: string;
+            contactInfoTitle: string;
+            contactInfoText: string;
+            supportTitle: string;
+            supportEmailText: string;
+            supportEmailTo: string;
+            supportEmailSubject: string;
+            inquiriesTitle: string;
+            inquiriesEmailText: string;
+            inquiriesEmailTo: string;
+            inquiriesEmailSubject: string;
+            additionalInfoTitle: string;
+            additionalInfoText: string;
+        },
         // Impressum page
         imprint: {
             heroText: string;
