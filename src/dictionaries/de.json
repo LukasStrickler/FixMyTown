@@ -176,7 +176,6 @@
             "history": "Logbuch",
             "location": "Ort",
             "comment": "Kommentar",
-
             "statuses": {
                 "title": "Status",
                 "placeholderText": "Status auswählen",
@@ -298,7 +297,7 @@
             "content": {
                 "greeting": "Hallo {firstName}, vielen Dank, dass Du ein neues Problem gemeldet hast!",
                 "reportReceived": "Wir haben Deinen Bericht über das Problem",
-                "thankYou": "erhelten. Vielen Dank für Deine Unterstützung, unsere Stadt sauber und ansprechend zu halten!",
+                "thankYou": "erhalten. Vielen Dank für Deine Unterstützung, unsere Stadt sauber und ansprechend zu halten!",
                 "promise": "Wir werden unser Bestes tun, um das Problem so schnell wie möglich zu beheben."
             }
         },

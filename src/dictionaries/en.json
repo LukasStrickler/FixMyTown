@@ -176,7 +176,6 @@
             "history": "History",
             "location": "Location",
             "comment": "Comment",
-
             "statuses": {
                 "title": "Status",
                 "placeholderText": "Select Status",
