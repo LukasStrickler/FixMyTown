@@ -45,10 +45,10 @@ export default function RootLayout({
           <DictionaryProvider>
             <AuthProvider>
               <TRPCReactProvider>
+                <NamePopup />
                 <SidebarProvider>
                   <AppSidebar />
                   <SidebarInset>
-                    <NamePopup /> {}
                     <SidebarTrigger className="block md:hidden fixed top-1 left-1 z-50 bg-sidebar" />
                     <NextSSRPlugin
                       /**
