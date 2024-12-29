@@ -136,6 +136,13 @@ export interface Dictionary {
                 dark: string;
                 light: string;
                 system: string;
+            },
+            languageSwitcher: {
+                text: string;
+                languages: {
+                    en: string;
+                    de: string;
+                }
             }
         },
         footer: {

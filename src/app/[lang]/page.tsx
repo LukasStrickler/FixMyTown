@@ -65,13 +65,13 @@ export default async function IndexPage({
 
       {/* Features Section with curved top */}
       <section className="relative py-32">
-        <div className="absolute inset-0 mt-44 bg-muted/50 hidden md:block" style={{
+        <div className="absolute inset-0 mt-[168px] bg-muted/50 hidden md:block" style={{
           clipPath: "ellipse(100% 100% at 50% 100%)",
           transform: "translateY(-30%)",
           height: "100%"
         }} />
 
-        <div className="absolute inset-0 mt-[385px] bg-muted/50 block md:hidden" style={{
+        <div className="absolute inset-0 mt-[353px] bg-muted/50 block md:hidden" style={{
           clipPath: "ellipse(100% 100% at 50% 100%)",
           transform: "translateY(-30%)",
           height: "95%"

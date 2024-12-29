@@ -44,11 +44,9 @@ export default function RootLayout({
             <AuthProvider>
               <TRPCReactProvider>
                 <SidebarProvider>
-                  <AppSidebar params={{
-                    lang: "de"
-                  }} />
+                  <AppSidebar />
                   <SidebarInset>
-                    <SidebarTrigger className="absolute top-2 left-2" />
+                    <SidebarTrigger className="block md:hidden fixed top-1 left-1 z-50 bg-sidebar" />
                     <NextSSRPlugin
                       /**
                        * The `extractRouterConfig` will extract **only** the route configs
