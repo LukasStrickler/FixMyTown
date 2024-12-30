@@ -46,6 +46,7 @@ export function WorkerActions({
 
   const addProtocoll = api.reportDetails.addProtocoll.useMutation({
     onSuccess: () => {
+      window.location.reload();
       setComment("");
       if (onActionComplete) {
         onActionComplete();
@@ -53,7 +54,11 @@ export function WorkerActions({
     },
   });
 
-  const updatePriority = api.reportDetails.updatePriority.useMutation();
+  const updatePriority = api.reportDetails.updatePriority.useMutation({
+    onSuccess: () => {
+      window.location.reload();
+    },
+  });
 
   const isValidTransition = (currentStatus: number, newStatus: number): boolean => {
     const validTransitions: Record<number, number[]> = {
