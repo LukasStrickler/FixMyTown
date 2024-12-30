@@ -24,6 +24,11 @@ import { useDictionary } from "@/components/provider/dictionaryProvider";
 import { Button } from "../ui/button";
 import { useParams } from "next/navigation";
 
+import { ModeToggle } from "@/components/modeToggle"
+import { LanguageSwitcher } from "@/components/language-switcher"
+
+
+
 export interface Workspace {
   workspaceType: string; // Worker, User, or Admin
   name: string; // The name of the workspace
@@ -111,15 +116,20 @@ export function AppSidebar({
   }
 
   if (!user) {
-    return <div className="flex justify-center items-center h-screen">
-      <Sidebar>
-        <SidebarHeader className="flex justify-center items-center h-screen">
-          <Button onClick={() => window.location.href = `/${lang}/login`}>
-            {dictionary.pages.auth.login.title}
-          </Button>
-        </SidebarHeader>
-      </Sidebar>
-    </div>;
+    return (
+      <div className="flex justify-center items-center h-screen bg-gray-100">
+        <Sidebar className="shadow-lg rounded-lg">
+          <SidebarHeader className="flex justify-center items-center h-screen bg-white rounded-t-lg">
+            <Button onClick={() => window.location.href = `/${lang}/login`} className="text-lg font-semibold">
+              {dictionary.pages.auth.login.title}
+            </Button>
+          </SidebarHeader>
+          <div className="space-y-4 p-4 flex flex-col items-center">
+            {dictionary && <LanguageSwitcher {...dictionary} />}
+          </div>
+        </Sidebar>
+      </div>
+    );
   }
 
 
