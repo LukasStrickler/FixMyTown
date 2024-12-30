@@ -31,7 +31,8 @@ export const userRouter = createTRPCRouter({
       .min(1, { message: "Name empty" })
           .transform(val => val.trim())
           .refine(val => val.length >= 3, { message: "Name to short" })
-          .refine(val => val.length <= 50, { message: "Name to long" }),
+          .refine(val => val.length <= 50, { message: "Name to long" })
+          .refine(val => /^[\p{L}\s]*$/u.test(val), { message: "Name contians forbidden chars" }),
     }))  
 
     .mutation(async ({ ctx, input }) => {

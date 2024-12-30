@@ -142,6 +142,7 @@ export default function NamePopup() {
                       {dictionary.components.signUpPopup.termsAndConditionsPartC}
                     </label>
                   </div>
+
                   {fieldState?.error && (
                     <FormMessage className="text-[13px] text-orange-400 font-medium mt-2 block">
                       {fieldState?.error.message}
