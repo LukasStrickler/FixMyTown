@@ -121,7 +121,6 @@ export default function NamePopup() {
                   <div className="flex items-center space-x-2">
                     <FormControl>
                       <input
-                        {...field}
                         type="checkbox"
                         id="terms"
                         className="text-foreground"
