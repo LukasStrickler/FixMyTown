@@ -1,5 +1,8 @@
 {
     "pages": {
+        "reportDetails": {
+            "errorMessage": "We sadly did not find the Report :("
+        },
         "landing": {
             "heroText": "Report Issues in Your City",
             "heroDescription": "With FixMyTown, you can quickly and easily report problems in your city. We help you improve infrastructure and maintain order in the city.",
@@ -108,7 +111,219 @@
                     "changeRoleToUser": "Change role to User"
                 }
             }
-        }
+        },
+        "about": {
+            "heroText": "About FixMyTown",
+            "description": "FixMyTown empowers citizens to report issues in their city quickly and easily. Together, we improve urban infrastructure and maintain order.",
+            "missionTitle": "Our Mission",
+            "missionText": "At FixMyTown, we strive to create better living spaces by enabling active citizen participation and fostering cleaner, safer, and more efficient urban environments.",
+            "companyDescription": "We are a small, dedicated company based in Ludwigshafen, passionate about improving urban living through technology and community engagement.",
+            "goalsTitle": "Our Goals",
+            "feature1Title": "Improve Infrastructure",
+            "feature1Description": "Actively help improve urban infrastructure by reporting damage and defects to public facilities.",
+            "feature2Title": "Promote Cleanliness",
+            "feature2Description": "Contribute to a clean city by reporting pollution and illegal dumping.",
+            "feature3Title": "Maintain Order",
+            "feature3Description": "Support traffic safety by reporting parking violations and other traffic-related issues.",
+            "additionalInfoTitle": "Why FixMyTown?",
+            "additionalInfoText": "FixMyTown believes in leveraging community power to bring about meaningful change in urban environments. Together, we can make cities more liveable for everyone."
+        },
+        "contact": {
+            "heroText": "Contact Us",
+            "description": "We’d love to hear from you! Whether you have a question, suggestion, or just want to say hello, feel free to reach out.",
+            "contactInfoTitle": "Our Contact Information",
+            "contactInfoText": "You can contact us through the following channels. We are available to help with any inquiries or feedback.",
+            "supportTitle": "Support",
+            "supportEmailText": "Send us an email for support requestst at ",
+            "supportEmailTo": "support@fixmytown.com",
+            "supportEmailSubject": "Support Request",
+            "inquiriesTitle": "General Contact & Collaboration",
+            "inquiriesEmailText": "Send us any general inquirys or ollaboration proposals at ",
+            "inquiriesEmailTo": "info@fixmytown.com",
+            "inquiriesEmailSubject": "General & Collaboration Inquiry",
+            "additionalInfoTitle": "Why Reach Out?",
+            "additionalInfoText": "We are always looking to improve our platform and provide better services. Your feedback helps us grow and serve you better."
+        },
+        "imprint": {
+            "heroText": "Impressum",
+            "heroDescription": "Information about our company.",
+            "labelA": "Represented by",
+            "featuresTitle": "Contact",
+            "feature1Title": "EU Dispute Resolution",
+            "feature1Text": "The European Commission provides a platform for online dispute resolution.",
+            "feature2Title": "Consumer Dispute Settlement/Universal Arbitration Board",
+            "feature2Text": "We are neither willing nor obliged to participate in dispute resolution proceedings before a consumer arbitration board."
+        },
+        "privacy": {
+            "heroText": "Privacy Policy",
+            "generalNotesTitle": "Data Protection at a Glance",
+            "generalNotesDescription": [
+                "The following notes provide a simple overview of what happens to your personal data when you visit this website.",
+                "Personal data is any data that can be used to identify you personally.",
+                "For detailed information on data protection, please refer to our privacy policy listed below this text."
+            ],
+            "dataCollectionTitle": "Data Collection on this Website",
+            "dataCollectionDescription": [
+                "Who is responsible for data collection on this website?",
+                "Data processing on this website is carried out by the website operator. You can find their contact details in the section 'Notice to the Responsible Party' in this privacy policy.",
+                "How do we collect your data?",
+                "Your data is collected in part when you provide it to us. This may include data you enter into a contact form.",
+                "Other data is collected automatically or with your consent when you visit the website through our IT systems. These are mainly technical data (e.g., internet browser, operating system, or time of page access). This data is collected automatically as soon as you enter this website.",
+                "What do we use your data for?",
+                "Some of the data is collected to ensure the proper functioning of the website. Other data may be used to analyze your user behavior. If contracts can be concluded or initiated via the website, the transmitted data will also be processed for contract offers, orders, or other service requests.",
+                "What rights do you have regarding your data?",
+                "You have the right to receive free information at any time about the origin, recipients, and purpose of your stored personal data. You also have the right to request the correction or deletion of this data. If you have given consent to data processing, you can withdraw this consent at any time in the future. You also have the right, under certain circumstances, to request the restriction of the processing of your personal data. Furthermore, you have the right to file a complaint with the competent supervisory authority. For more questions about data protection, you can contact us at any time."
+            ],
+            "hostingTitle": "Hosting",
+            "hostingDescription": [
+                "Our content is hosted externally, for example, by Vercel Inc., San Francisco County, California.",
+                "The personal data collected on this website is stored on the servers of the host. This mainly includes IP addresses, contact requests, meta and communication data, contract data, contact details, names, website accesses, and other data generated through a website.",
+                "Data processing is carried out for the purpose of fulfilling contracts with our potential and existing customers (Art. 6 Para. 1 lit. b DSGVO) and in the interest of a secure, fast, and efficient provision of our online services by a professional provider (Art. 6 Para. 1 lit. f DSGVO).",
+                "If explicit consent has been requested, processing will only take place based on Art. 6 Para. 1 lit. a DSGVO and § 25 Para. 1 TDDDG, if the consent includes the storage of cookies or access to information on the user's device (e.g., device fingerprinting) within the meaning of the TDDDG. The consent can be withdrawn at any time.",
+                "Our host will process your data only to the extent necessary to fulfill its service obligations and follow our instructions regarding this data.",
+                "We have concluded a data processing agreement (DPA) with Vercel Inc., which ensures that personal data is processed only according to our instructions and in compliance with the DSGVO."
+            ],
+            "rightsTitle": "General Information and Mandatory Information",
+            "rightsDescription": [
+                "The operators of these pages take the protection of your personal data very seriously. We treat your personal data confidentially and according to the legal data protection regulations as well as this privacy policy.",
+                "When you use this website, various personal data is collected. Personal data is data that can be used to identify you personally. This privacy policy explains what data we collect and how we use it. It also explains how and for what purpose this occurs.",
+                "We would like to point out that data transmission over the internet (e.g., via email communication) can have security vulnerabilities. A complete protection of the data against access by third parties is not possible.",
+                "The responsible party for data processing on this website is:\nFixMyTown GbR\nErnst-Boehe-Str. 4\n67059 Ludwigshafen am Rhein\nPhone: [Phone number of the responsible party]\nEmail: dataprivacy@fixmy.town\nThe responsible party is the natural or legal person who alone or jointly with others determines the purposes and means of processing personal data (e.g., names, email addresses, etc.).",
+                "Unless a more specific storage period is mentioned in this privacy policy, your personal data will remain with us until the purpose for data processing no longer applies. If you make a legitimate request for deletion or withdraw consent for data processing, your data will be deleted, unless we have other legally permissible reasons for storing your personal data (e.g., tax or commercial law retention periods); in the latter case, deletion will occur after these reasons no longer apply.",
+                "If you have given consent to data processing, we process your personal data based on Art. 6 Para. 1 lit. a DSGVO or Art. 9 Para. 2 lit. a DSGVO, if special categories of data are processed under Art. 9 Para. 1 DSGVO. In case of explicit consent for the transfer of personal data to third countries, the data processing also occurs based on Art. 49 Para. 1 lit. a DSGVO. If you have consented to the storage of cookies or access to information on your device (e.g., via device fingerprinting), data processing also occurs based on § 25 Para. 1 TDDDG. The consent can be withdrawn at any time.",
+                "If your data is necessary for contract fulfillment or pre-contractual measures, we process your data based on Art. 6 Para. 1 lit. b DSGVO. Furthermore, we process your data if it is required for fulfilling a legal obligation based on Art. 6 Para. 1 lit. c DSGVO. Data processing may also occur based on our legitimate interest according to Art. 6 Para. 1 lit. f DSGVO.",
+                "As part of our business activities, we work with various external parties. In some cases, personal data needs to be transferred to these external parties. We only share personal data with external parties if it is necessary for contract fulfillment, if we are legally obligated to do so (e.g., data transfer to tax authorities), if we have a legitimate interest under Art. 6 Para. 1 lit. f DSGVO, or if another legal basis allows the data transfer.",
+                "Many data processing operations are only possible with your explicit consent. You can withdraw any consent you have already given at any time. The legality of the data processing carried out until the withdrawal remains unaffected by the withdrawal.",
+                "IF DATA PROCESSING IS BASED ON ART. 6 PARA. 1 LIT. E OR F DSGVO, YOU HAVE THE RIGHT TO OBJECT TO THE PROCESSING OF YOUR PERSONAL DATA AT ANY TIME FOR REASONS ARISING FROM YOUR PARTICULAR SITUATION.",
+                "If the processing of your personal data is for direct marketing purposes, you have the right to object to the processing at any time.",
+                "In the case of violations of the DSGVO, the affected individuals have the right to lodge a complaint with a supervisory authority.",
+                "You have the right to have data processed automatically based on your consent or for contract fulfillment, transferred to you or to a third party in a commonly used, machine-readable format.",
+                "You have the right to obtain free information about your stored personal data at any time and can contact us at any time.",
+                "You have the right to request the restriction of the processing of your personal data.",
+                "The use of contact details published within the framework of the imprint obligation for sending unsolicited advertising and informational materials is hereby opposed."
+            ],
+            "legalBasisTitle": "Legal Basis of Processing",
+            "legalBasisDescription": [
+                "Art. 6 Para. 1 lit. a DSGVO – Consent.",
+                "Art. 6 Para. 1 lit. b DSGVO – Contract fulfillment.",
+                "Art. 6 Para. 1 lit. c DSGVO – Legal obligation.",
+                "Art. 6 Para. 1 lit. f DSGVO – Legitimate interest."
+            ],
+            "cookieTitle": "Cookies",
+            "cookieDescription": [
+                "Our websites use so-called 'cookies.' Cookies are small data packets and do not cause harm to your device. They are either temporarily stored for the duration of a session (session cookies) or permanently (permanent cookies) stored on your device. Session cookies are automatically deleted after your visit ends. Permanent cookies remain stored on your device until you delete them yourself or an automatic deletion occurs through your web browser.",
+                "Cookies can be set by us (first-party cookies) or by third parties (so-called third-party cookies). Third-party cookies enable the integration of certain services from third parties within websites (e.g., cookies for processing payment services).",
+                "Cookies have various functions. Many cookies are technically necessary because certain website functions would not work without them (e.g., the shopping cart function or the display of videos). Other cookies may be used to analyze user behavior or for advertising purposes.",
+                "Cookies required for the electronic communication process, for providing certain functions you desire (e.g., the shopping cart function), or for optimizing the website (e.g., cookies for measuring web traffic) are stored based on Art. 6 Para. 1 lit. f DSGVO unless another legal basis is specified. The website operator has a legitimate interest in storing necessary cookies for the error-free and optimized provision of their services.",
+                "If consent for storing cookies and similar recognition technologies has been requested, processing will take place solely based on this consent (Art. 6 Para. 1 lit. a DSGVO and § 25 Para. 1 TDDDG); consent can be withdrawn at any time.",
+                "You can configure your browser to inform you when cookies are set and allow cookies only in individual cases, exclude the acceptance of cookies for specific cases or generally, and activate the automatic deletion of cookies when closing the browser. Disabling cookies may restrict the functionality of this website.",
+                "You can find which cookies and services are used on this website in this privacy policy."
+            ],
+            "logFilesTitle": "Server Log Files",
+            "logFilesDescription": [
+                "The provider of the pages collects and automatically stores information in so-called server log files, which your browser automatically transmits to us. These include:",
+                "Browser type and browser version",
+                "Used operating system",
+                "Referrer URL",
+                "Hostname of the accessing computer",
+                "Time of server request",
+                "IP address",
+                "This data is not combined with other data sources.",
+                "The collection of this data is based on Art. 6 Para. 1 lit. f DSGVO. The website operator has a legitimate interest in the technically error-free presentation and optimization of their website – for this purpose, server log files must be recorded."
+            ],
+            "contactFormTitle": "Contact Forms",
+            "contactFormDescription": [
+                "If you send us inquiries via the contact form, your details from the inquiry form, including the contact data you provided there, will be stored for the purpose of processing the request and for follow-up questions.",
+                "We do not share this data without your consent.",
+                "The processing of the data entered into the contact form is based exclusively on your consent (Art. 6 Para. 1 lit. a DSGVO). You can withdraw your consent at any time. The legality of the data processing carried out before the withdrawal remains unaffected by the withdrawal."
+            ],
+            "sslTitle": "SSL- bzw. TLS-Verschlüsselung",
+            "sslDescription": [
+                "This site uses SSL or TLS encryption for the security of your data transmission.",
+                "You can recognize an encrypted connection by the change in the address bar of the browser from 'http://' to 'https://' and the padlock symbol in your browser bar."
+            ],
+            "creditsTitle": "Source:",
+            "creditsDescription": [
+                "e-recht24.de"
+            ]
+        },
+        "termsAndConditions": {
+            "heroText": "Terms and Conditions",
+            "introTitle": "Welcome to Our Terms and Conditions",
+            "introDescription": [
+                "These Terms and Conditions govern the use of the online reporting platform (hereinafter referred to as the 'Platform'). Please read these terms carefully before using our services.",
+                "By using the Platform, you agree to these Terms and Conditions. If you do not agree to these terms, you must not use the Platform."
+            ],
+            "generalTermsTitle": "General Terms",
+            "generalTermsDescription": [
+                "1.1. The provider of the Platform is [Company Name], [Address], [Phone Number], [Email Address], [VAT ID].",
+                "1.2. These Terms and Conditions apply to all contracts between the user and [Company Name] regarding the use of the online reporting platform.",
+                "1.3. Any changes to these Terms and Conditions will be posted on the Platform. The changes will come into effect upon posting, unless the user objects within 14 days after the changes are announced."
+            ],
+            "accountRegistrationTitle": "Account Registration",
+            "accountRegistrationDescription": [
+                "2.1. To use the Platform, you must register on the website and create a user account.",
+                "2.2. The information provided must be accurate and up to date. The user is responsible for the accuracy and completeness of the information.",
+                "2.3. The user must keep their password secure. The user is responsible for all activities performed under their account unless they can prove that the use was unauthorized."
+            ],
+            "useOfPlatformTitle": "Use of the Platform",
+            "useOfPlatformDescription": [
+                "3.1. The Platform allows users to create, manage, and analyze reports. The exact features are described on the website.",
+                "3.2. The user agrees to use the Platform solely for lawful purposes. The user is prohibited from uploading or distributing content that violates applicable laws, including content that infringes upon the copyrights, trademarks, or privacy rights of third parties.",
+                "3.3. The user may not upload software, viruses, or other harmful data that could impair the functionality of the Platform."
+            ],
+            "subscriptionAndFeesTitle": "Subscription and Fees",
+            "subscriptionAndFeesDescription": [
+                "4.1. The use of the Platform is subject to a fee unless a free trial is offered. The exact prices and payment terms are provided on the website.",
+                "4.2. A contract is formed when the user subscribes to a paid plan and confirms the payment.",
+                "4.3. Payments are due in advance. Fees are non-refundable unless required by law or explicitly stated in the contract.",
+                "4.4. The provider reserves the right to change prices. Price changes will be published on the website at least 30 days before they come into effect."
+            ],
+            "paymentMethodsTitle": "Payment Methods",
+            "paymentMethodsDescription": [
+                "5.1. The provider accepts the following payment methods: credit card, PayPal, bank transfer, or other payment methods listed on the website.",
+                "5.2. All payments are to be made in Euros (EUR) unless another currency is specified on the website.",
+                "5.3. The user is obligated to make all payments on time. In case of late payment, the provider reserves the right to temporarily or permanently suspend access to the Platform."
+            ],
+            "terminationAndAccountDeletionTitle": "Termination and Account Deletion",
+            "terminationAndAccountDeletionDescription": [
+                "6.1. The user can cancel the subscription at any time. The cancellation will take effect immediately, and the user is not entitled to a refund of any amounts already paid.",
+                "6.2. The provider can terminate the contract without notice if the user violates these Terms and Conditions or uses the Platform in a way that jeopardizes its functionality.",
+                "6.3. The user can delete their account at any time by requesting it through the account settings on the Platform. Upon account deletion, all personal data of the user will be deleted in accordance with applicable data protection regulations.",
+                "6.4. The provider reserves the right to delete a user's account if it has been inactive for a prolonged period."
+            ],
+            "intellectualPropertyTitle": "Intellectual Property",
+            "intellectualPropertyDescription": [
+                "7.1. All content on the Platform, including but not limited to texts, graphics, logos, images, videos, software, and databases, is the intellectual property of the provider or third parties and is protected by copyright.",
+                "7.2. The user is granted a non-transferable, non-exclusive, and limited right to use the Platform, restricted to the use in accordance with these Terms and Conditions.",
+                "7.3. The user may not download, copy, reproduce, distribute, or alter any part of the Platform or its contents without the provider's express written consent."
+            ],
+            "liabilityTitle": "Liability",
+            "liabilityDescription": [
+                "8.1. The provider is not liable for any damages arising from the use of the Platform unless the damages are caused by intent or gross negligence of the provider.",
+                "8.2. The provider is not liable for technical failures or disruptions to the Platform that are beyond its control, such as internet outages or server failures.",
+                "8.3. The provider does not assume responsibility for the content uploaded or shared by users on the Platform.",
+                "8.4. The user indemnifies the provider from all third-party claims arising from the user's use of the Platform, including violations of copyright or trademark rights."
+            ],
+            "dataProtectionTitle": "Data Protection",
+            "dataProtectionDescription": [
+                "9.1. The provider processes the personal data of users in accordance with applicable data protection laws, particularly the General Data Protection Regulation (GDPR).",
+                "9.2. The provider's Privacy Policy, which provides detailed information about the collection and processing of personal data, is available on the Platform and is hereby acknowledged as part of these Terms and Conditions.",
+                "9.3. By using the Platform, the user consents to the collection and processing of their data in accordance with the Privacy Policy."
+            ],
+            "disputeResolutionTitle": "Dispute Resolution",
+            "disputeResolutionDescription": [
+                "10.1. For all disputes arising from or in connection with the use of the Platform, the court at the provider's registered office shall have jurisdiction.",
+                "10.2. The European Commission provides a platform for online dispute resolution (ODR), which is available at https://ec.europa.eu/consumers/odr.",
+                "10.3. The provider is not obligated to participate in dispute resolution procedures before a consumer arbitration board."
+            ],
+            "finalProvisionsTitle": "Final Provisions",
+            "finalProvisionsDescription": [
+                "11.1. The laws of the Federal Republic of Germany shall apply, excluding international private law.",
+                "11.2. If any provision of these Terms and Conditions is invalid or unenforceable, the validity of the remaining provisions shall not be affected.",
+                "11.3. These Terms and Conditions may be amended by the provider at any time. Changes will be communicated to users on the Platform and will be considered accepted if the user continues to use the Platform."
+            ]
+        }        
     },
     "layout": {
         "navigation": {
@@ -171,6 +386,38 @@
         }
     },
     "components": {
+        "reports": {
+            "details": {
+                "reportId": "Report ID",
+                "status": "Status",
+                "createdAt": "Created at",
+                "category": "Category",
+                "priority": "Priority",
+                "assignedTo": "Assigned to",
+                "lastUpdated": "Last updated",
+                "location": "Location",
+                "department": "Department",
+                "description": "Description",
+                "notes": "Notes"
+            }
+        },
+        "reportDetails": {
+            "description": "Description",
+            "history": "History",
+            "location": "Location",
+            "comment": "Comment",
+
+            "statuses": {
+                "title": "Status",
+                "placeholderText": "Select Status",
+                "updateButtonText": "post"
+            },
+            "prios": {
+                "title": "Priority",
+                "placeholderText": "Select Priority",
+                "updateButtonText": "Update Priority"
+            }
+        },
         "locationPicker": {
             "title": "Location Selection",
             "description": "Interactive selection and management of locations",

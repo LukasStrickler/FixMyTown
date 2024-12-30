@@ -63,6 +63,16 @@ export const userRouter = createTRPCRouter({
       }));
     }),
 
+    //TODO: make it so that it gets x id and  returns the users 
+    getUserNames: userProcedure
+    .query(async ({ ctx }) => {
+      const userData = await ctx.db.select().from(users).all();
+      return userData.map((user) => ({
+        id: user.id,
+        name: user.name,
+      }));
+    }),
+
   deleteCallingUser: userProcedure
     .mutation(async ({ ctx }) => {
       const userId = ctx.session.user.id;
