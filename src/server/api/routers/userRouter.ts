@@ -25,7 +25,7 @@ export const userRouter = createTRPCRouter({
       return updatedUser[0];
     }),
 
-  getUsers: userProcedure
+  getUsers: adminProcedure
     .query(async ({ ctx }) => {
       const userData = await ctx.db.select().from(users).all();
       return userData.map((user) => ({
@@ -35,6 +35,16 @@ export const userRouter = createTRPCRouter({
         emailVerified: user.emailVerified,
         image: user.image,
         role: user.role,
+      }));
+    }),
+
+    //TODO: make it so that it gets x id and  returns the users 
+    getUserNames: userProcedure
+    .query(async ({ ctx }) => {
+      const userData = await ctx.db.select().from(users).all();
+      return userData.map((user) => ({
+        id: user.id,
+        name: user.name,
       }));
     }),
 

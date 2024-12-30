@@ -57,7 +57,7 @@ export default function ReportDetails({ report, worker, dictionary }: ReportDeta
     void utils.reportDetails.getReportDetails.invalidate();
   };
 
-  const { data: users, isLoading: isLoadingUsers } = api.user.getUsers.useQuery();
+  const { data: users, isLoading: isLoadingUsers } = api.user.getUserNames.useQuery();
 
   if (isLoadingUsers) {
     return <p>Loading users...</p>;
