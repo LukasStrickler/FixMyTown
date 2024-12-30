@@ -1,5 +1,8 @@
 {
     "pages": {
+        "reportDetails": {
+            "errorMessage": "We sadly did not find the Report :("
+        },
         "landing": {
             "heroText": "Report Issues in Your City",
             "heroDescription": "With FixMyTown, you can quickly and easily report problems in your city. We help you improve infrastructure and maintain order in the city.",
@@ -171,6 +174,38 @@
         }
     },
     "components": {
+        "reports": {
+            "details": {
+                "reportId": "Report ID",
+                "status": "Status",
+                "createdAt": "Created at",
+                "category": "Category",
+                "priority": "Priority",
+                "assignedTo": "Assigned to",
+                "lastUpdated": "Last updated",
+                "location": "Location",
+                "department": "Department",
+                "description": "Description",
+                "notes": "Notes"
+            }
+        },
+        "reportDetails": {
+            "description": "Description",
+            "history": "History",
+            "location": "Location",
+            "comment": "Comment",
+
+            "statuses": {
+                "title": "Status",
+                "placeholderText": "Select Status",
+                "updateButtonText": "post"
+            },
+            "prios": {
+                "title": "Priority",
+                "placeholderText": "Select Priority",
+                "updateButtonText": "Update Priority"
+            }
+        },
         "locationPicker": {
             "title": "Location Selection",
             "description": "Interactive selection and management of locations",
