@@ -27,8 +27,13 @@ export const userRouter = createTRPCRouter({
 
     updateUserName: userProcedure
     .input(z.object({
-      name: z.string().regex(/^[a-zA-Z0-9 ]{1,50}$/, "Invalid name format"),
-    }))
+      name: z.string()
+      .min(1, { message: "Name empty" })
+          .transform(val => val.trim())
+          .refine(val => val.length >= 3, { message: "Name to short" })
+          .refine(val => val.length <= 50, { message: "Name to long" }),
+    }))  
+
     .mutation(async ({ ctx, input }) => {
       const { name } = input;
       const userId = ctx.session?.user?.id;

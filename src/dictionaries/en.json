@@ -74,6 +74,7 @@
                     "nameTooLong": "Name is too long",
                     "nameTooShort": "Name is too short",
                     "nameEmpty": "Name cannot be empty",
+                    "nameNumbers": "Name must not contain numbers or special characters",
                     "success": "Name has been successfully updated",
                     "validInput": "Name is valid"
                 },

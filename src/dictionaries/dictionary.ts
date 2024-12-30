@@ -83,6 +83,7 @@ export interface Dictionary {
                     nameTooLong: string;
                     nameTooShort: string;
                     nameEmpty: string;
+                    nameNumbers: string;
                     success: string;
                     validInput: string;
                 }
