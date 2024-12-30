@@ -28,7 +28,6 @@ export default function NamePopup() {
   const { dictionary } = useDictionary();
   const updateUserName = api.user.updateUserName.useMutation();
 
-  // Separate schema for name
   const nameSchema = z.object({
     name: z
       .string()
