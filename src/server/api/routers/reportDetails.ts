@@ -9,7 +9,7 @@ import { protocolls } from "@/server/db/schema/protocoll";
 
 export const reportDetailsRouter = createTRPCRouter({
 
-    getReportDetails: userProcedure.input(z.object({
+    getWorkerReportDetails: workerProcedure.input(z.object({
         reportID: z.string(),
     })).query(async ({input }) => {
         const { reportID } = input;
@@ -48,6 +48,47 @@ export const reportDetailsRouter = createTRPCRouter({
 
         return {
             report: { ...reportWithoutPriority, prio },
+            images: imagesProcessed,
+            protocolls: protocollDataProcessed,
+        };
+    }),
+
+    getReportDetails: userProcedure.input(z.object({
+        reportID: z.string(),
+    })).query(async ({input }) => {
+        const { reportID } = input;
+
+
+        const report = await db.query.reports.findFirst({
+            where: eq(reports.id, parseInt(reportID)),
+        })
+
+        if (!report) {
+            throw new TRPCError({ code: 'NOT_FOUND', message: 'Report not found' });
+        }
+
+        const images = await db.query.pictures.findMany({
+            where: eq(pictures.reportId, report.id),
+        })
+        const imagesProcessed = images.map((image) => ({
+            key: image.id,
+        }))
+
+
+        const protocollData = await db.query.protocolls.findMany({
+            where: eq(protocolls.reportId, report.id),
+        })
+
+        const protocollDataProcessed = protocollData.map((protocoll) => ({
+            timestamp: protocoll.time,
+            status: protocoll.statusId,
+            comment: protocoll.comment,
+            userId: protocoll.userId
+        }))
+
+
+        return {
+            report: report,
             images: imagesProcessed,
             protocolls: protocollDataProcessed,
         };
