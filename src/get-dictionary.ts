@@ -11,6 +11,7 @@ import { type Dictionary } from "./dictionaries/dictionary";
 const dictionaries: Record<AllowedLanguage, () => Promise<Dictionary>> = {
     de: () => import("./dictionaries/de.json").then((module): Dictionary => module.default),
     en: () => import("./dictionaries/en.json").then((module): Dictionary => module.default),
+
 };
 
 function validateLanguage(lang: string): AllowedLanguage {

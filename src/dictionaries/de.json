@@ -1,5 +1,8 @@
 {
     "pages": {
+        "reportDetails": {
+            "errorMessage": "Leider haben wir keinen Report gedunden :("
+        },
         "landing": {
             "heroText": "Melden Sie Probleme in Ihrer Stadt",
             "heroDescription": "Mit FixMyTown können Sie Probleme in Ihrer Stadt schnell und einfach melden. Wir helfen Ihnen, die Infrastruktur zu verbessern und die Ordnung in der Stadt zu bewahren.",
@@ -171,6 +174,38 @@
         }
     },
     "components": {
+        "reports": {
+        "details": {
+            "reportId": "Meldungs-ID",
+            "status": "Status",
+            "createdAt": "Erstellt am",
+            "category": "Kategorie",
+            "priority": "Priorität",
+            "assignedTo": "Zugewiesen an",
+            "lastUpdated": "Zuletzt aktualisiert",
+            "location": "Standort",
+            "department": "Abteilung",
+            "description": "Beschreibung",
+            "notes": "Arbeitsnotizen"
+        }
+    },
+        "reportDetails": {
+            "description": "Beschreibung",
+            "history": "Logbuch",
+            "location": "Ort",
+            "comment": "Kommentar",
+
+            "statuses": {
+                "title": "Status",
+                "placeholderText": "Status auswählen",
+                "updateButtonText": "abschicken"
+            },
+            "prios": {
+                "title": "Prioritaet",
+                "placeholderText": "Prioritaet auswählen",
+                "updateButtonText": "Prioritaet setzen"
+            }
+        },
         "locationPicker": {
             "title": "Standortauswahl",
             "description": "Interaktive Auswahl und Verwaltung von Standorten",

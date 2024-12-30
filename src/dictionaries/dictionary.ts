@@ -1,6 +1,9 @@
 export interface Dictionary {
     // Pages
     pages: {
+        reportDetails: {
+            errorMessage: string,
+        },
         // Landing page
         landing: {
             heroText: string;
@@ -179,6 +182,40 @@ export interface Dictionary {
 
     // Reusable components
     components: {
+        reports: {
+            details: {
+                reportId: string;
+                status: string;
+                createdAt: string;
+                category: string;
+                priority: string;
+                assignedTo: string;
+                lastUpdated: string;
+                location: string;
+                department: string;
+                description: string;
+                notes: string;
+            }
+        },
+        reportDetails:{
+            description: string;
+            history: string;
+            location:string;
+            comment: string;
+
+            statuses: {
+                title: string;
+                placeholderText:string;
+                updateButtonText: string;
+
+            },
+            prios: {
+                title: string;
+                placeholderText:string;
+                updateButtonText: string;
+
+            }
+        },
         locationPicker: {
             title: string;
             description: string;
