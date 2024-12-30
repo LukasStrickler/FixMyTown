@@ -195,7 +195,7 @@
             "statuses": {
                 "title": "Status",
                 "placeholderText": "Select Status",
-                "updateButtonText": "Update Status and Comment"
+                "updateButtonText": "post"
             },
             "prios": {
                 "title": "Priority",

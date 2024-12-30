@@ -195,7 +195,7 @@
             "statuses": {
                 "title": "Status",
                 "placeholderText": "Status auswählen",
-                "updateButtonText": "Status setzen"
+                "updateButtonText": "abschicken"
             },
             "prios": {
                 "title": "Prioritaet",

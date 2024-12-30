@@ -57,10 +57,10 @@ export function WorkerActions({
 
   const isValidTransition = (currentStatus: number, newStatus: number): boolean => {
     const validTransitions: Record<number, number[]> = {
-      1: [2], // new → in progress
-      2: [3], // in progress → completed
-      3: [2], // completed → in progress (for rework)
-      4: [1], // declined → new (to reset after reconsideration)
+      1: [1,2,4], // new → new / in progress / declined
+      2: [2,3,4], // in progress → completed / in progress / declined
+      3: [2,3], // completed → in progress / completed
+      4: [1,4], // declined → new / declined
     };
 
     return validTransitions[currentStatus]?.includes(newStatus) ?? false;
@@ -95,10 +95,10 @@ export function WorkerActions({
 
   const validStatusOptions = (currentStatus: number) => {
     const options: Record<number, number[]> = {
-      1: [2], // new → in progress
-      2: [3], // in progress → completed
-      3: [2], // completed → in progress (for rework)
-      4: [1], // declined → new (to reset after reconsideration)
+      1: [1,2,4], // new → new / in progress / declined
+      2: [2,3,4], // in progress → completed / in progress / declined
+      3: [2,3], // completed → in progress / completed
+      4: [1,4], // declined → new / declined
     };
     return options[currentStatus] ?? [];
   };
