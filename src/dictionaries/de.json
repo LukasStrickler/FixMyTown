@@ -1,5 +1,8 @@
 {
     "pages": {
+        "reportDetails": {
+            "errorMessage": "Leider haben wir keinen Report gedunden :("
+        },
         "landing": {
             "heroText": "Melden Sie Probleme in Ihrer Stadt",
             "heroDescription": "Mit FixMyTown können Sie Probleme in Ihrer Stadt schnell und einfach melden. Wir helfen Ihnen, die Infrastruktur zu verbessern und die Ordnung in der Stadt zu bewahren.",

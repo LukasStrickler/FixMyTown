@@ -17,7 +17,7 @@ export default async function ReportDetailsPage({
 
     // Error handling
     if (!data) {
-        return <div>Report not found</div>;
+        return <div>{dictionary.pages.reportDetails.errorMessage}</div>;
     }
 
     return (

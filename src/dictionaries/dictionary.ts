@@ -1,6 +1,9 @@
 export interface Dictionary {
     // Pages
     pages: {
+        reportDetails: {
+            errorMessage: string,
+        },
         // Landing page
         landing: {
             heroText: string;
