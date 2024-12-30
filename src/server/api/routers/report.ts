@@ -3,7 +3,8 @@ import { createReportSchema } from "@/components/reporting/report"
 import { reports } from "@/server/db/schema/reports"
 import { pictures } from "@/server/db/schema/pictures"
 import { protocolls } from "@/server/db/schema/protocoll"
-import { eq, inArray } from "drizzle-orm"
+import { inArray } from "drizzle-orm"
+import { eq, and, min } from "drizzle-orm"
 
 export const reportRouter = createTRPCRouter({
     create: userProcedure
@@ -70,33 +71,45 @@ export const reportRouter = createTRPCRouter({
             }
 
             try {
-                // Get all reports first
-                const rawReports = await ctx.db
-                    .select({
-                        id: reports.id,
-                        name: reports.name,
-                        description: reports.description,
-                        latitude: reports.latitude,
-                        longitude: reports.longitude,
-                        locationDescription: reports.locationDescription,
-                        type: reports.type,
-                        prio: reports.prio,
-                    })
-                    .from(reports);
-
-                const reportIds = rawReports.map(r => r.id);
-
-                const userProtocolls = await ctx.db
+                const userReports = await ctx.db
                     .select()
-                    .from(protocolls)
-                    .where(eq(protocolls.userId, ctx.session.user.id));
+                    .from(reports)
+                    .where(
+                        inArray(
+                            reports.id,
+                            ctx.db
+                                .select({ reportId: protocolls.reportId })
+                                .from(protocolls)
+                                .groupBy(protocolls.reportId)
+                                .having(
+                                    and(
+                                        eq(protocolls.userId, ctx.session.user.id),
+                                        eq(protocolls.time, min(protocolls.time))
+                                    )
+                                )
+                        )
+                    );
 
-                const reportPictures = await ctx.db
-                    .select()
-                    .from(pictures)
-                    .where(inArray(pictures.reportId, reportIds));
+                if (userReports.length === 0) {
+                    return { reports: [] };
+                }
 
-                const formattedReports = rawReports.map(report => ({
+                const reportIds = userReports.map(r => r.id);
+
+                // Get associated data in parallel with optimized queries
+                const [reportProtocols, reportPictures] = await Promise.all([
+                    ctx.db
+                        .select()
+                        .from(protocolls)
+                        .where(inArray(protocolls.reportId, reportIds))
+                        .orderBy(protocolls.time),
+                    ctx.db
+                        .select()
+                        .from(pictures)
+                        .where(inArray(pictures.reportId, reportIds))
+                ]);
+
+                const formattedReports = userReports.map(report => ({
                     report: {
                         id: report.id,
                         name: report.name,
@@ -105,7 +118,7 @@ export const reportRouter = createTRPCRouter({
                         longitude: report.longitude,
                         locationDescription: report.locationDescription,
                     },
-                    protocols: userProtocolls
+                    protocols: reportProtocols
                         .filter(p => p.reportId === report.id && p.statusId !== null)
                         .map(p => ({
                             id: p.id,
