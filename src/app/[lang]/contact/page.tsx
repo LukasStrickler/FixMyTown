@@ -1,7 +1,6 @@
 import { getDictionary } from "@/get-dictionary";
 import { type Locale } from "@/i18n-config";
 import { Footer } from "@/components/footer";
-import Image from "next/image";
 
 export default async function ContactPage({
   params: { lang },
