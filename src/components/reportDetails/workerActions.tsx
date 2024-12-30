@@ -30,6 +30,7 @@ export function WorkerActions({
   const [selectedStatus, setSelectedStatus] = useState<string>(currentStatus.toString());
   const [selectedPriority, setSelectedPriority] = useState<number | undefined>(undefined);
 
+  //TODO: migrate to dict
   const statusMap: Record<number, { name: string }> = {
     1: dictionary.metadata.statuses[1],
     2: dictionary.metadata.statuses[2],

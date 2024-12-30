@@ -39,6 +39,8 @@ export default function ReportDetails({ report, worker, dictionary }: ReportDeta
   const currentStatus = protocolls[protocolls.length - 1]?.status ?? 1;
   const utils = api.useUtils();
 
+
+  //TODO: migrate to dict
   const statusMap = {
     1: dictionary.metadata.statuses[1],
     2: dictionary.metadata.statuses[2],
