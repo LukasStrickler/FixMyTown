@@ -176,7 +176,7 @@ export function AppSidebar({
             },
             {
               title: dictionary.layout.navigation.workspaces.userWorkspace.navItems.reportSomething.folderTitle,
-              url: "#",
+              url: `/${lang}/report/defects-damage`,
               icon: FolderPlus,
               isActive: true,
               items: [
