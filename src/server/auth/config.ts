@@ -57,7 +57,7 @@ export const authConfig = {
     providers: [
         Resend({
             apiKey: env.RESEND_API_KEY,
-            from: "no-reply@fixmy.town",
+            from: env.RESEND_FROM,
             async generateVerificationToken() {
                 return crypto.randomUUID().slice(0, 12);
             },
@@ -66,7 +66,7 @@ export const authConfig = {
                     identifier,
                     url,
                     provider: {
-                        from: "no-reply@fixmy.town"
+                        from: env.RESEND_FROM
                     }
                 });
             },
