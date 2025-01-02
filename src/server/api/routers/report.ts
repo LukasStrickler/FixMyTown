@@ -5,6 +5,10 @@ import { pictures } from "@/server/db/schema/pictures"
 import { protocolls } from "@/server/db/schema/protocoll"
 import { inArray } from "drizzle-orm"
 import { eq, and, min } from "drizzle-orm"
+import { getDictionary } from "@/get-dictionary"
+import { Locale } from "@/i18n-config"
+import { sendCreationNotification } from "@/lib/sendCreationNotification"
+import { env } from "@/env"
 
 export const reportRouter = createTRPCRouter({
     create: userProcedure
@@ -16,7 +20,7 @@ export const reportRouter = createTRPCRouter({
                     ...input,
                     prio: input.prio ?? 0
                 })
-                .returning({ id: reports.id });
+                .returning({ id: reports.id, name: reports.name });
 
             const reportId = report[0]?.id;
 
@@ -60,6 +64,18 @@ export const reportRouter = createTRPCRouter({
             if (!reportId) {
                 throw new Error("form.generalError");
             }
+
+            console.log(input.language);
+
+            const dictionary = await getDictionary(input.language as Locale);
+
+            await sendCreationNotification({
+                firstName: ctx.session.user.name ?? "User",
+                title: report[0]!.name,
+                link: `${env.NEXTAUTH_URL}/${input.language}/myReports/${reportId}`,
+                dictionary,
+                recipient: ctx.session.user.email ?? "",
+            });
 
             return reportId;
         }),

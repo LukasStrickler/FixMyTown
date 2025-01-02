@@ -8,7 +8,11 @@ import { useToast } from "@/hooks/use-toast"
 import { useUploadThing } from "@/lib/uploadthings"
 import type { Dictionary } from "@/dictionaries/dictionary"
 
-export function useReportForm(dictionary: Dictionary, preselectedType?: string) {
+export function useReportForm(
+    dictionary: Dictionary,
+    preselectedType?: string,
+    language: string = 'en'
+) {
     const router = useRouter()
     const [files, setFiles] = useState<File[]>([])
     const [isSubmitting, setIsSubmitting] = useState(false)
@@ -26,6 +30,7 @@ export function useReportForm(dictionary: Dictionary, preselectedType?: string) 
             latitude: undefined,
             longitude: undefined,
             locationDescription: "",
+            language: language,
         },
         mode: "onSubmit",
     })
