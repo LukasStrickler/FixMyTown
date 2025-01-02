@@ -491,7 +491,7 @@
                 "description": "Laden Sie Bilder zu Ihrem Antrag hoch",
                 "dropHere": "Bilder hier ablegen",
                 "error": "Fehler",
-                "errorDescription": "Beim Hochladen ist ein Fehler aufgetreten",
+                "errorDescription": "Sie haben über 10 Bilder hochgeladen oder die Dateigröße überschreitet die 10MB Grenze",
                 "converting": "Konvertiere..."
             },
             "uploadingImages": "Bilder werden hochgeladen...",

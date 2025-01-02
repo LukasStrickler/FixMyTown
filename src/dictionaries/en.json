@@ -488,7 +488,7 @@
                 "description": "Upload images for your report",
                 "dropHere": "Drop images here",
                 "error": "Error",
-                "errorDescription": "An error occurred during upload",
+                "errorDescription": "You have uploaded more than 10 images or the file size exceeds the 10MB limit",
                 "converting": "Converting..."
             },
             "uploadingImages": "Uploading images...",
