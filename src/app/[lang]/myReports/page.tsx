@@ -22,7 +22,7 @@ export default async function MyReports({
 
   return (
     <HydrateClient>
-      <main className="flex min-h-screen flex-col items-center justify-center ">
+      <main className="flex min-h-screen flex-col items-center justify-center px-4">
         <ReportsTable
           dictionary={dictionary}
           reports={typedReports}

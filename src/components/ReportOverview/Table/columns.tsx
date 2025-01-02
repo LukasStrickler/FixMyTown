@@ -13,6 +13,8 @@ import {
 import type { Dictionary } from "@/dictionaries/dictionary"
 import { useRouter } from 'next/navigation'
 import { type ReportData } from "@/components/reporting/report"
+import { LocationViewDialog } from "@/components/ReportOverview/LocationViewDialog/LocationViewDialog"
+import { useState } from 'react'
 
 const SortButton = ({ column, children }: {
     column: Column<ReportData, unknown>,
@@ -49,6 +51,7 @@ const SortButton = ({ column, children }: {
 const ActionCell = ({ row, dictionary, worker }: { row: Row<ReportData>; dictionary: Dictionary, worker: boolean }) => {
     const router = useRouter()
     const report = row.original
+    const [locationOpen, setLocationOpen] = useState(false)
 
     const copyId = () => {
         if (typeof window !== 'undefined') {
@@ -82,7 +85,24 @@ const ActionCell = ({ row, dictionary, worker }: { row: Row<ReportData>; diction
                 <DropdownMenuItem onClick={() => router.push(worker ? `/worker/report/details/${report.report.id}` : `/myReports/${report.report.id}`)}>
                     {dictionary.common.seeDetails}
                 </DropdownMenuItem>
-                <DropdownMenuItem>{dictionary.components.reportTable.actions.viewLocation}</DropdownMenuItem>
+                <LocationViewDialog
+                    open={locationOpen}
+                    onOpenChange={setLocationOpen}
+                    location={{
+                        lat: report.report.latitude,
+                        lng: report.report.longitude
+                    }}
+                    address={report.report.locationDescription ?? undefined}
+                    dictionary={dictionary}
+                    trigger={
+                        <DropdownMenuItem onSelect={(e) => {
+                            e.preventDefault()
+                            setLocationOpen(true)
+                        }}>
+                            {dictionary.components.reportTable.actions.viewLocation}
+                        </DropdownMenuItem>
+                    }
+                />
             </DropdownMenuContent>
         </DropdownMenu>
     )
