@@ -45,7 +45,7 @@ export function ReportingForm({ dictionary, preselectedType, showUpload = true }
     } = useReportForm(dictionary, preselectedType)
     const [locationDescription, setLocationDescription] = useState("")
     const [isLocked, setIsLocked] = useState(false)
-
+    const [isImagesValid, setIsImagesValid] = useState(true)
     const types = Object.entries(dictionary.metadata.types).map(([id, type]) => ({
         id,
         name: type.name
@@ -178,19 +178,19 @@ export function ReportingForm({ dictionary, preselectedType, showUpload = true }
                     {showUpload && (
                         <div className="mt-4">
                             <FormLabel>{dictionary.components.reportForm.images}</FormLabel>
-                            <FileUpload onChange={handleUploadComplete} dictionary={dictionary} setIsImageProcessing={setIsImageProcessing} />
+                            <FileUpload onChange={handleUploadComplete} dictionary={dictionary} setIsImageProcessing={setIsImageProcessing} setIsImagesValid={setIsImagesValid} />
                         </div>
                     )}
 
                     <div className="flex items-center gap-4 flex-wrap">
                         <Button
                             type="submit"
-                            disabled={isSubmitting || !isLocked || !form.formState.isValid || isImageProcessing}
+                            disabled={isSubmitting || !isLocked || !form.formState.isValid || isImageProcessing || !isImagesValid}
                             className="shrink-0"
                         >
                             {isSubmitting ? dictionary.components.reportForm.submitting : dictionary.components.reportForm.submit}
                         </Button>
-                        {(isSubmitting || !isLocked || !form.formState.isValid || isImageProcessing) ? (
+                        {(isSubmitting || !isLocked || !form.formState.isValid || isImageProcessing || !isImagesValid) ? (
                             <p className="text-sm text-muted-foreground flex-1">
                                 {dictionary.components.reportForm.submitInfo}
                             </p>

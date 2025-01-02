@@ -63,27 +63,43 @@ export const FileUpload = ({
     onChange,
     dictionary,
     setIsImageProcessing,
+    setIsImagesValid
 }: {
     onChange?: (files: File[]) => void;
     dictionary: Dictionary
     setIsImageProcessing: (isProcessing: boolean) => void
+    setIsImagesValid: (isValid: boolean) => void
 }) => {
     const [files, setFiles] = useState<File[]>([]);
     const fileInputRef = useRef<HTMLInputElement>(null);
     const { toast } = useToast();
 
     const handleFileChange = async (newFiles: File[]) => {
-        const imageFiles = newFiles.filter(isImageFile);
+        const uniqueNewFiles = newFiles.filter(newFile =>
+            !files.some(existingFile =>
+                existingFile.name === newFile.name &&
+                existingFile.size === newFile.size
+            )
+        );
+
+        if (uniqueNewFiles.length === 0) {
+            toast({
+                title: dictionary.components.reportForm.upload.error,
+                description: dictionary.components.reportForm.upload.errorDuplicate,
+                variant: "destructive",
+            });
+            return;
+        }
+
+        const imageFiles = uniqueNewFiles.filter(isImageFile);
         const hasHeicImages = imageFiles.some(file =>
             file.type === 'image/heic' || file.type === 'image/heif'
         );
 
-        // Set processing state if there are HEIC images
         if (hasHeicImages) {
             setIsImageProcessing(true);
         }
 
-        // Create placeholders for HEIC images
         const placeholders = imageFiles.map((file) => {
             if (file.type === 'image/heic' || file.type === 'image/heif') {
                 return new File([], file.name, { type: 'image/jpeg' });
@@ -93,12 +109,10 @@ export const FileUpload = ({
 
         setFiles((prevFiles) => [...prevFiles, ...placeholders]);
 
-        // Convert HEIC images asynchronously
         const convertedFiles = await Promise.allSettled(
             imageFiles.map(file => convertHeicToJpeg(file))
         );
 
-        // Reset processing state after conversion
         if (hasHeicImages) {
             setIsImageProcessing(false);
         }
@@ -124,12 +138,15 @@ export const FileUpload = ({
             const wouldExceedFileLimit = updatedFiles.length > 10;
 
             if (wouldExceedSizeLimit || wouldExceedFileLimit) {
+                setIsImagesValid(false)
                 toast({
                     title: dictionary.components.reportForm.upload.error,
                     description: dictionary.components.reportForm.upload.errorDescription,
                     variant: "destructive",
                 });
                 return prevFiles;
+            } else {
+                setIsImagesValid(true)
             }
 
             if (onChange) onChange(updatedFiles);
@@ -165,6 +182,13 @@ export const FileUpload = ({
         event.stopPropagation();
         setFiles((prevFiles) => {
             const newFiles = prevFiles.filter((_, idx) => idx !== indexToRemove);
+
+            const totalSize = newFiles.reduce((sum, file) => sum + file.size, 0);
+            const wouldExceedSizeLimit = totalSize > 10 * 1024 * 1024; // 10MB in bytes
+            const wouldExceedFileLimit = newFiles.length > 10;
+
+            setIsImagesValid(!wouldExceedSizeLimit && !wouldExceedFileLimit);
+
             if (onChange) onChange(newFiles);
             return newFiles;
         });
