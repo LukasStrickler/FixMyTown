@@ -6,6 +6,7 @@ import { Badge } from "@/components/ui/badge";
 import type { Dictionary } from "@/dictionaries/dictionary";
 import { WorkerActions } from "./workerActions";
 import { api } from "@/trpc/react";
+import { logger } from "@/utils/logger";
 
 interface ReportDetailsProps {
   report: {
@@ -34,7 +35,7 @@ interface ReportDetailsProps {
 }
 
 export default function ReportDetails({ report, worker, dictionary }: ReportDetailsProps) {
-  console.log('Report type:', typeof report.report.createdAt);
+  logger.log('Report type:', typeof report.report.createdAt);
   const { report: reportData, images, protocolls } = report;
   const currentStatus = protocolls[protocolls.length - 1]?.status ?? 1;
   const utils = api.useUtils();

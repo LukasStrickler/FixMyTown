@@ -10,6 +10,7 @@ import { useToast } from "@/hooks/use-toast";
 import heic2any from 'heic2any';
 import { Skeleton } from "@/components/ui/skeleton";
 import Image from 'next/image';
+import { logger } from "@/utils/logger";
 
 const mainVariant = {
     initial: {
@@ -147,7 +148,7 @@ export const FileUpload = ({
             void handleFileChange(acceptedFiles);
         },
         onDropRejected: (error) => {
-            console.log(error);
+            logger.error(error);
         },
         accept: {
             'image/jpeg': [],
