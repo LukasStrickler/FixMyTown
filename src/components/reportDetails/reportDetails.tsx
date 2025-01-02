@@ -50,6 +50,7 @@ export default function ReportDetails({ report, worker, dictionary }: ReportDeta
   logger.log('Report type:', typeof report.report.createdAt);
   const { report: reportData, images, protocolls } = report;
   const currentStatus = protocolls[protocolls.length - 1]?.status ?? 1;
+  const currentPriority = reportData.prio;
   const utils = api.useUtils();
 
   const handleActionComplete = () => {
@@ -136,6 +137,7 @@ export default function ReportDetails({ report, worker, dictionary }: ReportDeta
             reportId={reportData.id}
             dictionary={dictionary}
             currentStatus={currentStatus}
+            currentPriority={currentPriority}
             onActionComplete={handleActionComplete}
           />
         )}
