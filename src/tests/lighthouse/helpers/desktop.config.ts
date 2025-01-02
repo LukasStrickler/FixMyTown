@@ -18,8 +18,8 @@ export const lighthouseDesktopConfig: Partial<Config> = {
 };
 
 export const lighthouseThresholds = {
-    performance: 85,
-    accessibility: 100,
-    'best-practices': 95,
-    seo: 95,
+    performance: Number(process.env.LIGHTHOUSE_PERFORMANCE_THRESHOLD ?? 85),
+    accessibility: Number(process.env.LIGHTHOUSE_ACCESSIBILITY_THRESHOLD ?? 100),
+    'best-practices': Number(process.env.LIGHTHOUSE_BEST_PRACTICES_THRESHOLD ?? 95),
+    seo: Number(process.env.LIGHTHOUSE_SEO_THRESHOLD ?? 95),
 };
