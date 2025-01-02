@@ -13,10 +13,12 @@ interface ReportsTableProps {
 
 export function ReportsTable({ reports, dictionary, worker }: ReportsTableProps) {
     return (
-        <DataTable
-            columns={columns(dictionary, worker)}
-            data={reports}
-            dictionary={dictionary}
-        />
+        <div className="w-full max-w-[92vw] overflow-auto">
+            <DataTable
+                columns={columns(dictionary, worker)}
+                data={reports}
+                dictionary={dictionary}
+            />
+        </div>
     )
 } 
