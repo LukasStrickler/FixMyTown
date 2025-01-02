@@ -117,14 +117,14 @@ export function AppSidebar({
 
   if (!user) {
     return (
-      <div className="flex justify-center items-center h-screen bg-gray-100">
-        <Sidebar className="shadow-lg rounded-lg">
-          <SidebarHeader className="flex justify-center items-center h-screen bg-white rounded-t-lg">
+      <div className="flex justify-center items-center h-screen bg-background">
+        <Sidebar className="shadow-lg rounded-lg bg-card bg-background">
+          <SidebarHeader className="flex justify-center items-center h-screen bg-card-foreground rounded-t-lg bg-background">
             <Button onClick={() => window.location.href = `/${lang}/login`} className="text-lg font-semibold">
               {dictionary.pages.auth.login.title}
             </Button>
           </SidebarHeader>
-          <div className="space-y-4 p-4 flex flex-col items-center">
+          <div className="space-y-4 p-4 flex flex-col items-center bg-background">
             {dictionary && <LanguageSwitcher {...dictionary} />}
           </div>
         </Sidebar>
