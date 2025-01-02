@@ -3,6 +3,7 @@ import { getDictionary } from "@/get-dictionary";
 import type { Locale } from "@/i18n-config";
 import type { Dictionary } from '@/dictionaries/dictionary';
 import ModularNotificationTemplate from "@/emails/modularNotificationTemplate";
+import { env } from "@/env";
 
 interface ChangeNotificationParams {
     firstName: string;
@@ -10,24 +11,18 @@ interface ChangeNotificationParams {
     status: string;
     status_color: string;
     link: string;
-    dictionary: Dictionary;
-    provider: {
-        from: string; // Sender's email
-    };
+    dictionaries: Dictionary[];
     recipient: string; // Recipient's email
 }
 
 export async function sendChangeNotification(params: ChangeNotificationParams) {
-    const { firstName, title, status, status_color, link, dictionary, provider, recipient } = params;
+    const { firstName, title, status, status_color, link, dictionaries, recipient } = params;
 
-    let lang: Locale = 'de'; // Default language
-    // You can add logic here to determine the language if needed
-
-    const subject = dictionary.emails.statusUpdate.mailData.subject ?? "Status Update Notification";
+    const subject = dictionaries[0]?.emails?.statusUpdate?.mailData?.subject ?? "Status Update Notification";
 
     await resend.emails.send({
-        from: provider.from, // Use the sender's email from provider
-        to: recipient, // Use the recipient's email
+        from: env.RESEND_FROM,
+        to: recipient,
         subject: subject,
         react: ModularNotificationTemplate({
             data: {
@@ -37,7 +32,7 @@ export async function sendChangeNotification(params: ChangeNotificationParams) {
                 status_color,
                 link,
             },
-            dictionary,
+            dictionaries,
         }),
     });
 }
