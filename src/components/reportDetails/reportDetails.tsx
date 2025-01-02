@@ -103,7 +103,9 @@ export default function ReportDetails({ report, worker, dictionary }: ReportDeta
         <div className="flex justify-between">
           <CardTitle>{reportData.name}</CardTitle>
           <div className="flex space-x-2">
-            <Badge>{dictionary.metadata.prios[reportData.prio.toString() as keyof typeof dictionary.metadata.prios].name}</Badge>
+            {worker && (
+              <Badge>{dictionary.metadata.prios[reportData.prio.toString() as keyof typeof dictionary.metadata.prios].name}</Badge>
+            )}
             <Badge>{dictionary.metadata.statuses[currentStatus.toString() as keyof typeof dictionary.metadata.statuses].name}</Badge>
           </div>
         </div>
