@@ -11,7 +11,7 @@ import type { Dictionary } from "@/dictionaries/dictionary"
 export function useReportForm(
     dictionary: Dictionary,
     preselectedType?: string,
-    language: string = 'en'
+    language = 'en'
 ) {
     const router = useRouter()
     const [files, setFiles] = useState<File[]>([])

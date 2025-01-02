@@ -1,6 +1,6 @@
 import { createTRPCRouter, workerProcedure, userProcedure } from "../trpc";
 import { z } from 'zod';
-import { and, eq, min } from 'drizzle-orm'; // Import eq for comparisons
+import { and, eq } from 'drizzle-orm';
 import { db } from "@/server/db";
 import { reports } from "@/server/db/schema/reports";
 import { TRPCError } from "@trpc/server";
@@ -158,7 +158,7 @@ export const reportDetailsRouter = createTRPCRouter({
 
             const dictionaries = [dictionariesDe, dictionariesEn]
 
-            sendChangeNotification({
+            await sendChangeNotification({
                 firstName: initialUserName ?? "User",
                 title: report.name,
                 status: dictionariesDe.metadata.statuses[statusId as 1 | 2 | 3 | 4].name,

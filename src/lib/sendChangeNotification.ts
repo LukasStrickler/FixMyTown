@@ -1,6 +1,4 @@
 import { resend } from "@/server/email";
-import { getDictionary } from "@/get-dictionary";
-import type { Locale } from "@/i18n-config";
 import type { Dictionary } from '@/dictionaries/dictionary';
 import ModularNotificationTemplate from "@/emails/modularNotificationTemplate";
 import { env } from "@/env";

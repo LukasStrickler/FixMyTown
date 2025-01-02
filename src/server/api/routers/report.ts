@@ -6,7 +6,7 @@ import { protocolls } from "@/server/db/schema/protocoll"
 import { inArray } from "drizzle-orm"
 import { eq, and, min } from "drizzle-orm"
 import { getDictionary } from "@/get-dictionary"
-import { Locale } from "@/i18n-config"
+import type { Locale } from "@/i18n-config"
 import { sendCreationNotification } from "@/lib/sendCreationNotification"
 import { env } from "@/env"
 
@@ -64,9 +64,6 @@ export const reportRouter = createTRPCRouter({
             if (!reportId) {
                 throw new Error("form.generalError");
             }
-
-            console.log(input.language);
-
             const dictionary = await getDictionary(input.language as Locale);
 
             await sendCreationNotification({
