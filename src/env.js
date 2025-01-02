@@ -11,6 +11,7 @@ export const env = createEnv({
     DATABASE_AUTH_TOKEN: z.string(),
     UPLOADTHING_TOKEN: z.string(),
     RESEND_API_KEY: z.string(),
+    RESEND_FROM: z.string(),
     NODE_ENV: z
       .enum(["development", "test", "production"])
       .default("development"),
@@ -45,6 +46,7 @@ export const env = createEnv({
     DATABASE_AUTH_TOKEN: process.env.DATABASE_AUTH_TOKEN,
     UPLOADTHING_TOKEN: process.env.UPLOADTHING_TOKEN,
     RESEND_API_KEY: process.env.RESEND_API_KEY,
+    RESEND_FROM: process.env.RESEND_FROM,
     NODE_ENV: process.env.NODE_ENV,
     NEXTAUTH_SECRET: process.env.NEXTAUTH_SECRET,
     NEXTAUTH_URL: process.env.NEXTAUTH_URL,
