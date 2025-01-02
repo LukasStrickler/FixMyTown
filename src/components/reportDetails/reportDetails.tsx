@@ -43,7 +43,10 @@ export default function ReportDetails({ report, worker, dictionary }: ReportDeta
     void utils.reportDetails.getReportDetails.invalidate();
   };
 
-  const { data: users, isLoading: isLoadingUsers } = api.user.getUserNames.useQuery();
+  const userIds = [...new Set(protocolls.map(protocol => protocol.userId))];
+  const { data: users, isLoading: isLoadingUsers } = api.user.getUserNamesByIds.useQuery({
+    userIds
+  });
 
   if (isLoadingUsers) {
     return <p>Loading users...</p>;
