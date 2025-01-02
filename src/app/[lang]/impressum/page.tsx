@@ -14,6 +14,8 @@ export default async function ImprintPage({
       <section className="py-12 bg-background flex-grow">
         <div className="container px-4 mx-auto">
           <h2 className="text-2xl font-bold text-foreground mb-4">{dictionary.pages.imprint.heroText}</h2>
+          {/* eslint-disable i18next/no-literal-string */}
+
           <p>fixmy.town GbR</p>
           <p>Ernst-Boehe-Str. 4</p>
           <p>c/o HWG Ludwigshafen, Studiengang IBAIT</p>
@@ -32,7 +34,8 @@ export default async function ImprintPage({
           <p>E-Mail: info@fixmy.town</p>
           <h3 className="text-lg font-semibold mt-6">{dictionary.pages.imprint.feature1Title}</h3>
           <p>
-            Die Europäische Kommission stellt eine Plattform zur Online-Streitbeilegung (OS) bereit:{" "}
+            {dictionary.pages.imprint.feature1Text}
+            {" "}
             <a
               href="https://ec.europa.eu/consumers/odr/"
               target="_blank"
@@ -41,6 +44,8 @@ export default async function ImprintPage({
             >
               https://ec.europa.eu/consumers/odr/
             </a>.
+            {" "}
+            {/* eslint-enable i18next/no-literal-string */}
             {dictionary.pages.imprint.feature2Text}
           </p>
         </div>

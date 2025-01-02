@@ -25,24 +25,28 @@ export default async function ContactPage({
 
           <h4 className="text-md font-medium mt-6">{dictionary.pages.contact.supportTitle}</h4>
           <p className="mb-4">
-            {dictionary.pages.contact.supportEmailText} 
-            <a 
-              href="mailto:support@fixmytown.com?subject=Support%20&%20Collaboration%20Inquiry" 
+            {dictionary.pages.contact.supportEmailText}
+            {/* eslint-disable i18next/no-literal-string */}
+            <a
+              href="mailto:support@fixmytown.com?subject=Support%20&%20Collaboration%20Inquiry"
               className="text-accent"
             >
               support@fixmytown.com
             </a>
+            {/* eslint-enable i18next/no-literal-string */}
           </p>
 
           <h4 className="text-md font-medium mt-6">{dictionary.pages.contact.inquiriesTitle}</h4>
           <p className="mb-4">
-            {dictionary.pages.contact.inquiriesEmailText} 
-            <a 
-              href="mailto:info@fixmytown.com?subject=General%20Inquiry" 
+            {dictionary.pages.contact.inquiriesEmailText}
+            {/* eslint-disable i18next/no-literal-string */}
+            <a
+              href="mailto:info@fixmytown.com?subject=General%20Inquiry"
               className="text-accent"
             >
               info@fixmytown.com
             </a>
+            {/* eslint-enable i18next/no-literal-string */}
           </p>
 
           <h3 className="text-lg font-semibold mt-6">{dictionary.pages.contact.additionalInfoTitle}</h3>

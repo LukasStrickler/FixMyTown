@@ -20,6 +20,7 @@ import {
 } from "@/components/ui/tooltip"
 
 import { useSession } from "next-auth/react"
+import { useDictionary } from "../provider/dictionaryProvider"
 
 
 const SIDEBAR_COOKIE_NAME = "sidebar:state"
@@ -269,7 +270,7 @@ const SidebarTrigger = React.forwardRef<
   React.ComponentProps<typeof Button>
 >(({ className, onClick, ...props }, ref) => {
   const { toggleSidebar, open } = useSidebar()
-
+  const { dictionary } = useDictionary()
   const { data: session } = useSession()
   const user = session?.user
   if (!user) { return null }
@@ -289,7 +290,7 @@ const SidebarTrigger = React.forwardRef<
       {...props}
     >
       <PanelLeft className="ml-1.5" />
-      <span className="sr-only">Toggle Sidebar</span>
+      <span className="sr-only">{dictionary?.common.toggleSidebar}</span>
     </Button>
   )
 })

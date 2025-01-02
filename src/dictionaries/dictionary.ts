@@ -114,25 +114,26 @@ export interface Dictionary {
                     changeRoleToAdmin: string;
                     changeRoleToWorker: string;
                     changeRoleToUser: string;
-                }
+                },
+                noResults: string;
             }
         },
         // About Page
         about: {
             heroText: string;
-            description: string; 
+            description: string;
             missionTitle: string;
-            missionText: string; 
-            companyDescription: string; 
-            goalsTitle: string; 
+            missionText: string;
+            companyDescription: string;
+            goalsTitle: string;
             feature1Title: string;
             feature1Description: string;
-            feature2Title: string; 
+            feature2Title: string;
             feature2Description: string;
-            feature3Title: string; 
+            feature3Title: string;
             feature3Description: string;
             additionalInfoTitle: string;
-            additionalInfoText: string; 
+            additionalInfoText: string;
         },
         // Contact Page
         contact: {
@@ -294,21 +295,21 @@ export interface Dictionary {
                 notes: string;
             }
         },
-        reportDetails:{
+        reportDetails: {
             description: string;
             history: string;
-            location:string;
+            location: string;
             comment: string;
 
             statuses: {
                 title: string;
-                placeholderText:string;
+                placeholderText: string;
                 updateButtonText: string;
 
             },
             prios: {
                 title: string;
-                placeholderText:string;
+                placeholderText: string;
                 updateButtonText: string;
 
             }
@@ -345,6 +346,7 @@ export interface Dictionary {
                 placeholder: string;
             },
             columns: {
+                id: string;
                 name: string;
                 description: string;
                 type: string;
@@ -456,11 +458,13 @@ export interface Dictionary {
                 learnMore: string;
             }
         }
-    },    
+    },
     // Common/shared strings
     common: {
         seeDetails: string;
         backToLanding: string;
+        close: string;
+        toggleSidebar: string;
     },
 
     // Metadata of the report

@@ -110,7 +110,8 @@
                     "changeRoleToAdmin": "Change role to Administrator",
                     "changeRoleToWorker": "Change role to Worker",
                     "changeRoleToUser": "Change role to User"
-                }
+                },
+                "noResults": "No results found"
             }
         },
         "about": {
@@ -324,7 +325,7 @@
                 "11.2. If any provision of these Terms and Conditions is invalid or unenforceable, the validity of the remaining provisions shall not be affected.",
                 "11.3. These Terms and Conditions may be amended by the provider at any time. Changes will be communicated to users on the Platform and will be considered accepted if the user continues to use the Platform."
             ]
-        }        
+        }
     },
     "layout": {
         "navigation": {
@@ -407,7 +408,6 @@
             "history": "History",
             "location": "Location",
             "comment": "Comment",
-
             "statuses": {
                 "title": "Status",
                 "placeholderText": "Select Status",
@@ -451,6 +451,7 @@
                 "placeholder": "Search by name or description..."
             },
             "columns": {
+                "id": "ID",
                 "name": "Name",
                 "description": "Description",
                 "type": "Type",
@@ -563,7 +564,9 @@
     },
     "common": {
         "seeDetails": "View details",
-        "backToLanding": "Back to Landing Page"
+        "backToLanding": "Back to Landing Page",
+        "close": "Close",
+        "toggleSidebar": "Toggle Sidebar"
     },
     "metadata": {
         "types": {

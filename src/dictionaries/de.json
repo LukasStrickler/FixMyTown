@@ -110,7 +110,8 @@
                     "changeRoleToAdmin": "Rolle zu Administrator ändern",
                     "changeRoleToWorker": "Rolle zu Arbeiter ändern",
                     "changeRoleToUser": "Rolle zu Nutzer ändern"
-                }
+                },
+                "noResults": "Keine Ergebnisse gefunden"
             }
         },
         "about": {
@@ -144,7 +145,7 @@
             "inquiriesEmailSubject": "Allgemeine Anfrage & Zusammenarbeit",
             "additionalInfoTitle": "Warum sollten Sie sich melden?",
             "additionalInfoText": "Wir sind stets bemüht, unsere Plattform zu verbessern und bessere Dienstleistungen anzubieten. Ihr Feedback hilft uns, zu wachsen und Ihnen besser zu dienen."
-        },   
+        },
         "imprint": {
             "heroText": "Impressum",
             "heroDescription": "Informationen über unser Unternehmen.",
@@ -244,7 +245,7 @@
             "sslTitle": "SSL- bzw. TLS-Verschlüsselung",
             "sslDescription": [
                 "Diese Seite nutzt aus Sicherheitsgründen und zum Schutz der Übertragung vertraulicher Inhalte eine SSL- bzw. TLS-Verschlüsselung.",
-                "Eine verschlüsselte Verbindung erkennen Sie daran, dass die Adresszeile des Browsers von „http://“ auf „https://“ wechselt und an dem Schloss-Symbol in Ihrer Browserzeile."            
+                "Eine verschlüsselte Verbindung erkennen Sie daran, dass die Adresszeile des Browsers von „http://“ auf „https://“ wechselt und an dem Schloss-Symbol in Ihrer Browserzeile."
             ],
             "creditsTitle": "Quelle:",
             "creditsDescription": [
@@ -391,26 +392,25 @@
     },
     "components": {
         "reports": {
-        "details": {
-            "reportId": "Meldungs-ID",
-            "status": "Status",
-            "createdAt": "Erstellt am",
-            "category": "Kategorie",
-            "priority": "Priorität",
-            "assignedTo": "Zugewiesen an",
-            "lastUpdated": "Zuletzt aktualisiert",
-            "location": "Standort",
-            "department": "Abteilung",
-            "description": "Beschreibung",
-            "notes": "Arbeitsnotizen"
-        }
-    },
+            "details": {
+                "reportId": "Meldungs-ID",
+                "status": "Status",
+                "createdAt": "Erstellt am",
+                "category": "Kategorie",
+                "priority": "Priorität",
+                "assignedTo": "Zugewiesen an",
+                "lastUpdated": "Zuletzt aktualisiert",
+                "location": "Standort",
+                "department": "Abteilung",
+                "description": "Beschreibung",
+                "notes": "Arbeitsnotizen"
+            }
+        },
         "reportDetails": {
             "description": "Beschreibung",
             "history": "Logbuch",
             "location": "Ort",
             "comment": "Kommentar",
-
             "statuses": {
                 "title": "Status",
                 "placeholderText": "Status auswählen",
@@ -454,6 +454,7 @@
                 "placeholder": "Suche nach Name oder Beschreibung ..."
             },
             "columns": {
+                "id": "ID",
                 "name": "Name",
                 "description": "Beschreibung",
                 "type": "Typ",
@@ -505,19 +506,19 @@
             "generalError": "Ein Fehler ist aufgetreten"
         },
         "signUpPopup": {
-              "title": "Willkommen!",
-              "message": "Gerne würden wir Dich mit Deinem Name ansprechen. Bitte gebe Deinen Namen ein, um fortzufahren:",
-              "inputPlaceholder": "Dein Name",
-              "saveButton": "Name speichern",
-              "successTitle": "Erfolg!",
-              "successMessage": "Dein Name wurde erfolgreich gespeichert.",
-              "errorTitle": "Fehler!",
-              "termsAndConditionsPartA": "Ich habe die ",
-              "termsAndConditionsPartB": " sowie die Hinweise zum ",
-              "termsAndConditionsPartC": " gelesen und stimme zu.",
-              "errorMessageA": "Bitte gebe einen gültigen Name ein.",
-              "errorMessageC": "Bitte akzeptiere die Nutzungs- und Datenschutzbedingungen um fortzufahren.",
-              "errorMessageB": "Leider ist ein Fehler aufgetreten und das Speichern ist fehlgeschlagen."
+            "title": "Willkommen!",
+            "message": "Gerne würden wir Dich mit Deinem Name ansprechen. Bitte gebe Deinen Namen ein, um fortzufahren:",
+            "inputPlaceholder": "Dein Name",
+            "saveButton": "Name speichern",
+            "successTitle": "Erfolg!",
+            "successMessage": "Dein Name wurde erfolgreich gespeichert.",
+            "errorTitle": "Fehler!",
+            "termsAndConditionsPartA": "Ich habe die ",
+            "termsAndConditionsPartB": " sowie die Hinweise zum ",
+            "termsAndConditionsPartC": " gelesen und stimme zu.",
+            "errorMessageA": "Bitte gebe einen gültigen Name ein.",
+            "errorMessageC": "Bitte akzeptiere die Nutzungs- und Datenschutzbedingungen um fortzufahren.",
+            "errorMessageB": "Leider ist ein Fehler aufgetreten und das Speichern ist fehlgeschlagen."
         }
     },
     "emails": {
@@ -566,7 +567,9 @@
     },
     "common": {
         "seeDetails": "Details anzeigen",
-        "backToLanding": "Zurück zur Startseite"
+        "backToLanding": "Zurück zur Startseite",
+        "close": "Schließen",
+        "toggleSidebar": "Menü umschalten"
     },
     "metadata": {
         "types": {
