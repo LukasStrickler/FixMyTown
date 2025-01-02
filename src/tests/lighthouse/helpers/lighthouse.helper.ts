@@ -1,9 +1,15 @@
 import type { Page, TestInfo } from '@playwright/test';
+import type { Config } from 'lighthouse';
 import { playAudit } from 'playwright-lighthouse';
 import { lighthouseDesktopConfig, lighthouseThresholds } from './desktop.config';
 import path from 'path';
 
-export async function runLighthouseAudit(page: Page, testInfo: TestInfo, reportName: string) {
+export async function runLighthouseAudit(
+    page: Page,
+    testInfo: TestInfo,
+    reportName: string,
+    config: Partial<Config> = lighthouseDesktopConfig
+) {
     await Promise.all([
         page.waitForLoadState('load'),
         page.waitForLoadState('domcontentloaded'),
@@ -20,7 +26,7 @@ export async function runLighthouseAudit(page: Page, testInfo: TestInfo, reportN
 
     await playAudit({
         page,
-        config: lighthouseDesktopConfig,
+        config: config,
         thresholds: lighthouseThresholds,
         port: 9222,
         reports: {
