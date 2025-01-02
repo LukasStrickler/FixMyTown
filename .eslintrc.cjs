@@ -6,12 +6,14 @@ const config = {
   },
   "plugins": [
     "@typescript-eslint",
-    "drizzle"
+    "drizzle",
+    "i18next"
   ],
   "extends": [
     "next/core-web-vitals",
     "plugin:@typescript-eslint/recommended-type-checked",
-    "plugin:@typescript-eslint/stylistic-type-checked"
+    "plugin:@typescript-eslint/stylistic-type-checked",
+    "plugin:i18next/recommended"
   ],
   "rules": {
     "@typescript-eslint/array-type": "off",
@@ -56,7 +58,11 @@ const config = {
         ]
       }
     ],
-    "no-console": ["error", { "allow": ["error"] }]
+    "no-console": ["error", { "allow": ["error"] }],
+    "i18next/no-literal-string": ["error", {
+      "validateTemplate": true,
+      "ignoreAttribute": ["data-testid", "testId", "id", "key", "data-cy"]
+    }]
   }
 }
 module.exports = config;
