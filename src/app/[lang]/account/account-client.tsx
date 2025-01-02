@@ -104,12 +104,16 @@ export default function AccountPage({ params: { lang }, dict }: AccountPageProps
                         </div>
 
                         <div className="space-y-1">
-                            <h2 className="text-sm font-medium text-muted-foreground">Role</h2>
+                            <h2 className="text-sm font-medium text-muted-foreground">
+                                {dict.pages.auth.account.profile.role}
+                            </h2>
                             <Skeleton className="h-6 w-24" />
                         </div>
 
                         <div className="space-y-1">
-                            <h2 className="text-sm font-medium text-muted-foreground">Name</h2>
+                            <h2 className="text-sm font-medium text-muted-foreground">
+                                {dict.pages.auth.account.profile.name}
+                            </h2>
                             <Skeleton className="h-6 w-24" />
                         </div>
                     </CardContent>
@@ -161,7 +165,9 @@ export default function AccountPage({ params: { lang }, dict }: AccountPageProps
                     </div>
 
                     <div className="space-y-1">
-                        <h2 className="text-sm font-medium text-muted-foreground">Role</h2>
+                        <h2 className="text-sm font-medium text-muted-foreground">
+                            {dict.pages.auth.account.profile.role}
+                        </h2>
                         <p className="text-base capitalize">{session.user.role}</p>
                     </div>
 

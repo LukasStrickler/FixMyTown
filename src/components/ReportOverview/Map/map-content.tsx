@@ -111,7 +111,7 @@ export default function MapContent({
                         <Popup minWidth={300}>
                             <div className="space-y-2 p-1">
                                 <div className="grid grid-cols-[auto,1fr] gap-x-2 text-sm">
-                                    <span className="font-medium">ID:</span>
+                                    <span className="font-medium">{dictionary.components.reportTable.columns.id}:</span>
                                     <span>{report.report.id}</span>
 
                                     <span className="font-medium">{dictionary.components.reportTable.columns.name}:</span>
