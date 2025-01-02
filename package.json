@@ -16,7 +16,9 @@
     "test": "vitest",
     "test:ui": "vitest --ui",
     "test:coverage": "vitest run --coverage",
-    "test:watch": "vitest watch"
+    "test:watch": "vitest watch",
+    "test:lighthouse": "playwright test src/tests/lighthouse/",
+    "test:lighthouse:report": "playwright show-report .lighthouse/playwright-report"
   },
   "dependencies": {
     "@auth/drizzle-adapter": "^1.1.0",
@@ -72,6 +74,7 @@
     "zod": "^3.23.8"
   },
   "devDependencies": {
+    "@playwright/test": "^1.49.1",
     "@testing-library/jest-dom": "^6.6.3",
     "@testing-library/react": "^16.1.0",
     "@testing-library/user-event": "^14.5.2",
@@ -84,12 +87,15 @@
     "@typescript-eslint/parser": "^8.1.0",
     "@vitejs/plugin-react": "^4.3.4",
     "@vitest/coverage-v8": "^2.1.8",
+    "dotenv": "^16.4.7",
     "drizzle-kit": "^0.24.0",
     "eslint": "^8.57.0",
     "eslint-config-next": "^14.2.4",
     "eslint-plugin-drizzle": "^0.2.3",
     "eslint-plugin-i18next": "^6.1.1",
     "jsdom": "^25.0.1",
+    "lighthouse": "^12.3.0",
+    "playwright-lighthouse": "^4.0.0",
     "postcss": "^8.4.39",
     "prettier": "^3.3.2",
     "prettier-plugin-tailwindcss": "^0.6.5",
