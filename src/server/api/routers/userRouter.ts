@@ -25,6 +25,37 @@ export const userRouter = createTRPCRouter({
       return updatedUser[0];
     }),
 
+    updateUserName: userProcedure
+    .input(z.object({
+      name: z.string()
+      .min(1, { message: "Name empty" })
+          .transform(val => val.trim())
+          .refine(val => val.length >= 3, { message: "Name to short" })
+          .refine(val => val.length <= 50, { message: "Name to long" })
+          .refine(val => /^[\p{L}\s]*$/u.test(val), { message: "Name contians forbidden chars" }),
+    }))  
+
+    .mutation(async ({ ctx, input }) => {
+      const { name } = input;
+      const userId = ctx.session?.user?.id;
+  
+      if (!userId) {
+        throw new Error("User not authenticated");
+      }
+  
+      const updatedUser = await ctx.db
+        .update(users)
+        .set({ name })
+        .where(eq(users.id, userId))
+        .returning({ id: users.id, name: users.name });
+  
+      if (updatedUser.length === 0) {
+        throw new Error("User not found or update failed");
+      }
+  
+      return updatedUser[0];
+    }),  
+
   getUsers: adminProcedure
     .query(async ({ ctx }) => {
       const userData = await ctx.db.select().from(users).all();

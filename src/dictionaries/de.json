@@ -74,6 +74,7 @@
                     "nameTooLong": "Name ist zu lang",
                     "nameTooShort": "Name ist zu kurz",
                     "nameEmpty": "Name darf nicht leer sein",
+                    "nameNumbers": "Name darf keine Zahlen oder Sonderzeichen enthalten",
                     "success": "Name wurde erfolgreich aktualisiert",
                     "validInput": "Name ist gültig"
                 },
@@ -502,6 +503,21 @@
             "uploadSuccessDescription": "Die Bilder wurden erfolgreich hochgeladen",
             "uploadError": "Fehler beim Hochladen",
             "generalError": "Ein Fehler ist aufgetreten"
+        },
+        "signUpPopup": {
+              "title": "Willkommen!",
+              "message": "Gerne würden wir Dich mit Deinem Name ansprechen. Bitte gebe Deinen Namen ein, um fortzufahren:",
+              "inputPlaceholder": "Dein Name",
+              "saveButton": "Name speichern",
+              "successTitle": "Erfolg!",
+              "successMessage": "Dein Name wurde erfolgreich gespeichert.",
+              "errorTitle": "Fehler!",
+              "termsAndConditionsPartA": "Ich habe die ",
+              "termsAndConditionsPartB": " sowie die Hinweise zum ",
+              "termsAndConditionsPartC": " gelesen und stimme zu.",
+              "errorMessageA": "Bitte gebe einen gültigen Name ein.",
+              "errorMessageC": "Bitte akzeptiere die Nutzungs- und Datenschutzbedingungen um fortzufahren.",
+              "errorMessageB": "Leider ist ein Fehler aufgetreten und das Speichern ist fehlgeschlagen."
         }
     },
     "emails": {

@@ -49,6 +49,7 @@ const nameUpdateSchema = (dictionary: Dictionary) => z.object({
         .transform(val => val.trim())
         .refine(val => val.length >= 3, { message: dictionary.pages.auth.account.editNameDialog.nameTooShort })
         .refine(val => val.length <= 50, { message: dictionary.pages.auth.account.editNameDialog.nameTooLong })
+        .refine(val => /^[\p{L}\s]*$/u.test(val), { message: dictionary?.pages.auth.account.editNameDialog.nameNumbers }),
 });
 
 type NameUpdateInput = z.infer<ReturnType<typeof nameUpdateSchema>>;
