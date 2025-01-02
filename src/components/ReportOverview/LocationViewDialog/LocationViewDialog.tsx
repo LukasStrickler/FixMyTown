@@ -60,7 +60,7 @@ const Content = ({ location, address, dictionary }: Omit<LocationViewDialogProps
 export function LocationViewDialog({ open, onOpenChange, location, address, dictionary, trigger }: LocationViewDialogProps) {
     const isMobile = useIsMobile()
 
-    const sharedTrigger = trigger || (
+    const sharedTrigger = trigger ?? (
         <Button variant="outline" size="sm">
             <MapPin className="h-4 w-4 mr-2" />
             {dictionary.components.reportTable.actions.viewLocation}
