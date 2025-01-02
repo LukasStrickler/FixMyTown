@@ -75,8 +75,8 @@ export default function NamePopup() {
     if (
       status === "authenticated" &&
       !session?.user?.name &&
-      !pathname.endsWith("datenschutz") &&
-      !pathname.endsWith("agb")
+      !pathname.endsWith("privacy") &&
+      !pathname.endsWith("terms")
     ) {
       setShowPopup(true);
     }
@@ -130,11 +130,11 @@ export default function NamePopup() {
                     </FormControl>
                     <label htmlFor="terms" className="text-foreground">
                       {dictionary.components.signUpPopup.termsAndConditionsPartA}
-                      <a href="/agb" className="underline text-link">
+                      <a href="/terms" className="underline text-link">
                         {dictionary.layout.footer.terms}
                       </a>
                       {dictionary.components.signUpPopup.termsAndConditionsPartB}
-                      <a href="/datenschutz" className="underline text-link">
+                      <a href="/privacy" className="underline text-link">
                         {dictionary.layout.footer.privacy}
                       </a>
                       {dictionary.components.signUpPopup.termsAndConditionsPartC}

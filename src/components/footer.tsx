@@ -30,13 +30,13 @@ export function Footer({ dictionary }: { dictionary: Dictionary }) {
                     {dictionary.layout.footer.imprint}
                 </Link>
                 <Link
-                    href="/datenschutz"
+                    href="/privacy"
                     className="hover:text-neutral-900 dark:hover:text-neutral-100 transition-colors"
                 >
                     {dictionary.layout.footer.privacy}
                 </Link>
                 <Link
-                    href="/agb"
+                    href="/terms"
                     className="hover:text-neutral-900 dark:hover:text-neutral-100 transition-colors"
                 >
                     {dictionary.layout.footer.terms}
