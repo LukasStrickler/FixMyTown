@@ -117,16 +117,20 @@ export function AppSidebar({
 
   if (!user) {
     return (
-      <div className="flex justify-center items-center h-screen bg-background">
-        <Sidebar className="shadow-lg rounded-lg bg-card bg-background">
-          <SidebarHeader className="flex justify-center items-center h-screen bg-card-foreground rounded-t-lg bg-background">
+      <div className="flex justify-center items-center h-screen bg-sidebar">
+        <Sidebar className="shadow-lg rounded-lg bg-card bg-sidebar">
+          <SidebarHeader className="flex justify-center items-center h-screen bg-card-foreground rounded-t-lg bg-sidebar">
             <Button onClick={() => window.location.href = `/${lang}/login`} className="text-lg font-semibold">
               {dictionary.pages.auth.login.title}
             </Button>
           </SidebarHeader>
-          <div className="space-y-4 p-4 flex flex-col items-center bg-background">
-            {dictionary && <LanguageSwitcher {...dictionary} />}
+          <div className="space-y-4 p-4 flex flex-col items-center bg-sidebar">
+            <div className="flex items-center space-x-4">
+              {dictionary && <LanguageSwitcher {...dictionary} />}
+              <ModeToggle />
+            </div>
           </div>
+          
         </Sidebar>
       </div>
     );

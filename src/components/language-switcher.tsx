@@ -24,13 +24,13 @@ export function LanguageSwitcher(
 
     return (
         <div
-            className="flex items-center w-full gap-4 cursor-pointer bg-background"
+            className="flex items-center w-full gap-4 cursor-pointer bg-sidebar"
             onClick={() => switchLanguage(targetLang)}
         >
-            <Languages className="h-4 w-4 flex-shrink-0 text-primary bg-background" />
-            <div className="flex flex-wrap items-center gap-1 bg-background">
+            <Languages className="h-4 w-4 flex-shrink-0 text-primary bg-sidebar" />
+            <div className="flex flex-wrap items-center gap-1 bg-sidebar">
                 {dictionary.layout.navigation.languageSwitcher.text}
-                <span className="font-medium whitespace-nowrap text-foreground bg-background">
+                <span className="font-small whitespace-nowrap text-foreground bg-sidebar">
                     ({dictionary.layout.navigation.languageSwitcher.languages[targetLang]} / {nativeLanguageNames[targetLang]})
                 </span>
             </div>
