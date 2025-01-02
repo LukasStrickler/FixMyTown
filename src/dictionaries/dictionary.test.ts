@@ -7,10 +7,10 @@ import path from 'path';
 import { logger } from '@/lib/logger';
 
 /**
- * Represents a nested dictionary structure where values can be either strings or nested dictionaries
+ * Represents a nested dictionary structure where values can be either strings, string arrays, or nested dictionaries
  */
 interface NestedDictionary {
-    [key: string]: string | NestedDictionary;
+    [key: string]: string | string[] | NestedDictionary;
 }
 
 /**
@@ -32,11 +32,12 @@ function parseNested(str: string): NestedDictionary {
     /**
      * Creates an object value based on the type definition string
      */
-    const createValue = (value: string): string | NestedDictionary => {
+    const createValue = (value: string): string | string[] | NestedDictionary => {
         if (value.includes('name: string') && value.includes('description: string')) {
             return { name: '', description: '' };
         }
         if (value === 'string') return '';
+        if (value === 'string[]') return [];
         if (value.includes(': {')) return {};
         return value;
     };
@@ -108,6 +109,13 @@ function extractInterfaceContent(content: string, startIndex: number): string {
     return content.slice(startIndex, endIndex);
 }
 
+/**
+ * Type guard to check if a value is a NestedDictionary
+ */
+function isNestedDictionary(value: any): value is NestedDictionary {
+    return typeof value === 'object' && value !== null && !Array.isArray(value);
+}
+
 describe('Dictionary Type Check', () => {
     /**
      * Extracts and parses the Dictionary interface from the source file
@@ -157,17 +165,23 @@ describe('Dictionary Type Check', () => {
                 continue;
             }
 
-            if (
-                typeof template[key] === 'object' &&
-                template[key] !== null &&
-                (typeof obj[objKey] !== 'object' || obj[objKey] === null)
-            ) {
-                errors.push(
-                    `Type mismatch for key ${pathStr}: expected object but got ${typeof obj[objKey]}`
-                );
-            } else if (typeof template[key] === 'object' && template[key] !== null) {
-                // eslint-disable-next-line 
-                errors.push(...checkNestedKeys(obj[objKey] as NestedDictionary, template[key] as NestedDictionary, currentPath));
+            const templateValue = template[key];
+            const objValue = obj[objKey];
+
+            if (Array.isArray(templateValue)) {
+                if (!Array.isArray(objValue)) {
+                    errors.push(
+                        `Type mismatch for key ${pathStr}: expected array but got ${typeof objValue}`
+                    );
+                }
+            } else if (isNestedDictionary(templateValue)) {
+                if (!isNestedDictionary(objValue)) {
+                    errors.push(
+                        `Type mismatch for key ${pathStr}: expected object but got ${typeof objValue}`
+                    );
+                } else {
+                    errors.push(...checkNestedKeys(objValue, templateValue, currentPath));
+                }
             }
         }
 
@@ -216,11 +230,18 @@ describe('Dictionary Type Check', () => {
 
             for (const key in obj) {
                 const currentPath = [...path, key];
+                const value = obj[key];
 
-                if (typeof obj[key] === 'string' && obj[key].trim() === '') {
+                if (typeof value === 'string' && value.trim() === '') {
                     emptyPaths.push(currentPath.join('.'));
-                } else if (typeof obj[key] === 'object' && obj[key] !== null) {
-                    emptyPaths.push(...findEmptyStrings(obj[key], currentPath));
+                } else if (Array.isArray(value)) {
+                    value.forEach((item, index) => {
+                        if (typeof item === 'string' && item.trim() === '') {
+                            emptyPaths.push(`${currentPath.join('.')}[${index}]`);
+                        }
+                    });
+                } else if (isNestedDictionary(value)) {
+                    emptyPaths.push(...findEmptyStrings(value, currentPath));
                 }
             }
 
@@ -266,11 +287,18 @@ describe('Dictionary Type Check', () => {
 
             for (const key in obj) {
                 const currentPath = [...path, key];
+                const value = obj[key];
 
-                if (typeof obj[key] === 'string' && obj[key].trim() === '') {
+                if (typeof value === 'string' && value.trim() === '') {
                     emptyPaths.push(currentPath.join('.'));
-                } else if (typeof obj[key] === 'object' && obj[key] !== null) {
-                    emptyPaths.push(...findEmptyStrings(obj[key], currentPath));
+                } else if (Array.isArray(value)) {
+                    value.forEach((item, index) => {
+                        if (typeof item === 'string' && item.trim() === '') {
+                            emptyPaths.push(`${currentPath.join('.')}[${index}]`);
+                        }
+                    });
+                } else if (isNestedDictionary(value)) {
+                    emptyPaths.push(...findEmptyStrings(value, currentPath));
                 }
             }
 
