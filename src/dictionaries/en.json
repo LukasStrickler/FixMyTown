@@ -489,6 +489,7 @@
                 "dropHere": "Drop images here",
                 "error": "Error",
                 "errorDescription": "You have uploaded more than 10 images or the file size exceeds the 10MB limit",
+                "errorDuplicate": "This image has already been uploaded",
                 "converting": "Converting..."
             },
             "uploadingImages": "Uploading images...",

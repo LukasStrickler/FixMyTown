@@ -85,7 +85,7 @@ export const FileUpload = ({
         if (uniqueNewFiles.length === 0) {
             toast({
                 title: dictionary.components.reportForm.upload.error,
-                description: "This image has already been uploaded",
+                description: dictionary.components.reportForm.upload.errorDuplicate,
                 variant: "destructive",
             });
             return;

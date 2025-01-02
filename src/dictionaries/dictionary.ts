@@ -384,6 +384,7 @@ export interface Dictionary {
                 dropHere: string;
                 error: string;
                 errorDescription: string;
+                errorDuplicate: string;
                 converting: string;
             },
             uploadingImages: string;

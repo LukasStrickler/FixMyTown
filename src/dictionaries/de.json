@@ -492,6 +492,7 @@
                 "dropHere": "Bilder hier ablegen",
                 "error": "Fehler",
                 "errorDescription": "Sie haben über 10 Bilder hochgeladen oder die Dateigröße überschreitet die 10MB Grenze",
+                "errorDuplicate": "Dieses Bild wurde bereits hochgeladen",
                 "converting": "Konvertiere..."
             },
             "uploadingImages": "Bilder werden hochgeladen...",
