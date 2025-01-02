@@ -55,7 +55,8 @@ const config = {
           "ctx.db"
         ]
       }
-    ]
+    ],
+    "no-console": ["error", { "allow": ["error"] }]
   }
 }
 module.exports = config;
