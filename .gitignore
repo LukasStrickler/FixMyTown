@@ -44,3 +44,9 @@ yarn-error.log*
 
 # idea files
 .idea
+
+# env files
+.env.test
+
+# lighthouse
+.lighthouse/
