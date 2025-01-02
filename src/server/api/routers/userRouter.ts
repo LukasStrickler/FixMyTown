@@ -2,6 +2,7 @@ import { users } from "@/server/db/schema/users";
 import { adminProcedure, createTRPCRouter, userProcedure } from "../trpc";
 import { z } from 'zod';
 import { eq } from 'drizzle-orm'; // Import eq for comparisons
+import { inArray } from 'drizzle-orm';
 
 export const userRouter = createTRPCRouter({
   updateRole: adminProcedure
@@ -25,36 +26,36 @@ export const userRouter = createTRPCRouter({
       return updatedUser[0];
     }),
 
-    updateUserName: userProcedure
+  updateUserName: userProcedure
     .input(z.object({
       name: z.string()
-      .min(1, { message: "Name empty" })
-          .transform(val => val.trim())
-          .refine(val => val.length >= 3, { message: "Name to short" })
-          .refine(val => val.length <= 50, { message: "Name to long" })
-          .refine(val => /^[\p{L}\s]*$/u.test(val), { message: "Name contians forbidden chars" }),
-    }))  
+        .min(1, { message: "Name empty" })
+        .transform(val => val.trim())
+        .refine(val => val.length >= 3, { message: "Name to short" })
+        .refine(val => val.length <= 50, { message: "Name to long" })
+        .refine(val => /^[\p{L}\s]*$/u.test(val), { message: "Name contians forbidden chars" }),
+    }))
 
     .mutation(async ({ ctx, input }) => {
       const { name } = input;
       const userId = ctx.session?.user?.id;
-  
+
       if (!userId) {
         throw new Error("User not authenticated");
       }
-  
+
       const updatedUser = await ctx.db
         .update(users)
         .set({ name })
         .where(eq(users.id, userId))
         .returning({ id: users.id, name: users.name });
-  
+
       if (updatedUser.length === 0) {
         throw new Error("User not found or update failed");
       }
-  
+
       return updatedUser[0];
-    }),  
+    }),
 
   getUsers: adminProcedure
     .query(async ({ ctx }) => {
@@ -69,10 +70,22 @@ export const userRouter = createTRPCRouter({
       }));
     }),
 
-    //TODO: make it so that it gets x id and  returns the users 
-    getUserNames: userProcedure
-    .query(async ({ ctx }) => {
-      const userData = await ctx.db.select().from(users).all();
+  getUserNamesByIds: userProcedure
+    .input(z.object({
+      userIds: z.array(z.string())
+    }))
+    .query(async ({ ctx, input }) => {
+      const { userIds } = input;
+      const userData = await ctx.db
+        .select()
+        .from(users)
+        .where(
+          userIds.length > 0
+            ? inArray(users.id, userIds)
+            : undefined
+        )
+        .all();
+
       return userData.map((user) => ({
         id: user.id,
         name: user.name,

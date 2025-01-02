@@ -20,30 +20,15 @@ interface WorkerActionsProps {
   onActionComplete?: () => void;
 }
 
-export function WorkerActions({ 
-  reportId, 
-  dictionary, 
+export function WorkerActions({
+  reportId,
+  dictionary,
   currentStatus,
-  onActionComplete 
+  onActionComplete
 }: WorkerActionsProps) {
   const [comment, setComment] = useState("");
   const [selectedStatus, setSelectedStatus] = useState<string>(currentStatus.toString());
   const [selectedPriority, setSelectedPriority] = useState<number | undefined>(undefined);
-
-  //TODO: migrate to dict
-  const statusMap: Record<number, { name: string }> = {
-    1: dictionary.metadata.statuses[1],
-    2: dictionary.metadata.statuses[2],
-    3: dictionary.metadata.statuses[3],
-    4: dictionary.metadata.statuses[4]
-  };
-
-  const prioMap = {
-    0: dictionary.metadata.prios[0],
-    1: dictionary.metadata.prios[1],
-    2: dictionary.metadata.prios[2],
-    3: dictionary.metadata.prios[3]
-  };
 
   const addProtocoll = api.reportDetails.addProtocoll.useMutation({
     onSuccess: () => {
@@ -61,12 +46,13 @@ export function WorkerActions({
     },
   });
 
+  // DICTIONARY-UPDATE: be sure to adjust the update Ranking here
   const isValidTransition = (currentStatus: number, newStatus: number): boolean => {
     const validTransitions: Record<number, number[]> = {
-      1: [1,2,4], // new → new / in progress / declined
-      2: [2,3,4], // in progress → completed / in progress / declined
-      3: [2,3], // completed → in progress / completed
-      4: [1,4], // declined → new / declined
+      1: [1, 2, 4], // new → new / in progress / declined
+      2: [2, 3, 4], // in progress → completed / in progress / declined
+      3: [2, 3], // completed → in progress / completed
+      4: [1, 4], // declined → new / declined
     };
 
     return validTransitions[currentStatus]?.includes(newStatus) ?? false;
@@ -74,7 +60,7 @@ export function WorkerActions({
 
   const handleStatusAndCommentSubmit = () => {
     const newStatusId = parseInt(selectedStatus);
-    
+
     if (!isValidTransition(currentStatus, newStatusId)) {
       console.error("Invalid status transition.");
       return;
@@ -99,12 +85,13 @@ export function WorkerActions({
     }
   };
 
+  // DICTIONARY-UPDATE: be sure to adjust the update Ranking here
   const validStatusOptions = (currentStatus: number) => {
     const options: Record<number, number[]> = {
-      1: [1,2,4], // new → new / in progress / declined
-      2: [2,3,4], // in progress → completed / in progress / declined
-      3: [2,3], // completed → in progress / completed
-      4: [1,4], // declined → new / declined
+      1: [1, 2, 4], // new → new / in progress / declined
+      2: [2, 3, 4], // in progress → completed / in progress / declined
+      3: [2, 3], // completed → in progress / completed
+      4: [1, 4], // declined → new / declined
     };
     return options[currentStatus] ?? [];
   };
@@ -118,13 +105,13 @@ export function WorkerActions({
             <Select value={selectedStatus} onValueChange={setSelectedStatus}>
               <SelectTrigger>
                 <SelectValue placeholder={dictionary.components.reportDetails.statuses.placeholderText}>
-                  {statusMap[parseInt(selectedStatus)]?.name ?? ""}
+                  {dictionary.metadata.statuses[parseInt(selectedStatus).toString() as keyof typeof dictionary.metadata.statuses].name}
                 </SelectValue>
               </SelectTrigger>
               <SelectContent>
                 {validStatusOptions(currentStatus).map((statusId) => (
                   <SelectItem key={statusId} value={statusId.toString()}>
-                    {statusMap[statusId]?.name ?? "Unknown Status"}
+                    {dictionary.metadata.statuses[statusId.toString() as keyof typeof dictionary.metadata.statuses].name}
                   </SelectItem>
                 ))}
               </SelectContent>
@@ -140,13 +127,13 @@ export function WorkerActions({
             />
           </div>
           <div className="space-y-2">
-          <Button 
-            onClick={handleStatusAndCommentSubmit}
-            disabled={addProtocoll.isPending}
-          >
-            {addProtocoll.isPending ? "Submitting..." : dictionary.components.reportDetails.statuses.updateButtonText}
-          </Button>
-        </div>
+            <Button
+              onClick={handleStatusAndCommentSubmit}
+              disabled={addProtocoll.isPending}
+            >
+              {addProtocoll.isPending ? "Submitting..." : dictionary.components.reportDetails.statuses.updateButtonText}
+            </Button>
+          </div>
         </div>
       </div>
 
@@ -158,20 +145,20 @@ export function WorkerActions({
               <SelectValue placeholder={dictionary.components.reportDetails.prios.placeholderText} />
             </SelectTrigger>
             <SelectContent>
-              {Object.keys(prioMap).map((prioId) => (
+              {Object.keys(dictionary.metadata.prios).map((prioId) => (
                 <SelectItem key={prioId} value={prioId}>
-                  {prioMap[parseInt(prioId) as keyof typeof prioMap]?.name}
+                  {dictionary.metadata.prios[prioId as keyof typeof dictionary.metadata.prios].name}
                 </SelectItem>
               ))}
             </SelectContent>
           </Select>
           <div className="space-y-2">
-          <Button 
-          onClick={handlePriorityChange}
-          disabled={addProtocoll.isPending}
-        >
-          {dictionary.components.reportDetails.prios.updateButtonText}
-        </Button>
+            <Button
+              onClick={handlePriorityChange}
+              disabled={addProtocoll.isPending}
+            >
+              {dictionary.components.reportDetails.prios.updateButtonText}
+            </Button>
           </div>
         </div>
 

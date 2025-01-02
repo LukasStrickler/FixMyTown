@@ -1,6 +1,7 @@
 import { createUploadthing, type FileRouter } from "uploadthing/next";
 // import { UploadThingError } from "uploadthing/server";
 import { auth } from "@/server/auth";
+import { logger } from "@/utils/logger";
 
 const f = createUploadthing();
 
@@ -17,7 +18,7 @@ export const ourFileRouter = {
         .middleware(async () => {
             // This code runs on your server before upload
             const user = await authFunction();
-            console.log("user", user);
+            logger.log("user", user);
 
             // // // If you throw, the user will not be able to upload
             // if (!user) throw new UploadThingError("Unauthorized");
