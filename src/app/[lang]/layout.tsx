@@ -45,13 +45,11 @@ export default function RootLayout({
           <DictionaryProvider>
             <AuthProvider>
               <TRPCReactProvider>
+                <NamePopup />
                 <SidebarProvider>
-                  <AppSidebar params={{
-                    lang: "de"
-                  }} />
+                  <AppSidebar />
                   <SidebarInset>
-                    <NamePopup /> {}
-                    <SidebarTrigger className="absolute top-2 left-2" />
+                    <SidebarTrigger className="block md:hidden fixed top-1 left-1 z-50 bg-sidebar" />
                     <NextSSRPlugin
                       /**
                        * The `extractRouterConfig` will extract **only** the route configs

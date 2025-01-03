@@ -3,6 +3,7 @@ import { resend } from "@/server/email"
 import { getDictionary } from "@/get-dictionary"
 import type { Locale } from "@/i18n-config"
 import ModularAuthTemplate from "@/emails/modularAuthTemplate"
+import { logger } from "@/utils/logger"
 
 interface VerificationRequestParams {
     identifier: string
@@ -26,7 +27,7 @@ export async function sendVerificationRequest(params: VerificationRequestParams)
             }
         }
     } catch (error) {
-        console.warn('Failed to extract language from URL, using default:', error);
+        logger.warn('Failed to extract language from URL, using default:', error);
     }
 
     const dictionary = await getDictionary(lang);

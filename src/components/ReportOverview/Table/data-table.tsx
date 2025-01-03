@@ -120,7 +120,7 @@ export function DataTable<TData extends Record<string, unknown>, TValue>({
                                     colSpan={columns.length}
                                     className="h-24 text-center"
                                 >
-                                    No results.
+                                    {dictionary.components.reportTable.noResults}
                                 </TableCell>
                             </TableRow>
                         )}

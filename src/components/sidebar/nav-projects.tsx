@@ -65,16 +65,21 @@ export function NavProjects({
               >
                 <DropdownMenuItem>
                   <Folder className="text-muted-foreground" />
+                  {/* TODO: tim remove this */}
+                  {/* eslint-disable i18next/no-literal-string */}
                   <span>View Project</span>
                 </DropdownMenuItem>
                 <DropdownMenuItem>
                   <Forward className="text-muted-foreground" />
+                  {/* TODO: tim remove this */}
                   <span>Share Project</span>
                 </DropdownMenuItem>
                 <DropdownMenuSeparator />
                 <DropdownMenuItem>
                   <Trash2 className="text-muted-foreground" />
+                  {/* TODO: tim remove this */}
                   <span>Delete Project</span>
+                  {/* eslint-enable i18next/no-literal-string */}
                 </DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>

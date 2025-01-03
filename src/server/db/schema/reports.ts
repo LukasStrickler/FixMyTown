@@ -3,7 +3,7 @@ import {
     int,
     text,
     real,
-    index,
+    index
 } from "drizzle-orm/sqlite-core";
 
 import { createTable } from "../table";

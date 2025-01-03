@@ -83,7 +83,11 @@ export function LoginClient({ dictionary }: LoginClientProps) {
                         {dictionary.pages.auth.login.backToHome}
                     </Link>
                     <h1 className="text-3xl font-bold text-center tracking-tight">
-                        {dictionary.pages.auth.login.title} <br /> <i>FixMyTown</i>
+                        {dictionary.pages.auth.login.title}
+                        <br />
+                        {/* eslint-disable i18next/no-literal-string */}
+                        <i>FixMyTown</i>
+                        {/* eslint-enable i18next/no-literal-string */}
                     </h1>
                 </CardHeader>
                 <CardContent className="px-6">

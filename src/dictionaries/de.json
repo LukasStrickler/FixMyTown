@@ -1,5 +1,8 @@
 {
     "pages": {
+        "reportDetails": {
+            "errorMessage": "Leider haben wir keinen Report gedunden :("
+        },
         "landing": {
             "heroText": "Melden Sie Probleme in Ihrer Stadt",
             "heroDescription": "Mit FixMyTown können Sie Probleme in Ihrer Stadt schnell und einfach melden. Wir helfen Ihnen, die Infrastruktur zu verbessern und die Ordnung in der Stadt zu bewahren.",
@@ -40,7 +43,8 @@
                 "Verification": "Der Anmeldelink ist nicht mehr gültig.",
                 "LogoutError": "Beim Abmelden ist ein Fehler aufgetreten.",
                 "Default": "Ein unerwarteter Fehler ist aufgetreten.",
-                "backToHome": "Zurück zur Startseite"
+                "backToHome": "Zurück zur Startseite",
+                "DeleteAccountError": "Fehler beim Löschen des Kontos"
             },
             "account": {
                 "title": "Konto Details",
@@ -55,7 +59,30 @@
                     "email": "E-Mail-Adresse",
                     "signOut": "Abmelden",
                     "role": "Rolle",
-                    "backToWorkspace": "Zurück zum Arbeitsbereich"
+                    "name": "Name",
+                    "editName": "Name ändern",
+                    "deleteAccount": "Konto löschen",
+                    "deleteAccountConfirm": "Sind Sie sicher, dass Sie Ihr Konto löschen möchten? Dieser Vorgang kann nicht rückgängig gemacht werden."
+                },
+                "editNameDialog": {
+                    "title": "Name ändern",
+                    "description": "Geben Sie Ihren neuen Anzeigenamen unten ein.",
+                    "nameLabel": "Name",
+                    "namePlaceholder": "Geben Sie Ihren Namen ein",
+                    "cancel": "Abbrechen",
+                    "confirm": "Änderungen speichern",
+                    "nameTooLong": "Name ist zu lang",
+                    "nameTooShort": "Name ist zu kurz",
+                    "nameEmpty": "Name darf nicht leer sein",
+                    "nameNumbers": "Name darf keine Zahlen oder Sonderzeichen enthalten",
+                    "success": "Name wurde erfolgreich aktualisiert",
+                    "validInput": "Name ist gültig"
+                },
+                "deleteDialog": {
+                    "title": "Konto löschen",
+                    "description": "Sind Sie sicher, dass Sie Ihr Konto löschen möchten? Diese Aktion kann nicht rückgängig gemacht werden.",
+                    "cancel": "Abbrechen",
+                    "confirm": "Konto löschen"
                 }
             }
         },
@@ -83,8 +110,224 @@
                     "changeRoleToAdmin": "Rolle zu Administrator ändern",
                     "changeRoleToWorker": "Rolle zu Arbeiter ändern",
                     "changeRoleToUser": "Rolle zu Nutzer ändern"
-                }
+                },
+                "noResults": "Keine Ergebnisse gefunden"
             }
+        },
+        "about": {
+            "heroText": "Über FixMyTown",
+            "description": "FixMyTown ermöglicht es Bürgern, Probleme in ihrer Stadt schnell und einfach zu melden. Gemeinsam verbessern wir die städtische Infrastruktur und wahren die Ordnung.",
+            "missionTitle": "Unsere Mission",
+            "missionText": "Bei FixMyTown setzen wir uns dafür ein, lebenswertere Räume zu schaffen, indem wir aktive Bürgerbeteiligung fördern und sauberere, sicherere und effizientere urbane Umgebungen ermöglichen.",
+            "companyDescription": "Wir sind ein kleines, engagiertes Unternehmen mit Sitz in Ludwigshafen, das sich leidenschaftlich dafür einsetzt, das urbane Leben durch Technologie und Gemeinschaftsengagement zu verbessern.",
+            "goalsTitle": "Unsere Ziele",
+            "feature1Title": "Infrastruktur verbessern",
+            "feature1Description": "Helfen Sie aktiv mit, die städtische Infrastruktur zu verbessern, indem Sie Schäden und Defekte an öffentlichen Einrichtungen melden.",
+            "feature2Title": "Sauberkeit fördern",
+            "feature2Description": "Tragen Sie zu einer sauberen Stadt bei, indem Sie Verschmutzungen und illegale Müllablagerungen melden.",
+            "feature3Title": "Ordnung aufrechterhalten",
+            "feature3Description": "Unterstützen Sie die Verkehrssicherheit, indem Sie Parkverstöße und andere verkehrsbezogene Probleme melden.",
+            "additionalInfoTitle": "Warum FixMyTown?",
+            "additionalInfoText": "FixMyTown glaubt daran, die Kraft der Gemeinschaft zu nutzen, um sinnvolle Veränderungen in urbanen Umgebungen herbeizuführen. Gemeinsam können wir Städte lebenswerter machen."
+        },
+        "contact": {
+            "heroText": "Kontaktieren Sie uns",
+            "description": "Wir würden gerne von Ihnen hören! Ob Sie eine Frage haben, einen Vorschlag machen möchten oder einfach nur Hallo sagen wollen, zögern Sie nicht, sich bei uns zu melden.",
+            "contactInfoTitle": "Unsere Kontaktinformationen",
+            "contactInfoText": "Sie können uns über die folgenden Kanäle kontaktieren. Wir stehen Ihnen für alle Anfragen oder Rückmeldungen zur Verfügung.",
+            "supportTitle": "Support",
+            "supportEmailText": "Senden Sie uns eine E-Mail für Support-Anfragen an ",
+            "supportEmailTo": "support@fixmytown.com",
+            "supportEmailSubject": "Support-Anfrage",
+            "inquiriesTitle": "Allgemeine Anfragen & Zusammenarbeit",
+            "inquiriesEmailText": "Senden Sie uns allgemeine Anfragen oder Vorschläge für eine Zusammenarbeit an ",
+            "inquiriesEmailTo": "info@fixmytown.com",
+            "inquiriesEmailSubject": "Allgemeine Anfrage & Zusammenarbeit",
+            "additionalInfoTitle": "Warum sollten Sie sich melden?",
+            "additionalInfoText": "Wir sind stets bemüht, unsere Plattform zu verbessern und bessere Dienstleistungen anzubieten. Ihr Feedback hilft uns, zu wachsen und Ihnen besser zu dienen."
+        },
+        "imprint": {
+            "heroText": "Impressum",
+            "heroDescription": "Informationen über unser Unternehmen.",
+            "labelA": "Vertreten durch",
+            "featuresTitle": "Kontakt",
+            "feature1Title": "EU-Streitschlichtung",
+            "feature1Text": "Die Europäische Kommission stellt eine Plattform zur Online-Streitbeilegung bereit.",
+            "feature2Title": "Verbraucherstreitbeilegung/Universalschlichtungsstelle",
+            "feature2Text": "Wir sind nicht bereit oder verpflichtet, an Streitbeilegungsverfahren vor einer Verbraucherschlichtungsstelle teilzunehmen."
+        },
+        "privacy": {
+            "heroText": "Datenschutzerklärung",
+            "generalNotesTitle": "Datenschutz auf einen Blick",
+            "generalNotesDescription": [
+                "Die folgenden Hinweise geben einen einfachen Überblick darüber, was mit Ihren personenbezogenen Daten passiert, wenn Sie diese Website besuchen.",
+                "Personenbezogene Daten sind alle Daten, mit denen Sie persönlich identifiziert werden können.",
+                "Ausführliche Informationen zum Thema Datenschutz entnehmen Sie unserer unter diesem Text aufgeführten Datenschutzerklärung."
+            ],
+            "dataCollectionTitle": "Datenerfassung auf dieser Website",
+            "dataCollectionDescription": [
+                "Wer ist verantwortlich für die Datenerfassung auf dieser Website?",
+                "Die Datenverarbeitung auf dieser Website erfolgt durch den Websitebetreiber. Dessen Kontaktdaten können Sie dem Abschnitt „Hinweis zur Verantwortlichen Stelle“ in dieser Datenschutzerklärung entnehmen.",
+                "Wie erfassen wir Ihre Daten?",
+                "Ihre Daten werden zum einen dadurch erhoben, dass Sie uns diese mitteilen. Hierbei kann es sich z. B. um Daten handeln, die Sie in ein Kontaktformular eingeben.",
+                "Andere Daten werden automatisch oder nach Ihrer Einwilligung beim Besuch der Website durch unsere ITSysteme erfasst. Das sind vor allem technische Daten (z. B. Internetbrowser, Betriebssystem oder Uhrzeit des Seitenaufrufs). Die Erfassung dieser Daten erfolgt automatisch, sobald Sie diese Website betreten",
+                "Wofür nutzen wir Ihre Daten?",
+                "Ein Teil der Daten wird erhoben, um eine fehlerfreie Bereitstellung der Website zu gewährleisten. Andere Daten können zur Analyse Ihres Nutzerverhaltens verwendet werden. Sofern über die Website Verträge geschlossen oder angebahnt werden können, werden die übermittelten Daten auch für Vertragsangebote, Bestellungen oder sonstige Auftragsanfragen verarbeitet.",
+                "Welche Rechte haben Sie bezüglich Ihrer Daten?",
+                "Sie haben jederzeit das Recht, unentgeltlich Auskunft über Herkunft, Empfänger und Zweck Ihrer gespeicherten personenbezogenen Daten zu erhalten. Sie haben außerdem ein Recht, die Berichtigung oder Löschung dieser Daten zu verlangen. Wenn Sie eine Einwilligung zur Datenverarbeitung erteilt haben, können Sie diese Einwilligung jederzeit für die Zukunft widerrufen. Außerdem haben Sie das Recht, unter bestimmten Umständen die Einschränkung der Verarbeitung Ihrer personenbezogenen Daten zu verlangen. Des Weiteren steht Ihnen ein Beschwerderecht bei der zuständigen Aufsichtsbehörde zu. Hierzu sowie zu weiteren Fragen zum Thema Datenschutz können Sie sich jederzeit an uns wenden."
+            ],
+            "hostingTitle": "Hosting",
+            "hostingDescription": [
+                "Unsere Inhalte werden extern gehostet, beispielsweise bei Vercel Inc., San Francisco County, California.",
+                "Die personenbezogenen Daten, die auf dieser Website erfasst werden, werden auf den Servern des Hosters gespeichert. Hierbei handelt es sich v. a. um IP-Adressen, Kontaktanfragen, Meta- und Kommunikationsdaten, Vertragsdaten, Kontaktdaten, Namen, Websitezugriffe und sonstige Daten, die über eine Website generiert werden.",
+                "Die Datenverarbeitung erfolgt zum Zwecke der Vertragserfüllung gegenüber unseren potenziellen und bestehenden Kunden (Art. 6 Abs. 1 lit. b DSGVO) und im Interesse einer sicheren, schnellen und effizienten Bereitstellung unseres Online-Angebots durch einen professionellen Anbieter (Art. 6 Abs. 1 lit. f DSGVO).",
+                "Sofern eine entsprechende Einwilligung abgefragt wurde, erfolgt die Verarbeitung ausschließlich auf Grundlage von Art. 6 Abs. 1 lit. a DSGVO und § 25 Abs. 1 TDDDG, soweit die Einwilligung die Speicherung von Cookies oder den Zugriff auf Informationen im Endgerät des Nutzers (z. B. Device-Fingerprinting) im Sinne des TDDDG umfasst. Die Einwilligung ist jederzeit widerrufbar.",
+                "Unser Hoster wird Ihre Daten nur insoweit verarbeiten, wie dies zur Erfüllung seiner Leistungspflichten erforderlich ist und unsere Weisungen in Bezug auf diese Daten befolgen.",
+                "Wir haben einen Vertrag über Auftragsverarbeitung (AVV) mit Vercel Inc. abgeschlossen, der gewährleistet, dass personenbezogene Daten nur nach unseren Weisungen und unter Einhaltung der DSGVO verarbeitet werden."
+            ],
+            "rightsTitle": "Allgemeine Hinweise und Pflichtinformationen",
+            "rightsDescription": [
+                "Die Betreiber dieser Seiten nehmen den Schutz Ihrer persönlichen Daten sehr ernst. Wir behandeln Ihre personenbezogenen Daten vertraulich und entsprechend den gesetzlichen Datenschutzvorschriften sowie dieser Datenschutzerklärung.",
+                "Wenn Sie diese Website benutzen, werden verschiedene personenbezogene Daten erhoben. Personenbezogene Daten sind Daten, mit denen Sie persönlich identifiziert werden können. Die vorliegende Datenschutzerklärung erläutert, welche Daten wir erheben und wofür wir sie nutzen. Sie erläutert auch, wie und zu welchem Zweck das geschieht.",
+                "Wir weisen darauf hin, dass die Datenübertragung im Internet (z. B. bei der Kommunikation per E-Mail) Sicherheitslücken aufweisen kann. Ein lückenloser Schutz der Daten vor dem Zugriff durch Dritte ist nicht möglich.",
+                "Die verantwortliche Stelle für die Datenverarbeitung auf dieser Website ist:\nFixMyTown GbR\nErnst-Boehe-Str. 4\n67059 Ludwigshafen am Rhein\nTelefon: [Telefonnummer der verantwortlichen Stelle]\nE-Mail: dataprivacy@fixmy.town\nVerantwortliche Stelle ist die natürliche oder juristische Person, die allein oder gemeinsam mit anderen über die Zwecke und Mittel der Verarbeitung von personenbezogenen Daten (z. B. Namen, E-Mail-Adressen o. Ä.) entscheidet.",
+                "Soweit innerhalb dieser Datenschutzerklärung keine speziellere Speicherdauer genannt wurde, verbleiben Ihre personenbezogenen Daten bei uns, bis der Zweck für die Datenverarbeitung entfällt. Wenn Sie ein berechtigtes Löschersuchen geltend machen oder eine Einwilligung zur Datenverarbeitung widerrufen, werden Ihre Daten gelöscht, sofern wir keine anderen rechtlich zulässigen Gründe für die Speicherung Ihrer personenbezogenen Daten haben (z. B. steuer- oder handelsrechtliche Aufbewahrungsfristen); im letztgenannten Fall erfolgt die Löschung nach Fortfall dieser Gründe.",
+                "Sofern Sie in die Datenverarbeitung eingewilligt haben, verarbeiten wir Ihre personenbezogenen Daten auf Grundlage von Art. 6 Abs. 1 lit. a DSGVO bzw. Art. 9 Abs. 2 lit. a DSGVO, sofern besondere Datenkategorien nach Art. 9 Abs. 1 DSGVO verarbeitet werden. Im Falle einer ausdrücklichen Einwilligung in die Übertragung personenbezogener Daten in Drittstaaten erfolgt die Datenverarbeitung außerdem auf Grundlage von Art. 49 Abs. 1 lit. a DSGVO. Sofern Sie in die Speicherung von Cookies oder in den Zugriff auf Informationen in Ihr Endgerät (z. B. via Device-Fingerprinting) eingewilligt haben, erfolgt die Datenverarbeitung zusätzlich auf Grundlage von § 25 Abs. 1 TDDDG. Die Einwilligung ist jederzeit widerrufbar.",
+                "Sind Ihre Daten zur Vertragserfüllung oder zur Durchführung vorvertraglicher Maßnahmen erforderlich, verarbeiten wir Ihre Daten auf Grundlage des Art. 6 Abs. 1 lit. b DSGVO. Des Weiteren verarbeiten wir Ihre Daten, sofern diese zur Erfüllung einer rechtlichen Verpflichtung erforderlich sind auf Grundlage von Art. 6 Abs. 1 lit. c DSGVO. Die Datenverarbeitung kann ferner auf Grundlage unseres berechtigten Interesses nach Art. 6 Abs. 1 lit. f DSGVO erfolgen.",
+                "Im Rahmen unserer Geschäftstätigkeit arbeiten wir mit verschiedenen externen Stellen zusammen. Dabei ist teilweise auch eine Übermittlung von personenbezogenen Daten an diese externen Stellen erforderlich. Wir geben personenbezogene Daten nur dann an externe Stellen weiter, wenn dies im Rahmen einer Vertragserfüllung erforderlich ist, wenn wir gesetzlich hierzu verpflichtet sind (z. B. Weitergabe von Daten an Steuerbehörden), wenn wir ein berechtigtes Interesse nach Art. 6 Abs. 1 lit. f DSGVO an der Weitergabe haben oder wenn eine sonstige Rechtsgrundlage die Datenweitergabe erlaubt.",
+                "Viele Datenverarbeitungsvorgänge sind nur mit Ihrer ausdrücklichen Einwilligung möglich. Sie können eine bereits erteilte Einwilligung jederzeit widerrufen. Die Rechtmäßigkeit der bis zum Widerruf erfolgten Datenverarbeitung bleibt vom Widerruf unberührt.",
+                "WENN DIE DATENVERARBEITUNG AUF GRUNDLAGE VON ART. 6 ABS. 1 LIT. E ODER F DSGVO ERFOLGT, HABEN SIE JEDERZEIT DAS RECHT, AUS GRÜNDEN, DIE SICH AUS IHRER BESONDEREN SITUATION ERGEBEN, GEGEN DIE VERARBEITUNG IHRER PERSONENBEZOGENEN DATEN WIDERSPRUCH EINZULEGEN.",
+                "Wird die Verarbeitung Ihrer personenbezogenen Daten zu Direktwerbung betrieben, haben Sie jederzeit das Recht, Widerspruch gegen die Verarbeitung zu erheben.",
+                "Im Falle von Verstößen gegen die DSGVO steht den Betroffenen ein Beschwerderecht bei einer Aufsichtsbehörde zu.",
+                "Sie haben das Recht, Daten, die wir auf Grundlage Ihrer Einwilligung oder in Erfüllung eines Vertrags automatisiert verarbeiten, an sich oder an einen Dritten in einem gängigen, maschinenlesbaren Format aushändigen zu lassen.",
+                "Sie haben das Recht, jederzeit unentgeltliche Auskunft über Ihre gespeicherten personenbezogenen Daten zu erhalten und können sich jederzeit an uns wenden.",
+                "Sie haben das Recht, die Einschränkung der Verarbeitung Ihrer personenbezogenen Daten zu verlangen.",
+                "Der Nutzung von im Rahmen der Impressumspflicht veröffentlichten Kontaktdaten zur Übersendung von nicht ausdrücklich angeforderter Werbung und Informationsmaterialien wird hiermit widersprochen."
+            ],
+            "legalBasisTitle": "Rechtsgrundlage der Verarbeitung",
+            "legalBasisDescription": [
+                "Art. 6 Abs. 1 lit. a DSGVO – Einwilligung.",
+                "Art. 6 Abs. 1 lit. b DSGVO – Vertragserfüllung.",
+                "Art. 6 Abs. 1 lit. c DSGVO – Rechtliche Verpflichtung.",
+                "Art. 6 Abs. 1 lit. f DSGVO – Berechtigtes Interesse."
+            ],
+            "cookieTitle": "Cookies",
+            "cookieDescription": [
+                "Unsere Internetseiten verwenden so genannte „Cookies“. Cookies sind kleine Datenpakete und richten auf Ihrem Endgerät keinen Schaden an. Sie werden entweder vorübergehend für die Dauer einer Sitzung (Session-Cookies) oder dauerhaft (permanente Cookies) auf Ihrem Endgerät gespeichert. Session-Cookies werden nach Ende Ihres Besuchs automatisch gelöscht. Permanente Cookies bleiben auf Ihrem Endgerät gespeichert, bis Sie diese selbst löschen oder eine automatische Löschung durch Ihren Webbrowser erfolgt.",
+                "Cookies können von uns (First-Party-Cookies) oder von Drittunternehmen stammen (sog. Third-Party-Cookies). Third-Party-Cookies ermöglichen die Einbindung bestimmter Dienstleistungen von Drittunternehmen innerhalb von Webseiten (z. B. Cookies zur Abwicklung von Zahlungsdienstleistungen).",
+                "Cookies haben verschiedene Funktionen. Zahlreiche Cookies sind technisch notwendig, da bestimmte Webseitenfunktionen ohne diese nicht funktionieren würden (z. B. die Warenkorbfunktion oder die Anzeige von Videos). Andere Cookies können zur Auswertung des Nutzerverhaltens oder zu Werbezwecken verwendet werden.",
+                "Cookies, die zur Durchführung des elektronischen Kommunikationsvorgangs, zur Bereitstellung bestimmter, von Ihnen erwünschter Funktionen (z. B. für die Warenkorbfunktion) oder zur Optimierung der Website (z. B. Cookies zur Messung des Webpublikums) erforderlich sind, werden auf Grundlage von Art. 6 Abs. 1 lit. f DSGVO gespeichert, sofern keine andere Rechtsgrundlage angegeben wird. Der Websitebetreiber hat ein berechtigtes Interesse an der Speicherung von notwendigen Cookies zur technisch fehlerfreien und optimierten Bereitstellung seiner Dienste.",
+                "Sofern eine Einwilligung zur Speicherung von Cookies und vergleichbaren Wiedererkennungstechnologien abgefragt wurde, erfolgt die Verarbeitung ausschließlich auf Grundlage dieser Einwilligung (Art. 6 Abs. 1 lit. a DSGVO und § 25 Abs. 1 TDDDG); die Einwilligung ist jederzeit widerrufbar.",
+                "Sie können Ihren Browser so einstellen, dass Sie über das Setzen von Cookies informiert werden und Cookies nur im Einzelfall erlauben, die Annahme von Cookies für bestimmte Fälle oder generell ausschließen sowie das automatische Löschen der Cookies beim Schließen des Browsers aktivieren. Bei der Deaktivierung von Cookies kann die Funktionalität dieser Website eingeschränkt sein.",
+                "Welche Cookies und Dienste auf dieser Website eingesetzt werden, können Sie dieser Datenschutzerklärung entnehmen."
+            ],
+            "logFilesTitle": "Server-Log-Dateien",
+            "logFilesDescription": [
+                "Der Provider der Seiten erhebt und speichert automatisch Informationen in so genannten Server-Log-Dateien, die Ihr Browser automatisch an uns übermittelt. Dies sind:",
+                "Browsertyp und Browserversion",
+                "verwendetes Betriebssystem",
+                "Referrer URL",
+                "Hostname des zugreifenden Rechners",
+                "Uhrzeit der Serveranfrage",
+                "IP-Adresse",
+                "Eine Zusammenführung dieser Daten mit anderen Datenquellen wird nicht vorgenommen.",
+                "Die Erfassung dieser Daten erfolgt auf Grundlage von Art. 6 Abs. 1 lit. f DSGVO. Der Websitebetreiber hat ein berechtigtes Interesse an der technisch fehlerfreien Darstellung und der Optimierung seiner Website – hierzu müssen die Server-Log-Files erfasst werden."
+            ],
+            "contactFormTitle": "Kontaktformular",
+            "contactFormDescription": [
+                "Wenn Sie uns per Kontaktformular Anfragen zukommen lassen, werden Ihre Angaben aus dem Anfrageformular inklusive der von Ihnen dort angegebenen Kontaktdaten zwecks Bearbeitung der Anfrage und für den Fall von Anschlussfragen bei uns gespeichert.",
+                "Diese Daten geben wir nicht ohne Ihre Einwilligung weiter.",
+                "Die Verarbeitung dieser Daten erfolgt auf Grundlage von Art. 6 Abs. 1 lit. b DSGVO, sofern Ihre Anfrage mit der Erfüllung eines Vertrags zusammenhängt oder zur Durchführung vorvertraglicher Maßnahmen erforderlich ist.",
+                "In allen übrigen Fällen beruht die Verarbeitung auf unserem berechtigten Interesse an der effektiven Bearbeitung der an uns gerichteten Anfragen (Art. 6 Abs. 1 lit. f DSGVO) oder auf Ihrer Einwilligung (Art. 6 Abs. 1 lit. a DSGVO) sofern diese abgefragt wurde; die Einwilligung ist jederzeit widerrufbar.",
+                "Die von Ihnen im Kontaktformular eingegebenen Daten verbleiben bei uns, bis Sie uns zur Löschung auffordern, Ihre Einwilligung zur Speicherung widerrufen oder der Zweck für die Datenspeicherung entfällt (z. B. nach abgeschlossener Bearbeitung Ihrer Anfrage).",
+                "Zwingende gesetzliche Bestimmungen – insbesondere Aufbewahrungsfristen – bleiben unberührt."
+            ],
+            "sslTitle": "SSL- bzw. TLS-Verschlüsselung",
+            "sslDescription": [
+                "Diese Seite nutzt aus Sicherheitsgründen und zum Schutz der Übertragung vertraulicher Inhalte eine SSL- bzw. TLS-Verschlüsselung.",
+                "Eine verschlüsselte Verbindung erkennen Sie daran, dass die Adresszeile des Browsers von „http://“ auf „https://“ wechselt und an dem Schloss-Symbol in Ihrer Browserzeile."
+            ],
+            "creditsTitle": "Quelle:",
+            "creditsDescription": [
+                "e-recht24.de"
+            ]
+        },
+        "termsAndConditions": {
+            "heroText": "Allgemeine Geschäftsbedingungen (AGB)",
+            "introTitle": "Willkommen zu unseren Allgemeinen Geschäftsbedingungen",
+            "introDescription": [
+                "Diese Allgemeinen Geschäftsbedingungen (AGB) regeln die Nutzung der Online-Reporting-Plattform (im Folgenden „Plattform“ genannt). Bitte lesen Sie diese AGB sorgfältig durch, bevor Sie unsere Dienstleistungen nutzen.",
+                "Mit der Nutzung der Plattform erklären Sie sich mit diesen AGB einverstanden. Wenn Sie diesen AGB nicht zustimmen, dürfen Sie die Plattform nicht nutzen."
+            ],
+            "generalTermsTitle": "Allgemeine Bedingungen",
+            "generalTermsDescription": [
+                "1.1. Anbieter der Plattform ist die Firma [Unternehmensname], [Adresse], [Telefonnummer], [E-Mail-Adresse], [USt-IdNr].",
+                "1.2. Diese AGB gelten für alle Verträge, die zwischen dem Nutzer und [Unternehmensname] bezüglich der Nutzung der Online-Reporting-Plattform geschlossen werden.",
+                "1.3. Änderungen dieser AGB werden auf der Plattform veröffentlicht. Die Änderungen treten mit der Veröffentlichung in Kraft, sofern der Nutzer nicht innerhalb einer Frist von 14 Tagen nach Bekanntgabe der Änderungen widerspricht."
+            ],
+            "accountRegistrationTitle": "Registrierung und Konto",
+            "accountRegistrationDescription": [
+                "2.1. Um die Plattform zu nutzen, müssen Sie sich auf der Website registrieren und ein Benutzerkonto anlegen.",
+                "2.2. Die angegebenen Daten müssen korrekt und aktuell sein. Die Verantwortung für die Richtigkeit und Vollständigkeit der Angaben liegt beim Nutzer.",
+                "2.3. Das Passwort des Nutzers muss sicher aufbewahrt werden. Der Nutzer haftet für alle Aktivitäten, die unter seinem Konto durchgeführt werden, es sei denn, er kann nachweisen, dass die Nutzung durch Dritte ohne seine Zustimmung erfolgte."
+            ],
+            "useOfPlatformTitle": "Nutzung der Plattform",
+            "useOfPlatformDescription": [
+                "3.1. Die Plattform bietet Nutzern die Möglichkeit, Berichte zu erstellen, zu verwalten und auszuwerten. Der genaue Funktionsumfang ist auf der Website beschrieben.",
+                "3.2. Der Nutzer verpflichtet sich, die Plattform ausschließlich für rechtmäßige Zwecke zu nutzen. Es ist dem Nutzer untersagt, Inhalte hochzuladen oder zu verbreiten, die gegen geltendes Recht verstoßen, insbesondere Inhalte, die gegen Urheberrechte, Markenrechte oder Datenschutzrechte Dritter verstoßen.",
+                "3.3. Der Nutzer darf keine Software, Viren oder andere schädliche Daten hochladen, die die Funktionalität der Plattform beeinträchtigen könnten."
+            ],
+            "subscriptionAndFeesTitle": "Abonnement und Gebühren",
+            "subscriptionAndFeesDescription": [
+                "4.1. Die Nutzung der Plattform ist kostenpflichtig, es sei denn, eine kostenlose Testversion wird angeboten. Die genauen Preise und Zahlungsmodalitäten werden auf der Website angegeben.",
+                "4.2. Der Vertrag kommt durch die Anmeldung zu einem kostenpflichtigen Plan und die Bestätigung der Zahlung zustande.",
+                "4.3. Zahlungen sind im Voraus zu leisten. Die Gebühren sind nicht erstattungsfähig, es sei denn, dies ist gesetzlich vorgeschrieben oder im Vertrag ausdrücklich vorgesehen.",
+                "4.4. Der Anbieter behält sich das Recht vor, die Preise zu ändern. Änderungen werden mindestens 30 Tage vor Inkrafttreten auf der Website veröffentlicht."
+            ],
+            "paymentMethodsTitle": "Zahlungsmethoden",
+            "paymentMethodsDescription": [
+                "5.1. Der Anbieter akzeptiert die folgenden Zahlungsmethoden: Kreditkarte, PayPal, Banküberweisung oder andere auf der Website angegebene Zahlungsmethoden.",
+                "5.2. Alle Zahlungen sind in Euro (EUR) zu leisten, es sei denn, es wird eine andere Währung auf der Website angegeben.",
+                "5.3. Der Nutzer ist verpflichtet, alle von ihm eingegangenen Zahlungen fristgerecht zu leisten. Bei Zahlungsverzug behält sich der Anbieter das Recht vor, den Zugang zur Plattform vorübergehend oder dauerhaft zu sperren."
+            ],
+            "terminationAndAccountDeletionTitle": "Kündigung und Konto-Löschung",
+            "terminationAndAccountDeletionDescription": [
+                "6.1. Der Nutzer kann das Abonnement jederzeit kündigen. Die Kündigung wird sofort wirksam, und der Nutzer hat keinen Anspruch auf Rückerstattung von bereits gezahlten Beträgen.",
+                "6.2. Der Anbieter kann den Vertrag jederzeit fristlos kündigen, wenn der Nutzer gegen diese AGB verstößt oder die Plattform in einer Weise nutzt, die die Funktionsfähigkeit der Plattform gefährdet.",
+                "6.3. Der Nutzer kann sein Konto jederzeit löschen, indem er dies über die Kontoeinstellungen auf der Plattform anfordert. Nach der Löschung des Kontos werden alle persönlichen Daten des Nutzers gemäß den geltenden Datenschutzbestimmungen gelöscht.",
+                "6.4. Der Anbieter behält sich das Recht vor, das Konto eines Nutzers zu löschen, wenn dieser über einen längeren Zeitraum inaktiv ist."
+            ],
+            "intellectualPropertyTitle": "Geistiges Eigentum",
+            "intellectualPropertyDescription": [
+                "7.1. Alle Inhalte der Plattform, einschließlich, aber nicht beschränkt auf Texte, Grafiken, Logos, Bilder, Videos, Software und Datenbanken, sind geistiges Eigentum des Anbieters oder Dritter und durch das Urheberrecht geschützt.",
+                "7.2. Der Nutzer erhält ein nicht übertragbares, nicht exklusives und zeitlich begrenztes Recht zur Nutzung der Plattform, das ausschließlich auf den Gebrauch im Rahmen dieser AGB beschränkt ist.",
+                "7.3. Der Nutzer darf ohne ausdrückliche schriftliche Zustimmung des Anbieters keine Teile der Plattform oder der Inhalte herunterladen, kopieren, vervielfältigen, weitergeben oder in irgendeiner Weise verändern."
+            ],
+            "liabilityTitle": "Haftung",
+            "liabilityDescription": [
+                "8.1. Der Anbieter haftet nicht für Schäden, die aus der Nutzung der Plattform entstehen, es sei denn, diese Schäden sind auf Vorsatz oder grobe Fahrlässigkeit des Anbieters zurückzuführen.",
+                "8.2. Der Anbieter haftet nicht für technische Ausfälle oder Störungen der Plattform, die außerhalb seiner Kontrolle liegen, wie z.B. Internetstörungen oder Serverausfälle.",
+                "8.3. Der Anbieter übernimmt keine Verantwortung für die Inhalte, die von Nutzern auf der Plattform hochgeladen oder geteilt werden.",
+                "8.4. Der Nutzer stellt den Anbieter von allen Ansprüchen Dritter frei, die aufgrund der Nutzung der Plattform durch den Nutzer entstehen, einschließlich der Verletzung von Urheberrechten oder Markenrechten."
+            ],
+            "dataProtectionTitle": "Datenschutz",
+            "dataProtectionDescription": [
+                "9.1. Der Anbieter verarbeitet die personenbezogenen Daten der Nutzer gemäß der geltenden Datenschutzgesetzgebung, insbesondere der Datenschutz-Grundverordnung (DSGVO).",
+                "9.2. Die Datenschutzerklärung des Anbieters, die detaillierte Informationen über die Erhebung und Verarbeitung personenbezogener Daten enthält, ist auf der Plattform verfügbar und wird hiermit als Teil dieser AGB anerkannt.",
+                "9.3. Der Nutzer erklärt sich durch die Nutzung der Plattform mit der Erhebung und Verarbeitung seiner Daten gemäß der Datenschutzerklärung einverstanden."
+            ],
+            "disputeResolutionTitle": "Streitbeilegung",
+            "disputeResolutionDescription": [
+                "10.1. Für alle Streitigkeiten, die sich aus oder im Zusammenhang mit der Nutzung der Plattform ergeben, ist das für den Sitz des Anbieters zuständige Gericht zuständig.",
+                "10.2. Die Europäische Kommission stellt eine Plattform zur Online-Streitbeilegung (OS) zur Verfügung. Diese ist unter dem Link https://ec.europa.eu/consumers/odr erreichbar.",
+                "10.3. Der Anbieter ist nicht verpflichtet, an einem Streitbeilegungsverfahren vor einer Verbraucherschlichtungsstelle teilzunehmen."
+            ],
+            "finalProvisionsTitle": "Schlussbestimmungen",
+            "finalProvisionsDescription": [
+                "11.1. Es gilt das Recht der Bundesrepublik Deutschland unter Ausschluss des internationalen Privatrechts.",
+                "11.2. Sollte eine Bestimmung dieser AGB ungültig oder nicht durchsetzbar sein, bleibt die Gültigkeit der übrigen Bestimmungen hiervon unberührt.",
+                "11.3. Diese AGB können jederzeit vom Anbieter geändert werden. Änderungen werden den Nutzern auf der Plattform mitgeteilt und gelten als akzeptiert, wenn der Nutzer die Plattform weiterhin nutzt."
+            ]
         }
     },
     "layout": {
@@ -130,6 +373,13 @@
                 "dark": "Dunkel",
                 "light": "Hell",
                 "system": "System"
+            },
+            "languageSwitcher": {
+                "text": "Sprache wechseln zu",
+                "languages": {
+                    "en": "Englisch",
+                    "de": "Deutsch"
+                }
             }
         },
         "footer": {
@@ -141,6 +391,37 @@
         }
     },
     "components": {
+        "reports": {
+            "details": {
+                "reportId": "Meldungs-ID",
+                "status": "Status",
+                "createdAt": "Erstellt am",
+                "category": "Kategorie",
+                "priority": "Priorität",
+                "assignedTo": "Zugewiesen an",
+                "lastUpdated": "Zuletzt aktualisiert",
+                "location": "Standort",
+                "department": "Abteilung",
+                "description": "Beschreibung",
+                "notes": "Arbeitsnotizen"
+            }
+        },
+        "reportDetails": {
+            "description": "Beschreibung",
+            "history": "Logbuch",
+            "location": "Ort",
+            "comment": "Kommentar",
+            "statuses": {
+                "title": "Status",
+                "placeholderText": "Status auswählen",
+                "updateButtonText": "abschicken"
+            },
+            "prios": {
+                "title": "Prioritaet",
+                "placeholderText": "Prioritaet auswählen",
+                "updateButtonText": "Prioritaet setzen"
+            }
+        },
         "locationPicker": {
             "title": "Standortauswahl",
             "description": "Interaktive Auswahl und Verwaltung von Standorten",
@@ -163,13 +444,17 @@
             "loading": "Wird geladen..."
         },
         "mapLegend": {
-            "title": "Legende"
+            "title": "Legende",
+            "typeTitle": "Typ",
+            "statusTitle": "Status",
+            "priorityTitle": "Priorität"
         },
         "reportTable": {
             "search": {
                 "placeholder": "Suche nach Name oder Beschreibung ..."
             },
             "columns": {
+                "id": "ID",
                 "name": "Name",
                 "description": "Beschreibung",
                 "type": "Typ",
@@ -206,7 +491,8 @@
                 "description": "Laden Sie Bilder zu Ihrem Antrag hoch",
                 "dropHere": "Bilder hier ablegen",
                 "error": "Fehler",
-                "errorDescription": "Beim Hochladen ist ein Fehler aufgetreten",
+                "errorDescription": "Sie haben über 10 Bilder hochgeladen oder die Dateigröße überschreitet die 10MB Grenze",
+                "errorDuplicate": "Dieses Bild wurde bereits hochgeladen",
                 "converting": "Konvertiere..."
             },
             "uploadingImages": "Bilder werden hochgeladen...",
@@ -221,19 +507,19 @@
             "generalError": "Ein Fehler ist aufgetreten"
         },
         "signUpPopup": {
-              "title": "Willkommen!",
-              "message": "Gerne würden wir Dich mit Deinem Name ansprechen. Bitte gebe Deinen Namen ein, um fortzufahren:",
-              "inputPlaceholder": "Dein Name",
-              "saveButton": "Name speichern",
-              "successTitle": "Erfolg!",
-              "successMessage": "Dein Name wurde erfolgreich gespeichert.",
-              "errorTitle": "Fehler!",
-              "termsAndConditionsPartA": "Ich habe die ",
-              "termsAndConditionsPartB": " sowie die Hinweise zum ",
-              "termsAndConditionsPartC": " gelesen und stimme zu.",
-              "errorMessageA": "Bitte gebe einen gültigen Name ein.",
-              "errorMessageC": "Bitte akzeptiere die Nutzungs- und Datenschutzbedingungen um fortzufahren.",
-              "errorMessageB": "Leider ist ein Fehler aufgetreten und das Speichern ist fehlgeschlagen."
+            "title": "Willkommen!",
+            "message": "Gerne würden wir Dich mit Deinem Name ansprechen. Bitte gebe Deinen Namen ein, um fortzufahren:",
+            "inputPlaceholder": "Dein Name",
+            "saveButton": "Name speichern",
+            "successTitle": "Erfolg!",
+            "successMessage": "Dein Name wurde erfolgreich gespeichert.",
+            "errorTitle": "Fehler!",
+            "termsAndConditionsPartA": "Ich habe die ",
+            "termsAndConditionsPartB": " sowie die Hinweise zum ",
+            "termsAndConditionsPartC": " gelesen und stimme zu.",
+            "errorMessageA": "Bitte gebe einen gültigen Name ein.",
+            "errorMessageC": "Bitte akzeptiere die Nutzungs- und Datenschutzbedingungen um fortzufahren.",
+            "errorMessageB": "Leider ist ein Fehler aufgetreten und das Speichern ist fehlgeschlagen."
         }
     },
     "emails": {
@@ -281,7 +567,10 @@
         }
     },
     "common": {
-        "seeDetails": "Details anzeigen"
+        "seeDetails": "Details anzeigen",
+        "backToLanding": "Zurück zur Startseite",
+        "close": "Schließen",
+        "toggleSidebar": "Menü umschalten"
     },
     "metadata": {
         "types": {
@@ -310,6 +599,10 @@
             "3": {
                 "name": "Abgeschlossen",
                 "description": "Meldung wurde bearbeitet"
+            },
+            "4": {
+                "name": "Abgelehnt",
+                "description": "Meldung wurde abgelehnt"
             }
         },
         "prios": {

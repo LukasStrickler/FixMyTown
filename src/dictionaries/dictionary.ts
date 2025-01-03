@@ -1,6 +1,9 @@
 export interface Dictionary {
     // Pages
     pages: {
+        reportDetails: {
+            errorMessage: string,
+        },
         // Landing page
         landing: {
             heroText: string;
@@ -44,6 +47,7 @@ export interface Dictionary {
                 LogoutError: string;
                 Default: string;
                 backToHome: string;
+                DeleteAccountError: string;
             },
             account: {
                 title: string;
@@ -53,12 +57,35 @@ export interface Dictionary {
                     email: string;
                     role: string;
                     signOut: string;
-                    backToWorkspace: string;
+                    deleteAccount: string;
+                    deleteAccountConfirm: string;
+                    name: string;
+                    editName: string;
                 },
                 settings: {
                     title: string;
                     theme: string;
                     language: string;
+                },
+                deleteDialog: {
+                    title: string;
+                    description: string;
+                    cancel: string;
+                    confirm: string;
+                },
+                editNameDialog: {
+                    title: string;
+                    description: string;
+                    nameLabel: string;
+                    namePlaceholder: string;
+                    cancel: string;
+                    confirm: string;
+                    nameTooLong: string;
+                    nameTooShort: string;
+                    nameEmpty: string;
+                    nameNumbers: string;
+                    success: string;
+                    validInput: string;
                 }
             }
         },
@@ -87,11 +114,108 @@ export interface Dictionary {
                     changeRoleToAdmin: string;
                     changeRoleToWorker: string;
                     changeRoleToUser: string;
-                }
+                },
+                noResults: string;
             }
-        }
+        },
+        // About Page
+        about: {
+            heroText: string;
+            description: string;
+            missionTitle: string;
+            missionText: string;
+            companyDescription: string;
+            goalsTitle: string;
+            feature1Title: string;
+            feature1Description: string;
+            feature2Title: string;
+            feature2Description: string;
+            feature3Title: string;
+            feature3Description: string;
+            additionalInfoTitle: string;
+            additionalInfoText: string;
+        },
+        // Contact Page
+        contact: {
+            heroText: string;
+            description: string;
+            contactInfoTitle: string;
+            contactInfoText: string;
+            supportTitle: string;
+            supportEmailText: string;
+            supportEmailTo: string;
+            supportEmailSubject: string;
+            inquiriesTitle: string;
+            inquiriesEmailText: string;
+            inquiriesEmailTo: string;
+            inquiriesEmailSubject: string;
+            additionalInfoTitle: string;
+            additionalInfoText: string;
+        },
+        // Impressum page
+        imprint: {
+            heroText: string;
+            heroDescription: string;
+            labelA: string;
+            featuresTitle: string;
+            feature1Title: string;
+            feature1Text: string;
+            feature2Title: string;
+            feature2Text: string;
+        },
+        // Privacy page
+        privacy: {
+            heroText: string;
+            generalNotesTitle: string;
+            generalNotesDescription: string[];
+            dataCollectionTitle: string;
+            dataCollectionDescription: string[];
+            hostingTitle: string;
+            hostingDescription: string[];
+            rightsTitle: string;
+            rightsDescription: string[];
+            legalBasisTitle: string;
+            legalBasisDescription: string[];
+            cookieTitle: string;
+            cookieDescription: string[];
+            logFilesTitle: string;
+            logFilesDescription: string[];
+            contactFormTitle: string;
+            contactFormDescription: string[];
+            sslTitle: string;
+            sslDescription: string[];
+            creditsTitle: string;
+            creditsDescription: string[];
+        },
+        // Terms and Conditions page
+        termsAndConditions: {
+            heroText: string;
+            introTitle: string;
+            introDescription: string[];
+            generalTermsTitle: string;
+            generalTermsDescription: string[];
+            accountRegistrationTitle: string;
+            accountRegistrationDescription: string[];
+            useOfPlatformTitle: string;
+            useOfPlatformDescription: string[];
+            subscriptionAndFeesTitle: string;
+            subscriptionAndFeesDescription: string[];
+            paymentMethodsTitle: string;
+            paymentMethodsDescription: string[];
+            terminationAndAccountDeletionTitle: string;
+            terminationAndAccountDeletionDescription: string[];
+            intellectualPropertyTitle: string;
+            intellectualPropertyDescription: string[];
+            liabilityTitle: string;
+            liabilityDescription: string[];
+            dataProtectionTitle: string;
+            dataProtectionDescription: string[];
+            disputeResolutionTitle: string;
+            disputeResolutionDescription: string[];
+            finalProvisionsTitle: string;
+            finalProvisionsDescription: string[];
+        };
     },
-
     // Layout components
     layout: {
         navigation: {
@@ -136,6 +260,13 @@ export interface Dictionary {
                 dark: string;
                 light: string;
                 system: string;
+            },
+            languageSwitcher: {
+                text: string;
+                languages: {
+                    en: string;
+                    de: string;
+                }
             }
         },
         footer: {
@@ -149,6 +280,40 @@ export interface Dictionary {
 
     // Reusable components
     components: {
+        reports: {
+            details: {
+                reportId: string;
+                status: string;
+                createdAt: string;
+                category: string;
+                priority: string;
+                assignedTo: string;
+                lastUpdated: string;
+                location: string;
+                department: string;
+                description: string;
+                notes: string;
+            }
+        },
+        reportDetails: {
+            description: string;
+            history: string;
+            location: string;
+            comment: string;
+
+            statuses: {
+                title: string;
+                placeholderText: string;
+                updateButtonText: string;
+
+            },
+            prios: {
+                title: string;
+                placeholderText: string;
+                updateButtonText: string;
+
+            }
+        },
         locationPicker: {
             title: string;
             description: string;
@@ -172,12 +337,16 @@ export interface Dictionary {
         },
         mapLegend: {
             title: string;
+            typeTitle: string;
+            statusTitle: string;
+            priorityTitle: string;
         },
         reportTable: {
             search: {
                 placeholder: string;
             },
             columns: {
+                id: string;
                 name: string;
                 description: string;
                 type: string;
@@ -215,6 +384,7 @@ export interface Dictionary {
                 dropHere: string;
                 error: string;
                 errorDescription: string;
+                errorDuplicate: string;
                 converting: string;
             },
             uploadingImages: string;
@@ -289,10 +459,13 @@ export interface Dictionary {
                 learnMore: string;
             }
         }
-    },    
+    },
     // Common/shared strings
     common: {
         seeDetails: string;
+        backToLanding: string;
+        close: string;
+        toggleSidebar: string;
     },
 
     // Metadata of the report
@@ -306,6 +479,7 @@ export interface Dictionary {
             "1": { name: string; description: string };
             "2": { name: string; description: string };
             "3": { name: string; description: string };
+            "4": { name: string; description: string };
         },
         prios: {
             "0": { name: string; description: string };
