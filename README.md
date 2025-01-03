@@ -24,6 +24,46 @@ FixMyTown is a modern web application that enables citizens to report and track 
 - System monitoring
 - Access control
 
+## 📸 Screenshots
+
+<details open>
+<summary>Landing Page (`/`)</summary>
+
+![Landing](./docs/screenshots/landing-page.png)
+</details>
+
+<details>
+<summary>Reporting Page (`/report`)</summary>
+
+![Report](./docs/screenshots/report-creation.png)
+</details>
+
+<details>
+<summary>My Reports Overview (`/myReports`)</summary>
+
+![Reports](./docs/screenshots/reports-overview.png)
+</details>
+
+<details>
+<summary>Worker Map View (`/worker/report/MapView`)</summary>
+
+![Map](./docs/screenshots/worker-map-view.png)
+</details>
+
+<details>
+<summary>Worker Report Details View (`/report/details/[id]`)</summary>
+
+![Details](./docs/screenshots/report-details-view.png)
+</details>
+
+<details>
+<summary>Admin User Management (`/admin/userAdministration`)</summary>
+
+![Admin](./docs/screenshots/user-management.png)
+</details>
+
+
+
 ## 🛠️ Tech Stack
 
 ### Frontend
@@ -57,6 +97,7 @@ FixMyTown/
 ├── .github/
 │   └── workflows/    # CI/CD workflows
 ├── docs/             # Documentation
+│   ├── screenshots/  # Screenshots
 │   ├── showcase/     # Project demos
 │   └── workflows/    # Process diagrams
 ├── drizzle/          # Database migrations
@@ -149,11 +190,12 @@ Features include:
 
 While this is primarily an educational project, contributions are welcome! Please:
 
-1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
+1. Clone the repository to your GitHub account
+2. Create a descriptive feature branch (e.g., `git checkout -b feature/add-map-filters`)
+3. Make your changes and commit them with clear messages (e.g., `git commit -m 'Add filters for map markers'`) 
+4. Push your changes to your fork (`git push origin feature/add-map-filters`)
+5. Open a Pull Request against our main branch
+6. Provide a detailed description of your changes and include screenshots/recordings where helpful
 
 ## 📄 License
 
@@ -249,6 +291,12 @@ The testing setup includes:
 - [ ] Real-time notifications
 - [ ] Analytics dashboard
 - [ ] AI-powered issue categorization
+
+## 💬 Support
+
+- For bug reports, please [create an issue](https://github.com/LukasStrickler/FixMyTown/issues) and add the `#dev-bug` label
+- For feature requests, please [create an issue](https://github.com/LukasStrickler/FixMyTown/issues) and add the `#dev-feature` label
+
 
 ---
 
