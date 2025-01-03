@@ -30,4 +30,5 @@ jobs:
         RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
         NEXTAUTH_SECRET: ${{ secrets.NEXTAUTH_SECRET }}
         NEXTAUTH_URL: ${{ secrets.NEXTAUTH_URL }}
+        RESEND_FROM: ${{ secrets.RESEND_FROM }}
       run: npm run lint

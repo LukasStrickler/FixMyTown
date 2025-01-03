@@ -15,6 +15,7 @@ import dynamic from 'next/dynamic'
 import { Skeleton } from "../ui/skeleton"
 import { MultiStepLoader } from "./multi-step-loader"
 import { useReportForm } from "./useReportForm"
+import { useParams } from "next/navigation"
 
 interface ReportingFormProps {
     dictionary: Dictionary
@@ -32,6 +33,7 @@ const FileUpload = dynamic(
 );
 
 export function ReportingForm({ dictionary, preselectedType, showUpload = true }: ReportingFormProps) {
+    const { language } = useParams();
     const {
         form,
         files,
@@ -42,7 +44,7 @@ export function ReportingForm({ dictionary, preselectedType, showUpload = true }
         setIsImageProcessing,
         onSubmit,
         getLoadingStates
-    } = useReportForm(dictionary, preselectedType)
+    } = useReportForm(dictionary, preselectedType, language as string)
     const [locationDescription, setLocationDescription] = useState("")
     const [isLocked, setIsLocked] = useState(false)
     const [isImagesValid, setIsImagesValid] = useState(true)

@@ -7,6 +7,18 @@ import type { Dictionary } from "@/dictionaries/dictionary";
 import { WorkerActions } from "./workerActions";
 import { api } from "@/trpc/react";
 import { logger } from "@/utils/logger";
+import dynamic from "next/dynamic";
+import { Skeleton } from "@/components/ui/skeleton";
+
+const ReportMap = dynamic(
+  () => import("@/components/ReportOverview/LocationViewDialog/Map"),
+  {
+    ssr: false,
+    loading: () => (
+      <Skeleton className="w-full h-[400px]" />
+    )
+  }
+);
 
 interface ReportDetailsProps {
   report: {
@@ -50,7 +62,36 @@ export default function ReportDetails({ report, worker, dictionary }: ReportDeta
   });
 
   if (isLoadingUsers) {
-    return <p>Loading users...</p>;
+    return (
+      <Card className="w-full max-w-4xl">
+        <CardHeader>
+          <div className="flex justify-between">
+            <Skeleton className="h-8 w-48" />
+            <div className="flex space-x-2">
+              <Skeleton className="h-6 w-16" />
+              <Skeleton className="h-6 w-16" />
+            </div>
+          </div>
+        </CardHeader>
+        <CardContent className="space-y-4">
+          <div>
+            <Skeleton className="h-6 w-32 mb-2" />
+            <Skeleton className="h-20 w-full" />
+          </div>
+          <div>
+            <Skeleton className="h-6 w-32 mb-2" />
+            <Skeleton className="h-4 w-4/5 mb-4" />
+            <div className="w-full h-[400px] rounded-lg overflow-hidden border border-border">
+              <div className="w-full h-full bg-muted animate-pulse" />
+            </div>
+          </div>
+          <div>
+            <Skeleton className="h-6 w-24 mb-2" />
+            <Skeleton className="h-20 w-full" />
+          </div>
+        </CardContent>
+      </Card>
+    );
   }
 
   const userMap = new Map(users?.map(user => [user.id, user.name]) ?? []);
@@ -74,6 +115,7 @@ export default function ReportDetails({ report, worker, dictionary }: ReportDeta
         <div>
           <h3 className="font-semibold">{dictionary.components.reportDetails.location}</h3>
           <p>{reportData.locationDescription}</p>
+          <ReportMap location={{ lat: reportData.latitude, lng: reportData.longitude }} dictionary={dictionary} />
         </div>
         {images.length > 0 && (
           <div className="grid grid-cols-2 gap-4">
