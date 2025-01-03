@@ -1,5 +1,5 @@
+import { logger } from "@/lib/logger";
 import { deleteUnNamedUsers } from "@/server/api/cronJobProcedures";
-import { logger } from "@/utils/logger";
 import type { NextRequest } from "next/server";
 
 export async function GET(request: NextRequest) {
