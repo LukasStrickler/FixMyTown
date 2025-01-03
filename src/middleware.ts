@@ -24,6 +24,21 @@ function getLocale(request: NextRequest): string | undefined {
     return locale;
 }
 
+const BASE_PUBLIC_PATHS = [
+    '/',
+    '/about',
+    '/contact',
+    '/privacy',
+    '/terms',
+    '/imprint'
+];
+
+const PUBLIC_PATHS = new Set([
+    ...BASE_PUBLIC_PATHS,
+    ...i18n.locales.map(locale => `/${locale}`),
+    ...i18n.locales.map(locale => `/${locale}/`)
+]);
+
 const IGNORED_PATHS = new Set([
     '/favicon.ico',
     '/hero-image.webp',
@@ -40,17 +55,23 @@ export default function middleware(request: NextRequest) {
 
     if (IGNORED_PATHS.has(pathname)) return;
 
-    // Create response headers with x-pathname
+    // Create response headers
     const headers = new Headers({
         'x-pathname': pathname,
     });
+
+    // Add x-robots-tag header based on path
+    if (PUBLIC_PATHS.has(pathname) || PUBLIC_PATHS.has(pathname.slice(0, -1))) {
+        headers.set('x-robots-tag', 'index,follow');
+    } else {
+        headers.set('x-robots-tag', 'noindex');
+    }
 
     const segments = pathname.split('/');
     const firstSegment = segments[1];
 
     if (firstSegment && firstSegment.length === 2) {
         if (!LOCALES.has(firstSegment as ValidLocale)) {
-            // Unsupported locale, remove it and redirect
             const locale = getLocale(request) ?? i18n.defaultLocale;
             segments.splice(1, 1);
             return NextResponse.redirect(
@@ -58,11 +79,9 @@ export default function middleware(request: NextRequest) {
                 { headers }
             );
         }
-        // Supported locale found, return response with headers
         return NextResponse.next({ headers });
     }
 
-    // No locale in pathname, add the appropriate one
     const locale = getLocale(request) ?? i18n.defaultLocale;
     return NextResponse.redirect(
         new URL(`/${locale}${pathname}`, request.url),
