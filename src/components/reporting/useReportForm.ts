@@ -11,8 +11,8 @@ import { logger } from "@/lib/logger"
 
 export function useReportForm(
     dictionary: Dictionary,
+    language: string,
     preselectedType?: string,
-    language = 'en'
 ) {
     const router = useRouter()
     const [files, setFiles] = useState<File[]>([])

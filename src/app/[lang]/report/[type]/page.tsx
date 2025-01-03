@@ -46,6 +46,7 @@ export default async function ReportPage({
                     <ReportingForm
                         dictionary={dictionary}
                         preselectedType={reportId}
+                        language={lang}
                     />
                 </main>
             </HydrateClient>
