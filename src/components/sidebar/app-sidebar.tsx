@@ -120,14 +120,16 @@ export function AppSidebar({
       <div className="flex justify-center items-center h-screen bg-sidebar">
         <Sidebar className="shadow-lg rounded-lg bg-card bg-sidebar">
           <SidebarHeader className="flex justify-center items-center h-screen bg-card-foreground rounded-t-lg bg-sidebar">
-            <Button onClick={() => window.location.href = `/${lang}/login`} className="text-lg font-semibold">
+            <Button onClick={() => window.location.href = `/${lang}/login`} className="text-lg">
               {dictionary.pages.auth.login.title}
             </Button>
           </SidebarHeader>
           <div className="space-y-4 p-4 flex flex-col items-center bg-sidebar">
             <div className="flex items-center space-x-4">
+            <div className="flex aspect-square items-center justify-center rounded-lg bg-sidebar-primary text-sidebar-primary-foreground transition-transform duration-200">
+                <ModeToggle />
+              </div>
               {dictionary && <LanguageSwitcher {...dictionary} />}
-              <ModeToggle />
             </div>
           </div>
         </Sidebar>
