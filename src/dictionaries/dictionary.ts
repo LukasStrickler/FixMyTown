@@ -4,6 +4,13 @@ export interface Dictionary {
         reportDetails: {
             errorMessage: string,
         },
+        error: {
+            notFound: {
+                title: string;
+                description: string;
+                backToHome: string;
+            }
+        },
         // Landing page
         landing: {
             heroText: string;

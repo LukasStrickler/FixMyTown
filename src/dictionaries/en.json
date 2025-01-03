@@ -325,6 +325,13 @@
                 "11.2. If any provision of these Terms and Conditions is invalid or unenforceable, the validity of the remaining provisions shall not be affected.",
                 "11.3. These Terms and Conditions may be amended by the provider at any time. Changes will be communicated to users on the Platform and will be considered accepted if the user continues to use the Platform."
             ]
+        },
+        "error": {
+            "notFound": {
+                "title": "404 - Page Not Found",
+                "description": "Sorry, the page you are looking for does not exist.",
+                "backToHome": "Back to Home"
+            }
         }
     },
     "layout": {
