@@ -9,6 +9,7 @@ import { getDictionary } from "@/get-dictionary"
 import type { Locale } from "@/i18n-config"
 import { sendCreationNotification } from "@/lib/sendCreationNotification"
 import { env } from "@/env"
+import { logger } from "@/lib/logger"
 
 export const reportRouter = createTRPCRouter({
     create: userProcedure
@@ -41,7 +42,7 @@ export const reportRouter = createTRPCRouter({
                             }
                         });
                     } catch (error) {
-                        console.error("Error inserting pictures:", error);
+                        logger.error("Error inserting pictures:", error);
                         throw new Error("form.uploadError");
                     }
                 }
@@ -56,7 +57,7 @@ export const reportRouter = createTRPCRouter({
                         comment: null
                     });
                 } catch (error) {
-                    console.error("Error creating initial protocol:", error);
+                    logger.error("Error creating initial protocol:", error);
                     throw new Error("form.generalError");
                 }
             }
@@ -153,7 +154,7 @@ export const reportRouter = createTRPCRouter({
                     reports: formattedReports,
                 };
             } catch (error) {
-                console.error('Error fetching reports:', error);
+                logger.error('Error fetching reports:', error);
                 throw new Error('Failed to fetch reports');
             }
         }),
@@ -219,7 +220,7 @@ export const reportRouter = createTRPCRouter({
                     reports: formattedReports,
                 };
             } catch (error) {
-                console.error('Error fetching reports:', error);
+                logger.error('Error fetching reports:', error);
                 throw new Error('Failed to fetch reports');
             }
         }),

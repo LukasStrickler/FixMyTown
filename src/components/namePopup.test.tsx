@@ -2,6 +2,22 @@ import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import { vi, describe, it, expect } from 'vitest';
 import NamePopup from './namePopup';
 
+// Mock the LanguageSwitcher component
+vi.mock('@/components/language-switcher', () => {
+    const dictionary = {
+        layout: {
+            navigation: {
+                languageSwitcher: {
+                    text: 'Language Switcher',
+                },
+            },
+        },
+    };
+    return {
+        LanguageSwitcher: () => <div>{dictionary.layout.navigation.languageSwitcher.text}</div>,
+    };
+});
+
 // Mock necessary hooks and modules
 vi.mock('next-auth/react', () => ({
     useSession: vi.fn(() => ({
@@ -37,8 +53,6 @@ vi.mock('@/components/provider/dictionaryProvider', () => ({
                             nameTooShort: "Name is too short",
                             nameEmpty: "Name cannot be empty",
                             nameNumbers: "Name must not contain numbers or special characters",
-                            success: "Name has been successfully updated",
-                            validInput: "Name is valid",
                         },
                     },
                 },
@@ -46,6 +60,15 @@ vi.mock('@/components/provider/dictionaryProvider', () => ({
             components: {
                 signUpPopup: {
                     errorMessageC: "Please accept the terms of use and privacy policy to proceed.",
+                    successTitle: "Success",
+                    successMessage: "Your name has been updated.",
+                    errorTitle: "Error",
+                    errorMessageB: "There was an error updating your name.",
+                    inputPlaceholder: "Enter your name",
+                    saveButton: "Save Changes",
+                    termsAndConditionsPartA: "I accept the ",
+                    termsAndConditionsPartB: " and ",
+                    termsAndConditionsPartC: ".",
                 },
             },
             layout: {

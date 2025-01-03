@@ -10,7 +10,7 @@ import { useToast } from "@/hooks/use-toast";
 import heic2any from 'heic2any';
 import { Skeleton } from "@/components/ui/skeleton";
 import Image from 'next/image';
-import { logger } from "@/utils/logger";
+import { logger } from "@/lib/logger";
 
 const mainVariant = {
     initial: {
@@ -52,7 +52,7 @@ const convertHeicToJpeg = async (file: File): Promise<File> => {
                 { type: 'image/jpeg' }
             );
         } catch (error) {
-            console.error('HEIC conversion failed:', error);
+            logger.error('HEIC conversion failed:', error);
             return file;
         }
     }

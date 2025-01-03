@@ -328,6 +328,13 @@
                 "11.2. Sollte eine Bestimmung dieser AGB ungültig oder nicht durchsetzbar sein, bleibt die Gültigkeit der übrigen Bestimmungen hiervon unberührt.",
                 "11.3. Diese AGB können jederzeit vom Anbieter geändert werden. Änderungen werden den Nutzern auf der Plattform mitgeteilt und gelten als akzeptiert, wenn der Nutzer die Plattform weiterhin nutzt."
             ]
+        },
+        "error": {
+            "notFound": {
+                "title": "404 - Seite nicht gefunden",
+                "description": "Entschuldigung, die gesuchte Seite existiert nicht.",
+                "backToHome": "Zurück zur Startseite"
+            }
         }
     },
     "layout": {
@@ -375,7 +382,7 @@
                 "system": "System"
             },
             "languageSwitcher": {
-                "text": "Sprache wechseln zu",
+                "text": "Sprache ändern zu",
                 "languages": {
                     "en": "Englisch",
                     "de": "Deutsch"

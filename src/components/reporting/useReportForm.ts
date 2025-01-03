@@ -7,6 +7,7 @@ import { createReportSchema, type CreateReportInput } from "./report"
 import { useToast } from "@/hooks/use-toast"
 import { useUploadThing } from "@/lib/uploadthings"
 import type { Dictionary } from "@/dictionaries/dictionary"
+import { logger } from "@/lib/logger"
 
 export function useReportForm(
     dictionary: Dictionary,
@@ -37,13 +38,13 @@ export function useReportForm(
 
     const createReport = api.report.create.useMutation({
         onError: (error) => {
-            console.error("Error creating report:", error)
+            logger.error("Error creating report:", error)
         }
     })
 
     const { startUpload } = useUploadThing("imageUploader", {
         onUploadError: (error) => {
-            console.error("Error uploading:", error)
+            logger.error("Error uploading:", error)
             toast({
                 title: "Error",
                 description: dictionary.components.reportForm.uploadError,
@@ -122,7 +123,7 @@ export function useReportForm(
             form.reset()
             router.replace("/myReports")
         } catch (error) {
-            console.error("Error during submission:", error)
+            logger.error("Error during submission:", error)
             let errorMessage = dictionary.components.reportForm.generalError
             if (error instanceof Error) {
                 switch (error.message) {

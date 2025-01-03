@@ -6,7 +6,7 @@ import { Badge } from "@/components/ui/badge";
 import type { Dictionary } from "@/dictionaries/dictionary";
 import { WorkerActions } from "./workerActions";
 import { api } from "@/trpc/react";
-import { logger } from "@/utils/logger";
+import { logger } from "@/lib/logger";
 import dynamic from "next/dynamic";
 import { Skeleton } from "@/components/ui/skeleton";
 
@@ -50,6 +50,7 @@ export default function ReportDetails({ report, worker, dictionary }: ReportDeta
   logger.log('Report type:', typeof report.report.createdAt);
   const { report: reportData, images, protocolls } = report;
   const currentStatus = protocolls[protocolls.length - 1]?.status ?? 1;
+  const currentPriority = reportData.prio;
   const utils = api.useUtils();
 
   const handleActionComplete = () => {
@@ -102,7 +103,9 @@ export default function ReportDetails({ report, worker, dictionary }: ReportDeta
         <div className="flex justify-between">
           <CardTitle>{reportData.name}</CardTitle>
           <div className="flex space-x-2">
-            <Badge>{dictionary.metadata.prios[reportData.prio.toString() as keyof typeof dictionary.metadata.prios].name}</Badge>
+            {worker && (
+              <Badge>{dictionary.metadata.prios[reportData.prio.toString() as keyof typeof dictionary.metadata.prios].name}</Badge>
+            )}
             <Badge>{dictionary.metadata.statuses[currentStatus.toString() as keyof typeof dictionary.metadata.statuses].name}</Badge>
           </div>
         </div>
@@ -136,6 +139,7 @@ export default function ReportDetails({ report, worker, dictionary }: ReportDeta
             reportId={reportData.id}
             dictionary={dictionary}
             currentStatus={currentStatus}
+            currentPriority={currentPriority}
             onActionComplete={handleActionComplete}
           />
         )}
