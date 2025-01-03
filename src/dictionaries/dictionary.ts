@@ -16,6 +16,7 @@ export interface Dictionary {
             heroText: string;
             heroDescription: string;
             reportButton: string;
+            heroImageAlt: string;
             featuresTitle: string;
             feature1Title: string;
             feature1Text: string;
@@ -274,7 +275,8 @@ export interface Dictionary {
                     en: string;
                     de: string;
                 }
-            }
+            },
+            mainNavigationLabel: string;
         },
         footer: {
             contact: string;

@@ -216,11 +216,23 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - Our beta testers
 
 ## 📈 Performance 
-Measued  on M1 Mac (2020)
-- Lighthouse score: 90+ on all metrics
-- Core Web Vitals compliant
-- First Contentful Paint < 1s
-- Time to Interactive < 3.5s
+Measured on M1 Mac (2020) with Desktop Viewport on the Landing Page
+
+### Lighthouse Scores
+- Performance: 91/100
+- Accessibility: 100/100
+- Best Practices: 100/100
+- SEO: 100/100
+
+### Core Metrics
+- First Contentful Paint (FCP): 0.3s
+- Largest Contentful Paint (LCP): 0.4s
+- Interaction to Next Paint (INP): 20 ms
+- Total Blocking Time: 250ms
+- Speed Index: 0.4s
+- Cumulative Layout Shift (CLS): 0
+
+All metrics are well within [Google's recommended Core Web Vitals thresholds](https://web.dev/articles/defining-core-web-vitals-thresholds#refresher_core_web_vitals_metrics_and_thresholds), ensuring an excellent user experience.
 
 ## 🧪 Testing
 

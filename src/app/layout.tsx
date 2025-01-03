@@ -13,7 +13,7 @@ export default function RootLayout({
     const validLang = i18n.locales.includes(lang as Locale) ? lang : i18n.defaultLocale;
 
     return (
-        <html lang={validLang} className={GeistSans.variable}>
+        <html lang={validLang} className={GeistSans.variable} suppressHydrationWarning>
             <body className="min-h-screen">
                 <DictionaryProvider>{children}</DictionaryProvider>
             </body>

@@ -33,7 +33,7 @@ export default function RootLayout({
   return (
     // suppressHydrationWarning is needed to prevent hydration errors with the theme provider 
     // TODO: find a better solution / fix for prod
-    <html lang={lang} className={GeistSans.variable}>
+    <html lang={lang} className={GeistSans.variable} suppressHydrationWarning>
       <body className="min-h-screen">
         <ThemeProvider
           attribute="class"
