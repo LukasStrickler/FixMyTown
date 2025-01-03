@@ -24,6 +24,11 @@ import { useDictionary } from "@/components/provider/dictionaryProvider";
 import { Button } from "../ui/button";
 import { useParams } from "next/navigation";
 
+import { ModeToggle } from "@/components/modeToggle"
+import { LanguageSwitcher } from "@/components/language-switcher"
+
+
+
 export interface Workspace {
   workspaceType: string; // Worker, User, or Admin
   name: string; // The name of the workspace
@@ -111,15 +116,24 @@ export function AppSidebar({
   }
 
   if (!user) {
-    return <div className="flex justify-center items-center h-screen">
-      <Sidebar>
-        <SidebarHeader className="flex justify-center items-center h-screen">
-          <Button onClick={() => window.location.href = `/${lang}/login`}>
-            {dictionary.pages.auth.login.title}
-          </Button>
-        </SidebarHeader>
-      </Sidebar>
-    </div>;
+    return (
+      <div className="flex justify-center items-center h-screen bg-sidebar">
+        <Sidebar className="shadow-lg rounded-lg bg-card bg-sidebar">
+          <SidebarHeader className="flex justify-center items-center h-screen bg-card-foreground rounded-t-lg bg-sidebar">
+            <Button onClick={() => window.location.href = `/${lang}/login`} className="text-lg font-semibold">
+              {dictionary.pages.auth.login.title}
+            </Button>
+          </SidebarHeader>
+          <div className="space-y-4 p-4 flex flex-col items-center bg-sidebar">
+            <div className="flex items-center space-x-4">
+              {dictionary && <LanguageSwitcher {...dictionary} />}
+              <ModeToggle />
+            </div>
+          </div>
+          
+        </Sidebar>
+      </div>
+    );
   }
 
 
@@ -166,7 +180,7 @@ export function AppSidebar({
             },
             {
               title: dictionary.layout.navigation.workspaces.userWorkspace.navItems.reportSomething.folderTitle,
-              url: "#",
+              url: `/${lang}/report/defects-damage`,
               icon: FolderPlus,
               isActive: true,
               items: [

@@ -72,7 +72,7 @@ export function LoginClient({ dictionary }: LoginClientProps) {
     };
 
     return (
-        <div className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-br from-primary via-accent to-secondary p-4">
+        <div className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-br from-primary via-accent to-bg-background p-4">
             <Card className="w-full max-w-md shadow-xl backdrop-blur-sm bg-card/95">
                 <CardHeader className="space-y-6">
                     <Link
