@@ -10,7 +10,7 @@ import { useToast } from "@/hooks/use-toast";
 import heic2any from 'heic2any';
 import { Skeleton } from "@/components/ui/skeleton";
 import Image from 'next/image';
-import { logger } from "@/utils/logger";
+import { logger } from "@/lib/logger";
 
 const mainVariant = {
     initial: {

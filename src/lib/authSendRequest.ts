@@ -3,7 +3,7 @@ import { resend } from "@/server/email"
 import { getDictionary } from "@/get-dictionary"
 import type { Locale } from "@/i18n-config"
 import ModularAuthTemplate from "@/emails/modularAuthTemplate"
-import { logger } from "@/utils/logger"
+import { logger } from "@/lib/logger"
 
 interface VerificationRequestParams {
     identifier: string
