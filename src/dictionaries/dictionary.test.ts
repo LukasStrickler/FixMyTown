@@ -223,7 +223,7 @@ export function checkNestedKeys(
 /**
  * Type guard to check if a value is a NestedDictionary
  */
-export function isNestedDictionary(value: any): value is NestedDictionary {
+export function isNestedDictionary(value: unknown): value is NestedDictionary {
     return typeof value === 'object' && value !== null && !Array.isArray(value);
 }
 
