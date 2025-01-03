@@ -75,7 +75,7 @@ export default function ReportDetails({ report, worker, dictionary }: ReportDeta
         <div>
           <h3 className="font-semibold">{dictionary.components.reportDetails.location}</h3>
           <p>{reportData.locationDescription}</p>
-          <ReportMap location={{ lat: reportData.latitude, lng: reportData.longitude }} dictionary={dictionary} />
+          {/* TODO <ReportMap location={{ lat: reportData.latitude, lng: reportData.longitude }} dictionary={dictionary} /> */}
         </div>
         {images.length > 0 && (
           <div className="grid grid-cols-2 gap-4">
