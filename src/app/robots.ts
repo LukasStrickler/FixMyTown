@@ -1,5 +1,6 @@
-import { MetadataRoute } from 'next'
+import type { MetadataRoute } from 'next'
 import { i18n } from '@/i18n-config'
+import { getBaseUrl } from '@/lib/utils'
 
 // Generate language paths dynamically
 const PUBLIC_PATHS = [
@@ -20,12 +21,6 @@ const PRIVATE_PATHS = [
         i18n.locales.map(locale => `/${locale}${path}`)
     )
 ]
-
-function getBaseUrl(): string {
-    if (typeof window !== "undefined") return window.location.origin
-    if (process.env.VERCEL_URL) return `https://${process.env.VERCEL_URL}`
-    return `http://localhost:${process.env.PORT ?? 3000}`
-}
 
 export default function robots(): MetadataRoute.Robots {
     const baseUrl = getBaseUrl()

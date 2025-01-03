@@ -1,10 +1,6 @@
-import { MetadataRoute } from 'next'
+import type { MetadataRoute } from 'next'
 import { i18n } from '@/i18n-config'
-
-function getBaseUrl(): string {
-    if (process.env.VERCEL_URL) return `https://${process.env.VERCEL_URL}`
-    return `http://localhost:${process.env.PORT ?? 3000}`
-}
+import { getBaseUrl } from '@/lib/utils'
 
 export default function sitemap(): MetadataRoute.Sitemap {
     const baseUrl = getBaseUrl()
