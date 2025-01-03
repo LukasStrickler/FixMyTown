@@ -7,6 +7,7 @@ import type { Dictionary } from "@/dictionaries/dictionary";
 import { WorkerActions } from "./workerActions";
 import { api } from "@/trpc/react";
 import { logger } from "@/utils/logger";
+import ReportMap from  "@/components/ReportOverview/LocationViewDialog/Map"
 
 interface ReportDetailsProps {
   report: {
@@ -74,6 +75,7 @@ export default function ReportDetails({ report, worker, dictionary }: ReportDeta
         <div>
           <h3 className="font-semibold">{dictionary.components.reportDetails.location}</h3>
           <p>{reportData.locationDescription}</p>
+          <ReportMap location={{ lat: reportData.latitude, lng: reportData.longitude }} dictionary={dictionary} />
         </div>
         {images.length > 0 && (
           <div className="grid grid-cols-2 gap-4">
