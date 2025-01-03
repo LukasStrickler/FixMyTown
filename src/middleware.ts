@@ -27,7 +27,10 @@ function getLocale(request: NextRequest): string | undefined {
 const IGNORED_PATHS = new Set([
     '/favicon.ico',
     '/hero-image.webp',
-    '/FixMyTown_logo.png'
+    '/FixMyTown_logo.png',
+    '/hero-image-blur.webp',
+    '/robots.txt',
+    '/sitemap.xml'
 ]);
 type ValidLocale = typeof i18n.locales[number];
 const LOCALES = new Set<ValidLocale>(i18n.locales);
@@ -70,5 +73,5 @@ export default function middleware(request: NextRequest) {
 
 export const config = {
     // Matcher ignoring `/_next/` and `/api/`
-    matcher: ["/((?!api|admin|_next/static|_next/image|favicon.ico).*)"],
+    matcher: ["/((?!api|admin|_next/static|_next/image|favicon.ico|.map).*)"],
 };
