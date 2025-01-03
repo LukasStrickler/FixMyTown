@@ -18,6 +18,8 @@ import {
   FormControl,
   FormMessage,
 } from "@/components/ui/form";
+import { ModeToggle } from "@/components/modeToggle";
+import { LanguageSwitcher } from "@/components/language-switcher";
 
 export default function NamePopup() {
   const [showPopup, setShowPopup] = useState(false);
@@ -89,7 +91,7 @@ export default function NamePopup() {
       <div className="bg-background p-6 rounded-lg shadow-lg text-center space-y-4">
         <h2 className="text-2xl font-semibold text-foreground">
           {dictionary.components.signUpPopup.title}
-        </h2>
+        </h2> 
         <p className="text-foreground">{dictionary.components.signUpPopup.message}</p>
         <Form {...form}>
           <form data-testid="name-popup-form" onSubmit={form.handleSubmit(handleUpdateName)}>
@@ -154,6 +156,9 @@ export default function NamePopup() {
               {dictionary.components.signUpPopup.saveButton}
             </Button>
           </form>
+          <div className="flex justify-between">
+          {dictionary && <LanguageSwitcher {...dictionary}/>}
+          </div>
         </Form>
       </div>
     </div>
