@@ -9,7 +9,7 @@ import { logger } from '@/lib/logger';
 /**
  * Represents a nested dictionary structure where values can be either strings, string arrays, or nested dictionaries
  */
-interface NestedDictionary {
+export interface NestedDictionary {
     [key: string]: string | string[] | NestedDictionary;
 }
 
@@ -18,7 +18,7 @@ interface NestedDictionary {
  * @param str - The string to parse
  * @returns A NestedDictionary object
  */
-function parseNested(str: string): NestedDictionary {
+export function parseNested(str: string): NestedDictionary {
     const obj: NestedDictionary = {};
     let currentKey = '';
     let buffer = '';
@@ -110,94 +110,124 @@ function extractInterfaceContent(content: string, startIndex: number): string {
 }
 
 /**
+ * Extracts and parses the Dictionary interface from the source file
+ */
+export function parseInterface(content: string): NestedDictionary {
+    const cleanContent = content
+        .replace(/\/\*[\s\S]*?\*\/|\/\/.*/g, '')
+        .replace(/\s+/g, ' ');
+
+    const startIndex = cleanContent.indexOf('interface Dictionary {');
+    if (startIndex === -1) {
+        logger.error('Could not find interface Dictionary');
+        return {};
+    }
+
+    // Extract interface content
+    const interfaceContent = extractInterfaceContent(cleanContent, startIndex);
+    const interfaceBody = interfaceContent.slice(
+        interfaceContent.indexOf('{') + 1,
+        -1
+    );
+
+    return parseNested(interfaceBody);
+}
+
+/**
+ * Recursively finds empty string values in the dictionary
+ */
+export const findEmptyStrings = (
+    obj: NestedDictionary,
+    path: string[] = []
+): string[] => {
+    const emptyPaths: string[] = [];
+
+    for (const key in obj) {
+        const currentPath = [...path, key];
+        const value = obj[key];
+
+        if (typeof value === 'string' && value.trim() === '') {
+            emptyPaths.push(currentPath.join('.'));
+        } else if (Array.isArray(value)) {
+            value.forEach((item, index) => {
+                if (typeof item === 'string' && item.trim() === '') {
+                    emptyPaths.push(`${currentPath.join('.')}[${index}]`);
+                }
+            });
+        } else if (isNestedDictionary(value)) {
+            emptyPaths.push(...findEmptyStrings(value, currentPath));
+        }
+    }
+
+    return emptyPaths;
+};
+
+
+/**
+ * Validates that all required keys from the template exist in the dictionary
+ * and that there are no unexpected keys
+ */
+export function checkNestedKeys(
+    obj: NestedDictionary,
+    template: NestedDictionary,
+    path: string[] = []
+): string[] {
+    const errors: string[] = [];
+
+    // Check for missing or mismatched keys
+    for (const key in template) {
+        const currentPath = [...path, key.replace(/"/g, '')];
+        const pathStr = currentPath.join('.');
+        const objKey = /^\d+$/.test(key.replace(/"/g, ''))
+            ? key.replace(/"/g, '')
+            : key;
+
+        if (!(objKey in obj)) {
+            errors.push(`Missing key in dictionary: ${pathStr}`);
+            continue;
+        }
+
+        const templateValue = template[key];
+        const objValue = obj[objKey];
+
+        if (Array.isArray(templateValue)) {
+            if (!Array.isArray(objValue)) {
+                errors.push(
+                    `Type mismatch for key ${pathStr}: expected array but got ${typeof objValue}`
+                );
+            }
+        } else if (isNestedDictionary(templateValue)) {
+            if (!isNestedDictionary(objValue)) {
+                errors.push(
+                    `Type mismatch for key ${pathStr}: expected object but got ${typeof objValue}`
+                );
+            } else {
+                errors.push(...checkNestedKeys(objValue, templateValue, currentPath));
+            }
+        }
+    }
+
+    // Check for unexpected keys
+    for (const key in obj) {
+        const currentPath = [...path, key];
+        const templateKey = /^\d+$/.test(key) ? `"${key}"` : key;
+
+        if (!(templateKey in template)) {
+            errors.push(`Unexpected key in dictionary: ${currentPath.join('.')}`);
+        }
+    }
+
+    return errors;
+}
+
+/**
  * Type guard to check if a value is a NestedDictionary
  */
-function isNestedDictionary(value: any): value is NestedDictionary {
+export function isNestedDictionary(value: any): value is NestedDictionary {
     return typeof value === 'object' && value !== null && !Array.isArray(value);
 }
 
 describe('Dictionary Type Check', () => {
-    /**
-     * Extracts and parses the Dictionary interface from the source file
-     */
-    function parseInterface(content: string): NestedDictionary {
-        const cleanContent = content
-            .replace(/\/\*[\s\S]*?\*\/|\/\/.*/g, '')
-            .replace(/\s+/g, ' ');
-
-        const startIndex = cleanContent.indexOf('interface Dictionary {');
-        if (startIndex === -1) {
-            logger.error('Could not find interface Dictionary');
-            return {};
-        }
-
-        // Extract interface content
-        const interfaceContent = extractInterfaceContent(cleanContent, startIndex);
-        const interfaceBody = interfaceContent.slice(
-            interfaceContent.indexOf('{') + 1,
-            -1
-        );
-
-        return parseNested(interfaceBody);
-    }
-
-    /**
-     * Validates that all required keys from the template exist in the dictionary
-     * and that there are no unexpected keys
-     */
-    function checkNestedKeys(
-        obj: NestedDictionary,
-        template: NestedDictionary,
-        path: string[] = []
-    ): string[] {
-        const errors: string[] = [];
-
-        // Check for missing or mismatched keys
-        for (const key in template) {
-            const currentPath = [...path, key.replace(/"/g, '')];
-            const pathStr = currentPath.join('.');
-            const objKey = /^\d+$/.test(key.replace(/"/g, ''))
-                ? key.replace(/"/g, '')
-                : key;
-
-            if (!(objKey in obj)) {
-                errors.push(`Missing key in dictionary: ${pathStr}`);
-                continue;
-            }
-
-            const templateValue = template[key];
-            const objValue = obj[objKey];
-
-            if (Array.isArray(templateValue)) {
-                if (!Array.isArray(objValue)) {
-                    errors.push(
-                        `Type mismatch for key ${pathStr}: expected array but got ${typeof objValue}`
-                    );
-                }
-            } else if (isNestedDictionary(templateValue)) {
-                if (!isNestedDictionary(objValue)) {
-                    errors.push(
-                        `Type mismatch for key ${pathStr}: expected object but got ${typeof objValue}`
-                    );
-                } else {
-                    errors.push(...checkNestedKeys(objValue, templateValue, currentPath));
-                }
-            }
-        }
-
-        // Check for unexpected keys
-        for (const key in obj) {
-            const currentPath = [...path, key];
-            const templateKey = /^\d+$/.test(key) ? `"${key}"` : key;
-
-            if (!(templateKey in template)) {
-                errors.push(`Unexpected key in dictionary: ${currentPath.join('.')}`);
-            }
-        }
-
-        return errors;
-    }
-
     it('(de) should have all required keys from Dictionary interface', () => {
         const interfaceContent = fs.readFileSync(
             path.join(__dirname, 'dictionary.ts'),
@@ -219,34 +249,7 @@ describe('Dictionary Type Check', () => {
     });
 
     it('(de) should not have any empty string values', () => {
-        /**
-         * Recursively finds empty string values in the dictionary
-         */
-        const findEmptyStrings = (
-            obj: NestedDictionary,
-            path: string[] = []
-        ): string[] => {
-            const emptyPaths: string[] = [];
 
-            for (const key in obj) {
-                const currentPath = [...path, key];
-                const value = obj[key];
-
-                if (typeof value === 'string' && value.trim() === '') {
-                    emptyPaths.push(currentPath.join('.'));
-                } else if (Array.isArray(value)) {
-                    value.forEach((item, index) => {
-                        if (typeof item === 'string' && item.trim() === '') {
-                            emptyPaths.push(`${currentPath.join('.')}[${index}]`);
-                        }
-                    });
-                } else if (isNestedDictionary(value)) {
-                    emptyPaths.push(...findEmptyStrings(value, currentPath));
-                }
-            }
-
-            return emptyPaths;
-        };
 
         const emptyStrings = findEmptyStrings(germanDictionary);
 
@@ -276,35 +279,6 @@ describe('Dictionary Type Check', () => {
     });
 
     it('(en) should not have any empty string values', () => {
-        /**
-         * Recursively finds empty string values in the dictionary
-         */
-        const findEmptyStrings = (
-            obj: NestedDictionary,
-            path: string[] = []
-        ): string[] => {
-            const emptyPaths: string[] = [];
-
-            for (const key in obj) {
-                const currentPath = [...path, key];
-                const value = obj[key];
-
-                if (typeof value === 'string' && value.trim() === '') {
-                    emptyPaths.push(currentPath.join('.'));
-                } else if (Array.isArray(value)) {
-                    value.forEach((item, index) => {
-                        if (typeof item === 'string' && item.trim() === '') {
-                            emptyPaths.push(`${currentPath.join('.')}[${index}]`);
-                        }
-                    });
-                } else if (isNestedDictionary(value)) {
-                    emptyPaths.push(...findEmptyStrings(value, currentPath));
-                }
-            }
-
-            return emptyPaths;
-        };
-
         const emptyStrings = findEmptyStrings(englishDictionary);
 
         if (emptyStrings.length > 0) {
