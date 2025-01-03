@@ -1,27 +1,16 @@
 import type { MetadataRoute } from 'next'
-import { i18n } from '@/i18n-config'
+import { getLocalizedPublicPaths } from '@/lib/routes'
 import { getBaseUrl } from '@/lib/utils'
 
 export default function sitemap(): MetadataRoute.Sitemap {
     const baseUrl = getBaseUrl()
 
-    const publicRoutes = [
-        '',
-        '/about',
-        '/contact',
-        '/privacy',
-        '/terms',
-        '/imprint'
-    ]
-
-    const languageRoutes = i18n.locales.flatMap(locale =>
-        publicRoutes.map(route => ({
-            url: `${baseUrl}/${locale}${route}`,
-            lastModified: new Date(),
-            changeFrequency: 'monthly' as const,
-            priority: route === '' ? 1.0 : 0.8
-        }))
-    )
+    const languageRoutes = getLocalizedPublicPaths().map(route => ({
+        url: `${baseUrl}${route}`,
+        lastModified: new Date(),
+        changeFrequency: 'monthly' as const,
+        priority: route.endsWith('/') ? 1.0 : 0.8
+    }))
 
     const commonRoutes = [
         {

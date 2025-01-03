@@ -5,6 +5,7 @@ import { i18n } from "./i18n-config";
 
 import { match as matchLocale } from "@formatjs/intl-localematcher";
 import Negotiator from "negotiator";
+import { getPublicPaths, IGNORED_PATHS } from '@/lib/routes'
 
 function getLocale(request: NextRequest): string | undefined {
     // Negotiator expects plain object so we need to transform headers
@@ -24,29 +25,8 @@ function getLocale(request: NextRequest): string | undefined {
     return locale;
 }
 
-const BASE_PUBLIC_PATHS = [
-    '/',
-    '/about',
-    '/contact',
-    '/privacy',
-    '/terms',
-    '/imprint'
-];
+const PUBLIC_PATHS = new Set(getPublicPaths())
 
-const PUBLIC_PATHS = new Set([
-    ...BASE_PUBLIC_PATHS,
-    ...i18n.locales.map(locale => `/${locale}`),
-    ...i18n.locales.map(locale => `/${locale}/`)
-]);
-
-const IGNORED_PATHS = new Set([
-    '/favicon.ico',
-    '/hero-image.webp',
-    '/FixMyTown_logo.png',
-    '/hero-image-blur.webp',
-    '/robots.txt',
-    '/sitemap.xml'
-]);
 type ValidLocale = typeof i18n.locales[number];
 const LOCALES = new Set<ValidLocale>(i18n.locales);
 
