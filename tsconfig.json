@@ -8,6 +8,7 @@
     "resolveJsonModule": true,
     "moduleDetection": "force",
     "isolatedModules": true,
+    "sourceMap": true,
     /* Strictness */
     "strict": true,
     "noUncheckedIndexedAccess": true,
