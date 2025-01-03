@@ -629,8 +629,5 @@
                 "description": "High priority"
             }
         }
-    },
-    "test": [
-        "test"
-    ]
+    }
 }
