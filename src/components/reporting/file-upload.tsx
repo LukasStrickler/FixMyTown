@@ -52,7 +52,7 @@ const convertHeicToJpeg = async (file: File): Promise<File> => {
                 { type: 'image/jpeg' }
             );
         } catch (error) {
-            console.error('HEIC conversion failed:', error);
+            logger.error('HEIC conversion failed:', error);
             return file;
         }
     }

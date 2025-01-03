@@ -4,6 +4,7 @@ import { notFound, redirect } from "next/navigation";
 import { ReportingForm } from "@/components/reporting/reporting-form";
 import { getDictionary } from "@/get-dictionary";
 import { auth } from "@/server/auth";
+import { logger } from "@/lib/logger";
 
 // Force dynamic rendering
 export const dynamic = 'force-dynamic'
@@ -50,7 +51,7 @@ export default async function ReportPage({
             </HydrateClient>
         );
     } catch (error) {
-        console.error('Report type page error:', error);
+        logger.error('Report type page error:', error);
         throw error;
     }
 }

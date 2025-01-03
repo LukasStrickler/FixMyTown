@@ -4,6 +4,7 @@ import germanDictionary from './de.json';
 import englishDictionary from './en.json';
 import fs from 'fs';
 import path from 'path';
+import { logger } from '@/lib/logger';
 
 /**
  * Represents a nested dictionary structure where values can be either strings or nested dictionaries
@@ -118,7 +119,7 @@ describe('Dictionary Type Check', () => {
 
         const startIndex = cleanContent.indexOf('interface Dictionary {');
         if (startIndex === -1) {
-            console.error('Could not find interface Dictionary');
+            logger.error('Could not find interface Dictionary');
             return {};
         }
 

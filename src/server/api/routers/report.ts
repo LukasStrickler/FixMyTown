@@ -41,7 +41,7 @@ export const reportRouter = createTRPCRouter({
                             }
                         });
                     } catch (error) {
-                        console.error("Error inserting pictures:", error);
+                        logger.error("Error inserting pictures:", error);
                         throw new Error("form.uploadError");
                     }
                 }
