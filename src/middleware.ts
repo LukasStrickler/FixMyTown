@@ -37,6 +37,11 @@ export default function middleware(request: NextRequest) {
 
     if (IGNORED_PATHS.has(pathname)) return;
 
+    // Create response headers with x-pathname
+    const headers = new Headers({
+        'x-pathname': pathname,
+    });
+
     const segments = pathname.split('/');
     const firstSegment = segments[1];
 
@@ -46,17 +51,19 @@ export default function middleware(request: NextRequest) {
             const locale = getLocale(request) ?? i18n.defaultLocale;
             segments.splice(1, 1);
             return NextResponse.redirect(
-                new URL(`/${locale}${segments.join('/')}`, request.url)
+                new URL(`/${locale}${segments.join('/')}`, request.url),
+                { headers }
             );
         }
-        // Supported locale found, no need to redirect
-        return;
+        // Supported locale found, return response with headers
+        return NextResponse.next({ headers });
     }
 
     // No locale in pathname, add the appropriate one
     const locale = getLocale(request) ?? i18n.defaultLocale;
     return NextResponse.redirect(
-        new URL(`/${locale}${pathname}`, request.url)
+        new URL(`/${locale}${pathname}`, request.url),
+        { headers }
     );
 }
 

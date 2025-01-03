@@ -28,11 +28,12 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
-}: Readonly<{ children: React.ReactNode }>) {
+  params: { lang },
+}: Readonly<{ children: React.ReactNode, params: { lang: string } }>) {
   return (
     // suppressHydrationWarning is needed to prevent hydration errors with the theme provider 
     // TODO: find a better solution / fix for prod
-    <html className={GeistSans.variable}>
+    <html lang={lang} className={GeistSans.variable}>
       <body className="min-h-screen">
         <ThemeProvider
           attribute="class"
