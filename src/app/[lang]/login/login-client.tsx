@@ -11,6 +11,7 @@ import { ArrowLeft } from "lucide-react";
 import { useSession } from "next-auth/react";
 import { useRouter } from 'next/navigation';
 import type { Dictionary } from "@/dictionaries/dictionary";
+import { logger } from "@/lib/logger";
 
 interface LoginClientProps {
     dictionary: Dictionary;
@@ -62,10 +63,10 @@ export function LoginClient({ dictionary }: LoginClientProps) {
                     callbackUrl: "/"
                 }).toString()}`);
             } else {
-                console.error("Sign in failed:", result?.error);
+                logger.error("Sign in failed:", result?.error);
             }
         } catch (error) {
-            console.error("Authentifizierungsfehler:", error);
+            logger.error("Authentication error:", error);
         } finally {
             setIsLoading(false);
         }

@@ -5,6 +5,7 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { useRouter } from "next/navigation";
 import type { Dictionary } from "@/dictionaries/dictionary";
+import { logger } from "@/lib/logger";
 
 interface VerifyTokenInputProps {
     dictionary: Dictionary;
@@ -33,7 +34,7 @@ export function VerifyTokenInput({ dictionary }: VerifyTokenInputProps) {
             window.location.href = verificationUrl;
 
         } catch (error) {
-            console.error("Verification error:", error);
+            logger.error("Verification error:", error);
             if (error instanceof Error) {
                 router.push(`/error?error=Verification&message=${encodeURIComponent(error.message)}`);
             } else {

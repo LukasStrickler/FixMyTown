@@ -12,6 +12,7 @@ import {
 } from "@/components/ui/select";
 import { type Dictionary } from "@/dictionaries/dictionary";
 import { api } from "@/trpc/react";
+import { logger } from "@/lib/logger";
 
 interface WorkerActionsProps {
   reportId: number;
@@ -64,7 +65,7 @@ export function WorkerActions({
     const newStatusId = parseInt(selectedStatus);
 
     if (!isValidTransition(currentStatus, newStatusId)) {
-      console.error("Invalid status transition.");
+      logger.error("Invalid status transition.");
       return;
     }
 
@@ -83,7 +84,7 @@ export function WorkerActions({
         prio: selectedPriority,
       });
     } else {
-      console.error("Priority must be selected before updating.");
+      logger.error("Priority must be selected before updating.");
     }
   };
 

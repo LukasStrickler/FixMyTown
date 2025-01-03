@@ -6,7 +6,7 @@ import { Badge } from "@/components/ui/badge";
 import type { Dictionary } from "@/dictionaries/dictionary";
 import { WorkerActions } from "./workerActions";
 import { api } from "@/trpc/react";
-import { logger } from "@/utils/logger";
+import { logger } from "@/lib/logger";
 import dynamic from "next/dynamic";
 import { Skeleton } from "@/components/ui/skeleton";
 

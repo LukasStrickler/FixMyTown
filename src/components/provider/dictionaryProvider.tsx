@@ -3,6 +3,7 @@ import React, { createContext, useContext, useState, useEffect } from 'react';
 import type { Dictionary } from '@/dictionaries/dictionary';
 import type { Locale } from '@/i18n-config';
 import { usePathname } from 'next/navigation';
+import { logger } from '@/lib/logger';
 
 type DictionaryContextType = {
     dictionary: Dictionary | null;
@@ -20,7 +21,7 @@ export const DictionaryProvider: React.FC<{ children: React.ReactNode }> = ({ ch
             const dict = await import(`@/dictionaries/${locale}.json`) as { default: Dictionary };
             setDictionary(dict.default);
         } catch (error) {
-            console.error('Error loading dictionary:', error);
+            logger.error('Error loading dictionary:', error);
         }
     };
 

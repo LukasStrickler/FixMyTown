@@ -13,7 +13,7 @@ import { api } from "@/trpc/react";
 import { EditNameDialog } from "@/components/account/edit-name-dialog";
 import { Pencil } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
-
+import { logger } from "@/lib/logger";
 interface AccountPageProps {
     params: {
         lang: string;
@@ -41,7 +41,7 @@ export default function AccountPage({ params: { lang }, dict }: AccountPageProps
             await signOut({ redirect: false });
             router.push(`/${lang}`);
         } catch (error) {
-            console.error(dict.pages.auth.error.LogoutError, error);
+            logger.error(dict.pages.auth.error.LogoutError, error);
             toast({
                 variant: "destructive",
                 title: dict.pages.auth.error.title,
@@ -58,7 +58,7 @@ export default function AccountPage({ params: { lang }, dict }: AccountPageProps
             await signOut({ redirect: false });
             router.push(`/${lang}`);
         } catch (error) {
-            console.error(dict.pages.auth.error.DeleteAccountError, error);
+            logger.error(dict.pages.auth.error.DeleteAccountError, error);
             toast({
                 variant: "destructive",
                 title: dict.pages.auth.error.title,
@@ -80,7 +80,7 @@ export default function AccountPage({ params: { lang }, dict }: AccountPageProps
                 description: dict.pages.auth.account.editNameDialog.success,
             });
         } catch (error) {
-            console.error(dict.pages.auth.error.Default, error);
+            logger.error(dict.pages.auth.error.Default, error);
             toast({
                 variant: "destructive",
                 title: dict.pages.auth.error.title,

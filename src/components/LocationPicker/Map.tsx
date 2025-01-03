@@ -8,6 +8,7 @@ import { Button } from "@/components/ui/button";
 import { Lock, Unlock, X } from "lucide-react";
 import type { Location, Address } from './LocationPicker';
 import type { Dictionary } from '@/dictionaries/dictionary';
+import { logger } from '@/lib/logger';
 
 interface MapProps {
     onLocationSelected?: (location: Location) => void;
@@ -116,7 +117,7 @@ export default function Map({
                 lng: latlng.lng
             });
         } catch (error) {
-            console.error('Error fetching address:', error);
+            logger.error('Error fetching address:', error);
             setAddress({ displayName: 'Error fetching address' });
             onLocationSelected?.({
                 lat: latlng.lat,

@@ -14,7 +14,6 @@ const config = {
         pathname: "/f/*", // or "/a/<APP_ID>/*" if using app-scoped URLs
       },
     ],
-    domains: ['utfs.io'],
   },
 };
 

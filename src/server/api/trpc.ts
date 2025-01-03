@@ -13,7 +13,7 @@ import { ZodError } from "zod";
 
 import { auth } from "@/server/auth";
 import { db } from "@/server/db";
-import { logger } from "@/utils/logger";
+import { logger } from "@/lib/logger";
 
 /**
  * 1. CONTEXT

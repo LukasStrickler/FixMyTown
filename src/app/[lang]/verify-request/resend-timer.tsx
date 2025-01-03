@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import { signIn } from "next-auth/react";
 import { Button } from '@/components/ui/button';
 import type { Dictionary } from '@/dictionaries/dictionary';
+import { logger } from '@/lib/logger';
 
 
 interface ResendTimerProps {
@@ -32,10 +33,10 @@ export function ResendTimer({ dictionary }: ResendTimerProps) {
                 setCooldownPeriod(newCooldown);
                 setIsActive(true);
             } else {
-                console.error("Resend verification email failed:", result?.error);
+                logger.error("Resend verification email failed:", result?.error);
             }
         } catch (error) {
-            console.error("Authentication error:", error);
+            logger.error("Authentication error:", error);
         } finally {
             setIsLoading(false);
         }
