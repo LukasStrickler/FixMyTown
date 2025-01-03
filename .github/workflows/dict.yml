@@ -34,7 +34,6 @@ jobs:
             const path = require('path');
 
             try {
-              // Get the PR diff for dictionary.ts
               const { data: diff } = await github.rest.pulls.get({
                 owner: context.repo.owner,
                 repo: context.repo.repo,
@@ -44,23 +43,20 @@ jobs:
                 }
               });
 
-              // Check if file exists
               const dictionaryPath = path.join(process.env.GITHUB_WORKSPACE, 'src/dictionaries/dictionary.ts');
               if (!await fs.access(dictionaryPath).then(() => true).catch(() => false)) {
                 console.log('dictionary.ts file not found');
                 return;
               }
 
-              // Read the current dictionary.ts file
               const content = await fs.readFile(dictionaryPath, 'utf8');
 
-              // Find new array additions in the diff using a more robust regex
               const arrayAdditions = new Set();
               const diffLines = diff.split('\n');
               
               for (const line of diffLines) {
                 if (line.startsWith('+')) {
-                  const match = line.match(/^\+\s*(\w+)\s*:\s*(?:readonly\s+)?string\[\]/);
+                  const match = line.match(/^\+\s*([^:\s]+)\s*:\s*(?:readonly\s+)?string\[\s*\]/);
                   if (match) {
                     arrayAdditions.add(match[1]);
                   }
