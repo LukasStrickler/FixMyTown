@@ -3,9 +3,20 @@ import { vi, describe, it, expect } from 'vitest';
 import NamePopup from './namePopup';
 
 // Mock the LanguageSwitcher component
-vi.mock('@/components/language-switcher', () => ({
-    LanguageSwitcher: () => <div>Language Switcher Mock</div>,
-}));
+vi.mock('@/components/language-switcher', () => {
+    const dictionary = {
+        layout: {
+            navigation: {
+                languageSwitcher: {
+                    text: 'Language Switcher',
+                },
+            },
+        },
+    };
+    return {
+        LanguageSwitcher: () => <div>{dictionary.layout.navigation.languageSwitcher.text}</div>,
+    };
+});
 
 // Mock necessary hooks and modules
 vi.mock('next-auth/react', () => ({
