@@ -18,6 +18,7 @@ import { AuthProvider } from "@/components/provider/authProvider";
 import { Toaster } from "@/components/ui/toaster";
 
 import NamePopup from "@/components/namePopup";
+import { ThemeProvider } from "@/components/provider/themeProvider";
 
 export const metadata: Metadata = {
   title: "FixMyTown",
@@ -33,28 +34,35 @@ export default function RootLayout({
     // TODO: find a better solution / fix for prod
     <html className={GeistSans.variable}>
       <body className="min-h-screen">
-        <AuthProvider>
-          <TRPCReactProvider>
-            <NamePopup />
-            <SidebarProvider>
-              <AppSidebar />
-              <SidebarInset>
-                <SidebarTrigger className="block md:hidden fixed top-1 left-1 z-50 bg-sidebar" />
-                <NextSSRPlugin
-                  /**
-                   * The `extractRouterConfig` will extract **only** the route configs
-                   * from the router to prevent additional information from being
-                   * leaked to the client. The data passed to the client is the same
-                   * as if you were to fetch `/api/uploadthing` directly.
-                   */
-                  routerConfig={extractRouterConfig(ourFileRouter)}
-                />
-                {children}
-                <Toaster />
-              </SidebarInset>
-            </SidebarProvider>
-          </TRPCReactProvider>
-        </AuthProvider>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <AuthProvider>
+            <TRPCReactProvider>
+              <NamePopup />
+              <SidebarProvider>
+                <AppSidebar />
+                <SidebarInset>
+                  <SidebarTrigger className="block md:hidden fixed top-1 left-1 z-50 bg-sidebar" />
+                  <NextSSRPlugin
+                    /**
+                     * The `extractRouterConfig` will extract **only** the route configs
+                     * from the router to prevent additional information from being
+                     * leaked to the client. The data passed to the client is the same
+                     * as if you were to fetch `/api/uploadthing` directly.
+                     */
+                    routerConfig={extractRouterConfig(ourFileRouter)}
+                  />
+                  {children}
+                  <Toaster />
+                </SidebarInset>
+              </SidebarProvider>
+            </TRPCReactProvider>
+          </AuthProvider>
+        </ThemeProvider>
       </body>
     </html>
   );
