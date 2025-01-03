@@ -275,7 +275,8 @@ export interface Dictionary {
                     en: string;
                     de: string;
                 }
-            }
+            },
+            mainNavigationLabel: string;
         },
         footer: {
             contact: string;

@@ -388,7 +388,8 @@
                     "en": "Englisch",
                     "de": "Deutsch"
                 }
-            }
+            },
+            "mainNavigationLabel": "Haupt-Navigation"
         },
         "footer": {
             "contact": "Kontakt",

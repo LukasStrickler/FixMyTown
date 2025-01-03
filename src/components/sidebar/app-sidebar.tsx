@@ -130,7 +130,6 @@ export function AppSidebar({
               <ModeToggle />
             </div>
           </div>
-          
         </Sidebar>
       </div>
     );
@@ -215,7 +214,7 @@ export function AppSidebar({
         />
       </SidebarHeader>
       <SidebarContent>
-        {data.navMain && data.navMain.length > 0 && <NavMain items={data.navMain} />}
+        {data.navMain && data.navMain.length > 0 && <NavMain items={data.navMain} dictionary={dictionary} />}
         {data.projects && data.projects.length > 0 && <NavProjects projects={data.projects} />}
       </SidebarContent>
       <SidebarFooter>

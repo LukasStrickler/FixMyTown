@@ -385,7 +385,8 @@
                     "en": "English",
                     "de": "German"
                 }
-            }
+            },
+            "mainNavigationLabel": "Main Navigation"
         },
         "footer": {
             "contact": "Contact",
