@@ -58,7 +58,7 @@ const config = {
         ]
       }
     ],
-    "no-console": ["error", { "allow": ["error"] }],
+    "no-console": ["error"], // We allow console.error in production, but the logger is used for logging errors
     "i18next/no-literal-string": ["error", {
       "validateTemplate": true,
       "ignoreAttribute": ["data-testid", "testId", "id", "key", "data-cy"]

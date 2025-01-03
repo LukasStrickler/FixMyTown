@@ -12,11 +12,13 @@ import {
 } from "@/components/ui/select";
 import { type Dictionary } from "@/dictionaries/dictionary";
 import { api } from "@/trpc/react";
+import { logger } from "@/lib/logger";
 
 interface WorkerActionsProps {
   reportId: number;
   dictionary: Dictionary;
   currentStatus: number;
+  currentPriority: number;
   onActionComplete?: () => void;
 }
 
@@ -24,11 +26,12 @@ export function WorkerActions({
   reportId,
   dictionary,
   currentStatus,
-  onActionComplete
+  currentPriority,
+  onActionComplete 
 }: WorkerActionsProps) {
   const [comment, setComment] = useState("");
   const [selectedStatus, setSelectedStatus] = useState<string>(currentStatus.toString());
-  const [selectedPriority, setSelectedPriority] = useState<number | undefined>(undefined);
+  const [selectedPriority, setSelectedPriority] = useState<number | undefined>(currentPriority);
 
   const addProtocoll = api.reportDetails.addProtocoll.useMutation({
     onSuccess: () => {
@@ -62,7 +65,7 @@ export function WorkerActions({
     const newStatusId = parseInt(selectedStatus);
 
     if (!isValidTransition(currentStatus, newStatusId)) {
-      console.error("Invalid status transition.");
+      logger.error("Invalid status transition.");
       return;
     }
 
@@ -81,7 +84,7 @@ export function WorkerActions({
         prio: selectedPriority,
       });
     } else {
-      console.error("Priority must be selected before updating.");
+      logger.error("Priority must be selected before updating.");
     }
   };
 

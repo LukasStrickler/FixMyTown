@@ -11,6 +11,7 @@ import { ArrowLeft } from "lucide-react";
 import { useSession } from "next-auth/react";
 import { useRouter } from 'next/navigation';
 import type { Dictionary } from "@/dictionaries/dictionary";
+import { logger } from "@/lib/logger";
 
 interface LoginClientProps {
     dictionary: Dictionary;
@@ -62,17 +63,17 @@ export function LoginClient({ dictionary }: LoginClientProps) {
                     callbackUrl: "/"
                 }).toString()}`);
             } else {
-                console.error("Sign in failed:", result?.error);
+                logger.error("Sign in failed:", result?.error);
             }
         } catch (error) {
-            console.error("Authentifizierungsfehler:", error);
+            logger.error("Authentication error:", error);
         } finally {
             setIsLoading(false);
         }
     };
 
     return (
-        <div className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-br from-primary via-accent to-secondary p-4">
+        <div className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-br from-primary via-accent to-bg-background p-4">
             <Card className="w-full max-w-md shadow-xl backdrop-blur-sm bg-card/95">
                 <CardHeader className="space-y-6">
                     <Link
