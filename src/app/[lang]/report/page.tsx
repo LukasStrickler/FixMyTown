@@ -20,6 +20,7 @@ export default async function DefectsDamages({
             <main className="container mx-auto p-4">
                 <ReportingForm
                     dictionary={dictionary}
+                    language={lang}
                 />
             </main>
         </HydrateClient>
