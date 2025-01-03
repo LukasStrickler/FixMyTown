@@ -4,7 +4,9 @@ import { getBaseUrl } from '@/lib/utils'
 
 // Generate language paths dynamically
 const PUBLIC_PATHS = [
+    '/',
     ...i18n.locales.map(locale => `/${locale}`),
+    ...i18n.locales.map(locale => `/${locale}/`),
     '/imprint',
     '/privacy',
     '/terms',
