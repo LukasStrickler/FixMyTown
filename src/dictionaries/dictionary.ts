@@ -16,6 +16,7 @@ export interface Dictionary {
             heroText: string;
             heroDescription: string;
             reportButton: string;
+            heroImageAlt: string;
             featuresTitle: string;
             feature1Title: string;
             feature1Text: string;

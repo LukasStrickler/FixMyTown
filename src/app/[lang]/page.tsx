@@ -54,8 +54,13 @@ export default async function IndexPage({
                   src="/hero-image.webp"
                   height={420}
                   width={730}
-                  alt="City maintenance"
-                  className="relative rounded-lg shadow-2xl"
+                  alt={dictionary.pages.landing.heroImageAlt}
+                  className="relative rounded-lg shadow-2xl w-full"
+                  placeholder="blur"
+                  blurDataURL="/hero-image-blur.webp"
+                  sizes="(max-width: 640px) 90vw, (max-width: 1024px) 45vw, 560px"
+                  priority
+                  loading="eager"
                 />
               </div>
             </div>
