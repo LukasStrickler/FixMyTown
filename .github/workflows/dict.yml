@@ -56,7 +56,7 @@ jobs:
               
               for (const line of diffLines) {
                 if (line.startsWith('+')) {
-                  const match = line.match(/^\+\s*([^:\s]+)\s*:\s*(?:readonly\s+)?string\[\s*\]/);
+                  const match = line.match(/^\+\s*([^:\s]+)\s*:\s*(?:readonly\s+)?string\[\s*\]\s*,?\s*$/);
                   if (match) {
                     arrayAdditions.add(match[1]);
                   }
