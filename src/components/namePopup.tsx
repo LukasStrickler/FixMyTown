@@ -18,7 +18,6 @@ import {
   FormControl,
   FormMessage,
 } from "@/components/ui/form";
-import { ModeToggle } from "@/components/modeToggle";
 import { LanguageSwitcher } from "@/components/language-switcher";
 
 export default function NamePopup() {

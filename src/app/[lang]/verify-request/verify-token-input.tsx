@@ -55,11 +55,6 @@ export function VerifyTokenInput({ dictionary }: VerifyTokenInputProps) {
                     placeholder={dictionary.pages.auth.verifyRequest.enterCodeInput}
                     value={token}
                     onChange={(e) => setToken(e.target.value)}
-                    onKeyDown={(e) => {
-                        if (e.key === "Enter") {
-                            handleVerification();
-                        }
-                    }}
                     className="flex-1"
                     disabled={isLoading}
                 />
