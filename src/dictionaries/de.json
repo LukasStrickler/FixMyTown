@@ -632,5 +632,8 @@
                 "description": "Hohe Priorität"
             }
         }
-    }
+    },
+    "test": [
+        "test"
+    ]
 }

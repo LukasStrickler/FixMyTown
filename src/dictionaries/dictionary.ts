@@ -497,4 +497,5 @@ export interface Dictionary {
             "3": { name: string; description: string };
         }
     }
+    test: []
 }
