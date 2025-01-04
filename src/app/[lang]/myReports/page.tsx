@@ -1,5 +1,5 @@
 import { api, HydrateClient } from "@/trpc/server";
-import { getDictionary } from "../../../get-dictionary";
+import { getDictionary } from "../../../server/get-dictionary";
 import type { Locale } from "@/i18n-config";
 import { ReportsTable } from "@/components/ReportOverview/Table/reports-table";
 import type { ReportData } from "@/components/reporting/report";

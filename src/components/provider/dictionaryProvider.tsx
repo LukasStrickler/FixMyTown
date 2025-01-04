@@ -38,7 +38,9 @@ export const DictionaryProvider: React.FC<{ children: React.ReactNode }> = ({ ch
         if (urlLang && (urlLang === 'en' || urlLang === 'de')) {
             void loadDictionary(urlLang);
         }
-    }, [pathname]);
+    },
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+        [pathname]);
 
     return (
         <DictionaryContext.Provider value={{ dictionary, setLocale }}>

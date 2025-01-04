@@ -1,4 +1,4 @@
-import { getDictionary } from "@/get-dictionary";
+import { getDictionary } from "@/server/get-dictionary";
 import { type Locale } from "@/i18n-config";
 import { Footer } from "@/components/footer";
 import Image from "next/image";
@@ -38,7 +38,7 @@ export default async function AboutPage({
                 className="relative rounded-lg shadow-2xl"
               />
             </div>
-          </div>          
+          </div>
 
           <h3 className="text-lg font-semibold mt-6">{dictionary.pages.about.goalsTitle}</h3>
           <ul className="list-disc list-inside mt-2">

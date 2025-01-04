@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { auth } from "@/server/auth";
 import { HydrateClient } from "@/trpc/server";
-import { getDictionary } from "../../get-dictionary";
+import { getDictionary } from "@/server/get-dictionary";
 import { type Locale } from "@/i18n-config";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Shield, Brush, Car } from "lucide-react";

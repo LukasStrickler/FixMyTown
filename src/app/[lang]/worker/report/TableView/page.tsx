@@ -1,13 +1,8 @@
-// shows table with all reports
-// can sort by status, priority, kind, date
-// can filter by status, priority, kind, date
-// can click on a report to go to details page
-
 import { auth } from "@/server/auth";
 import { api, HydrateClient } from "@/trpc/server";
 import { type Locale } from "@/i18n-config";
 import { ReportsTable } from "@/components/ReportOverview/Table/reports-table";
-import { getDictionary } from "@/get-dictionary";
+import { getDictionary } from "@/server/get-dictionary";
 import { redirect } from "next/navigation";
 import type { ReportData } from "@/components/reporting/report";
 

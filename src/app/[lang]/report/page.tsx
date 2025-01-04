@@ -1,7 +1,7 @@
 import { HydrateClient } from "@/trpc/server";
 import { type Locale } from "@/i18n-config";
 import { ReportingForm } from "@/components/reporting/reporting-form";
-import { getDictionary } from "@/get-dictionary";
+import { getDictionary } from "@/server/get-dictionary";
 import { auth } from "@/server/auth";
 import { redirect } from "next/navigation";
 

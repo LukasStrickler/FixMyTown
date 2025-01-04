@@ -1,6 +1,6 @@
 import { type Locale } from "@/i18n-config";
 import { HydrateClient } from "@/trpc/server";
-import { getDictionary } from "@/get-dictionary";
+import { getDictionary } from "@/server/get-dictionary";
 import { api } from "@/trpc/server";
 import { auth } from "@/server/auth";
 import { redirect } from "next/navigation";

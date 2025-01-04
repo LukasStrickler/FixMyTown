@@ -1,4 +1,4 @@
-import { getDictionary } from "@/get-dictionary";
+import { getDictionary } from "@/server/get-dictionary";
 import { type Locale } from "@/i18n-config";
 import { LoginClient } from "./login-client";
 import { type Metadata } from "next";

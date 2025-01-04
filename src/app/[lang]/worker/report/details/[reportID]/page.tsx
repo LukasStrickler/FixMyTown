@@ -1,6 +1,6 @@
 import { HydrateClient } from "@/trpc/server";
 import { type Locale } from "@/i18n-config";
-import { getDictionary } from "@/get-dictionary";
+import { getDictionary } from "@/server/get-dictionary";
 import ReportDetails from "@/components/reportDetails/reportDetails";
 import { api } from "@/trpc/server"; // Import your TRPC API
 

@@ -7,7 +7,7 @@ import { TRPCError } from "@trpc/server";
 import { pictures } from "@/server/db/schema/pictures";
 import { protocolls } from "@/server/db/schema/protocoll";
 import { users } from "@/server/db/schema/users";
-import { getDictionary } from "@/get-dictionary";
+import { getDictionary } from "@/server/get-dictionary";
 import { sendChangeNotification } from "@/lib/sendChangeNotification";
 import { env } from "@/env";
 

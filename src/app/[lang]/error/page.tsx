@@ -1,4 +1,4 @@
-import { getDictionary } from "@/get-dictionary";
+import { getDictionary } from "@/server/get-dictionary";
 import { type Locale } from "@/i18n-config";
 import Link from "next/link";
 import { auth } from "@/server/auth";

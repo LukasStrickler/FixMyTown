@@ -2,7 +2,7 @@ import { auth } from "@/server/auth";
 import { api, HydrateClient } from "@/trpc/server";
 import { type Locale } from "@/i18n-config";
 import { redirect } from "next/navigation";
-import { getDictionary } from "@/get-dictionary";
+import { getDictionary } from "@/server/get-dictionary";
 import ReportDetails from "@/components/reportDetails/reportDetails";
 
 export default async function MyReports({
@@ -37,7 +37,7 @@ export default async function MyReports({
         },
         protocolls: data.protocolls.map(protocol => ({
             ...protocol,
-            status: protocol.status ?? 0 
+            status: protocol.status ?? 0
         }))
     };
 

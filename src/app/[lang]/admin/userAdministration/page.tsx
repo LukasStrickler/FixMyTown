@@ -2,7 +2,7 @@ import UserAdministrationClient from "./client";
 import { redirect } from "next/navigation";
 import { auth } from "@/server/auth";
 import { type Locale } from "@/i18n-config";
-import { getDictionary } from "@/get-dictionary";
+import { getDictionary } from "@/server/get-dictionary";
 
 export default async function UserAdministrationPage({
   params: { lang },
