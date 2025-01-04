@@ -1,15 +1,21 @@
-import { getDictionary } from "@/get-dictionary";
-import { type Locale } from "@/i18n-config";
-import { Footer } from "@/components/footer";
+// External Libraries
 import Image from "next/image";
 
-export default async function AboutPage({
-  params: { lang },
-}: {
-  params: { lang: Locale };
-}) {
-  const dictionary = await getDictionary(lang);
+// Components
+import { Footer } from "@/components/footer";
 
+// Types
+import { type Locale } from "@/i18n-config";
+
+// Providers
+import { getDictionary } from "@/server/get-dictionary";
+
+type Props = {
+  params: { lang: Locale };
+};
+
+export default async function AboutPageClient({ params: { lang } }: Props) {
+  const dictionary = await getDictionary(lang);
   return (
     <div className="min-h-screen flex flex-col">
       <section className="py-12 bg-background flex-grow">
@@ -38,7 +44,7 @@ export default async function AboutPage({
                 className="relative rounded-lg shadow-2xl"
               />
             </div>
-          </div>          
+          </div>
 
           <h3 className="text-lg font-semibold mt-6">{dictionary.pages.about.goalsTitle}</h3>
           <ul className="list-disc list-inside mt-2">

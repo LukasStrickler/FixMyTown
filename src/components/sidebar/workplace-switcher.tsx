@@ -20,7 +20,7 @@ import {
 import { useSession } from "next-auth/react"
 import { type Workspace } from "./app-sidebar"
 
-import { useDictionary } from "@/components/provider/dictionaryProvider";
+import { useDictionary } from "@/hooks/use-dictionary";
 
 
 export function WorkplaceSwitcher({

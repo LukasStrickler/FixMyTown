@@ -1,27 +1,45 @@
-import { getDictionary } from "@/get-dictionary";
-import { type Locale } from "@/i18n-config";
+// External Libraries
 import Link from "next/link";
-import { auth } from "@/server/auth";
-import { Button } from "@/components/ui/button";
 import { redirect } from "next/navigation";
-import { type Metadata } from "next";
-export const runtime = 'edge'
-export const revalidate = 3600
 
-export async function generateMetadata({ params: { lang } }: { params: { lang: Locale } }): Promise<Metadata> {
+// Components
+import { Button } from "@/components/ui/button";
+
+// Types
+import { type Locale } from "@/i18n-config";
+import { type Metadata } from "next";
+
+// Providers
+import { getDictionary } from "@/server/get-dictionary";
+import { auth } from "@/server/auth";
+
+// Page Configuration
+export const runtime = 'edge';
+export const revalidate = 3600;
+
+type MetadataProps = {
+    params: { lang: Locale };
+};
+
+export async function generateMetadata({
+    params: { lang }
+}: MetadataProps): Promise<Metadata> {
     const dictionary = await getDictionary(lang);
     return {
         title: dictionary.pages.auth.error.title + " | FixMyTown",
         description: dictionary.pages.auth.error.description,
     };
 }
+
+type Props = {
+    params: { lang: Locale };
+    searchParams: Record<string, string | string[] | undefined>;
+};
+
 export default async function ErrorPage({
     params: { lang },
     searchParams,
-}: {
-    params: { lang: Locale };
-    searchParams: Record<string, string | string[] | undefined>;
-}) {
+}: Props) {
     const dictionary = await getDictionary(lang);
     const session = await auth();
 

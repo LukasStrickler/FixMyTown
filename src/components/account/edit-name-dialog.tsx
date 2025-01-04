@@ -33,6 +33,7 @@ import {
     FormMessage,
 } from "@/components/ui/form";
 import { z } from "zod";
+import { getNameSchema } from "@/server/api/lib/name-schema";
 
 interface EditNameDialogProps {
     open: boolean;
@@ -42,14 +43,8 @@ interface EditNameDialogProps {
     currentName: string;
 }
 
-
 const nameUpdateSchema = (dictionary: Dictionary) => z.object({
-    name: z.string()
-        .min(1, { message: dictionary.pages.auth.account.editNameDialog.nameEmpty })
-        .transform(val => val.trim())
-        .refine(val => val.length >= 3, { message: dictionary.pages.auth.account.editNameDialog.nameTooShort })
-        .refine(val => val.length <= 50, { message: dictionary.pages.auth.account.editNameDialog.nameTooLong })
-        .refine(val => /^[\p{L}\s]*$/u.test(val), { message: dictionary?.pages.auth.account.editNameDialog.nameNumbers }),
+    name: getNameSchema(dictionary)
 });
 
 type NameUpdateInput = z.infer<ReturnType<typeof nameUpdateSchema>>;

@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import { useToast } from "@/hooks/use-toast";
 import { api } from "@/trpc/react";
 import { useSession } from "next-auth/react";
-import { useDictionary } from "@/components/provider/dictionaryProvider";
+import { useDictionary } from "@/hooks/use-dictionary";
 import { usePathname } from "next/navigation";
 import { z } from "zod";
 import { useForm } from "react-hook-form";
@@ -19,6 +19,7 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { LanguageSwitcher } from "@/components/language-switcher";
+import { getNameSchema } from "@/server/api/lib/name-schema";
 
 export default function NamePopup() {
   const [showPopup, setShowPopup] = useState(false);
@@ -27,17 +28,11 @@ export default function NamePopup() {
   const { data: session, status } = useSession();
   const { toast } = useToast();
   const { dictionary } = useDictionary();
-  const updateUserName = api.user.updateUserName.useMutation();
+  const updateUserName = api.users.profile.updateNameOfCalling.useMutation();
 
   const nameSchema = z.object({
-    name: z
-      .string()
-      .min(1, { message: dictionary?.pages.auth.account.editNameDialog.nameEmpty })
-      .transform((val) => val.trim())
-      .refine((val) => val.length >= 3, { message: dictionary?.pages.auth.account.editNameDialog.nameTooShort })
-      .refine((val) => val.length <= 50, { message: dictionary?.pages.auth.account.editNameDialog.nameTooLong })
-      .refine((val) => /^[\p{L}\s]*$/u.test(val), { message: dictionary?.pages.auth.account.editNameDialog.nameNumbers }),
-    });
+    name: getNameSchema(dictionary)
+  });
 
   const termsSchema = z.object({
     termsAccepted: z.boolean().refine((val) => val === true, {
@@ -90,7 +85,7 @@ export default function NamePopup() {
       <div className="bg-background p-6 rounded-lg shadow-lg text-center space-y-4">
         <h2 className="text-2xl font-semibold text-foreground">
           {dictionary.components.signUpPopup.title}
-        </h2> 
+        </h2>
         <p className="text-foreground">{dictionary.components.signUpPopup.message}</p>
         <Form {...form}>
           <form data-testid="name-popup-form" onSubmit={form.handleSubmit(handleUpdateName)}>
@@ -125,8 +120,8 @@ export default function NamePopup() {
                         id="terms"
                         className="text-foreground"
                         checked={field.value}
-                        onChange={(e) => field.onChange(e.target.checked)} 
-                        onBlur={field.onBlur} 
+                        onChange={(e) => field.onChange(e.target.checked)}
+                        onBlur={field.onBlur}
                       />
                     </FormControl>
                     <label htmlFor="terms" className="text-foreground">
@@ -150,13 +145,13 @@ export default function NamePopup() {
                 </FormItem>
               )}
             />
-            
+
             <Button type="submit" className="mt-4">
               {dictionary.components.signUpPopup.saveButton}
             </Button>
           </form>
           <div className="flex justify-between">
-          {dictionary && <LanguageSwitcher {...dictionary}/>}
+            {dictionary && <LanguageSwitcher {...dictionary} />}
           </div>
         </Form>
       </div>

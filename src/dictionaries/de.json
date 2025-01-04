@@ -335,6 +335,13 @@
                 "title": "404 - Seite nicht gefunden",
                 "description": "Entschuldigung, die gesuchte Seite existiert nicht.",
                 "backToHome": "Zurück zur Startseite"
+            },
+            "serverError": {
+                "title": "500 - Interner Serverfehler",
+                "description": "Entschuldigung, es ist ein Fehler auf unserer Seite aufgetreten. Bitte versuchen Sie es später erneut.",
+                "tryAgain": "Erneut versuchen",
+                "backToHome": "Zurück zur Startseite",
+                "errorCode": "Fehlercode"
             }
         }
     },
@@ -402,6 +409,7 @@
     "components": {
         "reports": {
             "details": {
+                "title": "Meldungsdetails",
                 "reportId": "Meldungs-ID",
                 "status": "Status",
                 "createdAt": "Erstellt am",
@@ -599,19 +607,23 @@
         "statuses": {
             "1": {
                 "name": "Neu",
-                "description": "Neu eingegangene Meldung"
+                "description": "Neu eingegangene Meldung",
+                "color": "#4169E1"
             },
             "2": {
                 "name": "In Bearbeitung",
-                "description": "Meldung wird bearbeitet"
+                "description": "Meldung wird bearbeitet",
+                "color": "#FFA500"
             },
             "3": {
                 "name": "Abgeschlossen",
-                "description": "Meldung wurde bearbeitet"
+                "description": "Meldung wurde bearbeitet",
+                "color": "#32CD32"
             },
             "4": {
                 "name": "Abgelehnt",
-                "description": "Meldung wurde abgelehnt"
+                "description": "Meldung wurde abgelehnt",
+                "color": "#FF0000"
             }
         },
         "prios": {

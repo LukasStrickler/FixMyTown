@@ -1,20 +1,47 @@
-import UserAdministrationClient from "./client";
-import { redirect } from "next/navigation";
-import { auth } from "@/server/auth";
+// External Libraries
+import { type Metadata } from 'next';
+
+// Components
+import UserAdministrationClient from "@/app/[lang]/admin/userAdministration/page-client";
+import { RoleGuard } from '@/components/provider/RoleGuard';
+
+// Types
 import { type Locale } from "@/i18n-config";
+import { adminLevel } from '@/server/auth/roles';
+
+// Providers
+import { getDictionary } from "@/server/get-dictionary";
+
+type MetadataProps = {
+  params: { lang: Locale }
+};
+
+export async function generateMetadata({
+  params: { lang }
+}: MetadataProps): Promise<Metadata> {
+  const dictionary = await getDictionary(lang);
+  return {
+    title: dictionary.pages.admin.userAdministration.mainTitle + " | FixMyTown",
+    description: dictionary.pages.admin.userAdministration.mainTitle,
+  };
+}
+
+type Props = {
+  params: { lang: Locale };
+};
 
 export default async function UserAdministrationPage({
   params: { lang },
-}: {
-  params: { lang: Locale };
-}) {
-  const session = await auth();
-  if (!session) {
-    return redirect(`/${lang}/login`);
-  }
-  if (session.user.role !== "admin") {
-    return redirect(`/${lang}/`);
-  }
+}: Props) {
+  const dictionary = await getDictionary(lang);
 
-  return <UserAdministrationClient />;
+  return (
+    <RoleGuard
+      allowedRoles={adminLevel}
+      lang={lang}
+      redirectTo=""
+    >
+      <UserAdministrationClient dictionary={dictionary} />
+    </RoleGuard>
+  );
 }

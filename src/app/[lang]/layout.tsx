@@ -1,35 +1,46 @@
+// Styles
 import "@/styles/globals.css";
 
+// External Libraries
 import { GeistSans } from "geist/font/sans";
 import { type Metadata } from "next";
-
-import { TRPCReactProvider } from "@/trpc/react";
-import { NextSSRPlugin } from "@uploadthing/react/next-ssr-plugin";
 import { extractRouterConfig } from "uploadthing/server";
-import { ourFileRouter } from "../api/uploadthing/core";
-import { AppSidebar } from "@/components/sidebar/app-sidebar"
+import { NextSSRPlugin } from "@uploadthing/react/next-ssr-plugin";
 
+// Components
+import { AppSidebar } from "@/components/sidebar/app-sidebar";
 import {
   SidebarInset,
   SidebarProvider,
   SidebarTrigger,
-} from "@/components/ui/sidebar"
-import { AuthProvider } from "@/components/provider/authProvider";
+} from "@/components/ui/sidebar";
 import { Toaster } from "@/components/ui/toaster";
-
 import NamePopup from "@/components/namePopup";
-import { ThemeProvider } from "@/components/provider/themeProvider";
 
+// Providers
+import { TRPCReactProvider } from "@/trpc/react";
+import { AuthProvider } from "@/components/provider/authProvider";
+import { ThemeProvider } from "@/components/provider/themeProvider";
+import { ourFileRouter } from "../api/uploadthing/core";
+
+// Metadata
 export const metadata: Metadata = {
   title: "FixMyTown",
   description: "Melden Sie Probleme in Ihrer Stadt",
   icons: [{ rel: "icon", url: "/favicon.ico" }],
 };
 
+type Props = {
+  children: React.ReactNode;
+  params: {
+    lang: string;
+  };
+};
+
 export default function RootLayout({
   children,
   params: { lang },
-}: Readonly<{ children: React.ReactNode, params: { lang: string } }>) {
+}: Readonly<Props>) {
   return (
     // suppressHydrationWarning is needed to prevent hydration errors with the theme provider 
     // TODO: find a better solution / fix for prod
@@ -49,12 +60,6 @@ export default function RootLayout({
                 <SidebarInset>
                   <SidebarTrigger className="block md:hidden fixed top-1 left-1 z-50 bg-sidebar" />
                   <NextSSRPlugin
-                    /**
-                     * The `extractRouterConfig` will extract **only** the route configs
-                     * from the router to prevent additional information from being
-                     * leaked to the client. The data passed to the client is the same
-                     * as if you were to fetch `/api/uploadthing` directly.
-                     */
                     routerConfig={extractRouterConfig(ourFileRouter)}
                   />
                   {children}

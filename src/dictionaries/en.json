@@ -332,6 +332,13 @@
                 "title": "404 - Page Not Found",
                 "description": "Sorry, the page you are looking for does not exist.",
                 "backToHome": "Back to Home"
+            },
+            "serverError": {
+                "title": "500 - Internal Server Error",
+                "description": "Sorry, something went wrong on our side. Please try again later.",
+                "tryAgain": "Try Again",
+                "backToHome": "Back to Home",
+                "errorCode": "Error Code"
             }
         }
     },
@@ -399,6 +406,7 @@
     "components": {
         "reports": {
             "details": {
+                "title": "Report Details",
                 "reportId": "Report ID",
                 "status": "Status",
                 "createdAt": "Created at",
@@ -596,19 +604,23 @@
         "statuses": {
             "1": {
                 "name": "New",
-                "description": "Newly received report"
+                "description": "Newly received report",
+                "color": "#4169E1"
             },
             "2": {
                 "name": "In Progress",
-                "description": "Report is being processed"
+                "description": "Report is being processed",
+                "color": "#FFA500"
             },
             "3": {
                 "name": "Completed",
-                "description": "Report has been processed"
+                "description": "Report has been processed",
+                "color": "#32CD32"
             },
             "4": {
                 "name": "Rejected",
-                "description": "Report has been rejected"
+                "description": "Report has been rejected",
+                "color": "#FF0000"
             }
         },
         "prios": {

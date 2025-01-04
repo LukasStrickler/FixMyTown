@@ -1,6 +1,9 @@
-import { logger } from "@/lib/logger";
-import { deleteUnNamedUsers } from "@/server/api/cronJobProcedures";
+// External Libraries
 import type { NextRequest } from "next/server";
+
+// Utils
+import { logger } from "@/lib/logger";
+import { deleteUnNamedUsers } from "@/server/api/lib/UnNamedUsersProcedures";
 
 export async function GET(request: NextRequest) {
   const authHeader = request.headers.get("authorization");

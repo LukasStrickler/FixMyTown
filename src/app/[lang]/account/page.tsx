@@ -1,14 +1,23 @@
-import { getDictionary } from '@/get-dictionary';
-import AccountClient from './account-client';
-import { type Locale } from '@/i18n-config';
+// External Libraries
 import { type Metadata } from 'next';
-import { auth } from '@/server/auth';
-import { redirect } from 'next/navigation';
+
+// Components
+import AccountClient from '@/app/[lang]/account/page-client';
+import { RoleGuard } from '@/components/provider/RoleGuard';
+
+// Types
+import { type Locale } from '@/i18n-config';
+import { userLevel } from '@/server/auth/roles';
+// Providers
+import { getDictionary } from "@/server/get-dictionary";
+
+type MetadataProps = {
+    params: { lang: Locale }
+};
+
 export async function generateMetadata({
     params: { lang }
-}: {
-    params: { lang: Locale }
-}): Promise<Metadata> {
+}: MetadataProps): Promise<Metadata> {
     const dictionary = await getDictionary(lang);
     return {
         title: dictionary.pages.auth.account.title + " | FixMyTown",
@@ -16,16 +25,22 @@ export async function generateMetadata({
     };
 }
 
+type Props = {
+    params: { lang: Locale };
+};
+
 export default async function AccountPage({
     params: { lang },
-}: {
-    params: { lang: Locale };
-}) {
-    const session = await auth();
-    if (!session) {
-        return redirect(`/${lang}/login`);
-    }
+}: Props) {
     const dict = await getDictionary(lang);
 
-    return <AccountClient params={{ lang }} dict={dict} />;
+    return (
+        <RoleGuard
+            allowedRoles={userLevel}
+            lang={lang}
+            redirectTo="/login"
+        >
+            <AccountClient dictionary={dict} lang={lang} />
+        </RoleGuard>
+    );
 } 

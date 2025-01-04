@@ -13,33 +13,32 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { api } from "@/trpc/react";
 import { useMemo } from "react";
-import { useDictionary } from "@/components/provider/dictionaryProvider";
 import { useSession } from "next-auth/react";
 import type { User } from "./columns";
 import { useToast } from "@/hooks/use-toast";
-export function useUserTableColumns() {
-    const { dictionary } = useDictionary();
+import type { Dictionary } from "@/dictionaries/dictionary";
+export function useUserTableColumns(dictionary: Dictionary) {
     const utils = api.useUtils();
     const { data: session } = useSession();
-    const mutation = api.user.updateRole.useMutation();
+    const mutation = api.users.management.updateRole.useMutation();
     const { toast } = useToast();
     return useMemo<ColumnDef<User>[]>(
         () => {
             const handleUpdateUserRole = async (userId: string, role: "admin" | "worker" | "user") => {
                 try {
-                    utils.user.getUsers.setData(undefined, (oldData) =>
+                    utils.users.list.getAll.setData(undefined, (oldData) =>
                         oldData?.map((u) => (u.id === userId ? { ...u, role } : u)) ?? oldData
                     );
 
                     await mutation.mutateAsync({ userId, role });
-                    await utils.user.getUsers.invalidate();
+                    await utils.users.list.getAll.invalidate();
                     toast({
                         title: dictionary?.pages.admin.userAdministration.toastMessages.successTitle,
                         description: dictionary?.pages.admin.userAdministration.toastMessages.successMessage,
                         variant: "success",
                     });
                 } catch {
-                    await utils.user.getUsers.invalidate();
+                    await utils.users.list.getAll.invalidate();
                     toast({
                         title: dictionary?.pages.admin.userAdministration.toastMessages.errorTitle,
                         description: dictionary?.pages.admin.userAdministration.toastMessages.errorMessage,

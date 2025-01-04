@@ -36,7 +36,7 @@ vi.mock('@/hooks/use-toast', () => ({
     })),
 }));
 
-vi.mock('@/components/provider/dictionaryProvider', () => ({
+vi.mock('@/hooks/use-dictionary', () => ({
     useDictionary: vi.fn(() => ({
         dictionary: {
             pages: {
@@ -86,11 +86,14 @@ vi.mock('@/components/provider/dictionaryProvider', () => ({
 
 vi.mock('@/trpc/react', () => ({
     api: {
-        user: {
-            updateUserName: {
-                useMutation: vi.fn(() => ({
-                    mutateAsync: vi.fn(),
-                })),
+        users: {
+            profile: {
+                updateNameOfCalling: {
+                    useMutation: vi.fn(() => ({
+                        mutateAsync: vi.fn(),
+                        isPending: false,
+                    })),
+                },
             },
         },
     },

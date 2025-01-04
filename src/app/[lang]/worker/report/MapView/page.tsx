@@ -1,33 +1,55 @@
-import { type Locale } from "@/i18n-config";
+// External Libraries
+import { type Metadata } from 'next';
+
+// Components
 import { HydrateClient } from "@/trpc/server";
-import { getDictionary } from "@/get-dictionary";
+import MapViewClient from "./page-client";
+
+// Types
+import { type Locale } from "@/i18n-config";
+import { workerLevel } from '@/server/auth/roles';
+
+// Providers
 import { api } from "@/trpc/server";
-import { auth } from "@/server/auth";
-import { redirect } from "next/navigation";
-import MapViewClient from "./map-view-client";
+import { getDictionary } from "@/server/get-dictionary";
+import { RoleGuard } from '@/components/provider/RoleGuard';
+
+type MetadataProps = {
+    params: { lang: Locale }
+};
+
+export async function generateMetadata({
+    params: { lang }
+}: MetadataProps): Promise<Metadata> {
+    const dictionary = await getDictionary(lang);
+    return {
+        title: dictionary.layout.navigation.workspaces.workerWorkspace.workerWorkspaceTitle + " | FixMyTown",
+        description: dictionary.layout.navigation.workspaces.workerWorkspace.projects.reportMapView,
+    };
+}
+
+type Props = {
+    params: { lang: Locale };
+};
 
 export default async function MapView({
     params: { lang },
-}: {
-    params: { lang: Locale };
-}) {
-    const session = await auth();
-    if (!session?.user) {
-        redirect(`/${lang}/login`);
-    }
-    if (session.user.role !== "worker" && session.user.role !== "admin") {
-        redirect(`/${lang}/`);
-    }
-
+}: Props) {
     const dictionary = await getDictionary(lang);
-    const { reports } = await api.report.getWorkerReports();
+    const { reports } = await api.reports.list.getAll();
 
     return (
-        <HydrateClient>
-            <MapViewClient
-                reports={reports}
-                dictionary={dictionary}
-            />
-        </HydrateClient>
+        <RoleGuard
+            allowedRoles={workerLevel}
+            lang={lang}
+            redirectTo="/login"
+        >
+            <HydrateClient>
+                <MapViewClient
+                    reports={reports}
+                    dictionary={dictionary}
+                />
+            </HydrateClient>
+        </RoleGuard>
     );
 }

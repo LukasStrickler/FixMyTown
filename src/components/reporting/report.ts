@@ -43,3 +43,20 @@ export type ReportData = {
     typeId: number
     prioId: number
 }
+
+export type ProcessedImage = {
+    key: string;
+}
+
+export type ProcessedProtocol = {
+    timestamp: Date;
+    status: number | null;
+    comment: string | null;
+    userId: string;
+}
+
+export type ReportDetails = {
+    report: Omit<ReportData['report'], 'prio'>;
+    images: ProcessedImage[];
+    protocolls: ProcessedProtocol[];
+}

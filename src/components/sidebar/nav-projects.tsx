@@ -24,7 +24,7 @@ import {
   useSidebar,
 } from "@/components/ui/sidebar"
 
-import { useDictionary } from "@/components/provider/dictionaryProvider";
+import { useDictionary } from "@/hooks/use-dictionary";
 
 
 export function NavProjects({

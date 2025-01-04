@@ -1,19 +1,28 @@
+// External Libraries
 import Link from "next/link";
-import { auth } from "@/server/auth";
-import { HydrateClient } from "@/trpc/server";
-import { getDictionary } from "../../get-dictionary";
-import { type Locale } from "@/i18n-config";
-import { Button } from "@/components/ui/button";
+import Image from "next/image";
 import { ArrowRight, Shield, Brush, Car } from "lucide-react";
+
+// Components
+import { Button } from "@/components/ui/button";
 import { WobbleCard } from "@/components/ui/wobble-card";
 import { Footer } from "@/components/footer";
-import Image from "next/image";
+import { HydrateClient } from "@/trpc/server";
+
+// Types
+import { type Locale } from "@/i18n-config";
+
+// Providers
+import { auth } from "@/server/auth";
+import { getDictionary } from "@/server/get-dictionary";
+
+type Props = {
+  params: { lang: Locale };
+};
 
 export default async function IndexPage({
   params: { lang },
-}: {
-  params: { lang: Locale };
-}) {
+}: Props) {
   const dictionary = await getDictionary(lang);
   const session = await auth();
 
@@ -134,7 +143,7 @@ export default async function IndexPage({
           className="absolute inset-0 opacity-10"
           style={{
             backgroundImage: `radial-gradient(at 40% 40%, rgb(0, 0, 0) 0, transparent 50%),
-              radial-gradient(at 90% 90%, rgb(0, 0, 0) 0, transparent 50%)`,
+                          radial-gradient(at 90% 90%, rgb(0, 0, 0) 0, transparent 50%)`,
           }}
           data-theme="light"
         />
@@ -142,7 +151,7 @@ export default async function IndexPage({
           className="absolute inset-0 opacity-10 hidden dark:block"
           style={{
             backgroundImage: `radial-gradient(at 40% 40%, rgb(255, 255, 255) 0, transparent 50%),
-              radial-gradient(at 90% 90%, rgb(255, 255, 255) 0, transparent 50%)`,
+                          radial-gradient(at 90% 90%, rgb(255, 255, 255) 0, transparent 50%)`,
           }}
         />
 
@@ -152,7 +161,7 @@ export default async function IndexPage({
           style={{
             backgroundSize: '40px 40px',
             backgroundImage: `linear-gradient(to right, rgba(0, 0, 0, 0.1) 1px, transparent 1px),
-              linear-gradient(to bottom, rgba(0, 0, 0, 0.1) 1px, transparent 1px)`
+                          linear-gradient(to bottom, rgba(0, 0, 0, 0.1) 1px, transparent 1px)`
           }}
         />
         <div
@@ -160,7 +169,7 @@ export default async function IndexPage({
           style={{
             backgroundSize: '40px 40px',
             backgroundImage: `linear-gradient(to right, rgba(255, 255, 255, 0.1) 1px, transparent 1px),
-              linear-gradient(to bottom, rgba(255, 255, 255, 0.1) 1px, transparent 1px)`
+                          linear-gradient(to bottom, rgba(255, 255, 255, 0.1) 1px, transparent 1px)`
           }}
         />
 

@@ -20,7 +20,7 @@ import {
 } from "@/components/ui/tooltip"
 
 import { useSession } from "next-auth/react"
-import { useDictionary } from "../provider/dictionaryProvider"
+import { useDictionary } from "@/hooks/use-dictionary";
 
 
 const SIDEBAR_COOKIE_NAME = "sidebar:state"

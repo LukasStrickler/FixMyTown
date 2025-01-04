@@ -20,25 +20,24 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { Input } from "@/components/ui/input";
-
-import { useDictionary } from "@/components/provider/dictionaryProvider";
-
+import type { Dictionary } from "@/dictionaries/dictionary";
 
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
   data: TData[];
+  dictionary: Dictionary;
 }
 
 export function DataTable<TData, TValue>({
   columns,
   data,
+  dictionary,
 }: DataTableProps<TData, TValue>) {
   const [sorting, setSorting] = React.useState<SortingState>([]);
   const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
     []
   );
-  const { dictionary } = useDictionary();  // useDictionary inside a functional component
 
 
   const table = useReactTable({

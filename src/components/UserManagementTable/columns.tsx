@@ -1,5 +1,6 @@
 "use client";
 
+import type { Dictionary } from "@/dictionaries/dictionary";
 import { useUserTableColumns } from "./useUserTableColumns";
 
 export type User = {
@@ -11,6 +12,6 @@ export type User = {
   role: string | null;
 };
 
-export function UserTableColumns() {
-  return useUserTableColumns();
+export function UserTableColumns(dictionary: Dictionary) {
+  return useUserTableColumns(dictionary);
 }

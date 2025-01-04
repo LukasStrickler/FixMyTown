@@ -1,12 +1,21 @@
 'use client';
 
+// External Libraries
 import Link from "next/link";
+
+// Components
 import { Button } from "@/components/ui/button";
 import { Footer } from "@/components/footer";
-import { i18n } from "@/i18n-config";
+
+// Hooks
+import { useDictionary } from "@/hooks/use-dictionary";
 import { usePathname } from "next/navigation";
-import { useDictionary } from "@/components/provider/dictionaryProvider";
+
+// Providers
 import { ThemeProvider } from "@/components/provider/themeProvider";
+
+// Config
+import { i18n } from "@/i18n-config";
 
 export default function NotFound() {
     const pathname = usePathname();

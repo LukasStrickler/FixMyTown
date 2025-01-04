@@ -10,11 +10,13 @@ interface ChangeNotificationParams {
     status_color: string;
     link: string;
     dictionaries: Dictionary[];
-    recipient: string; // Recipient's email
+    recipient: string;
 }
 
 export async function sendChangeNotification(params: ChangeNotificationParams) {
     const { firstName, title, status, status_color, link, dictionaries, recipient } = params;
+
+    const emailSafeColor = status_color.startsWith('#') ? status_color : `#${status_color}`;
 
     const subject = dictionaries[0]?.emails?.statusUpdate?.mailData?.subject ?? "Status Update Notification";
 
@@ -27,7 +29,7 @@ export async function sendChangeNotification(params: ChangeNotificationParams) {
                 firstName,
                 title,
                 status,
-                status_color,
+                status_color: emailSafeColor,
                 link,
             },
             dictionaries,

@@ -1,29 +1,39 @@
-'use client';
+"use client";
 
-import { signOut, useSession } from "next-auth/react";
+// External Libraries
+import { signOut } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
+import { Pencil } from "lucide-react";
+
+// Components
 import { Button } from "@/components/ui/button";
 import { Card, CardHeader, CardContent, CardFooter, CardTitle } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 import { Skeleton } from "@/components/ui/skeleton";
-import type { Dictionary } from "@/dictionaries/dictionary";
 import { DeleteAccountDialog } from "@/components/account/delete-account-dialog";
-import { api } from "@/trpc/react";
 import { EditNameDialog } from "@/components/account/edit-name-dialog";
-import { Pencil } from "lucide-react";
+
+// Types
+import type { Dictionary } from "@/dictionaries/dictionary";
+import type { Locale } from "@/i18n-config";
+
+// Hooks
 import { useToast } from "@/hooks/use-toast";
+import { useSession } from "next-auth/react";
+
+// Utils
 import { logger } from "@/lib/logger";
-interface AccountPageProps {
-    params: {
-        lang: string;
-    };
-    dict: Dictionary;
-}
 
+// Providers
+import { api } from "@/trpc/react";
 
+type Props = {
+    dictionary: Dictionary;
+    lang: Locale;
+};
 
-export default function AccountPage({ params: { lang }, dict }: AccountPageProps) {
+export default function AccountPageClient({ dictionary, lang }: Props) {
     const router = useRouter();
     const { data: session, status, update: updateSession } = useSession();
     const [showDeleteDialog, setShowDeleteDialog] = useState(false);
@@ -41,16 +51,16 @@ export default function AccountPage({ params: { lang }, dict }: AccountPageProps
             await signOut({ redirect: false });
             router.push(`/${lang}`);
         } catch (error) {
-            logger.error(dict.pages.auth.error.LogoutError, error);
+            logger.error(dictionary.pages.auth.error.LogoutError, error);
             toast({
                 variant: "destructive",
-                title: dict.pages.auth.error.title,
-                description: dict.pages.auth.error.LogoutError,
+                title: dictionary.pages.auth.error.title,
+                description: dictionary.pages.auth.error.LogoutError,
             });
         }
     };
 
-    const deleteUserMutation = api.user.deleteCallingUser.useMutation();
+    const deleteUserMutation = api.users.profile.deleteCalling.useMutation();
 
     const handleDeleteAccount = async () => {
         try {
@@ -58,16 +68,16 @@ export default function AccountPage({ params: { lang }, dict }: AccountPageProps
             await signOut({ redirect: false });
             router.push(`/${lang}`);
         } catch (error) {
-            logger.error(dict.pages.auth.error.DeleteAccountError, error);
+            logger.error(dictionary.pages.auth.error.DeleteAccountError, error);
             toast({
                 variant: "destructive",
-                title: dict.pages.auth.error.title,
-                description: dict.pages.auth.error.DeleteAccountError,
+                title: dictionary.pages.auth.error.title,
+                description: dictionary.pages.auth.error.DeleteAccountError,
             });
         }
     };
 
-    const updateNameMutation = api.user.updateCallingUserName.useMutation();
+    const updateNameMutation = api.users.profile.updateNameOfCalling.useMutation();
 
     const handleUpdateName = async (newName: string) => {
         try {
@@ -76,15 +86,15 @@ export default function AccountPage({ params: { lang }, dict }: AccountPageProps
             setShowEditNameDialog(false);
             await updateSession();
             toast({
-                title: dict.pages.auth.account.editNameDialog.title,
-                description: dict.pages.auth.account.editNameDialog.success,
+                title: dictionary.pages.auth.account.editNameDialog.title,
+                description: dictionary.pages.auth.account.editNameDialog.success,
             });
         } catch (error) {
-            logger.error(dict.pages.auth.error.Default, error);
+            logger.error(dictionary.pages.auth.error.Default, error);
             toast({
                 variant: "destructive",
-                title: dict.pages.auth.error.title,
-                description: dict.pages.auth.error.Default,
+                title: dictionary.pages.auth.error.title,
+                description: dictionary.pages.auth.error.Default,
             });
         }
     };
@@ -94,25 +104,25 @@ export default function AccountPage({ params: { lang }, dict }: AccountPageProps
             <div className="min-h-screen flex items-center justify-center bg-background p-4">
                 <Card className="w-full max-w-md">
                     <CardHeader className="pb-4">
-                        <CardTitle className="text-2xl">{dict.pages.auth.account.title}</CardTitle>
+                        <CardTitle className="text-2xl">{dictionary.pages.auth.account.title}</CardTitle>
                     </CardHeader>
                     <Separator />
                     <CardContent className="space-y-6 pt-6">
                         <div className="space-y-1">
-                            <h2 className="text-sm font-medium text-muted-foreground">{dict.pages.auth.account.profile.email}</h2>
+                            <h2 className="text-sm font-medium text-muted-foreground">{dictionary.pages.auth.account.profile.email}</h2>
                             <Skeleton className="h-6 w-48" />
                         </div>
 
                         <div className="space-y-1">
                             <h2 className="text-sm font-medium text-muted-foreground">
-                                {dict.pages.auth.account.profile.role}
+                                {dictionary.pages.auth.account.profile.role}
                             </h2>
                             <Skeleton className="h-6 w-24" />
                         </div>
 
                         <div className="space-y-1">
                             <h2 className="text-sm font-medium text-muted-foreground">
-                                {dict.pages.auth.account.profile.name}
+                                {dictionary.pages.auth.account.profile.name}
                             </h2>
                             <Skeleton className="h-6 w-24" />
                         </div>
@@ -124,14 +134,14 @@ export default function AccountPage({ params: { lang }, dict }: AccountPageProps
                             variant="outline"
                             onClick={() => router.push(`/${lang}`)}
                         >
-                            {dict.common.backToLanding}
+                            {dictionary.common.backToLanding}
                         </Button>
                         <Button
                             className="w-full"
                             variant="destructive"
                             disabled
                         >
-                            {dict.pages.auth.account.profile.signOut}
+                            {dictionary.pages.auth.account.profile.signOut}
                         </Button>
                         <Separator className="my-4" />
 
@@ -139,7 +149,7 @@ export default function AccountPage({ params: { lang }, dict }: AccountPageProps
                             className="w-full bg-red-500 hover:bg-red-600 opacity-50 cursor-not-allowed"
                             variant="destructive"
                         >
-                            {dict.pages.auth.account.profile.deleteAccount}
+                            {dictionary.pages.auth.account.profile.deleteAccount}
                         </Button>
                     </CardFooter>
                 </Card>
@@ -155,25 +165,25 @@ export default function AccountPage({ params: { lang }, dict }: AccountPageProps
         <div className="min-h-screen flex items-center justify-center bg-background p-4">
             <Card className="w-full max-w-md">
                 <CardHeader className="pb-4">
-                    <CardTitle className="text-2xl">{dict.pages.auth.account.title}</CardTitle>
+                    <CardTitle className="text-2xl">{dictionary.pages.auth.account.title}</CardTitle>
                 </CardHeader>
                 <Separator />
                 <CardContent className="space-y-6 pt-6">
                     <div className="space-y-1">
-                        <h2 className="text-sm font-medium text-muted-foreground">{dict.pages.auth.account.profile.email}</h2>
+                        <h2 className="text-sm font-medium text-muted-foreground">{dictionary.pages.auth.account.profile.email}</h2>
                         <p className="text-base">{session.user.email}</p>
                     </div>
 
                     <div className="space-y-1">
                         <h2 className="text-sm font-medium text-muted-foreground">
-                            {dict.pages.auth.account.profile.role}
+                            {dictionary.pages.auth.account.profile.role}
                         </h2>
                         <p className="text-base capitalize">{session.user.role}</p>
                     </div>
 
                     <div className="space-y-1">
                         <h2 className="text-sm font-medium text-muted-foreground">
-                            {dict.pages.auth.account.profile.name}
+                            {dictionary.pages.auth.account.profile.name}
                         </h2>
                         <div className="flex items-center gap-2">
                             <p className="text-base">{session.user.name}</p>
@@ -184,7 +194,7 @@ export default function AccountPage({ params: { lang }, dict }: AccountPageProps
                                 onClick={() => setShowEditNameDialog(true)}
                             >
                                 <Pencil className="h-4 w-4" />
-                                <span className="sr-only">{dict.pages.auth.account.profile.editName}</span>
+                                <span className="sr-only">{dictionary.pages.auth.account.profile.editName}</span>
                             </Button>
                         </div>
                     </div>
@@ -196,28 +206,28 @@ export default function AccountPage({ params: { lang }, dict }: AccountPageProps
                         variant="outline"
                         onClick={() => router.push(`/${lang}`)}
                     >
-                        {dict.common.backToLanding}
+                        {dictionary.common.backToLanding}
                     </Button>
                     <Button
                         className="w-full"
                         variant="destructive"
                         onClick={handleLogout}
                     >
-                        {dict.pages.auth.account.profile.signOut}
+                        {dictionary.pages.auth.account.profile.signOut}
                     </Button>
                     <Separator className="my-4" />
                     <DeleteAccountDialog
                         open={showDeleteDialog}
                         onOpenChange={setShowDeleteDialog}
                         onConfirm={handleDeleteAccount}
-                        dictionary={dict}
+                        dictionary={dictionary}
                     />
                     <Button
                         className="w-full bg-red-500 hover:bg-red-600"
                         variant="destructive"
                         onClick={() => setShowDeleteDialog(true)}
                     >
-                        {dict.pages.auth.account.profile.deleteAccount}
+                        {dictionary.pages.auth.account.profile.deleteAccount}
                     </Button>
                 </CardFooter>
             </Card>
@@ -225,7 +235,7 @@ export default function AccountPage({ params: { lang }, dict }: AccountPageProps
                 open={showEditNameDialog}
                 onOpenChange={setShowEditNameDialog}
                 onConfirm={handleUpdateName}
-                dictionary={dict}
+                dictionary={dictionary}
                 currentName={session.user.name ?? ""}
             />
         </div>

@@ -1,6 +1,6 @@
 import { resend } from "@/server/email"
 
-import { getDictionary } from "@/get-dictionary"
+import { getDictionary } from "@/server/get-dictionary";
 import type { Locale } from "@/i18n-config"
 import ModularAuthTemplate from "@/emails/modularAuthTemplate"
 import { logger } from "@/lib/logger"

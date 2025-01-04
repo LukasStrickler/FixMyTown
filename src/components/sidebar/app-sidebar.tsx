@@ -20,7 +20,7 @@ import {
 
 import { useSession } from "next-auth/react";
 
-import { useDictionary } from "@/components/provider/dictionaryProvider";
+import { useDictionary } from "@/hooks/use-dictionary";
 import { Button } from "../ui/button";
 import { useParams } from "next/navigation";
 
