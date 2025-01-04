@@ -1,4 +1,7 @@
+// External Libraries
 import type { MetadataRoute } from 'next'
+
+// Utils
 import { getLocalizedPublicPaths } from '@/lib/routes'
 import { getBaseUrl } from '@/lib/utils'
 

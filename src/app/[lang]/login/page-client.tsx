@@ -1,23 +1,32 @@
 'use client';
 
-import { signIn } from "next-auth/react";
-import { useState, useEffect } from "react";
+// External Libraries
 import Link from 'next/link';
+import { ArrowLeft } from "lucide-react";
+import { signIn } from "next-auth/react";
+
+// Components
 import { Card, CardHeader, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { ArrowLeft } from "lucide-react";
+
+// Hooks
+import { useState, useEffect } from "react";
 import { useSession } from "next-auth/react";
 import { useRouter } from 'next/navigation';
+
+// Types
 import type { Dictionary } from "@/dictionaries/dictionary";
+
+// Utils
 import { logger } from "@/lib/logger";
 
-interface LoginClientProps {
+interface Props {
     dictionary: Dictionary;
 }
 
-export function LoginClient({ dictionary }: LoginClientProps) {
+export function LoginClient({ dictionary }: Props) {
     const router = useRouter();
     const { status } = useSession();
     const [email, setEmail] = useState("");

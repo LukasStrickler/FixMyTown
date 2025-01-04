@@ -1,12 +1,19 @@
-import { getDictionary } from "@/server/get-dictionary";
-import { type Locale } from "@/i18n-config";
+// Components
 import { Footer } from "@/components/footer";
+
+// Types
+import { type Locale } from "@/i18n-config";
+
+// Providers
+import { getDictionary } from "@/server/get-dictionary";
+
+type Props = {
+  params: { lang: Locale };
+};
 
 export default async function TermsAndConditionsPage({
   params: { lang },
-}: {
-  params: { lang: Locale };
-}) {
+}: Props) {
   const dictionary = await getDictionary(lang);
 
   const sections = [

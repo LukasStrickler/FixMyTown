@@ -1,16 +1,25 @@
-import { type Locale } from "@/i18n-config";
-import { HydrateClient } from "@/trpc/server";
-import { getDictionary } from "@/server/get-dictionary";
-import { api } from "@/trpc/server";
-import { auth } from "@/server/auth";
+// External Libraries
 import { redirect } from "next/navigation";
-import MapViewClient from "./map-view-client";
+
+// Components
+import { HydrateClient } from "@/trpc/server";
+import MapViewClient from "./page-client";
+
+// Types
+import { type Locale } from "@/i18n-config";
+
+// Providers
+import { auth } from "@/server/auth";
+import { api } from "@/trpc/server";
+import { getDictionary } from "@/server/get-dictionary";
+
+type Props = {
+    params: { lang: Locale };
+};
 
 export default async function MapView({
     params: { lang },
-}: {
-    params: { lang: Locale };
-}) {
+}: Props) {
     const session = await auth();
     if (!session?.user) {
         redirect(`/${lang}/login`);

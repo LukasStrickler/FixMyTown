@@ -1,17 +1,25 @@
-import { HydrateClient } from "@/trpc/server";
-import { type Locale } from "@/i18n-config";
+// External Libraries
 import { notFound, redirect } from "next/navigation";
+
+// Components
 import { ReportingForm } from "@/components/reporting/reporting-form";
-import { getDictionary } from "@/server/get-dictionary";
+import { HydrateClient } from "@/trpc/server";
+
+// Types
+import { type Locale } from "@/i18n-config";
+
+// Providers
 import { auth } from "@/server/auth";
+import { getDictionary } from "@/server/get-dictionary";
+
+// Utils
 import { logger } from "@/lib/logger";
 
-// Force dynamic rendering
-export const dynamic = 'force-dynamic'
-// Disable static generation
-export const generateStaticParams = undefined
+// Page Configuration
+export const dynamic = 'force-dynamic';
+export const generateStaticParams = undefined;
 
-// Define valid report types with slug to ID mapping
+// Constants
 const VALID_REPORT_TYPES = {
     "defects-damage": "1",
     "defects": "1",
@@ -21,11 +29,16 @@ const VALID_REPORT_TYPES = {
     "parkingViolation": "3",
 } as const;
 
+type Props = {
+    params: {
+        lang: Locale;
+        type: string;
+    };
+};
+
 export default async function ReportPage({
     params: { lang, type },
-}: {
-    params: { lang: Locale; type: string };
-}) {
+}: Props) {
     try {
         const session = await auth();
         if (!session) {

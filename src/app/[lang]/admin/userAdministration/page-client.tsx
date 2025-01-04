@@ -1,10 +1,17 @@
 "use client";
 
-import { UserTableColumns } from "./columns";
-import { DataTable } from "./data-table";
-import { api } from "@/trpc/react";
+// External Libraries
 import { Loader2 } from "lucide-react";
+
+// Components
+import { DataTable } from "@/components/UserManagementTable/data-table";
+import { UserTableColumns } from "@/components/UserManagementTable/columns";
+
+// Types
 import type { Dictionary } from "@/dictionaries/dictionary";
+
+// Providers
+import { api } from "@/trpc/react";
 
 type Props = {
     dictionary: Dictionary;

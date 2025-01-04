@@ -1,21 +1,28 @@
-import { HydrateClient } from "@/trpc/server";
-import { type Locale } from "@/i18n-config";
-import { getDictionary } from "@/server/get-dictionary";
+// Components
 import ReportDetails from "@/components/reportDetails/reportDetails";
-import { api } from "@/trpc/server"; // Import your TRPC API
+import { HydrateClient } from "@/trpc/server";
+
+// Types
+import { type Locale } from "@/i18n-config";
+
+// Providers
+import { api } from "@/trpc/server";
+import { getDictionary } from "@/server/get-dictionary";
+
+type Props = {
+    params: {
+        lang: Locale;
+        reportID: string;
+    };
+};
 
 export default async function ReportDetailsPage({
     params: { lang, reportID },
-}: {
-    params: { lang: Locale; reportID: string };
-}) {
-    // Get dictionary for translations
+}: Props) {
     const dictionary = await getDictionary(lang);
 
-    // Fetch report data using TRPC
     const data = await api.reportDetails.getWorkerReportDetails({ reportID });
 
-    // Error handling
     if (!data) {
         return <div>{dictionary.pages.reportDetails.errorMessage}</div>;
     }

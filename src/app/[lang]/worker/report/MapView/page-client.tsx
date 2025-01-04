@@ -1,8 +1,13 @@
 'use client';
 
-import { type Dictionary } from "@/dictionaries/dictionary";
+// External Libraries
 import dynamic from "next/dynamic";
+
+// Components
 import { Skeleton } from "@/components/ui/skeleton";
+
+// Types
+import { type Dictionary } from "@/dictionaries/dictionary";
 import type { ReportData } from "@/components/reporting/report";
 
 const DynamicReportMap = dynamic(
@@ -17,12 +22,12 @@ const DynamicReportMap = dynamic(
     }
 );
 
-interface MapViewClientProps {
+type Props = {
     reports: ReportData[];
     dictionary: Dictionary;
-}
+};
 
-export default function MapViewClient({ reports, dictionary }: MapViewClientProps) {
+export default function MapViewClient({ reports, dictionary }: Props) {
     return (
         <main className="flex min-h-screen flex-col items-center justify-center">
             <div className="w-full p-4">

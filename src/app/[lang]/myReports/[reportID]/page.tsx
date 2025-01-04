@@ -1,15 +1,28 @@
-import { auth } from "@/server/auth";
-import { api, HydrateClient } from "@/trpc/server";
-import { type Locale } from "@/i18n-config";
+// External Libraries
 import { redirect } from "next/navigation";
-import { getDictionary } from "@/server/get-dictionary";
+
+// Components
 import ReportDetails from "@/components/reportDetails/reportDetails";
+import { HydrateClient } from "@/trpc/server";
+
+// Types
+import { type Locale } from "@/i18n-config";
+
+// Providers
+import { auth } from "@/server/auth";
+import { api } from "@/trpc/server";
+import { getDictionary } from "@/server/get-dictionary";
+
+type Props = {
+    params: {
+        lang: Locale;
+        reportID: string;
+    };
+};
 
 export default async function MyReports({
     params: { lang, reportID },
-}: {
-    params: { lang: Locale; reportID: string };
-}) {
+}: Props) {
     // Get authentication session
     const session = await auth();
     if (!session) {

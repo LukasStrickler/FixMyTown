@@ -1,7 +1,11 @@
+// External Libraries
 import { createUploadthing, type FileRouter } from "uploadthing/next";
-// import { UploadThingError } from "uploadthing/server";
-import { auth } from "@/server/auth";
+
+// Utils
 import { logger } from "@/lib/logger";
+
+// Providers
+import { auth } from "@/server/auth";
 
 const f = createUploadthing();
 
@@ -13,7 +17,7 @@ async function authFunction() {
 // FileRouter for your app, can contain multiple FileRoutes
 export const ourFileRouter = {
     // Define as many FileRoutes as you like, each with a unique routeSlug
-    imageUploader: f({ image: { maxFileSize: "4MB", maxFileCount: 10, minFileCount: 1 } })
+    imageUploader: f({ image: { maxFileSize: "8MB", maxFileCount: 10, minFileCount: 1 } })
         // Set permissions and file types for this FileRoute
         .middleware(async () => {
             // This code runs on your server before upload

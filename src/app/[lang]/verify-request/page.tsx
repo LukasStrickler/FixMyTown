@@ -1,13 +1,26 @@
-import { getDictionary } from "@/server/get-dictionary";
-import { type Locale } from "@/i18n-config";
-import { VerifyTokenInput } from "./verify-token-input";
-import { Card, CardHeader, CardContent } from "@/components/ui/card";
-import { ArrowLeft } from "lucide-react";
+// External Libraries
 import Link from "next/link";
-import { type Metadata } from "next";
-import { ResendTimer } from "./resend-timer";
+import { ArrowLeft } from "lucide-react";
 
-export async function generateMetadata({ params: { lang } }: { params: { lang: Locale } }): Promise<Metadata> {
+// Components
+import { Card, CardHeader, CardContent } from "@/components/ui/card";
+import { VerifyTokenInput } from "@/components/auth/verify-token-input";
+import { ResendTimer } from "@/components/auth/resend-timer";
+
+// Types
+import { type Locale } from "@/i18n-config";
+import { type Metadata } from "next";
+
+// Providers
+import { getDictionary } from "@/server/get-dictionary";
+
+type MetadataProps = {
+    params: { lang: Locale };
+};
+
+export async function generateMetadata({
+    params: { lang }
+}: MetadataProps): Promise<Metadata> {
     const dictionary = await getDictionary(lang);
     return {
         title: dictionary.pages.auth.verifyRequest.title + " | FixMyTown",
@@ -15,12 +28,13 @@ export async function generateMetadata({ params: { lang } }: { params: { lang: L
     };
 }
 
+type Props = {
+    params: { lang: Locale };
+};
 
 export default async function VerifyRequestPage({
     params: { lang },
-}: {
-    params: { lang: Locale };
-}) {
+}: Props) {
     const dictionary = await getDictionary(lang);
 
     return (
