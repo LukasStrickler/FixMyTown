@@ -2,50 +2,33 @@ import { users } from "@/server/db/schema/users";
 import { createTRPCRouter, userProcedure } from "@/server/api/trpc";
 import { z } from 'zod';
 import { eq } from 'drizzle-orm';
+import { nameSchema } from "@/server/api/lib/name-schema";
 
 export const usersProfileRouter = createTRPCRouter({
     updateNameOfCalling: userProcedure
-        .input(z.object({
-            name: z.string()
-                .min(1, { message: "Name empty" })
-                .transform(val => val.trim())
-                .refine(val => val.length >= 3, { message: "Name to short" })
-                .refine(val => val.length <= 50, { message: "Name to long" })
-                .refine(val => /^[\p{L}\s]*$/u.test(val), { message: "Name contians forbidden chars" }),
-        }))
-
+        .input(z.object({ name: nameSchema }))
         .mutation(async ({ ctx, input }) => {
-            const { name } = input;
-            const userId = ctx.session?.user?.id;
-
-            if (!userId) {
-                throw new Error("User not authenticated");
-            }
-
             const updatedUser = await ctx.db
                 .update(users)
-                .set({ name })
-                .where(eq(users.id, userId))
+                .set({ name: input.name })
+                .where(eq(users.id, ctx.session.user.id))
                 .returning({ id: users.id, name: users.name });
 
-            if (updatedUser.length === 0) {
+            if (!updatedUser?.[0]) {
                 throw new Error("User not found or update failed");
             }
 
-            return updatedUser[0];
+            return { id: updatedUser[0].id, name: updatedUser[0].name! };
         }),
 
     deleteCalling: userProcedure
         .mutation(async ({ ctx }) => {
-            const userId = ctx.session.user.id;
-
-            if (!userId) {
-                throw new Error("User not found");
-            }
-
-            // not delete the user, simply remove their email and name
-            // This is a soft delete to keep the user data for future reference but protect their privacy
-            await ctx.db.update(users).set({ email: "", name: "" }).where(eq(users.id, userId));
+            // we do not delete the user, we just set the email and name to empty
+            // this is to keep the user in the database for future reference and see their old data
+            await ctx.db
+                .update(users)
+                .set({ email: "", name: "" })
+                .where(eq(users.id, ctx.session.user.id));
 
             return { message: "User deleted" };
         }),

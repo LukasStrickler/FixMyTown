@@ -1,5 +1,5 @@
 import { createClient, type Client } from "@libsql/client";
-import { drizzle } from "drizzle-orm/libsql";
+import { drizzle, LibSQLDatabase } from "drizzle-orm/libsql";
 
 import { env } from "@/env";
 
@@ -38,3 +38,17 @@ export const db = drizzle(client, {
     status,
   }
 });
+
+export type Schema = {
+  types: typeof types;
+  prios: typeof prios;
+  reports: typeof reports;
+  accounts: typeof accounts;
+  users: typeof users;
+  sessions: typeof sessions;
+  pictures: typeof pictures;
+  protocolls: typeof protocolls;
+  status: typeof status;
+};
+
+export type DB = LibSQLDatabase<Schema>; 

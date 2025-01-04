@@ -19,6 +19,7 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { LanguageSwitcher } from "@/components/language-switcher";
+import { getNameSchema } from "@/server/api/lib/name-schema";
 
 export default function NamePopup() {
   const [showPopup, setShowPopup] = useState(false);
@@ -30,13 +31,7 @@ export default function NamePopup() {
   const updateUserName = api.users.profile.updateNameOfCalling.useMutation();
 
   const nameSchema = z.object({
-    name: z
-      .string()
-      .min(1, { message: dictionary?.pages.auth.account.editNameDialog.nameEmpty })
-      .transform((val) => val.trim())
-      .refine((val) => val.length >= 3, { message: dictionary?.pages.auth.account.editNameDialog.nameTooShort })
-      .refine((val) => val.length <= 50, { message: dictionary?.pages.auth.account.editNameDialog.nameTooLong })
-      .refine((val) => /^[\p{L}\s]*$/u.test(val), { message: dictionary?.pages.auth.account.editNameDialog.nameNumbers }),
+    name: getNameSchema(dictionary)
   });
 
   const termsSchema = z.object({
