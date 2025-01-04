@@ -3,15 +3,17 @@
 import { UserTableColumns } from "./columns";
 import { DataTable } from "./data-table";
 import { api } from "@/trpc/react";
-import { useDictionary } from "@/components/provider/dictionaryProvider";
 import { Loader2 } from "lucide-react";
+import type { Dictionary } from "@/dictionaries/dictionary";
 
+type Props = {
+    dictionary: Dictionary;
+};
 
-export default function UserAdministrationPage() {
-    const { dictionary } = useDictionary();
+export default function UserAdministrationClient({ dictionary }: Props) {
     const { data: users, isLoading } = api.user.getUsers.useQuery();
 
-    const columns = UserTableColumns();
+    const columns = UserTableColumns(dictionary);
 
     if (isLoading) {
         return <Loader2 className="h-4 w-4 animate-spin" />;
@@ -22,7 +24,7 @@ export default function UserAdministrationPage() {
     return (
         <div className="container mx-auto py-10">
             <h1>{dictionary?.pages.admin.userAdministration.mainTitle}</h1>
-            <DataTable columns={columns} data={filteredUsers} />
+            <DataTable columns={columns} data={filteredUsers} dictionary={dictionary} />
         </div>
     );
 }

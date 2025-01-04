@@ -13,12 +13,11 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { api } from "@/trpc/react";
 import { useMemo } from "react";
-import { useDictionary } from "@/components/provider/dictionaryProvider";
 import { useSession } from "next-auth/react";
 import type { User } from "./columns";
 import { useToast } from "@/hooks/use-toast";
-export function useUserTableColumns() {
-    const { dictionary } = useDictionary();
+import type { Dictionary } from "@/dictionaries/dictionary";
+export function useUserTableColumns(dictionary: Dictionary) {
     const utils = api.useUtils();
     const { data: session } = useSession();
     const mutation = api.user.updateRole.useMutation();

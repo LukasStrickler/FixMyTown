@@ -2,6 +2,7 @@ import UserAdministrationClient from "./client";
 import { redirect } from "next/navigation";
 import { auth } from "@/server/auth";
 import { type Locale } from "@/i18n-config";
+import { getDictionary } from "@/get-dictionary";
 
 export default async function UserAdministrationPage({
   params: { lang },
@@ -16,5 +17,7 @@ export default async function UserAdministrationPage({
     return redirect(`/${lang}/`);
   }
 
-  return <UserAdministrationClient />;
+  const dictionary = await getDictionary(lang);
+
+  return <UserAdministrationClient dictionary={dictionary} />;
 }

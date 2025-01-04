@@ -12,7 +12,7 @@ import {
     DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
 
-import { useDictionary } from "@/components/provider/dictionaryProvider";
+import { useDictionary } from "@/hooks/use-dictionary";
 
 
 export function ModeToggle() {

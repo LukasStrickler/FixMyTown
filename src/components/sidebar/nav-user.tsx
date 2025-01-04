@@ -25,7 +25,7 @@ import { signOut, useSession } from "next-auth/react"
 import { ModeToggle } from "@/components/modeToggle"
 import { LanguageSwitcher } from "@/components/language-switcher"
 
-import { useDictionary } from "@/components/provider/dictionaryProvider"
+import { useDictionary } from "@/hooks/use-dictionary";
 import Link from "next/link"
 import { useParams } from "next/navigation"
 import { cn } from "@/lib/utils"

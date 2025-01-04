@@ -18,5 +18,18 @@ function validateLanguage(lang: string): AllowedLanguage {
     return lang === "de" ? "de" : "en";
 }
 
-export const getDictionary = async (locale: Locale): Promise<Dictionary> =>
-    dictionaries[validateLanguage(locale)]();
+const dictionaryCache: Partial<Record<AllowedLanguage, Dictionary>> = {};
+
+export const getDictionary = async (locale: Locale): Promise<Dictionary> => {
+    const lang = validateLanguage(locale);
+
+    // Return cached version if available
+    if (dictionaryCache[lang]) {
+        return dictionaryCache[lang]!;
+    }
+
+    // Load and cache if not available
+    const dictionary = await dictionaries[lang]();
+    dictionaryCache[lang] = dictionary;
+    return dictionary;
+};

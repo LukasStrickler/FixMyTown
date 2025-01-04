@@ -36,7 +36,7 @@ vi.mock('@/hooks/use-toast', () => ({
     })),
 }));
 
-vi.mock('@/components/provider/dictionaryProvider', () => ({
+vi.mock('@/hooks/use-dictionary', () => ({
     useDictionary: vi.fn(() => ({
         dictionary: {
             pages: {

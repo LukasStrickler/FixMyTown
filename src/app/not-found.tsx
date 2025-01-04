@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Footer } from "@/components/footer";
 import { i18n } from "@/i18n-config";
 import { usePathname } from "next/navigation";
-import { useDictionary } from "@/components/provider/dictionaryProvider";
+import { useDictionary } from "@/hooks/use-dictionary";
 import { ThemeProvider } from "@/components/provider/themeProvider";
 
 export default function NotFound() {
