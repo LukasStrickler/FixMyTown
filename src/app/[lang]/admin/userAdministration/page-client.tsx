@@ -18,7 +18,7 @@ type Props = {
 };
 
 export default function UserAdministrationClient({ dictionary }: Props) {
-    const { data: users, isLoading } = api.user.getUsers.useQuery();
+    const { data: users, isLoading } = api.users.list.getAll.useQuery();
 
     const columns = UserTableColumns(dictionary);
 

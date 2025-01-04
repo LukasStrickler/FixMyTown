@@ -27,7 +27,7 @@ export default function NamePopup() {
   const { data: session, status } = useSession();
   const { toast } = useToast();
   const { dictionary } = useDictionary();
-  const updateUserName = api.user.updateUserName.useMutation();
+  const updateUserName = api.users.profile.updateNameOfCalling.useMutation();
 
   const nameSchema = z.object({
     name: z

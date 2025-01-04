@@ -86,11 +86,14 @@ vi.mock('@/hooks/use-dictionary', () => ({
 
 vi.mock('@/trpc/react', () => ({
     api: {
-        user: {
-            updateUserName: {
-                useMutation: vi.fn(() => ({
-                    mutateAsync: vi.fn(),
-                })),
+        users: {
+            profile: {
+                updateNameOfCalling: {
+                    useMutation: vi.fn(() => ({
+                        mutateAsync: vi.fn(),
+                        isPending: false,
+                    })),
+                },
             },
         },
     },

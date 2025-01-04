@@ -1,17 +1,24 @@
-import { createCallerFactory, createTRPCRouter } from "@/server/api/trpc";
-import { reportRouter } from "./routers/report";
-import { userRouter } from "./routers/userRouter";
-import { reportDetailsRouter } from "./routers/reportDetails";
+import { createTRPCRouter, createCallerFactory } from "@/server/api/trpc";
 
-/**
- * This is the primary router for your server.
- *
- * All routers added in /api/routers should be manually added here.
- */
+import { usersManagementRouter } from "@/server/api/routers/users/management";
+import { usersProfileRouter } from "@/server/api/routers/users/profile";
+import { usersListRouter } from "@/server/api/routers/users/list";
+import { reportsCreateRouter } from "@/server/api/routers/reports/create";
+import { reportsListRouter } from "@/server/api/routers/reports/list";
+import { reportsDetailsRouter } from "@/server/api/routers/reports/details";
+import { reportsUpdateRouter } from "@/server/api/routers/reports/update";
 export const appRouter = createTRPCRouter({
-  report: reportRouter,
-  user: userRouter,
-  reportDetails: reportDetailsRouter,
+  users: createTRPCRouter({
+    management: usersManagementRouter,
+    profile: usersProfileRouter,
+    list: usersListRouter,
+  }),
+  reports: createTRPCRouter({
+    create: reportsCreateRouter,
+    list: reportsListRouter,
+    details: reportsDetailsRouter,
+    update: reportsUpdateRouter,
+  }),
 });
 
 // export type definition of API

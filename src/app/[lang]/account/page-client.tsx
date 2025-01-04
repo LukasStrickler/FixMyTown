@@ -60,7 +60,7 @@ export default function AccountPageClient({ dictionary, lang }: Props) {
         }
     };
 
-    const deleteUserMutation = api.user.deleteCallingUser.useMutation();
+    const deleteUserMutation = api.users.profile.deleteCalling.useMutation();
 
     const handleDeleteAccount = async () => {
         try {
@@ -77,7 +77,7 @@ export default function AccountPageClient({ dictionary, lang }: Props) {
         }
     };
 
-    const updateNameMutation = api.user.updateCallingUserName.useMutation();
+    const updateNameMutation = api.users.profile.updateNameOfCalling.useMutation();
 
     const handleUpdateName = async (newName: string) => {
         try {

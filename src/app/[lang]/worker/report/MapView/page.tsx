@@ -29,7 +29,7 @@ export default async function MapView({
     }
 
     const dictionary = await getDictionary(lang);
-    const { reports } = await api.report.getWorkerReports();
+    const { reports } = await api.reports.list.getAll();
 
     return (
         <HydrateClient>

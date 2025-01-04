@@ -36,7 +36,7 @@ export function useReportForm(
         mode: "onSubmit",
     })
 
-    const createReport = api.report.create.useMutation({
+    const createReport = api.reports.create.base.useMutation({
         onError: (error) => {
             logger.error("Error creating report:", error)
         }

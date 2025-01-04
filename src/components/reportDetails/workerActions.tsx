@@ -27,13 +27,13 @@ export function WorkerActions({
   dictionary,
   currentStatus,
   currentPriority,
-  onActionComplete 
+  onActionComplete
 }: WorkerActionsProps) {
   const [comment, setComment] = useState("");
   const [selectedStatus, setSelectedStatus] = useState<string>(currentStatus.toString());
   const [selectedPriority, setSelectedPriority] = useState<number | undefined>(currentPriority);
 
-  const addProtocoll = api.reportDetails.addProtocoll.useMutation({
+  const addProtocoll = api.reports.update.addProtocoll.useMutation({
     onSuccess: () => {
       window.location.reload();
       setComment("");
@@ -43,7 +43,7 @@ export function WorkerActions({
     },
   });
 
-  const updatePriority = api.reportDetails.updatePriority.useMutation({
+  const updatePriority = api.reports.update.setPriority.useMutation({
     onSuccess: () => {
       window.location.reload();
     },

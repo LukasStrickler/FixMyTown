@@ -599,19 +599,23 @@
         "statuses": {
             "1": {
                 "name": "Neu",
-                "description": "Neu eingegangene Meldung"
+                "description": "Neu eingegangene Meldung",
+                "color": "#4169E1"
             },
             "2": {
                 "name": "In Bearbeitung",
-                "description": "Meldung wird bearbeitet"
+                "description": "Meldung wird bearbeitet",
+                "color": "#FFA500"
             },
             "3": {
                 "name": "Abgeschlossen",
-                "description": "Meldung wurde bearbeitet"
+                "description": "Meldung wurde bearbeitet",
+                "color": "#32CD32"
             },
             "4": {
                 "name": "Abgelehnt",
-                "description": "Meldung wurde abgelehnt"
+                "description": "Meldung wurde abgelehnt",
+                "color": "#FF0000"
             }
         },
         "prios": {

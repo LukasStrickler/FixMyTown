@@ -33,7 +33,7 @@ export default async function MyReports({
     const dictionary = await getDictionary(lang);
 
     // Fetch report data using TRPC
-    const data = await api.reportDetails.getReportDetails({ reportID });
+    const data = await api.reports.details.forCallingAsUser({ reportID });
 
     // Error handling
     if (!data) {

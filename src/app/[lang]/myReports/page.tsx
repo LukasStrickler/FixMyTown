@@ -27,7 +27,7 @@ export default async function MyReports({
   }
 
   const dictionary = await getDictionary(lang);
-  const result = await api.report.getUserReports();
+  const result = await api.reports.list.AllReportsOfCalling();
 
   // Type assertion with proper type checking
   const typedReports = (result?.reports ?? []) as ReportData[];

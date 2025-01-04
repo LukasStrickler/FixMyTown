@@ -19,9 +19,11 @@ type Props = {
 export default async function ReportDetailsPage({
     params: { lang, reportID },
 }: Props) {
+
+    //TODO: ADD WORKER AUTH
     const dictionary = await getDictionary(lang);
 
-    const data = await api.reportDetails.getWorkerReportDetails({ reportID });
+    const data = await api.reports.details.forWorker({ reportID });
 
     if (!data) {
         return <div>{dictionary.pages.reportDetails.errorMessage}</div>;

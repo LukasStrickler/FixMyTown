@@ -29,7 +29,7 @@ export default async function MyReports({
         redirect(`/${lang}/`);
     }
 
-    const { reports } = await api.report.getWorkerReports() as { reports: ReportData[] };
+    const { reports } = await api.reports.list.getAll() as { reports: ReportData[] };
     const dictionary = await getDictionary(lang);
 
     return (

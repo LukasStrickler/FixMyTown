@@ -596,19 +596,23 @@
         "statuses": {
             "1": {
                 "name": "New",
-                "description": "Newly received report"
+                "description": "Newly received report",
+                "color": "#4169E1"
             },
             "2": {
                 "name": "In Progress",
-                "description": "Report is being processed"
+                "description": "Report is being processed",
+                "color": "#FFA500"
             },
             "3": {
                 "name": "Completed",
-                "description": "Report has been processed"
+                "description": "Report has been processed",
+                "color": "#32CD32"
             },
             "4": {
                 "name": "Rejected",
-                "description": "Report has been rejected"
+                "description": "Report has been rejected",
+                "color": "#FF0000"
             }
         },
         "prios": {
