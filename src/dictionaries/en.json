@@ -332,6 +332,13 @@
                 "title": "404 - Page Not Found",
                 "description": "Sorry, the page you are looking for does not exist.",
                 "backToHome": "Back to Home"
+            },
+            "serverError": {
+                "title": "500 - Internal Server Error",
+                "description": "Sorry, something went wrong on our side. Please try again later.",
+                "tryAgain": "Try Again",
+                "backToHome": "Back to Home",
+                "errorCode": "Error Code"
             }
         }
     },

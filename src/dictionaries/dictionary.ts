@@ -9,6 +9,13 @@ export interface Dictionary {
                 title: string;
                 description: string;
                 backToHome: string;
+            },
+            serverError: {
+                title: string;
+                description: string;
+                tryAgain: string;
+                backToHome: string;
+                errorCode: string;
             }
         },
         // Landing page

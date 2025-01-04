@@ -335,6 +335,13 @@
                 "title": "404 - Seite nicht gefunden",
                 "description": "Entschuldigung, die gesuchte Seite existiert nicht.",
                 "backToHome": "Zurück zur Startseite"
+            },
+            "serverError": {
+                "title": "500 - Interner Serverfehler",
+                "description": "Entschuldigung, es ist ein Fehler auf unserer Seite aufgetreten. Bitte versuchen Sie es später erneut.",
+                "tryAgain": "Erneut versuchen",
+                "backToHome": "Zurück zur Startseite",
+                "errorCode": "Fehlercode"
             }
         }
     },
