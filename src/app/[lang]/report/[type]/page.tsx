@@ -1,5 +1,6 @@
 // External Libraries
-import { notFound, redirect } from "next/navigation";
+import { notFound } from "next/navigation";
+import { type Metadata } from 'next';
 
 // Components
 import { ReportingForm } from "@/components/reporting/reporting-form";
@@ -7,10 +8,11 @@ import { HydrateClient } from "@/trpc/server";
 
 // Types
 import { type Locale } from "@/i18n-config";
+import { userLevel } from '@/server/auth/roles';
 
 // Providers
-import { auth } from "@/server/auth";
 import { getDictionary } from "@/server/get-dictionary";
+import { RoleGuard } from '@/components/provider/RoleGuard';
 
 // Utils
 import { logger } from "@/lib/logger";
@@ -29,6 +31,21 @@ const VALID_REPORT_TYPES = {
     "parkingViolation": "3",
 } as const;
 
+type MetadataProps = {
+    params: { lang: Locale; type: string }
+};
+
+export async function generateMetadata({
+    params: { lang, type }
+}: MetadataProps): Promise<Metadata> {
+    const dictionary = await getDictionary(lang);
+    const reportType = VALID_REPORT_TYPES[type as keyof typeof VALID_REPORT_TYPES];
+    return {
+        title: dictionary.metadata.types[reportType].name + " | FixMyTown",
+        description: dictionary.metadata.types[reportType].description,
+    };
+}
+
 type Props = {
     params: {
         lang: Locale;
@@ -40,11 +57,6 @@ export default async function ReportPage({
     params: { lang, type },
 }: Props) {
     try {
-        const session = await auth();
-        if (!session) {
-            return redirect(`/${lang}/login`);
-        }
-
         // Type checking after receiving the parameter
         if (!type || !(type in VALID_REPORT_TYPES)) {
             return notFound();
@@ -54,15 +66,21 @@ export default async function ReportPage({
         const dictionary = await getDictionary(lang);
 
         return (
-            <HydrateClient>
-                <main className="container mx-auto p-4">
-                    <ReportingForm
-                        dictionary={dictionary}
-                        preselectedType={reportId}
-                        language={lang}
-                    />
-                </main>
-            </HydrateClient>
+            <RoleGuard
+                allowedRoles={userLevel}
+                lang={lang}
+                redirectTo="/login"
+            >
+                <HydrateClient>
+                    <main className="container mx-auto p-4">
+                        <ReportingForm
+                            dictionary={dictionary}
+                            preselectedType={reportId}
+                            language={lang}
+                        />
+                    </main>
+                </HydrateClient>
+            </RoleGuard>
         );
     } catch (error) {
         logger.error('Report type page error:', error);

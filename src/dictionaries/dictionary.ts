@@ -291,6 +291,7 @@ export interface Dictionary {
     components: {
         reports: {
             details: {
+                title: string;
                 reportId: string;
                 status: string;
                 createdAt: string;

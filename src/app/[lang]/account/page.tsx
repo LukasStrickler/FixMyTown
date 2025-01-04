@@ -1,17 +1,15 @@
 // External Libraries
-import { redirect } from 'next/navigation';
 import { type Metadata } from 'next';
 
 // Components
 import AccountClient from '@/app/[lang]/account/page-client';
+import { RoleGuard } from '@/components/provider/RoleGuard';
 
 // Types
 import { type Locale } from '@/i18n-config';
-
+import { userLevel } from '@/server/auth/roles';
 // Providers
 import { getDictionary } from "@/server/get-dictionary";
-import { auth } from '@/server/auth';
-
 
 type MetadataProps = {
     params: { lang: Locale }
@@ -34,11 +32,15 @@ type Props = {
 export default async function AccountPage({
     params: { lang },
 }: Props) {
-    const session = await auth();
-    if (!session) {
-        return redirect(`/${lang}/login`);
-    }
     const dict = await getDictionary(lang);
 
-    return <AccountClient dictionary={dict} lang={lang} />;
+    return (
+        <RoleGuard
+            allowedRoles={userLevel}
+            lang={lang}
+            redirectTo="/login"
+        >
+            <AccountClient dictionary={dict} lang={lang} />
+        </RoleGuard>
+    );
 } 

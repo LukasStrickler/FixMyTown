@@ -1,5 +1,5 @@
 // External Libraries
-import { redirect } from "next/navigation";
+import { type Metadata } from 'next';
 
 // Components
 import { ReportingForm } from "@/components/reporting/reporting-form";
@@ -7,10 +7,25 @@ import { HydrateClient } from "@/trpc/server";
 
 // Types
 import { type Locale } from "@/i18n-config";
+import { userLevel } from '@/server/auth/roles';
 
 // Providers
-import { auth } from "@/server/auth";
 import { getDictionary } from "@/server/get-dictionary";
+import { RoleGuard } from '@/components/provider/RoleGuard';
+
+type MetadataProps = {
+    params: { lang: Locale }
+};
+
+export async function generateMetadata({
+    params: { lang }
+}: MetadataProps): Promise<Metadata> {
+    const dictionary = await getDictionary(lang);
+    return {
+        title: dictionary.pages.landing.reportButton + " | FixMyTown",
+        description: dictionary.metadata.types[1].description,
+    };
+}
 
 type Props = {
     params: { lang: Locale };
@@ -19,21 +34,22 @@ type Props = {
 export default async function DefectsDamages({
     params: { lang },
 }: Props) {
-    const session = await auth();
-    if (!session) {
-        return redirect(`/${lang}/login`);
-    }
-
     const dictionary = await getDictionary(lang);
 
     return (
-        <HydrateClient>
-            <main className="container mx-auto p-4">
-                <ReportingForm
-                    dictionary={dictionary}
-                    language={lang}
-                />
-            </main>
-        </HydrateClient>
+        <RoleGuard
+            allowedRoles={userLevel}
+            lang={lang}
+            redirectTo="/login"
+        >
+            <HydrateClient>
+                <main className="container mx-auto p-4">
+                    <ReportingForm
+                        dictionary={dictionary}
+                        language={lang}
+                    />
+                </main>
+            </HydrateClient>
+        </RoleGuard>
     );
 }

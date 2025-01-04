@@ -1,5 +1,5 @@
 // External Libraries
-import { redirect } from "next/navigation";
+import { type Metadata } from 'next';
 
 // Components
 import { ReportsTable } from "@/components/ReportOverview/Table/reports-table";
@@ -7,12 +7,28 @@ import { HydrateClient } from "@/trpc/server";
 
 // Types
 import { type Locale } from "@/i18n-config";
-import type { ReportData } from "@/components/reporting/report";
+import { workerLevel } from '@/server/auth/roles';
+import type { ReportData } from '@/components/reporting/report';
 
 // Providers
-import { auth } from "@/server/auth";
 import { api } from "@/trpc/server";
 import { getDictionary } from "@/server/get-dictionary";
+import { RoleGuard } from '@/components/provider/RoleGuard';
+
+
+type MetadataProps = {
+    params: { lang: Locale }
+};
+
+export async function generateMetadata({
+    params: { lang }
+}: MetadataProps): Promise<Metadata> {
+    const dictionary = await getDictionary(lang);
+    return {
+        title: dictionary.layout.navigation.workspaces.workerWorkspace.workerWorkspaceTitle + " | FixMyTown",
+        description: dictionary.layout.navigation.workspaces.workerWorkspace.projects.reportTableView,
+    };
+}
 
 type Props = {
     params: { lang: Locale };
@@ -21,26 +37,24 @@ type Props = {
 export default async function MyReports({
     params: { lang },
 }: Props) {
-    const session = await auth();
-    if (!session?.user) {
-        redirect(`/${lang}/login`);
-    }
-    if (session.user.role !== "worker" && session.user.role !== "admin") {
-        redirect(`/${lang}/`);
-    }
-
     const { reports } = await api.reports.list.getAll() as { reports: ReportData[] };
     const dictionary = await getDictionary(lang);
 
     return (
-        <HydrateClient>
-            <main className="flex min-h-screen flex-col items-center justify-center ">
-                <ReportsTable
-                    dictionary={dictionary}
-                    reports={reports}
-                    worker={true}
-                />
-            </main>
-        </HydrateClient>
+        <RoleGuard
+            allowedRoles={workerLevel}
+            lang={lang}
+            redirectTo="/login"
+        >
+            <HydrateClient>
+                <main className="flex min-h-screen flex-col items-center justify-center">
+                    <ReportsTable
+                        dictionary={dictionary}
+                        reports={reports}
+                        worker={true}
+                    />
+                </main>
+            </HydrateClient>
+        </RoleGuard>
     );
 }

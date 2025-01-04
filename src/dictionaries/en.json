@@ -399,6 +399,7 @@
     "components": {
         "reports": {
             "details": {
+                "title": "Report Details",
                 "reportId": "Report ID",
                 "status": "Status",
                 "createdAt": "Created at",

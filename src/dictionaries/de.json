@@ -402,6 +402,7 @@
     "components": {
         "reports": {
             "details": {
+                "title": "Meldungsdetails",
                 "reportId": "Meldungs-ID",
                 "status": "Status",
                 "createdAt": "Erstellt am",
