@@ -2,7 +2,6 @@
 import "@/styles/globals.css";
 
 // External Libraries
-import { GeistSans } from "geist/font/sans";
 import { type Metadata } from "next";
 import { extractRouterConfig } from "uploadthing/server";
 import { NextSSRPlugin } from "@uploadthing/react/next-ssr-plugin";
@@ -39,7 +38,7 @@ type Props = {
 
 export default function LangLayout({
   children,
-  params: { lang },
+  params: {},
 }: Readonly<Props>) {
   return (
     <ThemeProvider
