@@ -85,7 +85,7 @@ export function NavUser() {
                 <DropdownMenuGroup>
                   <DropdownMenuItem asChild>
                     <Link href={`/${lang}/account`} className="flex items-center">
-                      <BadgeCheck className="mr-2" />
+                      <BadgeCheck className="mr-2 text-primary" />
                       {dictionary?.layout?.navigation?.userToggle?.account}
                     </Link>
                   </DropdownMenuItem>
