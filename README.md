@@ -204,7 +204,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ## 📞 Contact
 
 * **Paul Klarer** - [GitHub](https://github.com/paulKlarer) 
-* **Joscha Stähle** - [GitHub](https://github.com/joscha-st)
+* **Joscha Stähle** - [GitHub](https://github.com/joscha-st) | [Website](https://jstaehle.de)
 * **Lisa Sterner** - [GitHub](https://github.com/sternlis) 
 * **Lukas Strickler** - [GitHub](https://github.com/LukasStrickler) | [Website](https://lukasstrickler.com)
 * **Tim Strohmenger** - [GitHub](https://github.com/Timbo003) | [Website](https://www.tim-strohmenger.de)
