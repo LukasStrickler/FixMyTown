@@ -6,9 +6,6 @@ import Link from "next/link";
 // Components
 import { Button } from "@/components/ui/button";
 
-// Types
-import { type Locale } from "@/i18n-config";
-
 // Hooks
 import { useDictionary } from "@/hooks/use-dictionary";
 import { usePathname } from "next/navigation";

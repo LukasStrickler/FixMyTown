@@ -2,7 +2,6 @@
 import "@/styles/globals.css";
 
 // External Libraries
-import { GeistSans } from "geist/font/sans";
 import { type Metadata } from "next";
 import { extractRouterConfig } from "uploadthing/server";
 import { NextSSRPlugin } from "@uploadthing/react/next-ssr-plugin";
@@ -37,39 +36,33 @@ type Props = {
   };
 };
 
-export default function RootLayout({
+export default function LangLayout({
   children,
-  params: { lang },
+  params: {},
 }: Readonly<Props>) {
   return (
-    // suppressHydrationWarning is needed to prevent hydration errors with the theme provider 
-    // TODO: find a better solution / fix for prod
-    <html lang={lang} className={GeistSans.variable} suppressHydrationWarning>
-      <body className="min-h-screen">
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="system"
-          enableSystem
-          disableTransitionOnChange
-        >
-          <AuthProvider>
-            <TRPCReactProvider>
-              <NamePopup />
-              <SidebarProvider>
-                <AppSidebar />
-                <SidebarInset>
-                  <SidebarTrigger className="block md:hidden fixed top-1 left-1 z-50 bg-sidebar" />
-                  <NextSSRPlugin
-                    routerConfig={extractRouterConfig(ourFileRouter)}
-                  />
-                  {children}
-                  <Toaster />
-                </SidebarInset>
-              </SidebarProvider>
-            </TRPCReactProvider>
-          </AuthProvider>
-        </ThemeProvider>
-      </body>
-    </html>
+    <ThemeProvider
+      attribute="class"
+      defaultTheme="system"
+      enableSystem
+      disableTransitionOnChange
+    >
+      <AuthProvider>
+        <TRPCReactProvider>
+          <NamePopup />
+          <SidebarProvider>
+            <AppSidebar />
+            <SidebarInset>
+              <SidebarTrigger className="block md:hidden fixed top-1 left-1 z-50 bg-sidebar" />
+              <NextSSRPlugin
+                routerConfig={extractRouterConfig(ourFileRouter)}
+              />
+              {children}
+              <Toaster />
+            </SidebarInset>
+          </SidebarProvider>
+        </TRPCReactProvider>
+      </AuthProvider>
+    </ThemeProvider>
   );
 }

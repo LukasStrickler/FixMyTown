@@ -276,7 +276,7 @@ export const columns = (dictionary: Dictionary, worker: boolean): ColumnDef<Repo
         cell: ({ row }) => {
             const protocols = row.getValue<ReportData["protocols"]>("protocols")
             const firstProtocol = protocols?.[0]
-            return firstProtocol?.time ? new Date(firstProtocol.time).toLocaleDateString() : '-'
+            return firstProtocol?.time ? new Date(firstProtocol.time).toLocaleDateString("de-de") : '-'
         },
     },
     {
