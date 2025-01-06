@@ -1,7 +1,7 @@
 {
   "version": "6",
   "dialect": "sqlite",
-  "id": "21778a3c-708d-4fb9-b826-8dd3375a102e",
+  "id": "1c43f9fc-b674-41ee-be8d-0f43ae95a253",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "tables": {
     "fixmytown_account": {
@@ -289,6 +289,13 @@
           "name": "statusIdIndex",
           "columns": [
             "statusId"
+          ],
+          "isUnique": false
+        },
+        "reportIdIndex": {
+          "name": "reportIdIndex",
+          "columns": [
+            "reportId"
           ],
           "isUnique": false
         }

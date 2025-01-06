@@ -97,6 +97,7 @@ CREATE INDEX `prios_name_idx` ON `fixmytown_prios` (`name`);--> statement-breakp
 CREATE INDEX `prios_icon_idx` ON `fixmytown_prios` (`icon`);--> statement-breakpoint
 CREATE INDEX `userIdIndex` ON `fixmytown_protocolls` (`userId`);--> statement-breakpoint
 CREATE INDEX `statusIdIndex` ON `fixmytown_protocolls` (`statusId`);--> statement-breakpoint
+CREATE INDEX `reportIdIndex` ON `fixmytown_protocolls` (`reportId`);--> statement-breakpoint
 CREATE INDEX `type_idx` ON `fixmytown_reports` (`type`);--> statement-breakpoint
 CREATE INDEX `prio_idx` ON `fixmytown_reports` (`prio`);--> statement-breakpoint
 CREATE INDEX `location_description_idx` ON `fixmytown_reports` (`location_description`);--> statement-breakpoint
