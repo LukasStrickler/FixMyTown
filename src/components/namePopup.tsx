@@ -25,7 +25,7 @@ export default function NamePopup() {
   const [showPopup, setShowPopup] = useState(false);
 
   const pathname = usePathname();
-  const { data: session, status } = useSession();
+  const { data: session, status, update: updateSession } = useSession();
   const { toast } = useToast();
   const { dictionary } = useDictionary();
   const updateUserName = api.users.profile.updateNameOfCalling.useMutation();
@@ -52,6 +52,7 @@ export default function NamePopup() {
   const handleUpdateName = async (values: NameUpdateInput) => {
     try {
       await updateUserName.mutateAsync({ name: values.name.trim() });
+      await updateSession();
       toast({
         title: dictionary?.components.signUpPopup.successTitle,
         description: dictionary?.components.signUpPopup.successMessage,
