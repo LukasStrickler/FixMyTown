@@ -62,7 +62,22 @@ FixMyTown is a modern web application that enables citizens to report and track 
 ![Admin](./docs/screenshots/user-management.png)
 </details>
 
+## 📱 Mobile Support
 
+The application is fully responsive and optimized for both desktop and mobile devices.
+Features include:
+- Responsive design for all screen sizes
+- Touch-friendly interface
+- Native mobile app version (FixMyTown-Go) (see [Roadmap](#️-roadmap))
+
+## 🔒 Security
+
+- Email-based authentication with magic links
+- Role-based access control
+- CSRF protection
+- Rate limiting
+- Input validation and sanitization
+- Secure file upload handling
 
 ## 🛠️ Tech Stack
 
@@ -160,66 +175,11 @@ npm run db:push:test
 npm run dev
 ```
 
-
-## 📱 Mobile Support
-
-The application is fully responsive and optimized for both desktop and mobile devices.
-Features include:
-- Responsive design for all screen sizes
-- Touch-friendly interface
-- Native mobile app version (FixMyTown-Go) (see [Roadmap](#️-roadmap))
-
-## 🔒 Security
-
-- Email-based authentication with magic links
-- Role-based access control
-- CSRF protection
-- Rate limiting
-- Input validation and sanitization
-- Secure file upload handling
-
-## 👥 Team
-
-- **Paul Klarer** - UI & Documentation
-- **Joscha Stähle** - Developer
-- **Lisa Sterner** - Workflows & Documentation
-- **Lukas Strickler** - Lead Developer
-- **Tim Strohmenger** - Developer
-
-## 🤝 Contributing
-
-While this is primarily an educational project, contributions are welcome! Please:
-
-1. Clone the repository to your GitHub account
-2. Create a descriptive feature branch (e.g., `git checkout -b feature/add-map-filters`)
-3. Make your changes and commit them with clear messages (e.g., `git commit -m 'Add filters for map markers'`) 
-4. Push your changes to your fork (`git push origin feature/add-map-filters`)
-5. Open a Pull Request against our main branch
-6. Provide a detailed description of your changes and include screenshots/recordings where helpful
-
-## 📄 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-## 📞 Contact
-
-* **Paul Klarer** - [GitHub](https://github.com/paulKlarer) 
-* **Joscha Stähle** - [GitHub](https://github.com/joscha-st) | [Website](https://jstaehle.de)
-* **Lisa Sterner** - [GitHub](https://github.com/sternlis) 
-* **Lukas Strickler** - [GitHub](https://github.com/LukasStrickler) | [Website](https://lukasstrickler.com)
-* **Tim Strohmenger** - [GitHub](https://github.com/Timbo003) | [Website](https://www.tim-strohmenger.de)
-
-## 🙏 Acknowledgments
-
-- [HWG Ludwigshafen](https://www.hwg-lu.de/) for providing this project as part of our studies
-- All open-source projects that made this possible
-- Our beta testers
-
 ## 📈 Performance 
-Measured on M1 Mac (2020) with Desktop Viewport on the Landing Page
+> Measured on Vercel Deployment
 
 ### Lighthouse Scores
-- Performance: 91/100
+- Performance: 100/100
 - Accessibility: 100/100
 - Best Practices: 100/100
 - SEO: 100/100
@@ -227,8 +187,8 @@ Measured on M1 Mac (2020) with Desktop Viewport on the Landing Page
 ### Core Metrics
 - First Contentful Paint (FCP): 0.3s
 - Largest Contentful Paint (LCP): 0.4s
-- Interaction to Next Paint (INP): 20 ms
-- Total Blocking Time: 250ms
+- Interaction to Next Paint (INP): 10 ms
+- Total Blocking Time: 0ms
 - Speed Index: 0.4s
 - Cumulative Layout Shift (CLS): 0
 
@@ -280,23 +240,6 @@ The testing setup includes:
   - Test database configuration (`npm run db:push:test`)
   - Environment variable management
 
-## 📦 Dependencies
-
-### Core
-- Next.js 14
-- React 18
-- TypeScript 5
-
-### Database & API
-- tRPC
-- Turso
-- Drizzle ORM
-
-### UI & Styling
-- TailwindCSS
-- Shadcn/UI
-- React Email
-
 ## 🗺️ Roadmap
 
 - [ ] Native mobile app (FixMyTown-Go)
@@ -309,6 +252,34 @@ The testing setup includes:
 - For bug reports, please [create an issue](https://github.com/LukasStrickler/FixMyTown/issues) and add the `#dev-bug` label
 - For feature requests, please [create an issue](https://github.com/LukasStrickler/FixMyTown/issues) and add the `#dev-feature` label
 
+## 🤝 Contributing
+
+While this is primarily an educational project, contributions are welcome! Please:
+
+1. Clone the repository to your GitHub account
+2. Create a descriptive feature branch (e.g., `git checkout -b feature/add-map-filters`)
+3. Make your changes and commit them with clear messages (e.g., `git commit -m 'Add filters for map markers'`) 
+4. Push your changes to your fork (`git push origin feature/add-map-filters`)
+5. Open a Pull Request against our main branch
+6. Provide a detailed description of your changes and include screenshots/recordings where helpful
+
+## 📄 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## 👥 Team
+
+* **Paul Klarer** - UI & Documentation - [GitHub](https://github.com/paulKlarer)
+* **Joscha Stähle** - Developer - [GitHub](https://github.com/joscha-st) | [Website](https://jstaehle.de)
+* **Lisa Sterner** - Workflows & Documentation - [GitHub](https://github.com/sternlis)
+* **Lukas Strickler** - Lead Developer - [GitHub](https://github.com/LukasStrickler) | [Website](https://lukasstrickler.com)
+* **Tim Strohmenger** - Developer - [GitHub](https://github.com/Timbo003) | [Website](https://www.tim-strohmenger.de)
+
+## 🙏 Acknowledgments
+
+- [HWG Ludwigshafen](https://www.hwg-lu.de/) for providing this project as part of our studies
+- All open-source projects that made this possible
+- Our beta testers
 
 ---
 
